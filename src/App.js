@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import logo from './NUTRINA_LOGO.png';
 import './App.css';
 
 function App() {
@@ -7,16 +7,11 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          {/* Edit <code>src/App.js</code> and save to reload. */}
+          Stay Tuned! Website coming soon :)
+          <br></br>
+          But for now, shop on <a href="https://delli.market/products/nutrinanas-special-granola?srsltid=AfmBOorT2Xj4IWGiK9IT7sG_UsL4JRnW2bHQ-DzvnvsATtaQmOhrfS3m">DELLI</a>
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );
