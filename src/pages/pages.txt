@@ -1,0 +1,2 @@
+Main pages like Home, About, Product to go here.
+Delete txt file accordingly.

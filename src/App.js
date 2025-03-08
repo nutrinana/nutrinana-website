@@ -1,5 +1,5 @@
-import logo from './NUTRINA_LOGO.png';
-import './App.css';
+import logo from './assets/NUTRINA_LOGO.png';
+import './styles/App.css';
 
 function App() {
   return (
