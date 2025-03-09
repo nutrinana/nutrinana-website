@@ -1,2 +1,0 @@
-Helper functions, API calls to go here.
-Delete txt file accordingly.
