@@ -1,2 +1,0 @@
-Reusable UI elements to go in this folder. 
-Delete txt file accordingly.
