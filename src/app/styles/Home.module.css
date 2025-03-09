@@ -1,0 +1,40 @@
+.container {
+    text-align: center;
+}
+
+.logo {
+    height: 20vmin;
+    pointer-events: none;
+    padding-bottom: 100px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .logo {
+        animation: logo-spin infinite 20s linear;
+    }
+}
+
+.header {
+    background-color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: #000000;
+}
+
+.link {
+    color: #0c357b;
+    text-decoration: underline;
+}
+
+@keyframes logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
