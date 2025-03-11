@@ -14,8 +14,10 @@ export default function Banner() {
     const { currentIndex, prevMessage, nextMessage } = useBanner(messages);
 
     return (
+        // TODO: Change the background color of the banner here if needed, bg-[#XXXXXX]
         <div className="bg-[#E5BD68] text-black text-sm py-2 px-4 flex items-center justify-between relative">
             {/* Left Arrow */}
+            // TODO: Change the colour of arrow before hover, text-black
             <Button variant="ghost" size="icon" onClick={prevMessage} className="text-gray-700 hover:text-gray-900 hover:bg-transparent">
                 <ArrowLeft size={20} />
             </Button>
@@ -25,6 +27,7 @@ export default function Banner() {
                 <strong>{messages[currentIndex].text}</strong>{" "}
                 {messages[currentIndex].link && (
                     <>
+                        // TODO: Change the hover effect colour
                         <Link href={messages[currentIndex].link} className="underline hover:text-green-700">
                             {messages[currentIndex].linkText}
                         </Link>{" "}
@@ -34,6 +37,7 @@ export default function Banner() {
             </p>
 
             {/* Right Arrow */}
+            // TODO: Change the colour of arrow before hover, text-black
             <Button variant="ghost" size="icon" onClick={nextMessage} className="text-gray-700 hover:text-gray-900 hover:bg-transparent">
                 <ArrowRight size={20} />
             </Button>
