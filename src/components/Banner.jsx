@@ -21,7 +21,6 @@ export default function Banner() {
             </Button>
 
             {/* Banner Content */}
-            {/* TODO make emojis larger */}
             <p className="flex-1 text-center whitespace-nowrap overflow-hidden text-ellipsis">
                 <strong>{messages[currentIndex].text}</strong>{" "}
                 {messages[currentIndex].link && (
