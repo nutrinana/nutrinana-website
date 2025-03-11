@@ -8,7 +8,7 @@ import blackFarmerLogo from "/public/icons/black-farmer-logo.svg";
 
 export default function Footer() {
     return (
-        <footer className="bg-gray-200 text-gray-800 mt-10 py-9">
+        <footer className="bg-gray-200 text-gray-800 mt-10 py-9 border-t border-black">
             <div className="max-w-full mx-auto px-6 md:px-20">
 
                 <div className="flex flex-col md:grid md:grid-cols-3 gap-4 md:gap-6 mb-4">
