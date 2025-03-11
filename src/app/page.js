@@ -1,6 +1,6 @@
 import Image from "next/image";
-import styles from "../app/styles/globals.css";
-import additionalStyles from "../app/styles/Home.module.css";
+import styles from "../styles/globals.css";
+import additionalStyles from "../styles/Home.module.css";
 
 export default function Home() {
   return (
