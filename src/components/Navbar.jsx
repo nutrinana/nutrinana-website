@@ -1,7 +1,7 @@
 "use client";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button"; // Importing ShadCN Button
 
@@ -16,33 +16,46 @@ export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname();
 
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 768) {
+                setIsOpen(false);
+            }
+        };
+
+        window.addEventListener("resize", handleResize);
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
     return (
-        <nav className="bg-white sticky top-0 w-full z-50 py-6 border-b border-gray-300">
+        <nav className="bg-white sticky top-0 w-full z-50 py-4 border-b border-gray-300">
             <div className="w-full px-4 sm:px-6 lg:px-8 flex justify-between items-center">
                 
                 {/* Mobile Layout - Hamburger on Left, Logo in Center */}
                 <div className="flex items-center md:hidden w-full justify-between">
-                    <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)}>
+                    <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)} className="relative z-50 ml-4">
                         {isOpen ? <X size={24} /> : <Menu size={24} />}
                     </Button>
 
                     <Link href="/" className="absolute left-1/2 transform -translate-x-1/2">
-                        <img src="/NUTRINA_LOGO.png" alt="Nutrinana Logo" className="h-12" />
+                        <img src="/NUTRINA_LOGO.png" alt="Nutrinana Logo" className="h-12 mb-2" />
                     </Link>
                 </div>
 
                 {/* Desktop Layout - Centered Logo and Navigation */}
                 <div className="hidden md:flex flex-col items-center w-full">
                     <Link href="/">
-                        <img src="/NUTRINA_LOGO.png" alt="Nutrinana Logo" className="h-16 my-2" />
+                        <img src="/NUTRINA_LOGO.png" alt="Nutrinana Logo" className="h-16 my-0" />
                     </Link>
 
-                    <div className="flex space-x-12 mt-4">
+                    <div className="flex space-x-12 mt-5">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.name}
                                 href={link.href}
-                                className={`px-4 py-2 rounded-full transition-all ${
+                                className={`px-4 py-0 rounded-full transition-all ${
                                     pathname === link.href
                                         ? "bg-[#507153] text-white font-bold"
                                         : "text-gray-900 hover:text-[#507153]"
@@ -59,13 +72,13 @@ export default function Navbar() {
             <div className={`fixed inset-0 bg-white z-50 w-full h-screen flex flex-col border-r border-gray-300 transform transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"}`}>
                 
                 {/* Close Button - Top Left */}
-                <div className="flex justify-between items-center px-4 py-4">
-                    <Link href="/" onClick={() => setIsOpen(false)}>
-                        <img src="/NUTRINA_LOGO.png" alt="Nutrinana Logo" className="h-12 ml-2" />
-                    </Link>
-                    <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)}>
+                <div className="flex items-center px-4 py-4">
+                    <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="absolute left-8 mt-11">
                         <X size={24} />
                     </Button>
+                    <Link href="/" onClick={() => setIsOpen(false)} className="mx-auto">
+                        <img src="/NUTRINA_LOGO.png" alt="Nutrinana Logo" className="h-12 mt-6" />
+                    </Link>
                 </div>
 
                 {/* Page Navigations (Stacked Left) */}

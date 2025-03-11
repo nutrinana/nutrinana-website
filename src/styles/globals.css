@@ -129,6 +129,11 @@ body {
   z-index: 50; /* Ensure it stays above */
 }
 
+button,
+a {
+  cursor: pointer;
+}
+
 .banner {
   margin-top: 50px; /* Adjust depending on navbar height */
 }

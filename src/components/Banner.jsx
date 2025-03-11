@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button";
 import { useBanner } from "@/hooks/useBanner";
 
 const messages = [
-    { text: "Our New Website is Live! Explore now! 🚀" },
-    { text: "Find out more about Nutrinana and our journey!", link: "#", linkText: "Learn More", emoji: "🤔👩🏾‍🍳" },
+    { text: "Our New Website is Live! Explore now!", link:"#", linkText:"", emoji: "🚀" },
+    { text: "Find out more about Nutrinana!", link: "#", linkText: "Learn More", emoji: "🤔👩🏾‍🍳" },
     { text: "Shop now on DELLI or The Black Farmer!", link: "#", linkText: "Shop Now", emoji: "🥰🛍️" }
 ];
 
@@ -14,31 +14,29 @@ export default function Banner() {
     const { currentIndex, prevMessage, nextMessage } = useBanner(messages);
 
     return (
-        // TODO: Change the background color of the banner here if needed, bg-[#XXXXXX]
-        <div className="bg-[#E5BD68] text-black text-sm py-2 px-4 flex items-center justify-between relative">
+        <div className="bg-[#FD7F84] text-black text-sm py-0 px-4 flex items-center justify-between relative">
             {/* Left Arrow */}
-            {/* TODO: Change the colour of arrow before hover, text-black */}
-            <Button variant="ghost" size="icon" onClick={prevMessage} className="text-gray-700 hover:text-gray-900 hover:bg-transparent">
+            <Button variant="ghost" size="icon" onClick={prevMessage} className="text-black hover:text-gray-100 hover:bg-transparent">
                 <ArrowLeft size={20} />
             </Button>
 
             {/* Banner Content */}
-            <p className="flex-1 text-center">
+            {/* TODO make emojis larger */}
+            <p className="flex-1 text-center whitespace-nowrap overflow-hidden text-ellipsis">
                 <strong>{messages[currentIndex].text}</strong>{" "}
                 {messages[currentIndex].link && (
                     <>
-                        {/* TODO: Change the hover effect colour */}
-                        <Link href={messages[currentIndex].link} className="underline hover:text-green-700">
+                        <Link href={messages[currentIndex].link} className="underline hover:text-gray-100">
                             {messages[currentIndex].linkText}
                         </Link>{" "}
-                        {messages[currentIndex].emoji}
+                        {/* {messages[currentIndex].emoji} */}
+                        <span className="text-lg">{messages[currentIndex].emoji}</span> {/* Increased emoji size */}
                     </>
                 )}
             </p>
 
             {/* Right Arrow */}
-            {/* TODO: Change the colour of arrow before hover, text-black */}
-            <Button variant="ghost" size="icon" onClick={nextMessage} className="text-gray-700 hover:text-gray-900 hover:bg-transparent">
+            <Button variant="ghost" size="icon" onClick={nextMessage} className="text-black hover:text-gray-100 hover:bg-transparent">
                 <ArrowRight size={20} />
             </Button>
         </div>
