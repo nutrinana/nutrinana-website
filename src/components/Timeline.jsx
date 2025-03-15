@@ -11,7 +11,7 @@ export default function Timeline({ timelineData }) {
 
     // Calculate the height dynamically based on the number of items
     const collapsedHeight = 800;
-    const expandedHeight = 800 + (timelineData.length - 2) * 300;
+    const expandedHeight = 600 + (timelineData.length - 2) * 300;
 
     // Calculate the top position for the final timeline slice and bottom circle
     const finalSliceTop = 300 + (timelineData.length - 2) * 300;
@@ -34,9 +34,9 @@ export default function Timeline({ timelineData }) {
                 <CollapsibleTrigger className="left-[500px] top-[180px] absolute">{isOpen ? 'See Less' : 'See More' }</CollapsibleTrigger>
                 <CollapsibleContent className={isOpen ? 'collapsible-content-enter' : 'collapsible-content-exit'}>
                     {/* Collapsible Timeline Slice */}
-                    <div className={`w-[1000px] h-0 left-[320px] absolute origin-top-left -rotate-90 outline outline-[3px] outline-offset-[-1.5px] outline-[#507153]`} style={{ top: `${40 + (timelineData.length - 1) * 300}px`}} />
+                    <div className={`h-0 left-[320px] absolute origin-top-left -rotate-90 outline outline-[3px] outline-offset-[-1.5px] outline-[#507153]`} style={{ width: `${(timelineData.length - 2) * 300}px`, top: `${40 + (timelineData.length - 1) * 300}px` }} />
                     {timelineData.slice(1, -1).map((item, index) => (
-                        <div key={index} className={`w-40 ${index % 2 === 0 ? 'right-[320px]' : 'left-[320px]'} top-[${300 + index * 300}px] absolute inline-flex flex-col justify-start items-center gap-2.5`}>
+                        <div key={index} className={`w-40 ${index % 2 === 0 ? 'right-[320px]' : 'left-[320px]'} absolute inline-flex flex-col justify-start items-center gap-2.5`} style={{ top: `${300 + index * 300}px` }}>
                             <div className={`self-stretch h-10 text-${index % 2 === 0 ? 'left' : 'center'} justify-start text-zinc-900 text-2xl font-semibold font-['Atma']`}>
                                 {item.year}</div>
                             <div className={`w-40 h-0 origin-top-${index % 2 === 0 ? 'right' : 'left'} -rotate-180 outline outline-[3px] outline-offset-[-1.5px] outline-[#507153]`} />
