@@ -15,22 +15,22 @@ export default function TestPage() {
             {
                 year: "2021",
                 text: "The magic begins! Nana perfects her activated granola recipe and starts selling it to her local neighbourhood.",
-                image: "https://placehold.co/200x216"
+                image: "IMG_6237.jpeg"
             },
             {
                 year: "2022",
                 text: "Nutrinana goes digital! The Activated Granola hits the virtual shelves on DELLI, making its way to kitchens across the UK.",
-                image: "https://placehold.co/200x216"
+                image: "IMG_6237.jpeg"
             },
             {
                 year: "2023",
                 text: "Nana joins forces with a group of green-thumbed garden enthusiasts to grow her own veggies in a shared allotment. Fresh, home-grown ingredients inspire new recipes, which she shares with her growing Instagram family.",
-                image: "https://placehold.co/200x216"
+                image: "IMG_6237.jpeg"
             },
             {
                 year: "2024",
                 text: "Nutrinana’s Activated Granola finds a home in the Black Farmers Shop in Brixton, bringing the taste of Nana’s kitchen to even more happy customers. This is only just the beginning!",
-                image: "https://placehold.co/200x216"
+                image: "IMG_6237.jpeg"
             }
             // ,
             // {
