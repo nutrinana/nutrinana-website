@@ -15,7 +15,6 @@ export default function TestPage() {
                     "/products/granola1.jpg",
                     "/products/granola2.jpg",
                     "/products/granola3.jpg",
-                    "/products/granola4.jpg",
                 ]}
                 title="Nutrinana's Activated Granola"
                 subtitle="Mixed Fruits & Coconuts"
@@ -23,7 +22,7 @@ export default function TestPage() {
                 price="£8.50"
                 rating="5.0"
                 shopLinks={[
-                    { text: "Shop DELLI", href: "https://delli.market" },
+                    { text: "Shop DELLI", href: "https://delli.market/products/nutrinanas-special-granola?_pos=1&_sid=1d1806f92&_ss=r" },
                     { text: "Shop Black Farmer", href: "https://theblackfarmer.com" },
                 ]}
             />
