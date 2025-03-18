@@ -16,7 +16,7 @@ export default function Timeline({ timelineData }) {
     } = useTimeline(timelineData);
 
     return (
-        <div className="relative w-full max-w-[640px] overflow-hidden items-center transition-all duration-500" style={{ height: isOpen ? `${expandedHeight}px` : `${collapsedHeight}px` }}>
+        <div className="relative flex justify-center items-center w-full h-full overflow-hidden transition-all duration-500" style={{ height: isOpen ? `${expandedHeight}px` : `${collapsedHeight}px` }}>
             {/* Collapsible Trigger covering the entire component */}
             <Collapsible open={isOpen} onOpenChange={setIsOpen}>
                 <CollapsibleTrigger asChild>
@@ -35,7 +35,7 @@ export default function Timeline({ timelineData }) {
                             <div className={`absolute w-[300px] h-32 text-xl font-normal text-black ${index % 2 === 0 ? 'left-[-160px] text-right' : 'left-[20px] text-left'} top-[70px]`}>
                                 {item.text}
                             </div>
-                            <img className={`absolute w-48 h-48 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] border-6 border-white object-cover ${index % 2 === 0 ? 'left-[260px] rotate-[-13deg]' : 'left-[-260px] rotate-[15deg]'}`}src={item.image} />
+                            <img className={`absolute w-48 h-48 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] border-6 border-white object-cover ${index % 2 === 0 ? 'left-[260px] rotate-[-13deg]' : 'left-[-260px] rotate-[15deg]'}`} src={item.image} />
                         </div>
                     ))}
                     {/* bottom circle */}
@@ -57,7 +57,7 @@ export default function Timeline({ timelineData }) {
                 <img className="absolute w-48 h-48 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] border-6 border-white object-cover left-[260px] top-[-20px] rotate-[-13deg]" src={timelineData[0].image} />
             </div>
             {/* top circle */}
-            <div className="absolute w-6 h-6 bg-[#507153] rounded-full top-[0px]"style={{left: 'calc(50% - 12px)'}}></div>
+            <div className="absolute w-6 h-6 bg-[#507153] rounded-full top-[0px]" style={{ left: 'calc(50% - 12px)' }}></div>
 
             {/* Second Timeline Slice */}
             <div className="absolute inline-flex flex-col items-center gap-2.5 w-40 left-1/2 top-[330px]">
@@ -82,7 +82,7 @@ export default function Timeline({ timelineData }) {
                     }}>
                 </div>
             )}
-            <div className="absolute text-3xl left-[250px] top-[420px]" style={{ background: isOpen ? '' : 'white' }}>{isOpen ? '' : 'See More'}</div>
+            <div className="absolute text-3xl top-[420px]" style={{ background: isOpen ? '' : 'white' }}>{isOpen ? '' : 'See More'}</div>
         </div>
     );
 }
