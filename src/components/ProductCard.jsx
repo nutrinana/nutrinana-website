@@ -12,7 +12,9 @@ export default function ProductCard({
     shopLinks = [],
 }) {
     return (
-        <div className="border rounded-xl p-4 bg-white flex flex-col md:flex-row items-center md:items-start max-w-4xl mx-auto relative md:h-[436px] h-auto overflow-hidden">
+        // TODO: remove the border-black class
+        <div className="border border-black rounded-xl p-4 bg-white flex flex-col md:flex-row items-center 
+        md:items-start max-w-4xl mx-auto relative md:h-[436px] h-auto overflow-hidden">
             {/* Images */}
             <div className="flex-1 h-full">
                 {/* Show only one image on mobile */}
