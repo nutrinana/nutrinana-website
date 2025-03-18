@@ -13,6 +13,7 @@ export default function ProductCard({
 }) {
     return (
         <Link href="/activated-granola" className="block">
+            // TODO: remove the border-black class from the div below to see how it looks
             <div className="border border-black rounded-xl p-4 bg-white flex flex-col md:flex-row items-center 
             md:items-start max-w-4xl mx-auto relative md:h-[436px] h-auto overflow-hidden cursor-pointer 
             transition-shadow duration-300 ease-in-out hover:shadow-lg">
