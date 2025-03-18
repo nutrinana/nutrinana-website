@@ -12,9 +12,9 @@ export default function TestPage() {
             <h1 className="text-3xl font-bold">Component Preview</h1>
             <ProductCard
                 images={[
-                    "/products/granola1.jpg",
-                    "/products/granola2.jpg",
-                    "/products/granola3.jpg",
+                    "/products/mixed-fruits/granola1.jpg",
+                    "/products/mixed-fruits/granola2.jpg",
+                    "/products/mixed-fruits/granola3.jpg",
                 ]}
                 title="Nutrinana's Activated Granola"
                 subtitle="Mixed Fruits & Coconuts"
