@@ -1,34 +1,8 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Belleza&family=Combo&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 
 /* Defining custom fonts*/
-@font-face {
-  font-family: 'Bodoni Moda'; /*Simple Label - e.g. free from labels*/
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('fonts/BodoniModa-VariableFont.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'Homemade Apple'; /*Slogan*/
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('fonts/HomemadeApple-Regular.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'Montsterrat'; /*Normal*/
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('fonts/Montserrat-VariableFont.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'Qwitcher Grypen'; /*Brush Label - e.g. mixed fruits label*/
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('fonts/QwitcherGrypen-Bold.ttf') format('truetype');
-}
 @font-face {
   font-family: 'Tanuki Permanent Marker'; /*Descriptor - e.g. description*/
   font-style: normal;
@@ -36,16 +10,28 @@
   font-display: swap;
   src: url('fonts/TanukiMagic.ttf') format('truetype');
 }
+.belleza-regular {
+  font-family: "Belleza", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.montserrat-regular> {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+.combo-regular {
+  font-family: "Combo", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}/*compare this one againts tanuki*/
+
 
 :root {
 
-  /*font usage: style={{ fontFamily: 'var(--font-normal)' }}*/
-  /*--font-title: 'Tan Nimbus', sans-serif;*/
-  --font-normal: 'Montserrat', sans-serif;
-  --font-brush-label: 'Qwitcher Grypen', sans-serif;
-  --font-slogan: 'Homemade Apple', sans-serif;
-  --font-simple-label: 'Bodoni Moda', sans-serif;
-  --font-description: 'Tanuki Permanent Marker', sans-serif;
+  /*font usage: style={{ fontFamily: 'var(--font-tanuki)' }}*/
+  --font-tanuki: 'Tanuki Permanent Marker', sans-serif;
 
   /*color usage: bg-[var(--color-green)] etc.*/
   --color-green: #507153;
