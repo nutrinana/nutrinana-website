@@ -14,8 +14,8 @@ export default function ProductCard({
     return (
         <Link href="/activated-granola" className="block">
             <div className="border border-gray-400 rounded-xl p-4 bg-white flex flex-col md:flex-row items-center 
-            md:items-start max-w-4xl mx-auto relative md:h-[436px] h-auto overflow-hidden cursor-pointer 
-            transition-shadow duration-300 ease-in-out hover:shadow-2xl hover:border-black">
+            md:items-start max-w-4xl mx-auto relative md:h-[436px] h-auto overflow-visible cursor-pointer 
+            transition-shadow duration-300 ease-in-out hover:shadow-xl">
                 {/* Images */}
                 <div className="flex-1 h-full">
                     {/* Show only one image on mobile */}
@@ -62,7 +62,7 @@ export default function ProductCard({
                 
                 {/* Content */}
                 <div className="md:w-1/2 p-4 flex flex-col h-auto md:h-full">
-                    <div className="flex-grow px-4 pb-4 md:pb-0">
+                    <div className="flex-grow px-0 pb-4 pt-4 md:pb-0">
                         <h2 className="text-2xl font-bold text-center">{title}</h2>
                         <p className="text-lg p-2 text-gray-600 text-center">{subtitle}</p>
                         
@@ -84,9 +84,9 @@ export default function ProductCard({
                         </div>
 
                         {/* Shop Buttons */}
-                        <div className="w-full flex flex-row gap-4 mt-auto pt-4">
+                        <div className="w-full flex flex-col sm:flex-row gap-4 mt-auto pt-4">
                             {shopLinks.map(({ text, href }, index) => (
-                                <Link key={index} href={href} className="w-1/2">
+                                <Link key={index} href={href} className="w-full sm:w-1/2">
                                     <button className="w-full px-4 py-2 rounded-lg border bg-gray-200 hover:bg-gray-300 text-sm md:text-base truncate">
                                         {text}
                                     </button>
