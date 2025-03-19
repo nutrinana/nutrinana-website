@@ -13,10 +13,9 @@ export default function ProductCard({
 }) {
     return (
         <Link href="/activated-granola" className="block">
-            {/*  TODO: remove the border-black class from the div below to see how it looks */}
-            <div className="border border-black rounded-xl p-4 bg-white flex flex-col md:flex-row items-center 
+            <div className="border border-gray-400 rounded-xl p-4 bg-white flex flex-col md:flex-row items-center 
             md:items-start max-w-4xl mx-auto relative md:h-[436px] h-auto overflow-hidden cursor-pointer 
-            transition-shadow duration-300 ease-in-out hover:shadow-lg">
+            transition-shadow duration-300 ease-in-out hover:shadow-2xl hover:border-black">
                 {/* Images */}
                 <div className="flex-1 h-full">
                     {/* Show only one image on mobile */}
@@ -87,11 +86,11 @@ export default function ProductCard({
                         {/* Shop Buttons */}
                         <div className="w-full flex flex-row gap-4 mt-auto pt-4">
                             {shopLinks.map(({ text, href }, index) => (
-                                <button key={index} className="w-1/2 px-4 py-2 rounded-lg border bg-gray-200 hover:bg-gray-300 text-sm md:text-base truncate">
-                                    <Link href={href} className="block w-full h-full text-center">
+                                <Link key={index} href={href} className="w-1/2">
+                                    <button className="w-full px-4 py-2 rounded-lg border bg-gray-200 hover:bg-gray-300 text-sm md:text-base truncate">
                                         {text}
-                                    </Link>
-                                </button>
+                                    </button>
+                                </Link>
                             ))}
                         </div>
                     </div>
