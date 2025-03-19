@@ -3,12 +3,12 @@ import ProductCard from "./ProductCard";
 
 export default function ProductCarousel({ products }) {
     return (
-        <Carousel className="w-full max-w-6xl mx-auto relative">
-            <CarouselContent className="-ml-1 flex">
+        <Carousel className="relative w-full max-w-6xl mx-auto overflow-visible">
+            <CarouselContent className="-ml-1 flex overflow-visible pb-6">
                 {products.map((product, index) => (
                     <CarouselItem 
                         key={index} 
-                        className="pl-1 flex-shrink-0 md:w-[50%] lg:w-[33.333%] xl:w-[25%]"
+                        className="pl-1 flex-shrink-0 md:w-[50%] lg:w-[33.333%] xl:w-[25%] overflow-visible"
                     >
                         <ProductCard {...product} />
                     </CarouselItem>

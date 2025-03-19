@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Banner from "@/components/Banner";
 import ProductCarousel from "@/components/ProductCarousel";
+import ProductCard from "@/components/ProductCard";
 
 // TODO: uncomment the following code snippet to see the ProductCarousel component in action
 const products = [
@@ -53,6 +54,10 @@ export default function TestPage() {
         <main className="p-10">
             <h1 className="text-3xl font-bold">Component Preview</h1>
             <ProductCarousel products={products} />
+            <br></br>
+            <br></br>
+            <br></br>
+            <ProductCard {...products[0]} />
         </main>
         <Footer />
     </div>
