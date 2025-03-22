@@ -52,7 +52,7 @@ export default function Footer() {
 
                             {/* DELLI */}
                             <Button variant="ghost" className="w-20 h-12 flex justify-center items-center" asChild>
-                                <Link href="https://delli.market">
+                                <Link href="https://delli.market/collections/nutrinana">
                                     <Image src={delliLogo} alt="Delli" width={70} height={35} />
                                 </Link>
                             </Button>
