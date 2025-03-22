@@ -2,45 +2,22 @@
 
 import * as CollapsiblePrimitive from "@radix-ui/react-collapsible"
 
-const Collapsible = CollapsiblePrimitive.Root
+function Collapsible({
+  ...props
+}) {
+  return <CollapsiblePrimitive.Root data-slot="collapsible" {...props} />;
+}
 
-const CollapsibleTrigger = CollapsiblePrimitive.CollapsibleTrigger
+function CollapsibleTrigger({
+  ...props
+}) {
+  return (<CollapsiblePrimitive.CollapsibleTrigger data-slot="collapsible-trigger" {...props} />);
+}
 
-const CollapsibleContent = CollapsiblePrimitive.CollapsibleContent
+function CollapsibleContent({
+  ...props
+}) {
+  return (<CollapsiblePrimitive.CollapsibleContent data-slot="collapsible-content" {...props} />);
+}
 
 export { Collapsible, CollapsibleTrigger, CollapsibleContent }
-
-// Inline CSS for sliding animation
-const style = document.createElement('style');
-style.innerHTML = `
-@keyframes slideDown {
-    from {
-        max-height: 0;
-        opacity: 0;
-    }
-    to {
-        max-height: 1000px; /* Adjust as needed */
-        opacity: 1;
-    }
-}
-
-@keyframes slideUp {
-    from {
-        max-height: 1000px; /* Adjust as needed */
-        opacity: 1;
-    }
-    to {
-        max-height: 0;
-        opacity: 0;
-    }
-}
-
-.collapsible-content-enter {
-    animation: slideDown 0.5s forwards;
-}
-
-.collapsible-content-exit {
-    animation: slideUp 0.5s forwards;
-}
-`;
-document.head.appendChild(style);
