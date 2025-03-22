@@ -5,7 +5,7 @@ import {
     CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import useTimeline from "@/hooks/useTimeline";
-import styles from "@/styles/timeline.module.css";
+import styles from "@/styles/Timeline.module.css";
 
 // TimelineItem component to render each item in the timeline
 const TimelineItem = ({ item, index }) => (
