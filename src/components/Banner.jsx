@@ -14,7 +14,7 @@ export default function Banner() {
     const { currentIndex, prevMessage, nextMessage } = useBanner(messages);
 
     return (
-        <div className="bg-[#FD7F84] text-black text-sm py-0 px-4 flex items-center justify-between relative">
+        <div className="bg-[var(--color-pink)] text-black text-sm py-0 px-4 flex items-center justify-between relative">
             {/* Left Arrow */}
             <Button variant="ghost" size="icon" onClick={prevMessage} className="text-black hover:text-gray-100 hover:bg-transparent">
                 <ArrowLeft size={20} />

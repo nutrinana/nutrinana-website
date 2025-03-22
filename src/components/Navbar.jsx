@@ -57,8 +57,8 @@ export default function Navbar() {
                                 href={link.href}
                                 className={`px-4 py-0 rounded-full transition-all ${
                                     pathname === link.href
-                                        ? "bg-[#507153] text-white font-bold"
-                                        : "text-gray-900 hover:text-[#507153]"
+                                        ? "bg-[var(--color-green)] text-white font-bold"
+                                        : "text-gray-900 hover:text-[var(--color-green)]"
                                 }`}
                             >
                                 {link.name}
@@ -89,7 +89,7 @@ export default function Navbar() {
                             href={link.href}
                             className={`block w-full px-8 py-4 text-left text-2xl transition-all ${
                                 pathname === link.href
-                                    ? "text-[#507153] font-bold"
+                                    ? "text-[var(--color-green)] font-bold"
                                     : "text-gray-900 hover:text-black hover:bg-muted"
                             }`}
                             onClick={() => setIsOpen(false)}
