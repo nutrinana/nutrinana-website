@@ -117,7 +117,7 @@ export default function Navbar() {
                     </Button>
 
                     <Button variant="ghost" className="w-20 h-12 flex justify-center items-center" asChild>
-                        <Link href="https://delli.market">
+                        <Link href="https://delli.market/collections/nutrinana">
                             <img src="/icons/delli-logo.svg" alt="Delli" className="h-6" />
                         </Link>
                     </Button>
