@@ -38,6 +38,7 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --dynamic-font-size: 1.25rem; /* Default to text-xl */
 }
 
 .dark {
@@ -144,5 +145,21 @@ a {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@media (max-width: 800px) {
+  :root {
+    --dynamic-font-size: 1.1rem;
+  }
+}
+@media (max-width: 700px) {
+  :root {
+    --dynamic-font-size: 0.9rem;
+  }
+}
+@media (max-width: 500px) {
+  :root {
+    --dynamic-font-size: 0.8rem;
   }
 }
