@@ -4,6 +4,7 @@ import Banner from "@/components/Banner";
 import Timeline from "@/components/Timeline";
 import ProductCarousel from "@/components/ProductCarousel";
 import ProductCard from "@/components/ProductCard";
+import HeroSlider from "@/components/HeroSlider";
 
 const products = [
     {
@@ -45,11 +46,33 @@ const products = [
     // Add more products
 ];
 
+const slides = [
+    {
+      image: "/home/slide1.jpg",
+      title: "Tasting Session with The Black Farmer!",
+      subtitle: "Saturday 7th July @ The Black Farmer’s Market, Market Row, SW9 8LD",
+      buttonText: "Shop Now",
+    },
+    {
+      image: "/home/slide2.jpg",
+      title: "Activated Granola, Made with Love",
+      subtitle: "Handcrafted with wholesome ingredients to nourish your gut and delight your taste buds.",
+      buttonText: "Discover More",
+    },
+    {
+      image: "/home/slide3.jpg",
+      title: "From Allotment to Table",
+      subtitle: "Inspired by fresh, homegrown produce and Nana’s timeless recipes.",
+      buttonText: "Our Story",
+    },
+  ];
+
 export default function TestPage() {
   return (
     <div>
         <Banner />
         <Navbar />
+        <HeroSlider slides={slides} />
         <main className="p-10">
             <h1 className="text-3xl font-bold">Component Preview</h1>
             <ProductCarousel products={products} />
