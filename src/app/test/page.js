@@ -52,20 +52,23 @@ const slides = [
       title: "Tasting Session with The Black Farmer!",
       subtitle: "Saturday 7th July @ The Black Farmer’s Market, Market Row, SW9 8LD",
       buttonText: "Shop Now",
+      buttonLink: "https://theblackfarmer.com"
     },
     {
       image: "/home/slide2.jpg",
       title: "Activated Granola, Made with Love",
       subtitle: "Handcrafted with wholesome ingredients to nourish your gut and delight your taste buds.",
       buttonText: "Discover More",
+      buttonLink: "/products"
     },
     {
       image: "/home/slide3.jpg",
       title: "From Allotment to Table",
       subtitle: "Inspired by fresh, homegrown produce and Nana’s timeless recipes.",
       buttonText: "Our Story",
+      buttonLink: "/about"
     },
-  ];
+];
 
 export default function TestPage() {
   return (
