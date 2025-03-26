@@ -19,31 +19,31 @@ export default function HeroSlider({ slides = [] }) {
                     index === currentSlide ? "opacity-100" : "opacity-0"
                 }`}
                 >
-                {/* Slide image */}
-                <Image
-                    src={slide.image}
-                    alt={slide.title}
-                    fill
-                    className="object-cover"
-                    priority={index === 0}
-                />
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-black/40 z-10" />
+                    {/* Slide image */}
+                    <Image
+                        src={slide.image}
+                        alt={slide.title}
+                        fill
+                        className="object-cover"
+                        priority={index === 0}
+                    />
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-black/40 z-10" />
 
-                {/* Slide content */}
-                <div className="absolute inset-0 flex flex-col items-start justify-center p-8 md:p-20 z-20 text-white">
-                    <h2 className="text-4xl md:text-6xl font-bold mb-4">
-                    {slide.title}
-                    </h2>
-                    <p className="text-lg md:text-2xl mb-6 max-w-xl">
-                    {slide.subtitle}
-                    </p>
-                    <Link href={slide.buttonLink || "#"} passHref>
-                        <Button size="lg" className="bg-white text-black hover:bg-white/90">
-                            {slide.buttonText}
-                        </Button>
-                    </Link>
-                </div>
+                    {/* Slide content */}
+                    <div className="absolute inset-0 flex flex-col items-start justify-center p-8 md:p-20 z-20 text-white">
+                        <h2 className="text-4xl md:text-6xl font-bold mb-4">
+                            {slide.title}
+                        </h2>
+                        <p className="text-lg md:text-2xl mb-6 max-w-xl">
+                            {slide.subtitle}
+                        </p>
+                        <Link href={slide.buttonLink || "#"} passHref>
+                            <Button size="lg" className="bg-white text-black hover:bg-white/90">
+                                {slide.buttonText}
+                            </Button>
+                        </Link>
+                    </div>
                 </div>
             ))}
             {/* Pagination Dots */}
