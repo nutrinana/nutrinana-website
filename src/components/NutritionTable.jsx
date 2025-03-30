@@ -1,17 +1,9 @@
-import React from "react";
+import { renderWithLineBreaks } from "@/lib/utils";
 
 export default function NutritionTable({ data, note, recommendation }) {
-    function renderWithLineBreaks(text) {
-        return text.split("\n").map((line, index) => (
-            <React.Fragment key={index}>
-                {line}
-                <br />
-            </React.Fragment>
-        ));
-    }
-
     return (
         <>
+            {/* Nutritional Information Table */}
             <table className="w-full md:w-[75%] text-left border-collapse mt-2 text-sm md:text-base">
                 <thead>
                 <tr className="bg-gray-200 text-black">
@@ -22,6 +14,7 @@ export default function NutritionTable({ data, note, recommendation }) {
                 </tr>
                 </thead>
                 <tbody>
+                    {/* Map through the data array and create a table row for each item */}
                     {data.map((row, idx) => (
                         <tr key={idx}>
                             <td className="border border-black p-2">{renderWithLineBreaks(row.name)}</td>
@@ -32,6 +25,7 @@ export default function NutritionTable({ data, note, recommendation }) {
                     ))}
                 </tbody>
             </table>
+            {/* Nutritional Information Note, optional*/}
             {recommendation && <p className="mt-4">{recommendation}</p>}
             {note && <p className="mt-2 text-sm italic">{note}</p>}
         </>
