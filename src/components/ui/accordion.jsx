@@ -9,7 +9,6 @@ import { cn } from "@/lib/utils"
 import "@/styles/globals.css";
 
 function Accordion({ className, ...props }) {
-  // TODO: Adjust accordion size here. max-w-8xl is the largest allowed; max-w-6xl is suggested for layout consistency.
   return (
     <AccordionPrimitive.Root
       data-slot="accordion"
