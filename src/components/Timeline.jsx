@@ -1,4 +1,5 @@
 "use client";
+
 import {
     Collapsible,
     CollapsibleContent,
@@ -7,7 +8,18 @@ import {
 import useTimeline from "@/hooks/useTimeline";
 import styles from "@/styles/Timeline.module.css";
 
-// TimelineItem component to render each item in the timeline
+/**
+ * TimelineItem component that represents a single item in the timeline.
+ * It displays the year, text, and an image associated with the timeline item.
+ * 
+ * @param {Object} props - The properties for the TimelineItem component.
+ * @param {Object} props.item - The timeline item data.
+ * @param {number} props.index - The index of the timeline item in the timeline array.
+ * @param {string} props.item.year - The year associated with the timeline item.
+ * @param {string} props.item.text - The text description of the timeline item.
+ * @param {string} props.item.image - The URL of the image associated with the timeline item.
+ * @returns {JSX.Element} The rendered TimelineItem component.
+ */
 const TimelineItem = ({ item, index }) => (
     <div key={index} className={`absolute inline-flex flex-col items-center gap-2.5 w-[40%] ${index % 2 === 0 ? 'right-1/2' : 'left-1/2'}`} 
     style={{ top: `${30 + index * 300}px` }}>
@@ -25,8 +37,22 @@ const TimelineItem = ({ item, index }) => (
     </div>
 );
 
-// Main Timeline component
+/**
+ * Timeline component that displays a vertical timeline with collapsible sections.
+ * It uses the TimelineItem component to render individual items.
+ * The timeline can be expanded or collapsed to show more items.
+ * 
+ * @param {Object} props - The properties for the Timeline component.
+ * @param {Object[]} props.timelineData - Array of timeline item data.
+ * Each item should contain properties: year, text, and image.
+ * @param {string} props.timelineData[].year - The year associated with the timeline item.
+ * @param {string} props.timelineData[].text - The text description of the timeline item.
+ * @param {string} props.timelineData[].image - The URL of the image associated with the timeline item.
+ * @returns {JSX.Element} The rendered Timeline component.
+ */
 export default function Timeline({ timelineData }) {
+    // Custom hook to manage the timeline state
+    // It provides the API for the collapsible component, current state, and height calculations
     const {
         isOpen,
         setIsOpen,
@@ -46,7 +72,9 @@ export default function Timeline({ timelineData }) {
             <Collapsible open={isOpen} onOpenChange={setIsOpen}>
                 <CollapsibleTrigger asChild>
                     <div>
+                        {/* Invisible layer to trigger the open/close interaction */}
                         <div className="absolute inset-0 z-10 cursor-pointer opacity-0"></div>
+                        {/* Display text when collapsed */}
                         <div className="absolute text-3xl z-10 cursor-pointer top-[420px] hover:text-[#507153]">
                             <div className="absolute right-[50%] px-1">{isOpen ? '' : 'See '}</div>
                             <div className="absolute left-[50%] px-1">{isOpen ? '' : ' More...'}</div>
@@ -54,13 +82,14 @@ export default function Timeline({ timelineData }) {
                     </div>
                 </CollapsibleTrigger>
                 <CollapsibleContent className={isOpen ? styles['collapsible-content-enter'] : styles['collapsible-content-exit']}>
+                    {/* Render the additional timeline items */}
                     {timelineData.slice(2).map((item, index) => (
                         <TimelineItem key={index + 2} item={item} index={index + 2} />
                     ))}
                 </CollapsibleContent>
             </Collapsible>
 
-            {/* Render the first two timeline items */}
+            {/* Initial timeline items always shown */}
             <TimelineItem item={timelineData[0]} index={0} />
             <div className="absolute w-6 h-6 bg-[#507153] rounded-full top-[-5px]" style={{ left: 'calc(50% - 12px)' }}></div>
             <TimelineItem item={timelineData[1]} index={1} />

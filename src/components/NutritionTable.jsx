@@ -1,5 +1,15 @@
 import { renderWithLineBreaks } from "@/lib/utils";
 
+/**
+ * NutritionTable component for displaying nutritional values in a structured table format.
+ * 
+ * @param {Object[]} data - Array of objects containing nutritional data with properties: name, per100g, perServing, and ri (Reference Intake).
+ * @param {string} note - Optional note displayed below the table (e.g. "*Reference Intake").
+ * @param {string} recommendation - Optional additional text or guidance displayed below the table.
+ *
+ * @returns {JSX.Element} A formatted nutrition table with optional footer notes.
+ */
+
 export default function NutritionTable({ data, note, recommendation }) {
     return (
         <>
@@ -25,8 +35,10 @@ export default function NutritionTable({ data, note, recommendation }) {
                     ))}
                 </tbody>
             </table>
-            {/* Nutritional Information Note, optional*/}
+            {/* Display recommendation if provided */}
             {recommendation && <p className="mt-4">{recommendation}</p>}
+
+            {/* Display note if provided, usually a smaller reference note */}
             {note && <p className="mt-2 text-sm italic">{note}</p>}
         </>
     );

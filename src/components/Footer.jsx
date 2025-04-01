@@ -6,6 +6,12 @@ import tiktokLogo from "/public/icons/tiktok-logo.svg";
 import delliLogo from "/public/icons/delli-logo.svg";
 import blackFarmerLogo from "/public/icons/black-farmer-logo.svg";
 
+/**
+ * Footer component for the Nutrinana website.
+ * Includes navigation links, social media icons, legal links, and address.
+ * 
+ * @returns {JSX.Element} The rendered footer component.
+ */
 export default function Footer() {
     return (
         <footer className="bg-gray-200 text-gray-800 mt-10 py-9 border-t border-black">
@@ -14,6 +20,7 @@ export default function Footer() {
                 <div className="flex flex-col md:grid md:grid-cols-3 gap-4 md:gap-6 mb-4">
 
                     {/* Quick Links */}
+                    {/* Section for quick access to help and information */}
                     <div className="w-full">
                         <h4 className="text-4xl font-bold mb-3">Quick Links</h4>
                         <h5 className="text-lg font-semibold mb-2">HELP & INFORMATION</h5>
@@ -24,6 +31,7 @@ export default function Footer() {
                     </div>
 
                     {/* Site Map */}
+                    {/* Section for navigation to main pages of the site */}
                     <div className="w-full">
                         <ul className="space-y-3 text-lg mt-0 md:mt-2">
                             <li><Link href="/" className="hover:underline">Home</Link></li>
@@ -34,16 +42,19 @@ export default function Footer() {
                     </div>
 
                     {/* Social Media Icons */}
+                    {/* Section for social media links */}
                     <div className="order-last flex justify-center md:order-last md:justify-end mt-6 md:mt-28 space-x-4">
                         <div className="flex items-center gap-x-4">
                             {/* Instagram */}
+                            {/* Link to the Instagram profile */}
                             <Button variant="ghost" size="icon" className="w-12 h-12 flex justify-center items-center" asChild>
                                 <Link href="https://instagram.com/nutrinanaa" target="_blank">
                                     <Image src={instagramLogo} alt="Instagram" width={24} height={24} />
                                 </Link>
                             </Button>
 
-                            {/* Tiktok */}
+                            {/* TikTok */}
+                            {/* Link to the TikTok profile */}
                             <Button variant="ghost" size="icon" className="w-12 h-12 flex justify-center items-center" asChild>
                                 <Link href="https://tiktok.com/" target="_blank">
                                     <Image src={tiktokLogo} alt="TikTok" width={24} height={24} />
@@ -51,13 +62,15 @@ export default function Footer() {
                             </Button>
 
                             {/* DELLI */}
+                            {/* Link to the Delli marketplace */}
                             <Button variant="ghost" className="w-20 h-12 flex justify-center items-center" asChild>
                                 <Link href="https://delli.market/collections/nutrinana">
                                     <Image src={delliLogo} alt="Delli" width={70} height={35} />
                                 </Link>
                             </Button>
 
-                            {/* Black Farmer */}
+                            {/* The Black Farmer */}
+                            {/* Link to The Black Farmer website */}
                             <Button variant="ghost" className="w-30 h-12 flex justify-center items-center" asChild>
                                 <Link href="https://theblackfarmer.com/">
                                     <Image src={blackFarmerLogo} alt="The Black Farmer" width={180} height={90} />
@@ -68,9 +81,11 @@ export default function Footer() {
                 </div>
 
                 {/* Divider Line */}
+                {/* Visual separator between sections */}
                 <hr className="my-6 md:my-8 border-gray-400" />
 
                 {/* Privacy & Terms */}
+                {/* Links to legal information and policies */}
                 <div className="flex flex-col md:flex-row justify-between text-sm px-4">
                     <span>&copy; {new Date().getFullYear()}, Nutrinana. All rights reserved.</span>
                     <div className="flex space-x-4">
@@ -79,7 +94,8 @@ export default function Footer() {
                     </div>
                 </div>
 
-                {/* Address */}
+                {/* Company Address */}
+                {/* Displaying the company's physical address */}
                 <div className="text-center md:text-center text-sm mt-4 flex flex-col justify-center">
                     <p>Nutrinana, </p>
                     <p>Unit 143551, PO Box 7169, Poole, BH15 9EL </p>

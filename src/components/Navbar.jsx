@@ -1,21 +1,23 @@
 "use client";
-import { usePathname } from "next/navigation";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button"; // Importing ShadCN Button
+import { Button } from "@/components/ui/button";
 
-const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "About Us", href: "/about" },
-    { name: "Activated Granola", href: "/shop" },
-    { name: "Reviews", href: "/reviews" },
-];
-
+/**
+ * Navbar component for Nutrinana website.
+ * Handles both mobile and desktop navigation with responsive layout.
+ * Includes a slide-in menu on smaller screens and inline navigation on desktop.
+ *
+ * @returns {JSX.Element} The rendered Navbar component.
+ */
 export default function Navbar() {
-    const [isOpen, setIsOpen] = useState(false);
-    const pathname = usePathname();
+    const [isOpen, setIsOpen] = useState(false); // State to track mobile menu open/closed
+    const pathname = usePathname(); // Hook to get the current path
 
+    // Close the mobile menu if screen is resized above mobile breakpoint
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth >= 768) {
@@ -29,11 +31,20 @@ export default function Navbar() {
         };
     }, []);
 
+    // Navigation link definitions
+    const navLinks = [
+        { name: "Home", href: "/" },
+        { name: "About Us", href: "/about" },
+        { name: "Activated Granola", href: "/shop" },
+        { name: "Reviews", href: "/reviews" },
+    ];
+
     return (
         <nav className="bg-white sticky top-0 w-full z-50 py-4 border-b border-gray-300">
+            {/* Header wrapper */}
             <div className="w-full px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-                
-                {/* Mobile Layout - Hamburger on Left, Logo in Center */}
+
+                {/* Mobile layout: Hamburger left, logo center */}
                 <div className="flex items-center md:hidden w-full justify-between">
                     <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)} className="relative z-50 ml-4">
                         {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -44,7 +55,7 @@ export default function Navbar() {
                     </Link>
                 </div>
 
-                {/* Desktop Layout - Centered Logo and Navigation */}
+                {/* Desktop layout: logo top center, links underneath */}
                 <div className="hidden md:flex flex-col items-center w-full">
                     <Link href="/">
                         <img src="/NUTRINA_LOGO.png" alt="Nutrinana Logo" className="h-16 my-0" />
@@ -68,10 +79,10 @@ export default function Navbar() {
                 </div>
             </div>
 
-            {/* Mobile Menu - Full Screen Slide In */}
+            {/* Mobile menu overlay with slide-in effect */}
             <div className={`fixed inset-0 bg-white z-50 w-full h-screen flex flex-col border-r border-gray-300 transform transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"}`}>
                 
-                {/* Close Button - Top Left */}
+                {/* Close button and logo in mobile menu */}
                 <div className="flex items-center px-4 py-4">
                     <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="absolute left-8 mt-11">
                         <X size={24} />
@@ -81,7 +92,7 @@ export default function Navbar() {
                     </Link>
                 </div>
 
-                {/* Page Navigations (Stacked Left) */}
+                {/* Mobile navigation links */}
                 <div className="flex flex-col space-y-6 mt-12 w-full">
                     {navLinks.map((link) => (
                         <Link
@@ -99,10 +110,10 @@ export default function Navbar() {
                     ))}
                 </div>
 
-                {/* Divider */}
+                {/* Divider line */}
                 <hr className="my-8 border-gray-300 mt-auto w-[80%] ml-8" />
 
-                {/* Social Media Icons (Button Style Like Footer) */}
+                {/* Social media buttons in mobile menu */}
                 <div className="flex justify-start space-x-4 px-6 pb-6 w-full">
                     <Button variant="ghost" size="icon" className="w-12 h-12" asChild>
                         <Link href="https://instagram.com/nutrinanaa" target="_blank">
