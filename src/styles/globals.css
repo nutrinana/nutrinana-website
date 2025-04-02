@@ -1,8 +1,18 @@
+/**
+ * Global CSS styles for the Nutrinana website.
+ * 
+ * - Imports Tailwind CSS and Google Fonts.
+ * - Defines custom font faces and utility classes for typography.
+ * - Declares CSS variables for color palette, radius, and font sizes, including light and dark themes.
+ * - Includes base styling for HTML elements and responsive typography using media queries.
+ * - Contains animation keyframes and classes for accordion open/close transitions.
+ */
+
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Belleza&family=Combo&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 
-/* Defining custom fonts*/
+/* Defining custom fonts */
 @font-face {
   font-family: 'Tanuki Permanent Marker'; /*Descriptor - e.g. description*/
   font-style: normal;
