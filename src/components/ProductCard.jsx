@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { CircleCheck } from "lucide-react";
 import { useRouter } from "next/navigation";
+import "@/styles/globals.css"; // Ensure global styles are imported
 
 /**
  * ProductCard component for displaying product information.
@@ -122,9 +122,9 @@ export default function ProductCard({
                         <div className="w-full flex flex-col sm:flex-row gap-4 mt-auto pt-4">
                             {shopLinks.map(({ text, href }, index) => (
                                 <Link key={index} href={href} className="w-full sm:w-1/2">
-                                    <Button variant="outline" className="w-full text-sm md:text-base truncate">
+                                    <button className="white-bg-button">
                                         {text}
-                                    </Button>
+                                    </button>
                                 </Link>
                             ))}
                         </div>

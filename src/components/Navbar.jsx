@@ -46,10 +46,9 @@ export default function Navbar() {
 
                 {/* Mobile layout: Hamburger left, logo center */}
                 <div className="flex items-center md:hidden w-full justify-between">
-                    <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)} className="relative z-50 ml-4">
+                    <button className="side-panel-button" onClick={() => setIsOpen(!isOpen)}>
                         {isOpen ? <X size={24} /> : <Menu size={24} />}
-                    </Button>
-
+                    </button>
                     <Link href="/" className="absolute left-1/2 transform -translate-x-1/2">
                         <img src="/NUTRINA_LOGO.png" alt="Nutrinana Logo" className="h-12 mb-2" />
                     </Link>
@@ -84,9 +83,9 @@ export default function Navbar() {
                 
                 {/* Close button and logo in mobile menu */}
                 <div className="flex items-center px-4 py-4">
-                    <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="absolute left-8 mt-11">
+                    <button className="side-panel-button absolute left-8 mt-11" onClick={() => setIsOpen(false)}>
                         <X size={24} />
-                    </Button>
+                    </button>
                     <Link href="/" onClick={() => setIsOpen(false)} className="mx-auto">
                         <img src="/NUTRINA_LOGO.png" alt="Nutrinana Logo" className="h-12 mt-6" />
                     </Link>
