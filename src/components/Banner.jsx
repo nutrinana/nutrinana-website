@@ -28,10 +28,9 @@ export default function Banner() {
     return (
         <div className="bg-[var(--color-pink)] text-black text-sm py-0 px-4 flex items-center justify-between relative">
             {/* Left Arrow Button to navigate to previous message */}
-            <Button variant="ghost" size="icon" onClick={prevMessage} className="text-black hover:text-gray-100 hover:bg-transparent">
-                <ArrowLeft size={20} />
-            </Button>
-
+            <button  className="outline-arrow" onClick={prevMessage}>
+                <ArrowLeft size={20} /> 
+            </button>
             {/* Banner Content: message text, optional link and emoji */}
             <p className="flex-1 text-center whitespace-nowrap overflow-hidden text-ellipsis">
                 <strong>{messages[currentIndex].text}</strong>{" "}
@@ -47,9 +46,9 @@ export default function Banner() {
             </p>
 
             {/* Right Arrow Button to navigate to next message */}
-            <Button variant="ghost" size="icon" onClick={nextMessage} className="text-black hover:text-gray-100 hover:bg-transparent">
-                <ArrowRight size={20} />
-            </Button>
+            <button  className="outline-arrow" onClick={nextMessage}>
+                <ArrowRight size={20} /> 
+            </button>
         </div>
     );
 }

@@ -53,9 +53,9 @@ export default function HeroSlider({ slides = [] }) {
                             {slide.subtitle}
                         </p>
                         <Link href={slide.buttonLink || "#"} passHref>
-                            <Button size="lg" className="bg-white text-black hover:bg-white/90">
-                                {slide.buttonText}
-                            </Button>
+                            <button className="white-bg-button">
+                                        {slide.buttonText}
+                            </button>
                         </Link>
                     </div>
                 </div>
