@@ -115,7 +115,7 @@ export default function ProductCard({
                         {/* Price and Rating */}
                         <div className="mt-6 flex items-center justify-between pb-3">
                             <span className="text-6xl font-bold text-gray-800">{price}</span>
-                            {rating && <span className="text-yellow-500 text-lg">⭐ {rating}</span>}
+                            {rating && <span className="rating">⭐ {rating}</span>}
                         </div>
 
                         {/* Shop buttons */}
