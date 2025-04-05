@@ -114,29 +114,26 @@ export default function Navbar() {
 
                 {/* Social media buttons in mobile menu */}
                 <div className="flex justify-start space-x-4 px-6 pb-6 w-full">
-                    <Button variant="ghost" size="icon" className="w-12 h-12" asChild>
-                        <Link href="https://instagram.com/nutrinanaa" target="_blank">
-                            <img src="/icons/instagram-logo.svg" alt="Instagram" className="h-6" />
-                        </Link>
-                    </Button>
-
-                    <Button variant="ghost" size="icon" className="w-12 h-12" asChild>
-                        <Link href="https://tiktok.com/" target="_blank">
-                            <img src="/icons/tiktok-logo.svg" alt="TikTok" className="h-6" />
-                        </Link>
-                    </Button>
-
-                    <Button variant="ghost" className="w-20 h-12 flex justify-center items-center" asChild>
-                        <Link href="https://delli.market/collections/nutrinana">
-                            <img src="/icons/delli-logo.svg" alt="Delli" className="h-6" />
-                        </Link>
-                    </Button>
-
-                    <Button variant="ghost" className="w-30 h-12 flex justify-center items-center" asChild>
-                        <Link href="https://theblackfarmer.com/">
-                            <img src="/icons/black-farmer-logo.svg" alt="Black Farmer" className="h-6" />
-                        </Link>
-                    </Button>
+                    {/* Instagram */}
+                    {/* Link to the Instagram profile */}
+                    <Link href="https://instagram.com/nutrinanaa" target="_blank" className="social-button">
+                        <img src="/icons/instagram-logo.svg" alt="Instagram" width={24} height={24} />
+                    </Link>
+                    {/* TikTok */}
+                    {/* Link to the TikTok profile */}
+                    <Link href="https://tiktok.com/" target="_blank" className="social-button">
+                        <img src="/icons/tiktok-logo.svg" alt="TikTok" width={24} height={24} />
+                    </Link>
+                    {/* DELLI */}
+                    {/* Link to the Delli marketplace */}
+                    <Link href="https://delli.market/collections/nutrinana" target="_blank" className="social-button">
+                        <img src="/icons/delli-logo.svg" alt="Delli" width={50} height={25} />
+                    </Link>
+                    {/* The Black Farmer */}
+                    {/* Link to The Black Farmer website */}
+                    <Link href="https://theblackfarmer.com/" target="_blank" className="social-button">
+                        <img src="/icons/black-farmer-logo.svg" alt="The Black Farmer" width={100} height={50} />
+                    </Link>
                 </div>
             </div>
         </nav>
