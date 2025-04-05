@@ -7,6 +7,7 @@ import ProductCard from "@/components/ProductCard";
 import HeroSlider from "@/components/HeroSlider";
 import GlobalAccordion from "@/components/GlobalAccordion";
 import NutritionTable from "@/components/NutritionTable";
+import { ContactForm } from "@/components/ContactForm";
 
 const products = [
     {
@@ -147,6 +148,10 @@ export default function TestPage() {
             <br></br>
             <br></br>
             <Timeline timelineData={timelineData} />  
+            <br></br>
+            <br></br>
+            <br></br>
+            <ContactForm/>
         </main>
         <Footer />
     </div>
