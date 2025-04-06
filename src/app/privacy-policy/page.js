@@ -17,6 +17,12 @@ export default function PrivacyPolicyPage() {
       <p>
         If you have any questions about this policy or how we handle data, you can contact us at info@nutrinana.co.uk.
       </p>
+
+      <h2>Data Deletion Request</h2>
+        <p>
+        Nutrinana does not collect personal data through this application. If you believe any information has been collected and would like it removed, please contact us at 
+        <a href="mailto:info@nutrinana.co.uk">info@nutrinana.co.uk</a> and we will process your request promptly.
+        </p>
     </main>
   );
 }
