@@ -7,6 +7,7 @@ import ProductCard from "@/components/ProductCard";
 import HeroSlider from "@/components/HeroSlider";
 import GlobalAccordion from "@/components/GlobalAccordion";
 import NutritionTable from "@/components/NutritionTable";
+import InstagramFeed from "@/components/InstagramFeed";
 
 const products = [
     {
@@ -147,6 +148,9 @@ export default function TestPage() {
             <br></br>
             <br></br>
             <Timeline timelineData={timelineData} />  
+            <br /><br /><br />
+            <h2 className="text-2xl font-bold mb-4">Instagram Feed</h2>
+            <InstagramFeed />
         </main>
         <Footer />
     </div>
