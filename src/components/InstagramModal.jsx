@@ -1,78 +1,108 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
+import { SiInstagram } from "react-icons/si";
+import { X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+const formatDate = (dateString) => {
+  const options = { day: '2-digit', month: 'short', year: 'numeric' };
+  return new Date(dateString).toLocaleDateString('en-GB', options);
+};
 
 export default function InstagramModal({ post, onClose, onNext, onPrev, showNav }) {
+  const modalRef = useRef(null);
+
   if (!post) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center px-4">
-      <div className="bg-white rounded-lg shadow-lg max-w-3xl w-full flex flex-col md:flex-row">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+      onClick={(e) => {
+        if (modalRef.current && !modalRef.current.contains(e.target)) {
+          onClose();
+        }
+      }}
+    >
+      <div ref={modalRef} className="bg-white rounded-lg overflow-hidden w-full max-w-6xl flex flex-col md:flex-row shadow-lg">
+        {/* Left/right nav buttons */}
+        {showNav && (
+          <>
+            <button
+              onClick={onPrev}
+              className="absolute left-2 md:left-6 top-1/2 transform -translate-y-1/2 text-white text-2xl px-2 py-1 bg-black/30 rounded-full hover:bg-black"
+              aria-label="Previous post"
+            >
+              ‹
+            </button>
+            <button
+              onClick={onNext}
+              className="absolute right-2 md:right-6 top-1/2 transform -translate-y-1/2 text-white text-2xl px-2 py-1 bg-black/30 rounded-full hover:bg-black"
+              aria-label="Next post"
+            >
+              ›
+            </button>
+          </>
+        )}
+
         {/* Left: Image */}
-        <div className="flex-1 bg-black aspect-w-1 aspect-h-1">
+        <div className="flex-shrink-0 w-full md:w-1/2 bg-black">
           <img
             src={post.media_url}
-            alt={post.caption || "Instagram post"}
-            className="w-full h-full object-cover rounded-t-lg"
+            alt={post.caption || 'Instagram post'}
+            className="w-full h-full object-cover max-h-[80vh]"
           />
         </div>
 
         {/* Right: Caption */}
-        <div className="flex-1 p-4 flex flex-col justify-between">
-          <div className="flex items-center mb-2">
-            <div className="w-10 h-10 rounded-full bg-gray-300 mr-2"></div>
-            <div>
-              <p className="text-gray-800 font-semibold">{post.username}</p>
-              <p className="text-gray-500 text-sm">{post.timestamp}</p>
+        <div className="w-full md:w-1/2 p-6 flex flex-col justify-between">
+          <div className="mb-6">
+            <div className="flex items-center mb-4">
+              <div className="flex items-center justify-center w-11 h-11 rounded-full border border-gray-200 mr-4">
+                <SiInstagram className="w-5 h-5 text-black" />
+              </div>
+              <p className="text-lg font-semibold text-black">nutrinanaa</p>
             </div>
+            <hr className="border-t border-gray-200 w-[calc(100%+3rem)] -ml-6 mb-8" />
+            <p className="text-gray-700 whitespace-pre-line text-base mb-4">
+              {post.caption?.split(/(\s+)/).map((word, index) => {
+                if (word.startsWith('@') || word.startsWith('#')) {
+                  const match = word.match(/^([@#][\w_-]+(?:\.[\w_-]+)*)([^\w]*)$/);
+                  if (match) {
+                    return (
+                      <React.Fragment key={index}>
+                        <span className="text-blue-500">{match[1]}</span>
+                        {match[2]}
+                      </React.Fragment>
+                    );
+                  }
+                }
+                return word;
+              })}
+            </p>
+            <p className="text-sm text-gray-500 mb-8">{formatDate(post.timestamp)}</p>
           </div>
-          <div className="overflow-y-auto max-h-[70vh]">
-            <p className="text-gray-800 text-sm whitespace-pre-line">{post.caption}</p>
-          </div>
-          <div className="text-gray-500 text-sm mt-2">
-            {post.hashtags.map((hashtag, index) => (
-              <span key={index} className="mr-1">#{hashtag}</span>
-            ))}
-          </div>
-          <a
-            href={post.permalink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 inline-block text-blue-600 hover:underline text-sm"
-          >
-            View on Instagram →
-          </a>
+          {post.permalink && (
+            <a
+              href={post.permalink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline text-sm"
+            >
+              View on Instagram →
+            </a>
+          )}
         </div>
       </div>
 
-      {/* Navigation Buttons */}
-      {showNav && (
-        <>
-          <button
-            onClick={onPrev}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-2xl px-3 py-2 bg-black/50 rounded-full hover:bg-black"
-            aria-label="Previous post"
-          >
-            ‹
-          </button>
-          <button
-            onClick={onNext}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-2xl px-3 py-2 bg-black/50 rounded-full hover:bg-black"
-            aria-label="Next post"
-          >
-            ›
-          </button>
-        </>
-      )}
-
-      {/* Close Button */}
-      <button
+      <Button
+        variant="ghost"
+        size="icon"
         onClick={onClose}
-        className="absolute top-4 right-4 text-white text-xl px-3 py-1 bg-black/50 rounded hover:bg-black"
-        aria-label="Close modal"
+        className="absolute top-4 right-4 text-black hover:text-white hover:bg-transparent"
       >
-        ✕
-      </button>
+        <X size={28} />
+      </Button>
     </div>
   );
 }
