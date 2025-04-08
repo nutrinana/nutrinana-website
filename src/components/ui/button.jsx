@@ -14,7 +14,7 @@ const buttonVariants = cva(
         green:
           "border bg-[var(--color-green)] text-primary-foreground shadow-xs hover:bg-[var(--color-green)]/80",
         yellow:
-          "border border-primary bg-[var(--color-light-yellow)] text-primary shadow-xs hover:bg-[var(--color-light-yellow)]/80",
+          "border border-primary bg-[var(--color-light-yellow)] text-primary shadow-xs hover:bg-[var(--color-light-yellow)]/70",
         pink:
           "border bg-[var(--color-pink)] text-primary-foreground shadow-xs hover:bg-[var(--color-pink)]/80",
         destructive:
