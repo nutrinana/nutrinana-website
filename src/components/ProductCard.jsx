@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CircleCheck } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
 import "@/styles/globals.css"; // Ensure global styles are imported
 
 /**
@@ -120,12 +121,29 @@ export default function ProductCard({
 
                         {/* Shop buttons */}
                         <div className="w-full flex flex-col sm:flex-row gap-4 mt-auto pt-4">
-                            {shopLinks.map(({ text, href }, index) => (
-                                <Link key={index} href={href} className="white-bg-link w-full sm:w-1/2">
-                                    {text}
-                                </Link>
-                            ))}
-                        </div>
+                            <Button
+                                variant="yellow"
+                                size="default"
+                                className="w-full sm:w-1/2"
+                                onClick={(event) => {
+                                    event.stopPropagation(); //prevents the card's onClick from firing
+                                    window.location.href = shopLinks[0]?.href;
+                                }}
+                            >
+                                {shopLinks[0]?.text}
+                            </Button>
+                            <Button
+                                variant="green"
+                                size="default"
+                                className="w-full sm:w-1/2"
+                                onClick={(event) => {
+                                    event.stopPropagation();
+                                    window.location.href = shopLinks[1]?.href;
+                                }}
+                            >
+                                {shopLinks[1]?.text}
+                            </Button>
+</div>
                     </div>
                 </div>
             </div>
