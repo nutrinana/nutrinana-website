@@ -46,9 +46,9 @@ export default function Navbar() {
 
                 {/* Mobile layout: Hamburger left, logo center */}
                 <div className="flex items-center md:hidden w-full justify-between">
-                    <button className="side-panel-button" onClick={() => setIsOpen(!isOpen)}>
+                    <Button variant="outline" onClick={() => setIsOpen(!isOpen)}>
                         {isOpen ? <X size={24} /> : <Menu size={24} />}
-                    </button>
+                    </Button>
                     <Link href="/" className="absolute left-1/2 transform -translate-x-1/2">
                         <img src="/NUTRINA_LOGO.png" alt="Nutrinana Logo" className="h-12 mb-2" />
                     </Link>
@@ -82,10 +82,10 @@ export default function Navbar() {
             <div className={`fixed inset-0 bg-white z-50 w-full h-screen flex flex-col border-r border-gray-300 transform transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"}`}>
                 
                 {/* Close button and logo in mobile menu */}
-                <div className="flex items-center px-4 py-4">
-                    <button className="side-panel-button absolute left-8 mt-11" onClick={() => setIsOpen(false)}>
+                <div className="flex items-center px-4 py-4 ">
+                    <Button variant="outline" className=" absolute left-5 mt-11" onClick={() => setIsOpen(false)}>
                         <X size={24} />
-                    </button>
+                    </Button>
                     <Link href="/" onClick={() => setIsOpen(false)} className="mx-auto">
                         <img src="/NUTRINA_LOGO.png" alt="Nutrinana Logo" className="h-12 mt-6" />
                     </Link>
@@ -116,22 +116,22 @@ export default function Navbar() {
                 <div className="flex justify-start space-x-4 px-6 pb-6 w-full">
                     {/* Instagram */}
                     {/* Link to the Instagram profile */}
-                    <Link href="https://instagram.com/nutrinanaa" target="_blank" className="social-button">
+                    <Link href="https://instagram.com/nutrinanaa" target="_blank" className="social-icon">
                         <img src="/icons/instagram-logo.svg" alt="Instagram" width={24} height={24} />
                     </Link>
                     {/* TikTok */}
                     {/* Link to the TikTok profile */}
-                    <Link href="https://tiktok.com/" target="_blank" className="social-button">
+                    <Link href="https://tiktok.com/" target="_blank" className="social-icon">
                         <img src="/icons/tiktok-logo.svg" alt="TikTok" width={24} height={24} />
                     </Link>
                     {/* DELLI */}
                     {/* Link to the Delli marketplace */}
-                    <Link href="https://delli.market/collections/nutrinana" target="_blank" className="social-button">
+                    <Link href="https://delli.market/collections/nutrinana" target="_blank" className="social-icon">
                         <img src="/icons/delli-logo.svg" alt="Delli" width={50} height={25} />
                     </Link>
                     {/* The Black Farmer */}
                     {/* Link to The Black Farmer website */}
-                    <Link href="https://theblackfarmer.com/" target="_blank" className="social-button">
+                    <Link href="https://theblackfarmer.com/" target="_blank" className="social-icon">
                         <img src="/icons/black-farmer-logo.svg" alt="The Black Farmer" width={100} height={50} />
                     </Link>
                 </div>

@@ -121,10 +121,8 @@ export default function ProductCard({
                         {/* Shop buttons */}
                         <div className="w-full flex flex-col sm:flex-row gap-4 mt-auto pt-4">
                             {shopLinks.map(({ text, href }, index) => (
-                                <Link key={index} href={href} className="w-full sm:w-1/2">
-                                    <button className="white-bg-button">
-                                        {text}
-                                    </button>
+                                <Link key={index} href={href} className="white-bg-link w-full sm:w-1/2">
+                                    {text}
                                 </Link>
                             ))}
                         </div>
