@@ -47,22 +47,22 @@ export default function Footer() {
                         <div className="flex items-center gap-x-4">
                             {/* Instagram */}
                             {/* Link to the Instagram profile */}
-                            <Link href="https://instagram.com/nutrinanaa" target="_blank" className="social-button">
+                            <Link href="https://instagram.com/nutrinanaa" target="_blank" className="social-icon">
                                 <Image src={instagramLogo} alt="Instagram" width={24} height={24} />
                             </Link>
                             {/* TikTok */}
                             {/* Link to the TikTok profile */}
-                            <Link href="https://tiktok.com/" target="_blank" className="social-button">
+                            <Link href="https://tiktok.com/" target="_blank" className="social-icon">
                                 <Image src={tiktokLogo} alt="TikTok" width={24} height={24} />
                             </Link>
                             {/* DELLI */}
                             {/* Link to the Delli marketplace */}
-                            <Link href="https://delli.market/collections/nutrinana" target="_blank" className="social-button">
+                            <Link href="https://delli.market/collections/nutrinana" target="_blank" className="social-icon">
                                 <Image src={delliLogo} alt="Delli" width={50} height={25} />
                             </Link>
                             {/* The Black Farmer */}
                             {/* Link to The Black Farmer website */}
-                            <Link href="https://theblackfarmer.com/" target="_blank" className="social-button">
+                            <Link href="https://theblackfarmer.com/" target="_blank" className="social-icon">
                                 <Image src={blackFarmerLogo} alt="The Black Farmer" width={100} height={50} />
                             </Link>
                         </div>

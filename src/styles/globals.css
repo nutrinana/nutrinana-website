@@ -248,7 +248,7 @@ a {
 }
 
 /* White background button styles */
-.white-bg-button {
+.white-bg-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -265,67 +265,11 @@ a {
   text-align: center;
   white-space: nowrap;
 }
-.white-bg-button:hover {
+.white-bg-link:hover {
   background-color: var(--accent-color, #f3f4f6); /* Matches hover:bg-accent */
   color: var(--accent-foreground-color, #000000); /* Matches hover:text-accent-foreground */
 }
 .white-bg-button:disabled {
-  pointer-events: none;
-  opacity: 0.5;
-}
-
-
-/* Outline arrow button styles */
-.outline-arrow {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1rem; /* Matches size="icon" */
-  height: 2rem;
-  padding: 0;
-  font-size: 1rem;
-  font-weight: 500;
-  background-color: transparent;
-  color: var(--text-color, #000000);
-  transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
-  cursor: pointer;
-  text-align: center;
-}
-.outline-arrow:hover {
-  color: var(--accent-color, #f3f4f6); /* Matches hover:bg-accent */
-}
-.outline-arrow:disabled {
-  pointer-events: none;
-  opacity: 0.5;
-}
-
-/* <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)} className="relative z-50 ml-4">
-                        {isOpen ? <X size={24} /> : <Menu size={24} />}
-                    </Button> */
-/* Side panel button styles */
-.side-panel-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem; /* Matches size="icon" */
-  height: 2.5rem;
-  padding: 0px 0.75rem;
-  font-size: 1rem; /* Adjust icon size */
-  font-weight: 500;
-  border: none;
-  background-color: transparent;
-  color: var(--text-color, #000000);
-  border-radius: 0.375rem; /* Rounded square */
-  /* border-radius: 50%; Circular button */
-  transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
-  cursor: pointer;
-  text-align: center;
-}
-.side-panel-button:hover {
-  background-color: var(--accent-color, #f3f4f6); /* Matches hover:bg-accent */
-  color: var(--accent-foreground-color, #000000); /* Matches hover:text-accent-foreground */
-}
-.side-panel-button:disabled {
   pointer-events: none;
   opacity: 0.5;
 }
@@ -341,7 +285,7 @@ a {
 }
 
 /* Social button styles */
-.social-button {
+.social-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -353,11 +297,11 @@ a {
   cursor: pointer;
   /* flex-shrink: 0; */
 }
-.social-button:hover {
+.social-icon:hover {
   background-color: var(--accent-color, #f3f4f6); /* Matches hover:bg-accent */
   /* transform: scale(1.05); Slight zoom effect on hover */
 }
-.social-button:disabled {
+.social-icon:disabled {
   pointer-events: none;
   opacity: 0.5;
 }
