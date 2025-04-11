@@ -52,11 +52,13 @@ export default function HeroSlider({ slides = [] }) {
                         <p className="text-lg md:text-2xl mb-6 max-w-xl">
                             {slide.subtitle}
                         </p>
-                        <Link href={slide.buttonLink || "#"} passHref>
-                            <Button variant="green"size="smaller">
-                                {slide.buttonText}
-                            </Button>
-                        </Link>
+                        <Button
+                            variant="green"
+                            size="smaller"
+                            onClick={() => window.location.href = slide.buttonLink || "#"}
+                        >
+                            {slide.buttonText}
+                        </Button>
                         
                     </div>
                 </div>
