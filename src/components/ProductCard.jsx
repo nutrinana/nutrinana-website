@@ -133,7 +133,7 @@ export default function ProductCard({
                                 {shopLinks[0]?.text}
                             </Button>
                             <Button
-                                variant="green"
+                                variant="greenOutlined"
                                 size="default"
                                 className="w-full sm:w-1/2"
                                 onClick={(event) => {
@@ -143,7 +143,7 @@ export default function ProductCard({
                             >
                                 {shopLinks[1]?.text}
                             </Button>
-</div>
+                        </div>
                     </div>
                 </div>
             </div>
