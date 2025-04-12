@@ -5,12 +5,23 @@ import { SiInstagram } from "react-icons/si";
 import { X, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 const formatDate = (dateString) => {
   const options = { day: '2-digit', month: 'short', year: 'numeric' };
   return new Date(dateString).toLocaleDateString('en-GB', options);
 };
 
+/* 
+- TODO: Fix naviagtion buttons for modal carousel
+- TODO: Fix modal size and view for mobile
+- TODO: Add a close button
+- TODO: Add a loading state
+- TODO: Add a error state
+- TODO: move methods to utils
+- TODO: Fix build errors and warnings
+- TODO: muted or unmuted reel? play button styling?
+*/
 export default function InstagramModal({ post, onClose, onNext, onPrev, showNav }) {
   const modalRef = useRef(null);
   const videoRef = useRef(null);
@@ -103,17 +114,24 @@ export default function InstagramModal({ post, onClose, onNext, onPrev, showNav 
                 height={44}
                 className="rounded-full border border-gray-200 p-1 mr-3"
               />
-              <p className="text-lg font-semibold text-black">nutrinanaa</p>
+              <Link
+                href="https://www.instagram.com/nutrinanaa"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-lg font-semibold text-black hover:underline"
+              >
+                nutrinanaa
+              </Link>
             </div>
             <hr className="border-t border-gray-200 w-[calc(100%+3rem)] -ml-6 mb-8" />
-            <p className="text-gray-700 whitespace-pre-line text-base mb-4">
+            <p className="text-black whitespace-pre-line text-base mb-4">
               {post.caption?.split(/(\s+)/).map((word, index) => {
                 if (word.startsWith('@') || word.startsWith('#')) {
                   const match = word.match(/^([@#][\w_-]+(?:\.[\w_-]+)*)(['’]?[a-z]*)?(\W*)$/i);
                   if (match) {
                     return (
                       <React.Fragment key={index}>
-                        <span className="text-blue-500">{match[1]}</span>
+                        <span style={{ color: "rgb(20, 54, 103)" }}>{match[1]}</span>
                         {match[2]}
                         {match[3]}
                       </React.Fragment>
