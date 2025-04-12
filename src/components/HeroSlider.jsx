@@ -66,7 +66,7 @@ export default function HeroSlider({ slides = [] }) {
             {/* Pagination Dots for manual navigation */}
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-30 flex space-x-2">
                 {slides.map((_, index) => (
-                    <Button size="icon"
+                    <Button variant="noOutline" size="icon"
                     key={index}
                     onClick={() => goToSlide(index)}
                     className={`w-3 h-3 rounded-full ${
