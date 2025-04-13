@@ -14,16 +14,23 @@ export function useInstagramFeed() {
 
   useEffect(() => {
     async function fetchInstagramPosts() {
+      // Start fetching posts from the API
       try {
         const res = await fetch("/api/instagram-feed");
+        // If the response is not OK, throw an error
         if (!res.ok) throw new Error("Failed to fetch");
+        // Parse the response JSON and update the posts state
         const data = await res.json();
+        
         setPosts(data);
       } catch (err) {
+        // Log the error and activate fallback mode
         console.error("Instagram feed error:", err);
+        
         setError(true);
         setFallback(true);
       } finally {
+        // Always stop the loading spinner, whether the fetch succeeded or failed
         setLoading(false);
       }
     }

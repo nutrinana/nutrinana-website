@@ -2,12 +2,24 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { X, Play, ArrowLeft, ArrowRight, MoveRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { formatDate } from "@/lib/utils";
 
+/**
+ * InstagramModal component displays an Instagram post in a modal.
+ * 
+ * @param {Object} props - The props for the component.
+ * @param {Object} props.post - The Instagram post data.
+ * @param {Function} props.onClose - Function to call when the modal is closed.
+ * @param {Function} props.onNext - Function to call for the next post.
+ * @param {Function} props.onPrev - Function to call for the previous post.
+ * @param {boolean} props.showNav - Flag to show navigation buttons.
+ * 
+ * @returns {JSX.Element|null} The modal component or null if no post is provided.
+ */
 export default function InstagramModal({ post, onClose, onNext, onPrev, showNav }) {
   const modalRef = useRef(null);
   const videoRef = useRef(null);
@@ -19,6 +31,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev, showNav 
   const [hasError, setHasError] = useState(mode === "error");
 
   useEffect(() => {
+    // Loading and error state handling
     if (mode === "loading") {
       setProgress(0);
       setIsLoading(true);
@@ -97,7 +110,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev, showNav 
           ref={modalRef}
           className="bg-white w-full h-full max-h-screen overflow-y-auto md:rounded-lg md:max-w-6xl md:max-h-[90vh] md:overflow-hidden flex flex-col md:flex-row shadow-lg"
         >
-          {/* Left/right nav buttons */}
+          {/* Navigation buttons for mobile */}
           <div className="absolute top-4 left-4 flex flex-row gap-2 md:hidden z-50">
             <Button
               variant="ghost"
@@ -120,6 +133,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev, showNav 
               <span className="sr-only">Next slide</span>
             </Button>
           </div>
+          {/* Navigation buttons for desktop */}
           <Button
             variant="ghost"
             size="icon"
@@ -141,7 +155,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev, showNav 
             <span className="sr-only">Next slide</span>
           </Button>
 
-          {/* Left: Image */}
+          {/* Media rendering: Image or Video */}
           <div className="flex-shrink-0 w-full md:w-1/2 bg-black">
             {post.media_type === "VIDEO" ? (
               <div className="relative w-full h-full">
@@ -183,7 +197,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev, showNav 
             )}
           </div>
 
-          {/* Right: Caption */}
+          {/* Caption and profile section */}
           <div className="w-full md:w-1/2 p-6 flex flex-col justify-between">
             <div className="mb-6">
               <div className="flex items-center mb-4">
@@ -237,6 +251,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev, showNav 
         </div>
       )}
 
+      {/* Close button */}
       <Button
         variant="ghost"
         size="icon"

@@ -9,6 +9,8 @@ import React from "react";
  *
  * @param {Object} props
  * @param {string} props.src - The Instagram permalink to embed.
+ * 
+ * @returns {JSX.Element|null} The Instagram embed component or null if no src is provided.
  */
 export default function InstagramEmbed({ src }) {
   if (!src) return null;
