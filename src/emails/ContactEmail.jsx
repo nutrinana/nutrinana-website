@@ -21,12 +21,22 @@ export default function QueryEmail({ name, title, comments, requestId, dateTime 
             </a></Text>
           <br/>
           <Text style={paragraph}>Your Request:</Text>
-          <Text style={email_heading}>{title}</Text>
+          <Text style={heading_2}>{title}</Text>
           <Text style={detail}>{comments.replace(/\n/g, '<br/>')}</Text>
           <Text style={paragraph}>Enquiry ID:</Text>
           <Text style={detail}>{requestId}</Text>
           <Text style={paragraph}>Time of Request:</Text>
           <Text style={detail}>{dateTime}</Text>
+          <br/>
+          <Text style={heading}>Speak Soon!</Text>
+          <div style={logoContainer}>
+            <img
+              // TODO change URL from staging
+              src="https://staging.nutrinana.co.uk/NUTRINA_LOGO.png"
+              alt="Nutrinana Logo"
+              style={logoStyle}
+            />
+          </div>
         </Container>
       </Section>
     </Html>
@@ -52,7 +62,7 @@ const heading = {
   color: "#191923", // raisin
   fontFamily: "'Trebuchet MS', sans-serif",
 };
-const email_heading = {
+const heading_2 = {
   fontSize: "1.25rem",
   lineHeight: "1.3",
   fontWeight: "700",
@@ -78,4 +88,14 @@ const linkStyle = {
   color: "#507153", // theme green
   textDecoration: "underline",
   fontFamily: "'Trebuchet MS', sans-serif",
+};
+
+const logoContainer = {
+  textAlign: "center",
+  marginTop: "20px",
+};
+
+const logoStyle = {
+  width: "150px", // Adjust the width as needed
+  height: "auto",
 };
