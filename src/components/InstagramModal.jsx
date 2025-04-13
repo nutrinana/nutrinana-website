@@ -175,7 +175,10 @@ export default function InstagramModal({ post, onClose, onNext, onPrev, showNav 
                 />
                 {!isPlaying && (
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <Play className="w-16 h-16 text-white bg-black/60 rounded-full p-3" />
+                    <div className="p-5 bg-black/60 rounded-full">
+                      {/* TODO: try className=w-10 w-10 */}
+                      <Play className="w-8 h-8 text-white" />
+                    </div>
                   </div>
                 )}
               </div>
