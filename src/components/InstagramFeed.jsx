@@ -1,15 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import { MoveRight } from "lucide-react";
+import { useState } from "react";
 import { SiInstagram } from "react-icons/si";
 import Image from "next/image";
+import InstagramEmbed from "@/components/InstagramEmbed";
 import InstagramModal from "@/components/InstagramModal";
 import { useInstagramFeed } from "@/hooks/useInstagramFeed";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { extractHashtags } from "@/lib/utils";
-import InstagramEmbed from "@/components/InstagramEmbed";
 
 /**
  * InstagramFeed component renders a responsive Instagram grid.
