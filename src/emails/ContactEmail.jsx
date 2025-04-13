@@ -15,7 +15,7 @@ export default function QueryEmail({ name, title, comments, requestId, dateTime 
       <Section style={main}>
         <Container style={container}>
           <Text style={heading}>Hi there, {name}</Text>
-          <Text style={paragraph}>Thank you for your enquiry. This is an automated response, but one of our team will aim to get back to you within 1-3 working days.</Text>
+          <Text style={paragraph}>Thank you for your enquiry. This is an automated response from a no-reply email address, but one of our team will aim to get back to you within 1-3 working days.</Text>
           <Text style={paragraph}>In the meantime, feel free to check out our FAQs at <a href="https://www.nutrinana.co.uk/FAQs" style={linkStyle}>
               www.nutrinana.co.uk/FAQs
             </a></Text>
