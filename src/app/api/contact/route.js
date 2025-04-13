@@ -29,7 +29,8 @@ export async function POST(req) {
       from: 'Nutrinana Help <help@nutrinana.co.uk>', // Must be verified on Resend
       to: email, // requestor's email
       bcc: 'nana@nutrinana.co.uk', // CC the admin so we can reply
-      reply_to: `${email}, nana@nutrinana.co.uk`, // Replies will go to both the requestor and the admin
+      replyTo: email, // reply to the requestor
+      // reply_to: `${email}, nana@nutrinana.co.uk`, // Replies will go to both the requestor and the admin
 
       // from: 'Website Contact Form <onboarding@resend.dev>', // Must be verified on Resend
       // to: email, // requestor's email
