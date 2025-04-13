@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -44,38 +45,45 @@ export function ContactForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        {/* Name Field */}
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Name</FormLabel>
-              <FormControl>
-                <Input placeholder="Your Name" {...field} />
-              </FormControl>
-              <FormDescription>Enter your full name.</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        {/* Name and Email Fields Side by Side */}
+        <div className="flex flex-wrap gap-4">
+          {/* Name Field */}
+          <div className="flex-1 min-w-[200px]">
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Name</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Your Name" {...field} />
+                  </FormControl>
+                  <FormDescription className="text-xs">Enter your full name.</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
 
-        {/* Email Field */}
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input placeholder="you@example.com" {...field} />
-              </FormControl>
-              <FormDescription>Enter a valid email address.</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          {/* Email Field */}
+          <div className="flex-1 min-w-[200px]">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input placeholder="you@example.com" {...field} />
+                  </FormControl>
+                  <FormDescription className="text-xs">Enter a valid email address.</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+        </div>
 
         {/* Title Field */}
         <FormField
@@ -87,7 +95,7 @@ export function ContactForm() {
               <FormControl>
                 <Input placeholder="Subject Title" {...field} />
               </FormControl>
-              <FormDescription>Provide a brief title for your message.</FormDescription>
+              <FormDescription className="text-xs">Provide a brief title for your message.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -103,14 +111,31 @@ export function ContactForm() {
               <FormControl>
                 <Textarea placeholder="Your comments..." {...field} />
               </FormControl>
-              <FormDescription>Write your message or feedback here.</FormDescription>
+              <FormDescription className="text-xs">Write your message or feedback here.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        {/* Submit Button */}
-        <Button type="submit">Submit</Button>
+        {/* Submit Button and Additional Text */}
+        <div className="flex items-center justify-between mt-4">
+          {/* Additional Text */}
+          <div className="text-left text-lg text-[var(--color-raisin)]">
+            <p>
+              Or... <br />
+              email <a href="mailto:help@nutrinana" className="text-[var(--color-green)] underline hover:text-[var(--color-raisin)]">help@nutrinana</a>
+            </p>
+            <p className="text-xs text-gray-500">
+              Please start the subject line with "Customer Enquiry" <br />
+              to help us respond as soon as possible!
+            </p>
+          </div>
+
+          {/* Submit Button */}
+          <Button type="submit" variant="grey" className="mt-12 px-8">
+            Submit
+          </Button>
+        </div>
       </form>
     </Form>
   );
@@ -126,13 +151,16 @@ export function ContactForm() {
       });
   
       if (res.ok) {
-        alert("Message sent successfully!");
+        // alert("Message sent successfully!");
+        toast.success("Request sent successfully!");
         form.reset(); // clear form
       } else {
-        alert("Failed to send message. Please try again later.");
+        // alert("Failed to send message. Please try again later.");
+        toast.error("Failed to send request. Please try again later.");
       }
     } catch (err) {
-      alert("An unexpected error occurred.");
+      // alert("An unexpected error occurred.");
+      toast.error("An unexpected error occurred.");
     }
   }  
 

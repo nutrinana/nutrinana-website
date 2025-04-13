@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Banner from "../components/Banner";
+import { Toaster } from "sonner";
 
 export const metadata = {
   title: "Nutrinana's Activated Granola",
@@ -23,6 +24,9 @@ export default function RootLayout({ children }) {
 
         {/* Footer */}
         <Footer />
+
+        {/* Toaster for notifications */}
+        <Toaster position="bottom-right" richColors />
       </body>
     </html>
   );
