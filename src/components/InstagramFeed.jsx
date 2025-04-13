@@ -1,70 +1,73 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useInstagramFeed } from "@/hooks/useInstagramFeed";
-import InstagramModal from "./InstagramModal";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { MoveRight } from "lucide-react";
 import { SiInstagram } from "react-icons/si";
 import Image from "next/image";
+import InstagramModal from "@/components/InstagramModal";
+import { useInstagramFeed } from "@/hooks/useInstagramFeed";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { extractHashtags } from "@/lib/utils";
+import InstagramEmbed from "@/components/InstagramEmbed";
 
+/**
+ * InstagramFeed component renders a responsive Instagram grid.
+ * Displays latest posts fetched via Instagram API or fallback embeds on error.
+ * Allows users to click a post and open a detailed modal view.
+ * 
+ * @returns {JSX.Element} Instagram feed grid or error fallback.
+ */
 export default function InstagramFeed() {
-    const { posts, error } = useInstagramFeed();
+    const { posts, error, fallback, loading } = useInstagramFeed();
     const [selectedPostIndex, setSelectedPostIndex] = useState(null);
     const isMobile = useMediaQuery("(max-width: 640px)");
 
+    /**
+     * Opens the Instagram modal for the selected post.
+     * @param {number} index - Index of the post to show in modal.
+     */
     const openModal = (index) => {
         setSelectedPostIndex(index);
     };
 
+    /**
+     * Closes the Instagram modal.
+     */
     const closeModal = () => {
         setSelectedPostIndex(null);
     };
 
+    /**
+     * Determines which posts to show based on screen size.
+     * Shows 4 posts on mobile and 10 on larger screens.
+     * @type {Array<Object>}
+     */
     const visiblePosts = posts.slice(0, isMobile ? 4 : 10);
 
-    if (error) {
+    // If still loading, render nothing or a spinner (optional)
+    if (loading) {
+        return null;
+    }
+
+    // Fallback UI: If the Instagram API request fails, display embedded posts as static iframes
+    if (error || fallback) {
         return (
             <section className="flex flex-col items-center justify-center text-center py-10 px-2 sm:px-4 bg-white">
                 <div className={`grid ${isMobile ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-3"} gap-2 w-full max-w-screen-xl`}>
-                    <iframe
-                        src="https://www.instagram.com/p/DH0pat-o2hW/embed"
-                        className="w-full aspect-square border shadow-md sm:max-w-full"
-                        frameBorder="0"
-                        scrolling="no"
-                        allowTransparency
-                    />
+                    <InstagramEmbed src="https://www.instagram.com/p/DH0pat-o2hW/embed" />
                     {!isMobile && (
                         <>
-                            <iframe
-                                src="https://www.instagram.com/p/DHT9SK3IqlY/embed"
-                                className="w-full aspect-square border shadow-md sm:max-w-full"
-                                frameBorder="0"
-                                scrolling="no"
-                                allowTransparency
-                            />
-                            <iframe
-                                src="https://www.instagram.com/p/DF5lKfbop_Y/embed"
-                                className="w-full aspect-square border shadow-md sm:max-w-full"
-                                frameBorder="0"
-                                scrolling="no"
-                                allowTransparency
-                            />
+                            <InstagramEmbed src="https://www.instagram.com/p/DHT9SK3IqlY/embed" />
+                            <InstagramEmbed src="https://www.instagram.com/p/DF5lKfbop_Y/embed" />
                         </>
                     )}
                 </div>
-                <a
-                    href="https://www.instagram.com/nutrinanaa"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-4 text-blue-600 hover:underline text-sm"
-                >
-                    Visit @nutrinanaa on Instagram →
-                </a>
             </section>
         );
     }
 
+    // Instagram feed grid: Displays a responsive set of Instagram posts
     return (
         <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-px">
             {(visiblePosts || []).map((post, index) => {
@@ -72,6 +75,7 @@ export default function InstagramFeed() {
 
                 if (!imageUrl) return null;
 
+                // Individual post preview block with hover effect for icon overlay
                 return (
                     <div
                         key={post.id}
@@ -102,6 +106,7 @@ export default function InstagramFeed() {
                 );
             })}
             {selectedPostIndex !== null && (
+                // Instagram modal for detailed view of selected post
                 <InstagramModal
                     post={{
                         ...visiblePosts[selectedPostIndex],

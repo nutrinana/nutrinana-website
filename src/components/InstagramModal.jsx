@@ -13,7 +13,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev, showNav 
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
 
-  const mode = process.env.NEXT_PUBLIC_DEBUG_MODE || "normal"; // Set to "loading" or "error" for testing
+  const mode = process.env.NEXT_PUBLIC_DEBUG_MODE || "normal";
   const [progress, setProgress] = useState(0);
   const [isLoading, setIsLoading] = useState("loading");
   const [hasError, setHasError] = useState(mode === "error");
