@@ -123,7 +123,7 @@ export function ContactForm() {
           <div className="text-left text-lg text-[var(--color-raisin)]">
             <p>
               Or... <br />
-              email <a href="mailto:help@nutrinana" className="text-[var(--color-green)] underline hover:text-[var(--color-raisin)]">help@nutrinana</a>
+              email <a href="mailto:help@nutrinana.co.uk" className="text-[var(--color-green)] underline hover:text-[var(--color-raisin)]">help@nutrinana.co.uk</a>
             </p>
             <p className="text-xs text-gray-500">
               Please start the subject line with "Customer Enquiry" <br />
