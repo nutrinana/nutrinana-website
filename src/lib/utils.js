@@ -43,3 +43,14 @@ export function formatDate(dateString) {
   const options = { day: '2-digit', month: 'short', year: 'numeric' };
   return new Date(dateString).toLocaleDateString('en-GB', options);
 }
+
+/**
+ * Extracts hashtags from a given text string.
+ *
+ * @param {string} text - The text to extract hashtags from.
+ * @returns {string[]} Array of hashtags.
+ */
+export function extractHashtags(text) {
+  if (!text) return [];
+  return text.match(/#[a-zA-Z0-9_]+/g) || [];
+}

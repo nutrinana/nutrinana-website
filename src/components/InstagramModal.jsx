@@ -116,7 +116,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev, showNav 
               className="bg-black/50 rounded-full text-white hover:text-gray-300 hover:bg-black/70"
               aria-label="Next post"
             >
-              <MoveRight />
+              <ArrowRight />
               <span className="sr-only">Next slide</span>
             </Button>
           </div>
