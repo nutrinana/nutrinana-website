@@ -1,6 +1,6 @@
 export async function GET() {
   const token = process.env.INSTAGRAM_ACCESS_TOKEN;
-  const instagramURL = `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,thumbnail_url,permalink,timestamp&access_token=${token}`;
+  const instagramURL = `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,thumbnail_url,permalink,timestamp&limit=10&access_token=${token}`;
 
   try {
     const res = await fetch(instagramURL);

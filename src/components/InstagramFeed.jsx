@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import InstagramModal from "./InstagramModal";
 import { SiInstagram } from "react-icons/si";
 import Image from "next/image";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 export default function InstagramFeed() {
     const [posts, setPosts] = useState([]);
     const [error, setError] = useState(false);
     const [selectedPostIndex, setSelectedPostIndex] = useState(null);
+    const isMobile = useMediaQuery("(max-width: 640px)");
 
     // Mock fallback data
     const mockPosts = [
@@ -74,9 +76,11 @@ export default function InstagramFeed() {
         setSelectedPostIndex(null);
     };
 
+    const visiblePosts = posts.slice(0, isMobile ? 4 : 10);
+
     return (
         <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-px">
-            {(posts || []).slice(0, 10).map((post, index) => {
+            {(visiblePosts || []).map((post, index) => {
                 const imageUrl = post.media_type === "VIDEO" ? post.thumbnail_url : post.media_url;
 
                 if (!imageUrl) return null;
@@ -113,13 +117,22 @@ export default function InstagramFeed() {
             {selectedPostIndex !== null && (
                 <InstagramModal
                     post={{
-                        ...posts[selectedPostIndex],
-                        hashtags: extractHashtags(posts[selectedPostIndex].caption),
+                        ...visiblePosts[selectedPostIndex],
+                        hashtags: extractHashtags(visiblePosts[selectedPostIndex].caption),
                     }}
                     onClose={closeModal}
-                    totalPosts={posts.length}
+                    totalPosts={visiblePosts.length}
                     currentIndex={selectedPostIndex}
                     onNavigate={setSelectedPostIndex}
+                    onNext={() =>
+                        setSelectedPostIndex((prev) => (prev + 1) % visiblePosts.length)
+                    }
+                    onPrev={() =>
+                        setSelectedPostIndex((prev) =>
+                            (prev - 1 + visiblePosts.length) % visiblePosts.length
+                        )
+                    }
+                    showNav={true}
                 />
             )}
         </section>
