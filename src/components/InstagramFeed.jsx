@@ -1,72 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useInstagramFeed } from "@/hooks/useInstagramFeed";
 import InstagramModal from "./InstagramModal";
 import { SiInstagram } from "react-icons/si";
 import Image from "next/image";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { extractHashtags } from "@/lib/utils";
 
 export default function InstagramFeed() {
-    const [posts, setPosts] = useState([]);
-    const [error, setError] = useState(false);
+    const { posts, error } = useInstagramFeed();
     const [selectedPostIndex, setSelectedPostIndex] = useState(null);
     const isMobile = useMediaQuery("(max-width: 640px)");
-
-    // Mock fallback data
-    const mockPosts = [
-        {
-            id: "1",
-            media_url: "/fallback1.jpg",
-            permalink: "https://instagram.com/nutrinanaa",
-            caption: "Mock caption 1",
-        },
-        {
-            id: "2",
-            media_url: "/fallback2.jpg",
-            permalink: "https://instagram.com/nutrinanaa",
-            caption: "Mock caption 2",
-        },
-        {
-            id: "3",
-            media_url: "/fallback3.jpg",
-            permalink: "https://instagram.com/nutrinanaa",
-            caption: "Mock caption 3",
-        },
-        {
-            id: "4",
-            media_url: "/fallback4.jpg",
-            permalink: "https://instagram.com/nutrinanaa",
-            caption: "Mock caption 4",
-        },
-        {
-            id: "5",
-            media_url: "/fallback5.jpg",
-            permalink: "https://instagram.com/nutrinanaa",
-            caption: "Mock caption 5",
-        },
-    ];
-
-    const extractHashtags = (text) => {
-        if (!text) return [];
-        return text.match(/#[a-zA-Z0-9_]+/g) || [];
-    };
-
-    useEffect(() => {
-        async function fetchInstagramPosts() {
-            try {
-                const res = await fetch("/api/instagram-feed");
-                if (!res.ok) throw new Error("Failed to fetch");
-                const data = await res.json();
-                setPosts(data);
-            } catch (err) {
-                console.error("Instagram feed error:", err);
-                setError(true);
-                setPosts(mockPosts);
-            }
-        }
-
-        fetchInstagramPosts();
-    }, []);
 
     const openModal = (index) => {
         setSelectedPostIndex(index);
@@ -77,6 +22,48 @@ export default function InstagramFeed() {
     };
 
     const visiblePosts = posts.slice(0, isMobile ? 4 : 10);
+
+    if (error) {
+        return (
+            <section className="flex flex-col items-center justify-center text-center py-10 px-2 sm:px-4 bg-white">
+                <div className={`grid ${isMobile ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-3"} gap-2 w-full max-w-screen-xl`}>
+                    <iframe
+                        src="https://www.instagram.com/p/DH0pat-o2hW/embed"
+                        className="w-full aspect-square border shadow-md sm:max-w-full"
+                        frameBorder="0"
+                        scrolling="no"
+                        allowTransparency
+                    />
+                    {!isMobile && (
+                        <>
+                            <iframe
+                                src="https://www.instagram.com/p/DHT9SK3IqlY/embed"
+                                className="w-full aspect-square border shadow-md sm:max-w-full"
+                                frameBorder="0"
+                                scrolling="no"
+                                allowTransparency
+                            />
+                            <iframe
+                                src="https://www.instagram.com/p/DF5lKfbop_Y/embed"
+                                className="w-full aspect-square border shadow-md sm:max-w-full"
+                                frameBorder="0"
+                                scrolling="no"
+                                allowTransparency
+                            />
+                        </>
+                    )}
+                </div>
+                <a
+                    href="https://www.instagram.com/nutrinanaa"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 text-blue-600 hover:underline text-sm"
+                >
+                    Visit @nutrinanaa on Instagram →
+                </a>
+            </section>
+        );
+    }
 
     return (
         <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-px">
