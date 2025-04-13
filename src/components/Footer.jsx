@@ -47,35 +47,24 @@ export default function Footer() {
                         <div className="flex items-center gap-x-4">
                             {/* Instagram */}
                             {/* Link to the Instagram profile */}
-                            <Button variant="ghost" size="icon" className="w-12 h-12 flex justify-center items-center" asChild>
-                                <Link href="https://instagram.com/nutrinanaa" target="_blank">
-                                    <Image src={instagramLogo} alt="Instagram" width={24} height={24} />
-                                </Link>
-                            </Button>
-
+                            <Link href="https://instagram.com/nutrinanaa" target="_blank" className="social-icon">
+                                <Image src={instagramLogo} alt="Instagram" width={24} height={24} />
+                            </Link>
                             {/* TikTok */}
                             {/* Link to the TikTok profile */}
-                            <Button variant="ghost" size="icon" className="w-12 h-12 flex justify-center items-center" asChild>
-                                <Link href="https://tiktok.com/" target="_blank">
-                                    <Image src={tiktokLogo} alt="TikTok" width={24} height={24} />
-                                </Link>
-                            </Button>
-
+                            <Link href="https://tiktok.com/" target="_blank" className="social-icon">
+                                <Image src={tiktokLogo} alt="TikTok" width={24} height={24} />
+                            </Link>
                             {/* DELLI */}
                             {/* Link to the Delli marketplace */}
-                            <Button variant="ghost" className="w-20 h-12 flex justify-center items-center" asChild>
-                                <Link href="https://delli.market/collections/nutrinana">
-                                    <Image src={delliLogo} alt="Delli" width={70} height={35} />
-                                </Link>
-                            </Button>
-
+                            <Link href="https://delli.market/collections/nutrinana" target="_blank" className="social-icon">
+                                <Image src={delliLogo} alt="Delli" width={50} height={25} />
+                            </Link>
                             {/* The Black Farmer */}
                             {/* Link to The Black Farmer website */}
-                            <Button variant="ghost" className="w-30 h-12 flex justify-center items-center" asChild>
-                                <Link href="https://theblackfarmer.com/">
-                                    <Image src={blackFarmerLogo} alt="The Black Farmer" width={180} height={90} />
-                                </Link>
-                            </Button>
+                            <Link href="https://theblackfarmer.com/" target="_blank" className="social-icon">
+                                <Image src={blackFarmerLogo} alt="The Black Farmer" width={100} height={50} />
+                            </Link>
                         </div>
                     </div>
                 </div>
