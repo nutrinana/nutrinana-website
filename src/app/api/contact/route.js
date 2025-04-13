@@ -36,7 +36,7 @@ export async function POST(req) {
       // bcc: 'tanaya27@live.co.uk', // CC the admin so we can reply
       // reply_to: email, // reply to the requestor (?)
 
-      subject: `Customer Enquiry: ${title}`,
+      subject: `Customer Enquiry ${requestId}: ${title}`,
       html,
     });
 
