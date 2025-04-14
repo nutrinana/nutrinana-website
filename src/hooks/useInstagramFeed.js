@@ -22,6 +22,10 @@ export function useInstagramFeed() {
         // Parse the response JSON and update the posts state
         const data = await res.json();
         
+        if (!Array.isArray(data)) {
+          throw new Error("Malformed data");
+        }
+
         setPosts(data);
       } catch (err) {
         // Log the error and activate fallback mode
@@ -29,6 +33,7 @@ export function useInstagramFeed() {
         
         setError(true);
         setFallback(true);
+        setPosts([]);
       } finally {
         // Always stop the loading spinner, whether the fetch succeeded or failed
         setLoading(false);

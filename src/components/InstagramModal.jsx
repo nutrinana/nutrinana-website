@@ -74,7 +74,16 @@ export default function InstagramModal({ post, onClose, onNext, onPrev, showNav 
 
   if (!post) return null;
   const imageSrc = post.media_url || post.thumbnail_url || post.cover_url || "";
-  // const imageSrc =  ""; // simulate an error
+  //const imageSrc = "https://www.instagram.com/";
+  
+  useEffect(() => {
+    const isMalformed = !imageSrc || (post.media_type !== "IMAGE" && post.media_type !== "VIDEO" && post.media_type !== "CAROUSEL_ALBUM");
+    
+    if (isMalformed) {
+      setIsLoading(false);
+      setHasError(true);
+    }
+  }, [imageSrc, post.media_type]);
 
   return (
     <div
@@ -184,13 +193,11 @@ export default function InstagramModal({ post, onClose, onNext, onPrev, showNav 
               </div>
             ) : (
               <div className="relative w-full h-full">
-                <Image
+                <img
                   src={imageSrc}
                   alt={post.caption || 'Instagram post'}
                   className="w-full h-full object-cover max-h-[90vh]"
-                  width={800}
-                  height={800}
-                  onLoadingComplete={() => setIsLoading(false)}
+                  onLoad={() => setIsLoading(false)}
                   onError={() => {
                     setIsLoading(false);
                     setHasError(true);
@@ -221,24 +228,30 @@ export default function InstagramModal({ post, onClose, onNext, onPrev, showNav 
                 </Link>
               </div>
               <hr className="border-t border-gray-200 w-[calc(100%+3rem)] -ml-6 mb-8" />
-              <p className="text-black whitespace-pre-line text-base mb-4">
-                {post.caption?.split(/(\s+)/).map((word, index) => {
-                  if (word.startsWith('@') || word.startsWith('#')) {
-                    const match = word.match(/^([@#][\w_-]+(?:\.[\w_-]+)*)(['’]?[a-z]*)?(\W*)$/i);
-                    if (match) {
-                      return (
-                        <React.Fragment key={index}>
-                          <span style={{ color: "rgb(20, 54, 103)" }}>{match[1]}</span>
-                          {match[2]}
-                          {match[3]}
-                        </React.Fragment>
-                      );
+              {post.caption ? (
+                <p className="text-black whitespace-pre-line text-base mb-4">
+                  {post.caption.split(/(\s+)/).map((word, index) => {
+                    if (word.startsWith('@') || word.startsWith('#')) {
+                      const match = word.match(/^([@#][\w_-]+(?:\.[\w_-]+)*)(['’]?[a-z]*)?(\W*)$/i);
+                      if (match) {
+                        return (
+                          <React.Fragment key={index}>
+                            <span style={{ color: "rgb(20, 54, 103)" }}>{match[1]}</span>
+                            {match[2]}
+                            {match[3]}
+                          </React.Fragment>
+                        );
+                      }
                     }
-                  }
-                  return word;
-                })}
+                    return word;
+                  })}
+                </p>
+              ) : (
+                <p className="text-gray-400 italic mb-4">No caption provided.</p>
+              )}
+              <p className="text-sm text-gray-500 mb-8">
+                {post.timestamp ? formatDate(post.timestamp) : "Date unavailable"}
               </p>
-              <p className="text-sm text-gray-500 mb-8">{formatDate(post.timestamp)}</p>
             </div>
             {post.permalink && (
               <Link
