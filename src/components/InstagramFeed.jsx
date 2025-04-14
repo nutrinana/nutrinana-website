@@ -49,7 +49,7 @@ export default function InstagramFeed() {
     }
 
     // Fallback UI: If the Instagram API request fails, display embedded posts as static iframes
-    if (error || fallback) {
+    if (error || fallback || posts.length === 0) {
         return (
             <section className="flex flex-col items-center justify-center text-center py-10 px-2 sm:px-4 bg-white">
                 <div className={`grid ${isMobile ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-3"} gap-2 w-full max-w-screen-xl`}>
