@@ -24,6 +24,8 @@ export default function InstagramModal({ post, onClose, onNext, onPrev, showNav 
   const modalRef = useRef(null);
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   const mode = process.env.NEXT_PUBLIC_DEBUG_MODE || "normal";
   const [progress, setProgress] = useState(0);
@@ -75,7 +77,6 @@ export default function InstagramModal({ post, onClose, onNext, onPrev, showNav 
   if (!post) return null;
   const imageSrc = post.media_url || post.thumbnail_url || post.cover_url || "";
   //const imageSrc = "https://www.instagram.com/";
-  
   useEffect(() => {
     const isMalformed = !imageSrc || (post.media_type !== "IMAGE" && post.media_type !== "VIDEO" && post.media_type !== "CAROUSEL_ALBUM");
     
@@ -101,7 +102,10 @@ export default function InstagramModal({ post, onClose, onNext, onPrev, showNav 
       )}
       {/* Loading and Error UI */}
       {hasError && (
-        <div className="flex flex-col items-center justify-center text-center p-6 w-full h-full max-h-screen overflow-y-auto md:rounded-lg md:max-w-6xl md:max-h-[90vh] md:overflow-hidden shadow-lg bg-white">
+        <div
+          ref={modalRef}
+          className="flex flex-col items-center justify-center text-center p-6 w-full h-full max-h-screen overflow-y-auto md:rounded-lg md:max-w-6xl md:max-h-[90vh] md:overflow-hidden shadow-lg bg-white"
+        >
           <p className="text-lg font-semibold mb-2">Oops! This post couldn't be loaded.</p>
           <p className="text-sm text-gray-500 mb-4">It may have been removed or is unavailable right now.</p>
           <Link
@@ -168,6 +172,9 @@ export default function InstagramModal({ post, onClose, onNext, onPrev, showNav 
           <div className="flex-shrink-0 w-full md:w-1/2 bg-black">
             {post.media_type === "VIDEO" ? (
               <div className="relative w-full h-full">
+                {!isVideoLoaded && (
+                  <div className="absolute inset-0 w-full h-full bg-black blur-md z-10" />
+                )}
                 <video
                   ref={videoRef}
                   src={imageSrc}
@@ -175,14 +182,19 @@ export default function InstagramModal({ post, onClose, onNext, onPrev, showNav 
                   playsInline
                   loop
                   onClick={togglePlayback}
-                  onCanPlay={() => setIsLoading(false)}
+                  onCanPlay={() => {
+                    setIsLoading(false);
+                    setIsVideoLoaded(true);
+                  }}
                   onError={() => {
                     setIsLoading(false);
                     setHasError(true);
                   }}
-                  className="w-full h-full object-cover max-h-[90vh] cursor-pointer"
+                  className={`w-full h-full object-cover max-h-[90vh] cursor-pointer transition-opacity duration-500 ${
+                    isVideoLoaded ? "opacity-100" : "opacity-0"
+                  }`}
                 />
-                {!isPlaying && (
+                {!isPlaying && isVideoLoaded && (
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                     <div className="p-5 bg-black/60 rounded-full">
                       {/* TODO: try className=w-10 w-10 */}
@@ -196,8 +208,14 @@ export default function InstagramModal({ post, onClose, onNext, onPrev, showNav 
                 <img
                   src={imageSrc}
                   alt={post.caption || 'Instagram post'}
-                  className="w-full h-full object-cover max-h-[90vh]"
-                  onLoad={() => setIsLoading(false)}
+                  loading="lazy"
+                  className={`w-full h-full object-cover max-h-[90vh] transition-opacity duration-500 ${
+                    isImageLoaded ? "opacity-100 blur-0" : "opacity-0 blur-md"
+                  }`}
+                  onLoad={() => {
+                    setIsLoading(false);
+                    setIsImageLoaded(true);
+                  }}
                   onError={() => {
                     setIsLoading(false);
                     setHasError(true);
