@@ -122,7 +122,6 @@ export default function InstagramFeed() {
                             (prev - 1 + visiblePosts.length) % visiblePosts.length
                         )
                     }
-                    showNav={true}
                 />
             )}
         </section>

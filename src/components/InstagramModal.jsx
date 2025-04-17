@@ -5,8 +5,8 @@ import { X, Play, ArrowLeft, ArrowRight, MoveRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { formatDate, formatCaption } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
+import { formatDate, formatCaption } from "@/lib/utils";
 
 /**
  * InstagramModal component displays an Instagram post in a modal.
@@ -20,7 +20,7 @@ import { Skeleton } from "@/components/ui/skeleton";
  * 
  * @returns {JSX.Element|null} The modal component or null if no post is provided.
  */
-export default function InstagramModal({ post, onClose, onNext, onPrev, showNav }) {
+export default function InstagramModal({ post, onClose, onNext, onPrev }) {
   const modalRef = useRef(null);
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -29,16 +29,28 @@ export default function InstagramModal({ post, onClose, onNext, onPrev, showNav 
   const [isMediaLoaded, setIsMediaLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
 
+  // Check if the post is valid and set error state accordingly
   useEffect(() => {
     if (!post) {
       setHasError(true);
     }
   }, [post]);
   
+  // Reset video play state when modal changes to a new post
   useEffect(() => {
     setIsPlaying(true);
   }, [post]);
 
+  // Validate the image source and media type once post data is available
+  useEffect(() => {
+    const isMalformed = !imageSrc || (post.media_type !== "IMAGE" && post.media_type !== "VIDEO" && post.media_type !== "CAROUSEL_ALBUM");
+    
+    if (isMalformed) {
+      setHasError(true);
+    }
+  }, [imageSrc, post.media_type]);
+
+  // Toggles video play/pause state
   const togglePlayback = () => {
     if (videoRef.current) {
       if (videoRef.current.paused) {
@@ -58,14 +70,6 @@ export default function InstagramModal({ post, onClose, onNext, onPrev, showNav 
   //const imageSrc = "https://example.com/does-not-exist.jpg"
   //const imageSrc = "blue";
 
-  useEffect(() => {
-    const isMalformed = !imageSrc || (post.media_type !== "IMAGE" && post.media_type !== "VIDEO" && post.media_type !== "CAROUSEL_ALBUM");
-    
-    if (isMalformed) {
-      setHasError(true);
-    }
-  }, [imageSrc, post.media_type]);
-
   if (hasError) {
     return (
       <div
@@ -76,6 +80,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev, showNav 
           }
         }}
       >
+        {/* Error UI: Display a message when the post cannot be loaded */}
         <div
           ref={modalRef}
           className="flex flex-col items-center justify-center text-center p-6 w-full h-full max-h-screen overflow-y-auto md:rounded-lg md:max-w-6xl md:max-h-[90vh] md:overflow-hidden shadow-lg bg-white"
@@ -112,6 +117,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev, showNav 
         }
       }}
     >
+      {/* Skeleton UI for modal loading */}
       {!isMediaLoaded && (
         <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
           <div className="w-full h-full max-w-6xl max-h-[90vh] flex flex-col md:flex-row rounded-lg overflow-hidden shadow-lg bg-white">
