@@ -5,8 +5,8 @@ import { X, Play, ArrowLeft, ArrowRight, MoveRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
-import { formatDate } from "@/lib/utils";
+import { formatDate, formatCaption } from "@/lib/utils";
+import { Skeleton } from "@/components/ui/skeleton";
 
 /**
  * InstagramModal component displays an Instagram post in a modal.
@@ -26,41 +26,18 @@ export default function InstagramModal({ post, onClose, onNext, onPrev, showNav 
   const [isPlaying, setIsPlaying] = useState(true);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-
-  const mode = process.env.NEXT_PUBLIC_DEBUG_MODE || "normal";
-  const [progress, setProgress] = useState(0);
-  const [isLoading, setIsLoading] = useState("loading");
-  const [hasError, setHasError] = useState(mode === "error");
+  const [isMediaLoaded, setIsMediaLoaded] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
-    // Loading and error state handling
-    if (mode === "loading") {
-      setProgress(0);
-      setIsLoading(true);
-      setHasError(false);
-      const interval = setInterval(() => {
-        setProgress((prev) => {
-          if (prev >= 100) {
-            clearInterval(interval);
-            setIsLoading(false);
-            return 100;
-          }
-          return prev + 5;
-        });
-      }, 200);
-      return () => clearInterval(interval);
-    }
-
-    if (mode === "error") {
-      setIsLoading(false);
+    if (!post) {
       setHasError(true);
     }
-
-    if (mode === "normal") {
-      setIsLoading(false);
-      setHasError(false);
-    }
-  }, [mode]);
+  }, [post]);
+  
+  useEffect(() => {
+    setIsPlaying(true);
+  }, [post]);
 
   const togglePlayback = () => {
     if (videoRef.current) {
@@ -75,33 +52,30 @@ export default function InstagramModal({ post, onClose, onNext, onPrev, showNav 
   };
 
   if (!post) return null;
+  // TODO: Handle the case when post is null or undefined
   const imageSrc = post.media_url || post.thumbnail_url || post.cover_url || "";
-  //const imageSrc = "https://www.instagram.com/";
+  //const imageSrc = ""
+  //const imageSrc = "https://example.com/does-not-exist.jpg"
+  //const imageSrc = "blue";
+
   useEffect(() => {
     const isMalformed = !imageSrc || (post.media_type !== "IMAGE" && post.media_type !== "VIDEO" && post.media_type !== "CAROUSEL_ALBUM");
     
     if (isMalformed) {
-      setIsLoading(false);
       setHasError(true);
     }
   }, [imageSrc, post.media_type]);
 
-  return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
-      onClick={(e) => {
-        if (modalRef.current && !modalRef.current.contains(e.target)) {
-          onClose();
-        }
-      }}
-    >
-      {isLoading && (
-        <div className="flex items-center justify-center w-full h-full">
-          <Progress value={progress} className="w-48 h-4" />
-        </div>
-      )}
-      {/* Loading and Error UI */}
-      {hasError && (
+  if (hasError) {
+    return (
+      <div
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+        onClick={(e) => {
+          if (modalRef.current && !modalRef.current.contains(e.target)) {
+            onClose();
+          }
+        }}
+      >
         <div
           ref={modalRef}
           className="flex flex-col items-center justify-center text-center p-6 w-full h-full max-h-screen overflow-y-auto md:rounded-lg md:max-w-6xl md:max-h-[90vh] md:overflow-hidden shadow-lg bg-white"
@@ -116,42 +90,58 @@ export default function InstagramModal({ post, onClose, onNext, onPrev, showNav 
           >
             Visit @nutrinanaa on Instagram <MoveRight className="w-4 h-4 inline" />
           </Link>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={onClose}
+            className="absolute top-4 right-4 text-white bg-black/50 rounded-full hover:text-gray-300 hover:bg-black/70 md:hover:bg-transparent md:bg-transparent md:text-3xl md:size-14"
+          >
+            <X size={28} />
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+      onClick={(e) => {
+        if (modalRef.current && !modalRef.current.contains(e.target)) {
+          onClose();
+        }
+      }}
+    >
+      {!isMediaLoaded && (
+        <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+          <div className="w-full h-full max-w-6xl max-h-[90vh] flex flex-col md:flex-row rounded-lg overflow-hidden shadow-lg bg-white">
+            <Skeleton className="flex-shrink-0 w-full md:w-1/2 h-[300px] md:h-auto" />
+            <div className="flex flex-col justify-between w-full md:w-1/2 p-6 space-y-4">
+              <div>
+                <div className="flex items-center mb-4">
+                  <Skeleton className="w-11 h-11 rounded-full mr-3" />
+                  <Skeleton className="h-5 w-32 rounded" />
+                </div>
+                <Skeleton className="h-4 w-full rounded mb-2" />
+                <Skeleton className="h-4 w-3/4 rounded mb-4" />
+              </div>
+              <Skeleton className="h-4 w-40 rounded" />
+            </div>
+          </div>
         </div>
       )}
-      {!isLoading && !hasError && (
-        <div
-          ref={modalRef}
-          className="bg-white w-full h-full max-h-screen overflow-y-auto md:rounded-lg md:max-w-6xl md:max-h-[90vh] md:overflow-hidden flex flex-col md:flex-row shadow-lg"
-        >
-          {/* Navigation buttons for mobile */}
-          <div className="absolute top-4 left-4 flex flex-row gap-2 md:hidden z-50">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={onPrev}
-              className="bg-black/50 rounded-full text-white hover:text-gray-300 hover:bg-black/70"
-              aria-label="Previous post"
-            >
-              <ArrowLeft />
-              <span className="sr-only">Previous slide</span>
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={onNext}
-              className="bg-black/50 rounded-full text-white hover:text-gray-300 hover:bg-black/70"
-              aria-label="Next post"
-            >
-              <ArrowRight />
-              <span className="sr-only">Next slide</span>
-            </Button>
-          </div>
-          {/* Navigation buttons for desktop */}
+
+      <div
+        ref={modalRef}
+        className="bg-white w-full h-full max-h-screen overflow-y-auto md:rounded-lg md:max-w-6xl md:max-h-[90vh] md:overflow-hidden flex flex-col md:flex-row shadow-lg"
+      >
+        {/* Navigation buttons for mobile */}
+        <div className="absolute top-4 left-4 flex flex-row gap-2 md:hidden z-50">
           <Button
             variant="ghost"
             size="icon"
             onClick={onPrev}
-            className="absolute size-10 top-1/2 left-16 -translate-y-1/2 z-50 text-white hover:text-gray-300 hover:bg-transparent hidden md:flex"
+            className="bg-black/50 rounded-full text-white hover:text-gray-300 hover:bg-black/70"
             aria-label="Previous post"
           >
             <ArrowLeft />
@@ -161,136 +151,140 @@ export default function InstagramModal({ post, onClose, onNext, onPrev, showNav 
             variant="ghost"
             size="icon"
             onClick={onNext}
-            className="absolute size-10 top-1/2 right-16 -translate-y-1/2 z-50 text-white hover:text-gray-300 hover:bg-transparent hidden md:flex"
+            className="bg-black/50 rounded-full text-white hover:text-gray-300 hover:bg-black/70"
             aria-label="Next post"
           >
             <ArrowRight />
             <span className="sr-only">Next slide</span>
           </Button>
+        </div>
+        {/* Navigation buttons for desktop */}
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={onPrev}
+          className="absolute size-10 top-1/2 left-16 -translate-y-1/2 z-50 text-white hover:text-gray-300 hover:bg-transparent hidden md:flex"
+          aria-label="Previous post"
+        >
+          <ArrowLeft />
+          <span className="sr-only">Previous slide</span>
+        </Button>
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={onNext}
+          className="absolute size-10 top-1/2 right-16 -translate-y-1/2 z-50 text-white hover:text-gray-300 hover:bg-transparent hidden md:flex"
+          aria-label="Next post"
+        >
+          <ArrowRight />
+          <span className="sr-only">Next slide</span>
+        </Button>
 
-          {/* Media rendering: Image or Video */}
-          <div className="flex-shrink-0 w-full md:w-1/2 bg-black">
-            {post.media_type === "VIDEO" ? (
-              <div className="relative w-full h-full">
-                {!isVideoLoaded && (
-                  <div className="absolute inset-0 w-full h-full bg-black blur-md z-10" />
-                )}
-                <video
-                  ref={videoRef}
-                  src={imageSrc}
-                  autoPlay
-                  playsInline
-                  loop
-                  onClick={togglePlayback}
-                  onCanPlay={() => {
-                    setIsLoading(false);
-                    setIsVideoLoaded(true);
-                  }}
-                  onError={() => {
-                    setIsLoading(false);
-                    setHasError(true);
-                  }}
-                  className={`w-full h-full object-cover max-h-[90vh] cursor-pointer transition-opacity duration-500 ${
-                    isVideoLoaded ? "opacity-100" : "opacity-0"
-                  }`}
-                />
-                {!isPlaying && isVideoLoaded && (
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <div className="p-5 bg-black/60 rounded-full">
-                      {/* TODO: try className=w-10 w-10 */}
-                      <Play className="w-8 h-8 text-white" />
-                    </div>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div className="relative w-full h-full">
-                <img
-                  src={imageSrc}
-                  alt={post.caption || 'Instagram post'}
-                  loading="lazy"
-                  className={`w-full h-full object-cover max-h-[90vh] transition-opacity duration-500 ${
-                    isImageLoaded ? "opacity-100 blur-0" : "opacity-0 blur-md"
-                  }`}
-                  onLoad={() => {
-                    setIsLoading(false);
-                    setIsImageLoaded(true);
-                  }}
-                  onError={() => {
-                    setIsLoading(false);
-                    setHasError(true);
-                  }}
-                />
-              </div>
-            )}
-          </div>
-
-          {/* Caption and profile section */}
-          <div className="w-full md:w-1/2 p-6 flex flex-col justify-between">
-            <div className="mb-6">
-              <div className="flex items-center mb-4">
-                <Image
-                  src="/icons/IG-profile-pic.svg"
-                  alt="Instagram logo"
-                  width={44}
-                  height={44}
-                  className="rounded-full border border-gray-200 p-1 mr-3"
-                />
-                <Link
-                  href="https://www.instagram.com/nutrinanaa"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-lg font-semibold text-black hover:underline"
-                >
-                  nutrinanaa
-                </Link>
-              </div>
-              <hr className="border-t border-gray-200 w-[calc(100%+3rem)] -ml-6 mb-8" />
-              {post.caption ? (
-                <p className="text-black whitespace-pre-line text-base mb-4">
-                  {post.caption.split(/(\s+)/).map((word, index) => {
-                    if (word.startsWith('@') || word.startsWith('#')) {
-                      const match = word.match(/^([@#][\w_-]+(?:\.[\w_-]+)*)(['’]?[a-z]*)?(\W*)$/i);
-                      if (match) {
-                        return (
-                          <React.Fragment key={index}>
-                            <span style={{ color: "rgb(20, 54, 103)" }}>{match[1]}</span>
-                            {match[2]}
-                            {match[3]}
-                          </React.Fragment>
-                        );
-                      }
-                    }
-                    return word;
-                  })}
-                </p>
-              ) : (
-                <p className="text-gray-400 italic mb-4">No caption provided.</p>
+        {/* Media rendering: Image or Video */}
+        <div className="flex-shrink-0 w-full md:w-1/2 bg-black">
+          {post.media_type === "VIDEO" ? (
+            <div className="relative w-full h-full">
+              {!isVideoLoaded && (
+                <div className="absolute inset-0 w-full h-full bg-black blur-md z-10" />
               )}
-              <p className="text-sm text-gray-500 mb-8">
-                {post.timestamp ? formatDate(post.timestamp) : "Date unavailable"}
-              </p>
+              <video
+                ref={videoRef}
+                src={imageSrc}
+                autoPlay
+                playsInline
+                loop
+                onClick={togglePlayback}
+                onCanPlay={() => {
+                  setIsVideoLoaded(true);
+                  setIsMediaLoaded(true);
+                }}
+                onError={() => {
+                  setHasError(true);
+                }}
+                className={`w-full h-full object-cover max-h-[90vh] cursor-pointer transition-opacity duration-500 ${
+                  isVideoLoaded ? "opacity-100" : "opacity-0"
+                }`}
+              />
+              {!isPlaying && isVideoLoaded && (
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="p-5 bg-black/50 rounded-full">
+                    <Play className="w-8 h-8 text-white" />
+                  </div>
+                </div>
+              )}
             </div>
-            {post.permalink && (
+          ) : (
+            <div className="relative w-full h-full">
+              <img
+                src={imageSrc}
+                alt={post.caption || 'Instagram post'}
+                loading="lazy"
+                className={`w-full h-full object-cover max-h-[90vh] transition-opacity duration-500 ${
+                  isImageLoaded ? "opacity-100 blur-0" : "opacity-0 blur-md"
+                }`}
+                onLoad={() => {
+                  setIsImageLoaded(true);
+                  setIsMediaLoaded(true);
+                }}
+                onError={() => {
+                  setHasError(true);
+                }}
+              />
+            </div>
+          )}
+        </div>
+
+        {/* Caption and profile section */}
+        <div className="w-full md:w-1/2 p-6 flex flex-col justify-between">
+          <div className="mb-6">
+            <div className="flex items-center mb-4">
+              <Image
+                src="/icons/IG-profile-pic.svg"
+                alt="Instagram logo"
+                width={44}
+                height={44}
+                className="rounded-full border border-gray-200 p-1 mr-3"
+              />
               <Link
-                href={post.permalink}
+                href="https://www.instagram.com/nutrinanaa"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-600 hover:underline text-sm inline-flex items-center gap-1"
+                className="text-lg font-semibold text-black hover:underline"
               >
-                View on Instagram <MoveRight className="w-4 h-4" />
+                nutrinanaa
               </Link>
+            </div>
+            <hr className="border-t border-gray-200 w-[calc(100%+3rem)] -ml-6 mb-8" />
+            {post.caption ? (
+              <p className="text-black whitespace-pre-line text-base mb-4">
+                {formatCaption(post.caption)}
+              </p>
+            ) : (
+              <p className="text-gray-400 italic mb-4">No caption provided.</p>
             )}
+            <p className="text-sm text-gray-500 mb-8">
+              {post.timestamp ? formatDate(post.timestamp) : "Date unavailable"}
+            </p>
           </div>
+          {post.permalink && (
+            <Link
+              href={post.permalink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline text-sm inline-flex items-center gap-1"
+            >
+              View on Instagram <MoveRight className="w-4 h-4" />
+            </Link>
+          )}
         </div>
-      )}
+      </div>
 
       {/* Close button */}
       <Button
         variant="ghost"
         size="icon"
         onClick={onClose}
-        className="absolute top-4 right-4 text-white hover:text-gray-300 md:hover:bg-transparent bg-black/50 rounded-full md:bg-transparent md:text-3xl md:size-14"
+        className="absolute top-4 right-4 text-white bg-black/50 rounded-full hover:text-gray-300 hover:bg-black/70 md:hover:bg-transparent md:bg-transparent md:text-3xl md:size-14"
       >
         <X size={28} />
       </Button>

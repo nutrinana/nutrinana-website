@@ -54,3 +54,27 @@ export function extractHashtags(text) {
   if (!text) return [];
   return text.match(/#[a-zA-Z0-9_]+/g) || [];
 }
+
+/**
+ * Formats a caption string by wrapping hashtags and mentions with styled spans.
+ *
+ * @param {string} caption - The Instagram caption to format.
+ * @returns {JSX.Element[]} Array of React elements with styled hashtags/mentions.
+ */
+export function formatCaption(caption) {
+  return caption.split(/(\s+)/).map((word, index) => {
+    if (word.startsWith('@') || word.startsWith('#')) {
+      const match = word.match(/^([@#][\w_-]+(?:\.[\w_-]+)*)(['’]?[a-z]*)?(\W*)$/i);
+      if (match) {
+        return (
+          <React.Fragment key={index}>
+            <span style={{ color: "rgb(20, 54, 103)" }}>{match[1]}</span>
+            {match[2]}
+            {match[3]}
+          </React.Fragment>
+        );
+      }
+    }
+    return word;
+  });
+}
