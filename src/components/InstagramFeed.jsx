@@ -50,16 +50,18 @@ export default function InstagramFeed() {
 
     // Fallback UI: If the Instagram API request fails, display embedded posts as static iframes
     if (error || fallback || posts.length === 0) {
+        const fallbackEmbeds = [
+            "https://www.instagram.com/p/DFP3emzI6I_/embed",
+            "https://www.instagram.com/p/DHT9SK3IqlY/embed",
+            "https://www.instagram.com/p/DF5lKfbop_Y/embed",
+        ];
+
         return (
             <section className="flex flex-col items-center justify-center text-center py-10 px-2 sm:px-4 bg-white">
                 <div className={`grid ${isMobile ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-3"} gap-2 w-full max-w-screen-xl`}>
-                    <InstagramEmbed src="https://www.instagram.com/p/DH0pat-o2hW/embed" />
-                    {!isMobile && (
-                        <>
-                            <InstagramEmbed src="https://www.instagram.com/p/DHT9SK3IqlY/embed" />
-                            <InstagramEmbed src="https://www.instagram.com/p/DF5lKfbop_Y/embed" />
-                        </>
-                    )}
+                    {fallbackEmbeds.slice(0, isMobile ? 1 : 3).map((src) => (
+                        <InstagramEmbed key={src} src={src} />
+                    ))}
                 </div>
             </section>
         );
@@ -67,63 +69,66 @@ export default function InstagramFeed() {
 
     // Instagram feed grid: Displays a responsive set of Instagram posts
     return (
-        <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-px">
-            {(visiblePosts || []).map((post, index) => {
-                const imageUrl = post.media_type === "VIDEO" ? post.thumbnail_url : post.media_url;
+        <div>
+            <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-px">
+                {(visiblePosts || []).map((post, index) => {
+                    const imageUrl = post.media_type === "VIDEO" ? post.thumbnail_url : post.media_url;
 
-                if (!imageUrl) return null;
+                    if (!imageUrl) return null;
 
-                // Individual post preview block with hover effect for icon overlay
-                return (
-                    <div
-                        key={post.id}
-                        onClick={() => openModal(index)}
-                        className="relative cursor-pointer group"
-                    >
-                        <Image
-                            src={imageUrl}
-                            alt="Instagram Post"
-                            width={500}
-                            height={500}
-                            className="w-full h-full aspect-square object-cover"
-                        />
-                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
-                            {post.media_type === "VIDEO" ? (
-                                <Image
-                                    src="/icons/instagram-reels-icon.svg"
-                                    alt="Instagram Reel"
-                                    width={32}
-                                    height={32}
-                                    className="invert"
-                                />
-                            ) : (
-                                <SiInstagram className="w-8 h-8 text-white" />
-                            )}
+                    // Individual post preview block with hover effect for icon overlay
+                    return (
+                        <div
+                            key={post.id}
+                            onClick={() => openModal(index)}
+                            className="relative cursor-pointer group"
+                        >
+                            <Image
+                                src={imageUrl}
+                                alt="Instagram Post"
+                                width={500}
+                                height={500}
+                                className="w-full h-full aspect-square object-cover"
+                            />
+                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+                                {post.media_type === "VIDEO" ? (
+                                    <Image
+                                        src="/icons/instagram-reels-icon.svg"
+                                        alt="Instagram Reel"
+                                        width={32}
+                                        height={32}
+                                        className="invert"
+                                    />
+                                ) : (
+                                    <SiInstagram className="w-8 h-8 text-white" />
+                                )}
+                            </div>
                         </div>
-                    </div>
-                );
-            })}
-            {selectedPostIndex !== null && (
-                // Instagram modal for detailed view of selected post
-                <InstagramModal
-                    post={{
-                        ...visiblePosts[selectedPostIndex],
-                        hashtags: extractHashtags(visiblePosts[selectedPostIndex].caption),
-                    }}
-                    onClose={closeModal}
-                    totalPosts={visiblePosts.length}
-                    currentIndex={selectedPostIndex}
-                    onNavigate={setSelectedPostIndex}
-                    onNext={() =>
-                        setSelectedPostIndex((prev) => (prev + 1) % visiblePosts.length)
-                    }
-                    onPrev={() =>
-                        setSelectedPostIndex((prev) =>
-                            (prev - 1 + visiblePosts.length) % visiblePosts.length
-                        )
-                    }
-                />
-            )}
-        </section>
+                    );
+                })}
+                {selectedPostIndex !== null && (
+                    // Instagram modal for detailed view of selected post
+                    <InstagramModal
+                        post={{
+                            ...visiblePosts[selectedPostIndex],
+                            hashtags: extractHashtags(visiblePosts[selectedPostIndex].caption),
+                        }}
+                        onClose={closeModal}
+                        totalPosts={visiblePosts.length}
+                        currentIndex={selectedPostIndex}
+                        onNavigate={setSelectedPostIndex}
+                        onNext={() =>
+                            setSelectedPostIndex((prev) => (prev + 1) % visiblePosts.length)
+                        }
+                        onPrev={() =>
+                            setSelectedPostIndex((prev) =>
+                                (prev - 1 + visiblePosts.length) % visiblePosts.length
+                            )
+                        }
+                    />
+                )}
+            </section>
+            <p className="text-2xl text-gray-500 mt-2 ml-1">@nutrinanaa</p>
+        </div>
     );
 }
