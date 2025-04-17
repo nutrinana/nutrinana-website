@@ -2,6 +2,7 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { X, Play, ArrowLeft, ArrowRight, MoveRight } from "lucide-react";
+import { useSwipeable } from "react-swipeable";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -16,12 +17,18 @@ import { formatDate, formatCaption } from "@/lib/utils";
  * @param {Function} props.onClose - Function to call when the modal is closed.
  * @param {Function} props.onNext - Function to call for the next post.
  * @param {Function} props.onPrev - Function to call for the previous post.
- * @param {boolean} props.showNav - Flag to show navigation buttons.
  * 
  * @returns {JSX.Element|null} The modal component or null if no post is provided.
  */
 export default function InstagramModal({ post, onClose, onNext, onPrev }) {
   const modalRef = useRef(null);
+  const handlers = useSwipeable({
+    onSwipedLeft: () => onNext(),
+    onSwipedRight: () => onPrev(),
+    preventDefaultTouchmoveEvent: true,
+    trackTouch: true,
+    trackMouse: false,
+  });
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
@@ -99,7 +106,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
             variant="ghost"
             size="icon"
             onClick={onClose}
-            className="absolute top-4 right-4 text-white bg-black/50 rounded-full hover:text-gray-300 hover:bg-black/70 md:hover:bg-transparent md:bg-transparent md:text-3xl md:w-14 md:h-14"
+            className="absolute top-4 right-4 text-white bg-black/50 rounded-full hover:text-gray-300 hover:bg-black/70 md:bg-black/50 md:hover:bg-black/70 md:backdrop-blur-sm md:rounded-full md:w-16 md:h-16"
           >
             <X className="size-6 md:!size-9" />
           </Button>
@@ -139,6 +146,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
 
       <div
         ref={modalRef}
+        {...handlers}
         className="bg-white w-full h-full max-h-screen overflow-y-auto md:rounded-lg md:max-w-6xl md:max-h-[90vh] md:overflow-hidden flex flex-col md:flex-row shadow-lg"
       >
         {/* Navigation buttons for mobile */}
@@ -169,7 +177,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
           variant="ghost"
           size="icon"
           onClick={onPrev}
-          className="absolute size-10 md:w-14 md:h-14 top-1/2 left-16 -translate-y-1/2 z-50 text-white hover:text-gray-300 hover:bg-transparent hidden md:flex"
+          className="absolute size-10 md:w-14 md:h-14 top-1/2 left-16 -translate-y-1/2 z-50 text-white hover:text-gray-300 hover:bg-transparent hidden md:flex md:bg-black/50 md:hover:bg-black/70 md:backdrop-blur-sm md:rounded-full"
           aria-label="Previous post"
         >
           <ArrowLeft size={36} className="md:!size-9" />
@@ -179,7 +187,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
           variant="ghost"
           size="icon"
           onClick={onNext}
-          className="absolute size-10 md:w-14 md:h-14 top-1/2 right-16 -translate-y-1/2 z-50 text-white hover:text-gray-300 hover:bg-transparent hidden md:flex"
+          className="absolute size-10 md:w-14 md:h-14 top-1/2 right-16 -translate-y-1/2 z-50 text-white hover:text-gray-300 hover:bg-transparent hidden md:flex md:bg-black/50 md:hover:bg-black/70 md:backdrop-blur-sm md:rounded-full"
           aria-label="Next post"
         >
           <ArrowRight size={36} className="md:!size-9" />
@@ -214,6 +222,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
               {!isPlaying && isVideoLoaded && (
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                   <div className="p-5 bg-black/50 rounded-full">
+                    {/* TODO: try className=w-10 w-10 */}
                     <Play className="w-8 h-8 text-white" />
                   </div>
                 </div>
@@ -290,7 +299,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
         variant="ghost"
         size="icon"
         onClick={onClose}
-        className="absolute top-4 right-4 text-white bg-black/50 rounded-full hover:text-gray-300 hover:bg-black/70 md:hover:bg-transparent md:bg-transparent md:text-3xl md:w-14 md:h-14"
+        className="absolute top-4 right-4 text-white bg-black/50 rounded-full hover:text-gray-300 hover:bg-black/70 md:bg-black/50 md:hover:bg-black/70 md:backdrop-blur-sm md:rounded-full md:w-12 md:h-12"
       >
         <X className="size-4 md:!size-9" />
       </Button>
