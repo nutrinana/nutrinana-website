@@ -128,7 +128,7 @@ export default function InstagramFeed() {
                     />
                 )}
             </section>
-            <p className="text-2xl text-gray-500 mt-2 ml-1">@nutrinanaa</p>
+            <p className="text-xl sm:text-2xl text-gray-500 mt-2 ml-1">@nutrinanaa</p>
         </div>
     );
 }

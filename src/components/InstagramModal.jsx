@@ -41,15 +41,6 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
     setIsPlaying(true);
   }, [post]);
 
-  // Validate the image source and media type once post data is available
-  useEffect(() => {
-    const isMalformed = !imageSrc || (post.media_type !== "IMAGE" && post.media_type !== "VIDEO" && post.media_type !== "CAROUSEL_ALBUM");
-    
-    if (isMalformed) {
-      setHasError(true);
-    }
-  }, [imageSrc, post.media_type]);
-
   // Toggles video play/pause state
   const togglePlayback = () => {
     if (videoRef.current) {
@@ -69,6 +60,15 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
   //const imageSrc = ""
   //const imageSrc = "https://example.com/does-not-exist.jpg"
   //const imageSrc = "blue";
+
+  // Validate the image source and media type once post data is available
+  useEffect(() => {
+    const isMalformed = !imageSrc || (post.media_type !== "IMAGE" && post.media_type !== "VIDEO" && post.media_type !== "CAROUSEL_ALBUM");
+    
+    if (isMalformed) {
+      setHasError(true);
+    }
+  }, [imageSrc, post.media_type]);
 
   if (hasError) {
     return (
@@ -99,9 +99,9 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
             variant="ghost"
             size="icon"
             onClick={onClose}
-            className="absolute top-4 right-4 text-white bg-black/50 rounded-full hover:text-gray-300 hover:bg-black/70 md:hover:bg-transparent md:bg-transparent md:text-3xl md:size-14"
+            className="absolute top-4 right-4 text-white bg-black/50 rounded-full hover:text-gray-300 hover:bg-black/70 md:hover:bg-transparent md:bg-transparent md:text-3xl md:w-14 md:h-14"
           >
-            <X size={28} />
+            <X className="size-6 md:!size-9" />
           </Button>
         </div>
       </div>
@@ -150,7 +150,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
             className="bg-black/50 rounded-full text-white hover:text-gray-300 hover:bg-black/70"
             aria-label="Previous post"
           >
-            <ArrowLeft />
+            <ArrowLeft size={36} />
             <span className="sr-only">Previous slide</span>
           </Button>
           <Button
@@ -160,7 +160,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
             className="bg-black/50 rounded-full text-white hover:text-gray-300 hover:bg-black/70"
             aria-label="Next post"
           >
-            <ArrowRight />
+            <ArrowRight size={36} />
             <span className="sr-only">Next slide</span>
           </Button>
         </div>
@@ -169,20 +169,20 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
           variant="ghost"
           size="icon"
           onClick={onPrev}
-          className="absolute size-10 top-1/2 left-16 -translate-y-1/2 z-50 text-white hover:text-gray-300 hover:bg-transparent hidden md:flex"
+          className="absolute size-10 md:w-14 md:h-14 top-1/2 left-16 -translate-y-1/2 z-50 text-white hover:text-gray-300 hover:bg-transparent hidden md:flex"
           aria-label="Previous post"
         >
-          <ArrowLeft />
+          <ArrowLeft size={36} className="md:!size-9" />
           <span className="sr-only">Previous slide</span>
         </Button>
         <Button
           variant="ghost"
           size="icon"
           onClick={onNext}
-          className="absolute size-10 top-1/2 right-16 -translate-y-1/2 z-50 text-white hover:text-gray-300 hover:bg-transparent hidden md:flex"
+          className="absolute size-10 md:w-14 md:h-14 top-1/2 right-16 -translate-y-1/2 z-50 text-white hover:text-gray-300 hover:bg-transparent hidden md:flex"
           aria-label="Next post"
         >
-          <ArrowRight />
+          <ArrowRight size={36} className="md:!size-9" />
           <span className="sr-only">Next slide</span>
         </Button>
 
@@ -290,9 +290,9 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
         variant="ghost"
         size="icon"
         onClick={onClose}
-        className="absolute top-4 right-4 text-white bg-black/50 rounded-full hover:text-gray-300 hover:bg-black/70 md:hover:bg-transparent md:bg-transparent md:text-3xl md:size-14"
+        className="absolute top-4 right-4 text-white bg-black/50 rounded-full hover:text-gray-300 hover:bg-black/70 md:hover:bg-transparent md:bg-transparent md:text-3xl md:w-14 md:h-14"
       >
-        <X size={28} />
+        <X className="size-4 md:!size-9" />
       </Button>
     </div>
   );
