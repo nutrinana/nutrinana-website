@@ -9,14 +9,13 @@ import React from "react";
  *
  * @param {Object} props
  * @param {string} props.src - The Instagram permalink to embed.
- * 
- * @returns {JSX.Element|null} The Instagram embed component or null if no src is provided.
+ * @returns {JSX.Element|null} The rendered iframe or null if no src is provided.
  */
 export default function InstagramEmbed({ src }) {
   if (!src) return null;
 
   return (
-    <div className="w-full aspect-[4/5] border shadow-md sm:max-w-full overflow-hidden">
+    <div className="w-full h-[460px] sm:h-[580px] border shadow-md overflow-hidden">
       <iframe
         src={src}
         className="w-full h-full"
