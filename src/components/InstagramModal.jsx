@@ -48,6 +48,17 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
     setIsPlaying(true);
   }, [post]);
 
+  useEffect(() => {
+    setIsImageLoaded(false);
+    setIsVideoLoaded(false);
+    setIsMediaLoaded(false);
+    setHasError(false);
+
+    if (modalRef.current) {
+      modalRef.current.scrollTop = 0;
+    }
+  }, [post?.id]);
+
   // Toggles video play/pause state
   const togglePlayback = () => {
     if (videoRef.current) {
