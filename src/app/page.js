@@ -7,7 +7,7 @@ export default function Home() {
     <div className={additionalStyles.container}>
       <header className={additionalStyles.header}>
         <Image
-          src="/NUTRINA_LOGO.png"
+          src="/nutrinana-logo.svg"
           alt="Nutrinana Logo"
           width={500}
           height={500}
