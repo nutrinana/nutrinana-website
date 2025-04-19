@@ -1,8 +1,6 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button"; // Importing ShadCN Button
 import Image from "next/image";
-import instagramLogo from "/public/icons/instagram-logo.svg";
-import tiktokLogo from "/public/icons/tiktok-logo.svg";
+import { SiInstagram, SiTiktok } from "react-icons/si";
 import delliLogo from "/public/icons/delli-logo.svg";
 import blackFarmerLogo from "/public/icons/black-farmer-logo.svg";
 
@@ -48,12 +46,12 @@ export default function Footer() {
                             {/* Instagram */}
                             {/* Link to the Instagram profile */}
                             <Link href="https://instagram.com/nutrinanaa" target="_blank" className="social-icon">
-                                <Image src={instagramLogo} alt="Instagram" width={24} height={24} />
+                                <SiInstagram size={24} />
                             </Link>
                             {/* TikTok */}
                             {/* Link to the TikTok profile */}
                             <Link href="https://tiktok.com/" target="_blank" className="social-icon">
-                                <Image src={tiktokLogo} alt="TikTok" width={24} height={24} />
+                                <SiTiktok size={24} />
                             </Link>
                             {/* DELLI */}
                             {/* Link to the Delli marketplace */}

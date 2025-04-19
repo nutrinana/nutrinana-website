@@ -1,9 +1,11 @@
 "use client";
+import Image from "next/image";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { SiInstagram, SiTiktok } from "react-icons/si";
 import { Button } from "@/components/ui/button";
 
 /**
@@ -46,18 +48,18 @@ export default function Navbar() {
 
                 {/* Mobile layout: Hamburger left, logo center */}
                 <div className="flex items-center md:hidden w-full justify-between">
-                    <Button variant="outline" onClick={() => setIsOpen(!isOpen)}>
+                    <Button variant="ghost" onClick={() => setIsOpen(!isOpen)}>
                         {isOpen ? <X size={24} /> : <Menu size={24} />}
                     </Button>
                     <Link href="/" className="absolute left-1/2 transform -translate-x-1/2">
-                        <img src="/NUTRINA_LOGO.png" alt="Nutrinana Logo" className="h-12 mb-2" />
+                        <Image src="/nutrinana-logo.svg" alt="Nutrinana Logo" width={120} height={48} className="h-12 w-auto mb-2" />
                     </Link>
                 </div>
 
                 {/* Desktop layout: logo top center, links underneath */}
                 <div className="hidden md:flex flex-col items-center w-full">
                     <Link href="/">
-                        <img src="/NUTRINA_LOGO.png" alt="Nutrinana Logo" className="h-16 my-0" />
+                        <Image src="/nutrinana-logo.svg" alt="Nutrinana Logo" width={160} height={64} className="h-16 w-auto my-0" />
                     </Link>
 
                     <div className="flex space-x-12 mt-5">
@@ -83,11 +85,11 @@ export default function Navbar() {
                 
                 {/* Close button and logo in mobile menu */}
                 <div className="flex items-center px-4 py-4 ">
-                    <Button variant="outline" className=" absolute left-5 mt-11" onClick={() => setIsOpen(false)}>
+                    <Button variant="ghost" className=" absolute left-5 mt-11" onClick={() => setIsOpen(false)}>
                         <X size={24} />
                     </Button>
                     <Link href="/" onClick={() => setIsOpen(false)} className="mx-auto">
-                        <img src="/NUTRINA_LOGO.png" alt="Nutrinana Logo" className="h-12 mt-6" />
+                        <Image src="/nutrinana-logo.svg" alt="Nutrinana Logo" width={120} height={48} className="h-12 w-auto mt-6" />
                     </Link>
                 </div>
 
@@ -117,22 +119,22 @@ export default function Navbar() {
                     {/* Instagram */}
                     {/* Link to the Instagram profile */}
                     <Link href="https://instagram.com/nutrinanaa" target="_blank" className="social-icon">
-                        <img src="/icons/instagram-logo.svg" alt="Instagram" width={24} height={24} />
+                        <SiInstagram size={24} />
                     </Link>
                     {/* TikTok */}
                     {/* Link to the TikTok profile */}
                     <Link href="https://tiktok.com/" target="_blank" className="social-icon">
-                        <img src="/icons/tiktok-logo.svg" alt="TikTok" width={24} height={24} />
+                        <SiTiktok size={24} />
                     </Link>
                     {/* DELLI */}
                     {/* Link to the Delli marketplace */}
                     <Link href="https://delli.market/collections/nutrinana" target="_blank" className="social-icon">
-                        <img src="/icons/delli-logo.svg" alt="Delli" width={50} height={25} />
+                        <Image src="/icons/delli-logo.svg" alt="Delli" width={50} height={25} />
                     </Link>
                     {/* The Black Farmer */}
                     {/* Link to The Black Farmer website */}
                     <Link href="https://theblackfarmer.com/" target="_blank" className="social-icon">
-                        <img src="/icons/black-farmer-logo.svg" alt="The Black Farmer" width={100} height={50} />
+                        <Image src="/icons/black-farmer-logo.svg" alt="The Black Farmer" width={100} height={50} />
                     </Link>
                 </div>
             </div>
