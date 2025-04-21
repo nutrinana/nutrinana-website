@@ -17,8 +17,7 @@ export default function QueryEmail({ name, title, comments, requestId, dateTime 
           <div style={logoContainer}>
             <img
               // TODO change URL from staging
-              // TODO change to .svg when redeployed
-              src="https://staging.nutrinana.co.uk/NUTRINA_LOGO.png"
+              src="https://staging.nutrinana.co.uk/nutrinana-logo.svg"
               alt="Nutrinana Logo"
               style={logoStyle}
             />
