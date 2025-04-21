@@ -264,23 +264,23 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
         <div className="w-full md:w-1/2 p-6 flex flex-col justify-between">
           <div className="mb-6">
             <div className="flex items-center mb-4">
-            <div className="w-11 h-11 rounded-full border border-gray-200 mr-3 flex items-center justify-center overflow-hidden bg-white">
-              <Image
-                src="/icons/IG-profile-pic.svg"
-                alt="Instagram logo"
-                width={32}
-                height={32}
-                className="object-contain"
-              />
-            </div>
-            <Link
-              href="https://www.instagram.com/nutrinanaa"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-lg font-semibold text-black hover:underline"
-            >
-              nutrinanaa
-            </Link>
+              <div className="w-11 h-11 rounded-full border border-gray-200 mr-3 flex items-center justify-center overflow-hidden bg-white">
+                <Image
+                  src="/icons/IG-profile-pic.svg"
+                  alt="Instagram logo"
+                  width={32}
+                  height={32}
+                  className="object-contain"
+                />
+              </div>
+              <Link
+                href="https://www.instagram.com/nutrinanaa"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-lg font-semibold text-black hover:underline"
+              >
+                nutrinanaa
+              </Link>
             </div>
             <hr className="border-t border-gray-200 w-[calc(100%+3rem)] -ml-6 mb-8" />
             {post.caption ? (
