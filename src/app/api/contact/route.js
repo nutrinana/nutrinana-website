@@ -27,7 +27,7 @@ export async function POST(req) {
     const response = await resend.emails.send({
       from: 'Nutrinana Help <noreply@nutrinana.co.uk>', // Must be verified on Resend
       to: email, // requestor's email
-      // bcc: 'nana@nutrinana.co.uk', // CC the admin so we can reply
+      bcc: 'nana@nutrinana.co.uk', // CC the admin so we can reply
       replyTo: email, // reply to the requestor
 
       subject: `Customer Enquiry ${requestId}: ${title}`,
