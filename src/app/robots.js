@@ -5,7 +5,8 @@
  * 
  * @returns {Object} - The robots.txt configuration object.
  */
-const isProduction = process.env.NODE_ENV === "production";
+// const isProduction = process.env.NODE_ENV === "production";
+const isProduction = process.env.STAGE === "production";
 
 export default function robots() {
   return isProduction
