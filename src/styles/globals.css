@@ -246,3 +246,35 @@ a {
       height: 0;
   }
 }
+
+/* Rating element styles */
+.rating {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.125rem; /* Matches text-lg */
+  color: var(--color-yellow, #fbbf24); /* Yellow color for stars */
+  font-weight: 500;
+  gap: 0.25rem; /* Space between the star and the rating number */
+}
+
+/* Social button styles */
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 10px;
+  width: max-content; /* Adjusts to the aspect ratio of the icon */
+  height: 3rem; /* Default height for consistency */
+  border-radius: 0.375rem; /* Rounded square */
+  transition: background-color 0.2s, transform 0.2s;
+  cursor: pointer;
+  /* flex-shrink: 0; */
+}
+.social-icon:hover {
+  background-color: var(--accent-color, #f3f4f6); /* Matches hover:bg-accent */
+  /* transform: scale(1.05); Slight zoom effect on hover */
+}
+.social-icon:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}

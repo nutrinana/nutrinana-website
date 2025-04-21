@@ -1,9 +1,11 @@
 "use client";
+import Image from "next/image";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { SiInstagram, SiTiktok } from "react-icons/si";
 import { Button } from "@/components/ui/button";
 
 /**
@@ -46,19 +48,18 @@ export default function Navbar() {
 
                 {/* Mobile layout: Hamburger left, logo center */}
                 <div className="flex items-center md:hidden w-full justify-between">
-                    <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)} className="relative z-50 ml-4">
+                    <Button variant="ghost" onClick={() => setIsOpen(!isOpen)}>
                         {isOpen ? <X size={24} /> : <Menu size={24} />}
                     </Button>
-
                     <Link href="/" className="absolute left-1/2 transform -translate-x-1/2">
-                        <img src="/NUTRINA_LOGO.png" alt="Nutrinana Logo" className="h-12 mb-2" />
+                        <Image src="/nutrinana-logo.svg" alt="Nutrinana Logo" width={120} height={48} className="h-12 w-auto mb-2" />
                     </Link>
                 </div>
 
                 {/* Desktop layout: logo top center, links underneath */}
                 <div className="hidden md:flex flex-col items-center w-full">
                     <Link href="/">
-                        <img src="/NUTRINA_LOGO.png" alt="Nutrinana Logo" className="h-16 my-0" />
+                        <Image src="/nutrinana-logo.svg" alt="Nutrinana Logo" width={160} height={64} className="h-16 w-auto my-0" />
                     </Link>
 
                     <div className="flex space-x-12 mt-5">
@@ -83,12 +84,12 @@ export default function Navbar() {
             <div className={`fixed inset-0 bg-white z-50 w-full h-screen flex flex-col border-r border-gray-300 transform transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"}`}>
                 
                 {/* Close button and logo in mobile menu */}
-                <div className="flex items-center px-4 py-4">
-                    <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="absolute left-8 mt-11">
+                <div className="flex items-center px-4 py-4 ">
+                    <Button variant="ghost" className=" absolute left-5 mt-11" onClick={() => setIsOpen(false)}>
                         <X size={24} />
                     </Button>
                     <Link href="/" onClick={() => setIsOpen(false)} className="mx-auto">
-                        <img src="/NUTRINA_LOGO.png" alt="Nutrinana Logo" className="h-12 mt-6" />
+                        <Image src="/nutrinana-logo.svg" alt="Nutrinana Logo" width={120} height={48} className="h-12 w-auto mt-6" />
                     </Link>
                 </div>
 
@@ -115,29 +116,26 @@ export default function Navbar() {
 
                 {/* Social media buttons in mobile menu */}
                 <div className="flex justify-start space-x-4 px-6 pb-6 w-full">
-                    <Button variant="ghost" size="icon" className="w-12 h-12" asChild>
-                        <Link href="https://instagram.com/nutrinanaa" target="_blank">
-                            <img src="/icons/instagram-logo.svg" alt="Instagram" className="h-6" />
-                        </Link>
-                    </Button>
-
-                    <Button variant="ghost" size="icon" className="w-12 h-12" asChild>
-                        <Link href="https://tiktok.com/" target="_blank">
-                            <img src="/icons/tiktok-logo.svg" alt="TikTok" className="h-6" />
-                        </Link>
-                    </Button>
-
-                    <Button variant="ghost" className="w-20 h-12 flex justify-center items-center" asChild>
-                        <Link href="https://delli.market/collections/nutrinana">
-                            <img src="/icons/delli-logo.svg" alt="Delli" className="h-6" />
-                        </Link>
-                    </Button>
-
-                    <Button variant="ghost" className="w-30 h-12 flex justify-center items-center" asChild>
-                        <Link href="https://theblackfarmer.com/">
-                            <img src="/icons/black-farmer-logo.svg" alt="Black Farmer" className="h-6" />
-                        </Link>
-                    </Button>
+                    {/* Instagram */}
+                    {/* Link to the Instagram profile */}
+                    <Link href="https://instagram.com/nutrinanaa" target="_blank" className="social-icon">
+                        <SiInstagram size={24} />
+                    </Link>
+                    {/* TikTok */}
+                    {/* Link to the TikTok profile */}
+                    <Link href="https://tiktok.com/" target="_blank" className="social-icon">
+                        <SiTiktok size={24} />
+                    </Link>
+                    {/* DELLI */}
+                    {/* Link to the Delli marketplace */}
+                    <Link href="https://delli.market/collections/nutrinana" target="_blank" className="social-icon">
+                        <Image src="/icons/delli-logo.svg" alt="Delli" width={50} height={25} />
+                    </Link>
+                    {/* The Black Farmer */}
+                    {/* Link to The Black Farmer website */}
+                    <Link href="https://theblackfarmer.com/" target="_blank" className="social-icon">
+                        <Image src="/icons/black-farmer-logo.svg" alt="The Black Farmer" width={100} height={50} />
+                    </Link>
                 </div>
             </div>
         </nav>
