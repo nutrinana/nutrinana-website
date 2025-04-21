@@ -14,6 +14,15 @@ export default function QueryEmail({ name, title, comments, requestId, dateTime 
       </head>
       <Section style={main}>
         <Container style={container}>
+          <div style={logoContainer}>
+            <img
+              // TODO change URL from staging
+              // TODO change to .svg when redeployed
+              src="https://staging.nutrinana.co.uk/NUTRINA_LOGO.png"
+              alt="Nutrinana Logo"
+              style={logoStyle}
+            />
+          </div>
           <Text style={heading}>Hi there, {name}</Text>
           <Text style={paragraph}>Thank you for your enquiry. This is an automated response from a no-reply email address, but one of our team will aim to get back to you within 1-3 working days.</Text>
           <Text style={paragraph}>In the meantime, feel free to check out our FAQs at <a href="https://www.nutrinana.co.uk/FAQs" style={linkStyle}>
@@ -29,14 +38,6 @@ export default function QueryEmail({ name, title, comments, requestId, dateTime 
           <Text style={detail}>{dateTime}</Text>
           <br/>
           <Text style={heading}>Speak Soon!</Text>
-          <div style={logoContainer}>
-            <img
-              // TODO change URL from staging
-              src="https://staging.nutrinana.co.uk/NUTRINA_LOGO.png"
-              alt="Nutrinana Logo"
-              style={logoStyle}
-            />
-          </div>
         </Container>
       </Section>
     </Html>
@@ -60,7 +61,7 @@ const heading = {
   lineHeight: "1.3",
   fontWeight: "700",
   color: "#191923", // raisin
-  fontFamily: "'Trebuchet MS', sans-serif",
+  fontFamily: "'Garamond', serif",
 };
 const heading_2 = {
   fontSize: "1.25rem",
@@ -68,26 +69,26 @@ const heading_2 = {
   fontWeight: "700",
   color: "#191923", // raisin
   marginLeft: "20px",
-  fontFamily: "'Trebuchet MS', sans-serif",
+  fontFamily: "'Garamond', serif",
 };
 
 const paragraph = {
   fontSize: "1.0rem",
   lineHeight: "1.4",
   color: "#191923", // raisin
-  fontFamily: "'Trebuchet MS', sans-serif",
+  fontFamily: "'Garamond', serif",
 };
 const detail = {
   fontSize: "1.0rem",
   lineHeight: "1.4",
   color: "#191923", // raisin
   marginLeft: "20px",
-  fontFamily: "'Trebuchet MS', sans-serif",
+  fontFamily: "'Garamond', serif",
 };
 const linkStyle = {
   color: "#507153", // theme green
   textDecoration: "underline",
-  fontFamily: "'Trebuchet MS', sans-serif",
+  fontFamily: "'Garamond', serif",
 };
 
 const logoContainer = {

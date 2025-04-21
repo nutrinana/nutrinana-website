@@ -16,14 +16,16 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea"; // Assuming you have a Textarea component
+import { Textarea } from "@/components/ui/textarea";
+import { CiUser, CiMail } from "react-icons/ci";
+
 
 // Define the schema for the form
 const contactFormSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  email: z.string().email({ message: "Invalid email address." }),
-  title: z.string().min(2, { message: "Title must be at least 2 characters." }),
-  comments: z.string().min(10, { message: "Comments must be at least 10 characters." }),
+  email: z.string().email({ message: "Please type a valid email address." }),
+  title: z.string().min(2, { message: "Please type at least 2 characters for the title." }),
+  comments: z.string().min(10, { message: "Please type at least 10 characters for your comments." }),
 });
 
 export function ContactForm() {
@@ -55,11 +57,12 @@ export function ContactForm() {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                <div className="flex items-center" >
+                  <CiUser className="text-gray-500 mr-2" />
                   <FormControl>
-                    <Input placeholder="Your Name" {...field} />
+                    <Input placeholder="Your Name" {...field} />  
                   </FormControl>
-                  <FormDescription className="text-xs">Enter your full name.</FormDescription>
+                </div>
                   <FormMessage />
                 </FormItem>
               )}
@@ -73,11 +76,12 @@ export function ContactForm() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input placeholder="you@example.com" {...field} />
-                  </FormControl>
-                  <FormDescription className="text-xs">Enter a valid email address.</FormDescription>
+                  <div className="flex items-center">
+                    <CiMail className="text-gray-500 mr-2" />
+                    <FormControl>
+                      <Input placeholder="you@example.com" {...field} />
+                    </FormControl>
+                  </div> 
                   <FormMessage />
                 </FormItem>
               )}
@@ -91,11 +95,11 @@ export function ContactForm() {
           name="title"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Title</FormLabel>
+              {/* <FormLabel>Title</FormLabel> */}
               <FormControl>
                 <Input placeholder="Subject Title" {...field} />
               </FormControl>
-              <FormDescription className="text-xs">Provide a brief title for your message.</FormDescription>
+              {/* <FormDescription className="text-xs">Provide a brief title for your message.</FormDescription> */}
               <FormMessage />
             </FormItem>
           )}
@@ -107,32 +111,31 @@ export function ContactForm() {
           name="comments"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Comments</FormLabel>
+              {/* <FormLabel>Comments</FormLabel> */}
               <FormControl>
                 <Textarea placeholder="Your comments..." {...field} />
               </FormControl>
-              <FormDescription className="text-xs">Write your message or feedback here.</FormDescription>
+              {/* <FormDescription className="text-xs">Write your message or feedback here.</FormDescription> */}
               <FormMessage />
             </FormItem>
           )}
         />
 
         {/* Submit Button and Additional Text */}
-        <div className="flex items-center justify-between mt-4">
+        <div className="relative mt-4 mb-12">
           {/* Additional Text */}
-          <div className="text-left text-lg text-[var(--color-raisin)]">
+          <div className="absolute top-0 left-0 text-left text-lg text-[var(--color-raisin)]">
             <p>
               Or... <br />
               email <a href="mailto:help@nutrinana.co.uk" className="text-[var(--color-green)] underline hover:text-[var(--color-raisin)]">help@nutrinana.co.uk</a>
             </p>
             <p className="text-xs text-gray-500">
-              Please start the subject line with "Customer Enquiry" <br />
-              to help us respond as soon as possible!
+              Please start the subject line with "Customer Enquiry" to help us respond as soon as possible!
             </p>
           </div>
 
           {/* Submit Button */}
-          <Button type="submit" variant="grey" className="mt-12 px-8">
+          <Button type="submit" variant="grey" className=" absolute top-0 right-0 mt-0 px-8">
             Submit
           </Button>
         </div>
