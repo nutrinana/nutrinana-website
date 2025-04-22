@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { instagramCache as cache } from "@/lib/instagramCache";
 
 /**
  * API route handler to fetch the latest Instagram posts.
@@ -10,6 +11,13 @@ import { NextResponse } from "next/server";
  * @route GET /api/instagram-feed
  */
 export async function GET() {
+  const now = Date.now();
+
+  // Check if the cache is still valid
+  if (cache.data && (now - cache.timestamp < cache.ttl)) {
+    return NextResponse.json(cache.data);
+  }
+
   // Retrieve the Instagram access token from environment variables
   const token = process.env.INSTAGRAM_ACCESS_TOKEN;
 
@@ -28,6 +36,10 @@ export async function GET() {
         { status: res.status }
       );
     }
+
+    // Save to cache
+    cache.data = data.data;
+    cache.timestamp = now;
 
     // Return the array of Instagram media items in a successful JSON response
     return NextResponse.json(data.data);
