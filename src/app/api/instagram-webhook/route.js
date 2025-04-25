@@ -1,3 +1,5 @@
+import { instagramCache as cache } from "@/lib/instagramCache";
+
 /**
  * Verifies the webhook subscription request from Instagram.
  * Responds with the challenge value if the mode and verify token are correct.
@@ -32,7 +34,9 @@ export async function POST(req) {
     const body = await req.json();
     console.log('Received Instagram webhook event:', body);
 
-    // You can process or store this data here
+    // Invalidate the cache to ensure fresh data
+    cache.data = null;
+    cache.timestamp = null;
 
     return new Response('Event Received', { status: 200 });
 }
