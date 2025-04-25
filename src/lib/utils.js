@@ -1,4 +1,4 @@
-/****
+/**
  * Utility functions used throughout the Nutrinana website.
  * Includes class name merging and safe rendering of line-breaks in strings.
  */

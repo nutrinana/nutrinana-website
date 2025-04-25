@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { SiInstagram } from "react-icons/si";
 import Image from "next/image";
+import Link from "next/link";
 import InstagramEmbed from "@/components/InstagramEmbed";
 import InstagramModal from "@/components/InstagramModal";
 import { useInstagramFeed } from "@/hooks/useInstagramFeed";
@@ -128,7 +129,14 @@ export default function InstagramFeed() {
                     />
                 )}
             </section>
-            <p className="text-xl sm:text-2xl text-gray-500 mt-2 ml-1">@nutrinanaa</p>
+            <Link
+                href="https://www.instagram.com/nutrinanaa"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xl sm:text-2xl text-gray-500 mt-2 ml-1 hover:underline"
+            >
+                @nutrinanaa
+            </Link>
         </div>
     );
 }
