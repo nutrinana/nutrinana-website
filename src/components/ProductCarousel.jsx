@@ -18,6 +18,7 @@ import useCarousel from "@/hooks/useCarousel";
  * 
  * @param {Object[]} products - Array of product objects to be displayed in the carousel.
  * Each product object should contain properties that ProductCard can accept.
+ * 
  * @returns {JSX.Element} The rendered ProductCarousel component.
  */
 export default function ProductCarousel({ products }) {

@@ -7,6 +7,7 @@ import ProductCard from "@/components/ProductCard";
 import HeroSlider from "@/components/HeroSlider";
 import GlobalAccordion from "@/components/GlobalAccordion";
 import NutritionTable from "@/components/NutritionTable";
+import { ContactForm } from "@/components/ContactForm";
 import InstagramFeed from "@/components/InstagramFeed";
 import { Button } from "@/components/ui/button";
 
@@ -164,6 +165,10 @@ export default function TestPage() {
             <br></br>
             <br></br>
             <Timeline timelineData={timelineData} />  
+            <br></br>
+            <br></br>
+            <br></br>
+            <ContactForm/>
             <br /><br /><br />
             <h2 className="text-2xl font-bold mb-4">Instagram Feed</h2>
             <InstagramFeed />

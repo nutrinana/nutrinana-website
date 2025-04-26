@@ -15,6 +15,7 @@ import {
  * - {string} title: The main title of the accordion item.
  * - {string} subtitle: Optional subtitle displayed below the title when open.
  * - {JSX.Element|string} content: The main content displayed when the item is expanded.
+ * 
  * @returns {JSX.Element} A stylised accordion component.
  */
 export default function GlobalAccordion({ items }) {
