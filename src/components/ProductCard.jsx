@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { CircleCheck } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import "@/styles/globals.css"; // Ensure global styles are imported
 
 /**
  * ProductCard component for displaying product information.
@@ -116,18 +117,33 @@ export default function ProductCard({
                         {/* Price and Rating */}
                         <div className="mt-6 flex items-center justify-between pb-3">
                             <span className="text-6xl font-bold text-gray-800">{price}</span>
-                            {rating && <span className="text-yellow-500 text-lg">⭐ {rating}</span>}
+                            {rating && <span className="rating">⭐ {rating}</span>}
                         </div>
 
                         {/* Shop buttons */}
                         <div className="w-full flex flex-col sm:flex-row gap-4 mt-auto pt-4">
-                            {shopLinks.map(({ text, href }, index) => (
-                                <Link key={index} href={href} className="w-full sm:w-1/2">
-                                    <Button variant="outline" className="w-full text-sm md:text-base truncate">
-                                        {text}
-                                    </Button>
-                                </Link>
-                            ))}
+                            <Button
+                                variant="yellow"
+                                size="default"
+                                className="w-full sm:w-1/2"
+                                onClick={(event) => {
+                                    event.stopPropagation(); //prevents the card's onClick from firing
+                                    window.location.href = shopLinks[0]?.href;
+                                }}
+                            >
+                                {shopLinks[0]?.text}
+                            </Button>
+                            <Button
+                                variant="greenOutlined"
+                                size="default"
+                                className="w-full sm:w-1/2"
+                                onClick={(event) => {
+                                    event.stopPropagation();
+                                    window.location.href = shopLinks[1]?.href;
+                                }}
+                            >
+                                {shopLinks[1]?.text}
+                            </Button>
                         </div>
                     </div>
                 </div>

@@ -8,6 +8,8 @@ import HeroSlider from "@/components/HeroSlider";
 import GlobalAccordion from "@/components/GlobalAccordion";
 import NutritionTable from "@/components/NutritionTable";
 import { ContactForm } from "@/components/ContactForm";
+import InstagramFeed from "@/components/InstagramFeed";
+import { Button } from "@/components/ui/button";
 
 const products = [
     {
@@ -139,6 +141,21 @@ export default function TestPage() {
         <HeroSlider slides={slides} />
         <main className="p-10">
             <h1 className="text-3xl font-bold">Component Preview</h1>
+            <section className="my-10">
+              <h2 className="text-2xl font-semibold mb-4">Button Variants</h2>
+              <div className="flex flex-wrap gap-4">
+                <Button variant="default">Default</Button>
+                <Button variant="ghost">Ghost</Button>
+                <Button variant="outline">Outline</Button>
+                <Button variant="destructive">Destructive</Button>
+                <Button variant="green">Green</Button>
+                <Button variant="greenOutlined">Green Outlined</Button>
+                <Button variant="yellow">Yellow</Button>
+                <Button variant="pink">Pink</Button>
+                <Button variant="pinkOutlined">Pink Outlined</Button>
+                <Button variant="grey">Grey</Button>
+              </div>
+            </section>
             <ProductCarousel products={products} />
             <br></br>
             <br></br>
@@ -152,6 +169,10 @@ export default function TestPage() {
             <br></br>
             <br></br>
             <ContactForm/>
+            <br /><br /><br />
+            <h2 className="text-2xl font-bold mb-4">Instagram Feed</h2>
+            <InstagramFeed />
+            <br /><br /><br />
         </main>
         <Footer />
     </div>
