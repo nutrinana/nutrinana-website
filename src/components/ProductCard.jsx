@@ -21,6 +21,7 @@ import { useRouter } from "next/navigation";
  * @param {Object[]} props.shopLinks - Array of shop links for the product.
  * @param {string} props.shopLinks[].text - The text for the shop link.
  * @param {string} props.shopLinks[].href - The URL for the shop link.
+ * 
  * @returns {JSX.Element} The rendered ProductCard component.
  */
 export default function ProductCard({

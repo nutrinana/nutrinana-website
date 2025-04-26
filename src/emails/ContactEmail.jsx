@@ -1,6 +1,7 @@
+import { Html, Section, Container, Text } from '@react-email/components';
+
 /**
  * QueryEmail Component
- * 
  * This component generates an automated email response for contact form submissions.
  * It includes the user's name, request details, and additional information.
  * 
@@ -10,11 +11,9 @@
  * @param {string} props.comments - The comments provided by the user.
  * @param {string} props.requestId - The unique ID for the enquiry.
  * @param {string} props.dateTime - The date and time of the enquiry.
- * @returns {JSX.Element} - The email template.
+ * 
+ * @returns {JSX.Element} - The rendered email component.
  */
-
-import { Html, Section, Container, Text } from '@react-email/components';
-
 export default function QueryEmail({ name, title, comments, requestId, dateTime }) {
   return (
     <Html>
@@ -46,7 +45,7 @@ export default function QueryEmail({ name, title, comments, requestId, dateTime 
           <Text style={paragraph}>
             In the meantime, feel free to check out our FAQs at <a href="https://www.nutrinana.co.uk/FAQs" style={linkStyle}>
               www.nutrinana.co.uk/FAQs
-            </a>
+            </a>.
           </Text>
           <br/>
 

@@ -1,15 +1,13 @@
+import { toast } from "sonner";
+
 /**
- * useSubmitContactForm Hook
- * 
  * This hook handles the submission of the contact form.
  * It sends the form data to the server and provides feedback to the user via toast notifications.
  * 
  * @param {object} form - The form instance from `react-hook-form`.
+ * 
  * @returns {function} - The submission handler function.
  */
-
-import { toast } from "sonner";
-
 export function useSubmitContactForm(form) {
   return async function onSubmit(values) {
     try {
