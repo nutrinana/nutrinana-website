@@ -18,6 +18,7 @@ import styles from "@/styles/Timeline.module.css";
  * @param {string} props.item.year - The year associated with the timeline item.
  * @param {string} props.item.text - The text description of the timeline item.
  * @param {string} props.item.image - The URL of the image associated with the timeline item.
+ * 
  * @returns {JSX.Element} The rendered TimelineItem component.
  */
 const TimelineItem = ({ item, index }) => (

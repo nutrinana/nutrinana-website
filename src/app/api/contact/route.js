@@ -1,0 +1,42 @@
+import { NextResponse } from 'next/server';
+import { Resend } from 'resend';
+import QueryEmail from '@/emails/ContactEmail';
+import { render } from "@react-email/render";
+import { v4 as uuidv4 } from 'uuid';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+export async function POST(req) {
+  try {
+    const body = await req.json();
+    const { name, email, title, comments } = body;
+
+    // Generate a unique ID for the request
+    const requestId = uuidv4().split('-')[0]; // first segment of the uuid
+
+    const html = await render(
+      QueryEmail({
+        name,
+        title,
+        comments,
+        requestId,
+        dateTime: new Date().toLocaleString(),
+      })
+    );
+
+    const response = await resend.emails.send({
+      from: 'Nutrinana Help <noreply@nutrinana.co.uk>', // Must be verified on Resend
+      to: email, // requestor's email
+      bcc: 'nana@nutrinana.co.uk', // CC the admin so we can reply
+      replyTo: email, // reply to the requestor
+
+      subject: `Customer Enquiry ${requestId}: ${title}`,
+      html,
+    });
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error('Email send error:', error.response?.data || error.message || error);
+    return NextResponse.json({ error: 'Failed to send email.' }, { status: 500 });
+  }
+}
