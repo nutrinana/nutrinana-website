@@ -1,17 +1,9 @@
-/**
- * ContactForm Component
- * 
- * This component renders a contact form with fields for name, email, title, and comments.
- * It uses `react-hook-form` for form handling and validation with Zod schema.
- * On successful submission, the form sends data to the server and displays a toast notification.
- */
-
 "use client";
 
+import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-
+import { User, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -22,10 +14,16 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { User, Mail } from "lucide-react";
-import { contactFormSchema } from "@/lib/validation/contactFormSchema";
 import { useSubmitContactForm } from "@/hooks/useSubmitContactForm";
+import { contactFormSchema } from "@/lib/validation/contactFormSchema";
 
+/**
+ * This component renders a contact form with fields for name, email, title, and comments.
+ * It uses `react-hook-form` for form handling and validation with Zod schema.
+ * On successful submission, the form sends data to the server and displays a toast notification
+ * 
+ * @returns {JSX.Element} - The rendered ContactForm component.
+ */
 export function ContactForm() {
   // Initialize the form with default values and Zod schema validation
   const form = useForm({
@@ -129,7 +127,7 @@ export function ContactForm() {
           <div className="absolute top-0 left-0 text-left text-lg text-[var(--color-raisin)]">
             <p>
               Or... <br />
-              email <a href="mailto:help@nutrinana.co.uk" className="text-[var(--color-green)] underline hover:text-[var(--color-raisin)]">help@nutrinana.co.uk</a>
+              email <Link href="mailto:help@nutrinana.co.uk" className="text-[var(--color-green)] underline hover:text-[var(--color-raisin)]">help@nutrinana.co.uk</Link>
             </p>
             <p className="text-xs text-gray-500">
               Please start the subject line with "Customer Enquiry" to help us respond as soon as possible!
