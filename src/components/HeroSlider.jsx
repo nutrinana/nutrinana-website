@@ -53,18 +53,21 @@ export default function HeroSlider({ slides = [] }) {
                         <p className="text-lg md:text-2xl mb-6 max-w-xl">
                             {slide.subtitle}
                         </p>
-                        <Link href={slide.buttonLink || "#"} passHref>
-                            <Button size="lg" className="bg-white text-black hover:bg-white/90">
-                                {slide.buttonText}
-                            </Button>
-                        </Link>
+                        <Button
+                            variant="green"
+                            size="smaller"
+                            onClick={() => window.location.href = slide.buttonLink || "#"}
+                        >
+                            {slide.buttonText}
+                        </Button>
+                        
                     </div>
                 </div>
             ))}
             {/* Pagination Dots for manual navigation */}
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-30 flex space-x-2">
                 {slides.map((_, index) => (
-                    <button
+                    <Button variant="noOutline" size="icon"
                     key={index}
                     onClick={() => goToSlide(index)}
                     className={`w-3 h-3 rounded-full ${
