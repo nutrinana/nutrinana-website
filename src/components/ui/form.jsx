@@ -70,7 +70,7 @@ function FormLabel({
     <Label
       data-slot="form-label"
       data-error={!!error}
-      className={cn("data-[error=true]:text-gray-500", className)}
+      className={cn("data-[error=true]:text-red-500", className)}
       htmlFor={formItemId}
       {...props} />
   );
@@ -125,7 +125,7 @@ function FormMessage({
     <p
       data-slot="form-message"
       id={formMessageId}
-      className={cn("text-gray-500 text-xs", className)}
+      className={cn("text-red-600 text-xs italic", className)}
       {...props}>
       {body}
     </p>

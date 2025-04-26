@@ -1,35 +1,33 @@
+/**
+ * ContactForm Component
+ * 
+ * This component renders a contact form with fields for name, email, title, and comments.
+ * It uses `react-hook-form` for form handling and validation with Zod schema.
+ * On successful submission, the form sends data to the server and displays a toast notification.
+ */
+
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { CiUser, CiMail } from "react-icons/ci";
-
-
-// Define the schema for the form
-const contactFormSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  email: z.string().email({ message: "Please type a valid email address." }),
-  title: z.string().min(2, { message: "Please type at least 2 characters for the title." }),
-  comments: z.string().min(10, { message: "Please type at least 10 characters for your comments." }),
-});
+import { User, Mail } from "lucide-react";
+import { contactFormSchema } from "@/lib/validation/contactFormSchema";
+import { useSubmitContactForm } from "@/hooks/useSubmitContactForm";
 
 export function ContactForm() {
-  // Initialize the form
+  // Initialize the form with default values and Zod schema validation
   const form = useForm({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
@@ -40,14 +38,12 @@ export function ContactForm() {
     },
   });
 
-  // Submit handler
-  function onSubmit(values) {
-    console.log(values); // Handle form submission
-  }
+  // Submit handler for the form
+  const onSubmit = useSubmitContactForm(form);
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 max-w-6xl mx-auto w-full">
         {/* Name and Email Fields Side by Side */}
         <div className="flex flex-wrap gap-4">
           {/* Name Field */}
@@ -57,12 +53,17 @@ export function ContactForm() {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                <div className="flex items-center" >
-                  <CiUser className="text-gray-500 mr-2" />
-                  <FormControl>
-                    <Input placeholder="Your Name" {...field} />  
-                  </FormControl>
-                </div>
+                  <div className="relative">
+                    {/* User icon for the name field */}
+                    <User className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 pt-1 pb-1" />
+                    <FormControl>
+                      <Input
+                        placeholder="Your Name"
+                        {...field}
+                        className="pl-10"
+                      />
+                    </FormControl>
+                  </div>
                   <FormMessage />
                 </FormItem>
               )}
@@ -76,12 +77,17 @@ export function ContactForm() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <div className="flex items-center">
-                    <CiMail className="text-gray-500 mr-2" />
+                  <div className="relative">
+                    {/* Mail icon for the email field */}
+                    <Mail className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 pt-1 pb-1" />
                     <FormControl>
-                      <Input placeholder="you@example.com" {...field} />
+                      <Input
+                        placeholder="you@example.com"
+                        {...field}
+                        className="pl-10"
+                      />
                     </FormControl>
-                  </div> 
+                  </div>
                   <FormMessage />
                 </FormItem>
               )}
@@ -95,11 +101,9 @@ export function ContactForm() {
           name="title"
           render={({ field }) => (
             <FormItem>
-              {/* <FormLabel>Title</FormLabel> */}
               <FormControl>
                 <Input placeholder="Subject Title" {...field} />
               </FormControl>
-              {/* <FormDescription className="text-xs">Provide a brief title for your message.</FormDescription> */}
               <FormMessage />
             </FormItem>
           )}
@@ -111,11 +115,9 @@ export function ContactForm() {
           name="comments"
           render={({ field }) => (
             <FormItem>
-              {/* <FormLabel>Comments</FormLabel> */}
               <FormControl>
                 <Textarea placeholder="Your comments..." {...field} />
               </FormControl>
-              {/* <FormDescription className="text-xs">Write your message or feedback here.</FormDescription> */}
               <FormMessage />
             </FormItem>
           )}
@@ -123,7 +125,7 @@ export function ContactForm() {
 
         {/* Submit Button and Additional Text */}
         <div className="relative mt-4 mb-12">
-          {/* Additional Text */}
+          {/* Additional text with email link */}
           <div className="absolute top-0 left-0 text-left text-lg text-[var(--color-raisin)]">
             <p>
               Or... <br />
@@ -134,37 +136,12 @@ export function ContactForm() {
             </p>
           </div>
 
-          {/* Submit Button */}
-          <Button type="submit" variant="grey" className=" absolute top-0 right-0 mt-0 px-8">
+          {/* Submit button */}
+          <Button type="submit" variant="grey" className="absolute top-0 right-0 mt-0 px-8">
             Submit
           </Button>
         </div>
       </form>
     </Form>
   );
-
-  async function onSubmit(values) {
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      });
-  
-      if (res.ok) {
-        // alert("Message sent successfully!");
-        toast.success("Request sent successfully!");
-        form.reset(); // clear form
-      } else {
-        // alert("Failed to send message. Please try again later.");
-        toast.error("Failed to send request. Please try again later.");
-      }
-    } catch (err) {
-      // alert("An unexpected error occurred.");
-      toast.error("An unexpected error occurred.");
-    }
-  }  
-
 }
