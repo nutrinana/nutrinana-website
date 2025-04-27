@@ -49,7 +49,7 @@ const accordionData = [
 export default function HelpPage() {
   return (
     <main className="max-w-4xl mx-auto py-6 px-4 mt-4">
-      {/* TODO: Check if we need a title */}  
+      {/* TODO: Check if we need a title, try "Help Centre or "Help & Information" (like the footer) */}  
       {/* <h1 className="text-4xl font-extrabold mb-8 text-center">Help Centre</h1> */}
       <h2 className="text-3xl font-bold mb-8">Frequently Asked Questions</h2>
       <GlobalAccordion items={accordionData} />
