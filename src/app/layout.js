@@ -38,7 +38,7 @@ export const metadata = {
     other: [
       {
         rel: "icon",
-        url: "/icon0.svg",
+        url: "/icon.svg",
       },
     ],
   },
