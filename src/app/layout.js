@@ -10,6 +10,7 @@ import { Toaster } from "sonner";
  * This metadata applies to all pages unless overridden in a nested layout or page.
  */
 export const metadata = {
+  metadataBase: new URL("https://www.nutrinana.co.uk"),
   title: "Nutrinana's Activated Granola",
   description:
     "Discover Nutrinana’s Activated Granola, made with activated nuts for better digestion. Shop online via DELLI or find us at the Black Farmer Farmshop in London.",
