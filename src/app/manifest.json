@@ -1,6 +1,7 @@
 {
   "name": "Nutrinana",
   "short_name": "Nutrinana",
+  "start_url": "/",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
