@@ -1,9 +1,9 @@
 // Activated Granola product page for Nutrinana website
 
 import GlobalAccordion from "@/components/GlobalAccordion";
-import ProductCard from "@/components/ProductCard";
+import ProductShowcase from "@/components/ProductShowcase";
 import NutritionTable from "@/components/NutritionTable";
-import Link from "next/link";
+import { Separator } from "@/components/ui/separator";
 
 const accordionData = [
   {
@@ -55,12 +55,13 @@ export default function ActivatedGranolaPage() {
     <main className="max-w-6xl mx-auto py-10 px-4">
       {/* Product Card Section */}
       <section className="mb-12">
-        <ProductCard {...productData[0]}/>
+        <ProductShowcase {...productData[0]} />
       </section>
 
       {/* Product Information */}
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-4">Product Information</h2>
+        <Separator className="my-4 bg-black" />
         <h3 className="text-xl font-semibold text-yellow-600 mb-2">What is Activated?</h3>
         <p className="text-lg">
             Our nuts and seeds go through a soaking process known as activation. This process helps to break down phytic acid and enzyme inhibitors, making the nutrients more bioavailable and easier to digest. By activating our granola ingredients, we ensure that you get the maximum nutritional benefit with every bite, supporting a healthier and more balanced diet.

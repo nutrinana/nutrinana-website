@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { CircleCheck } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { CircleCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import "@/styles/globals.css"; // Ensure global styles are imported
+import { openInNewTab } from "@/lib/utils";
+import "@/styles/globals.css";
 
 /**
  * ProductCard component for displaying product information.
@@ -127,8 +127,10 @@ export default function ProductCard({
                                 size="default"
                                 className="w-full sm:w-1/2"
                                 onClick={(event) => {
-                                    event.stopPropagation(); //prevents the card's onClick from firing
-                                    window.location.href = shopLinks[0]?.href;
+                                    event.stopPropagation(); // prevents the card's onClick from firing
+                                    if (shopLinks[0]?.href) {
+                                        openInNewTab(shopLinks[0].href);
+                                    }
                                 }}
                             >
                                 {shopLinks[0]?.text}
@@ -139,7 +141,9 @@ export default function ProductCard({
                                 className="w-full sm:w-1/2"
                                 onClick={(event) => {
                                     event.stopPropagation();
-                                    window.location.href = shopLinks[1]?.href;
+                                    if (shopLinks[1]?.href) {
+                                        openInNewTab(shopLinks[1].href);
+                                    }
                                 }}
                             >
                                 {shopLinks[1]?.text}
