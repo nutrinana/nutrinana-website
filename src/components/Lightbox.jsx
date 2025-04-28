@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import styles from "@/styles/Lightbox.module.css";
 
 /**
  * Lightbox component for displaying images in a modal format.
@@ -29,7 +30,7 @@ export default function Lightbox({ images, selectedImageIndex, setSelectedImageI
 
       {/* Lightbox window */}
       <div
-        className="relative z-10 bg-white rounded-lg shadow-lg w-auto max-w-[95vw] max-h-[90vh] flex flex-col"
+        className={`${styles.animateFadeIn} relative z-10 bg-white rounded-lg shadow-lg w-auto max-w-[95vw] max-h-[90vh] flex flex-col`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
@@ -37,20 +38,22 @@ export default function Lightbox({ images, selectedImageIndex, setSelectedImageI
           variant="ghost"
           size="icon"
           onClick={onClose}
-          className="absolute top-4 right-4 text-white bg-black/50 rounded-full hover:text-gray-300 hover:bg-black/70 w-8 h-8"
+          className="absolute top-4 right-4 text-white bg-black/50 rounded-full hover:text-gray-300 hover:bg-black/70 w-8 h-8 z-20"
         >
           <X className="size-4" />
         </Button>
 
         {/* Main large image */}
         <div className="flex-grow flex items-center justify-center p-4 bg-gray-100 rounded-t-lg">
-          <Image
-            src={images[selectedImageIndex]}
-            alt="Expanded view"
-            width={1536}
-            height={2048}
-            className="object-contain max-h-[75vh] w-auto"
-          />
+          <div key={selectedImageIndex} className="transition-opacity duration-300 ease-in-out">
+            <Image
+              src={images[selectedImageIndex]}
+              alt="Expanded view"
+              width={1536}
+              height={2048}
+              className={`${styles.animateFadeInSlow} object-contain max-h-[75vh] w-auto`}
+            />
+          </div>
         </div>
 
         {/* Thumbnails */}
