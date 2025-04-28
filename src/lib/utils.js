@@ -78,3 +78,13 @@ export function formatCaption(caption) {
     return word;
   });
 }
+
+/**
+ * Opens a given URL in a new browser tab.
+ *
+ * @param {string} url - The URL to open.
+ */
+export function openInNewTab(url) {
+  if (!url) return;
+  window.open(url, "_blank", "noopener,noreferrer");
+}
