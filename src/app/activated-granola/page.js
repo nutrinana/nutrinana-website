@@ -1,4 +1,4 @@
-// Activated Granola product page for Nutrinana website
+// Activated Granola: Product page for Nutrinana website
 
 import GlobalAccordion from "@/components/GlobalAccordion";
 import ProductShowcase from "@/components/ProductShowcase";

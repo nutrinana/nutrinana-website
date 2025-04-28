@@ -37,7 +37,7 @@ export default function Navbar() {
     const navLinks = [
         { name: "Home", href: "/" },
         { name: "About Us", href: "/about" },
-        { name: "Activated Granola", href: "/shop" },
+        { name: "Activated Granola", href: "/activated-granola" },
         { name: "Reviews", href: "/reviews" },
     ];
 
