@@ -1,0 +1,33 @@
+/* Fade-in animation with slight scaling for general appearance */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Utility class to trigger the fadeIn animation */
+.animateFadeIn {
+  animation: fadeIn 0.3s forwards;
+}
+
+/* Crossfade animation for smooth image switching inside the Lightbox */
+@keyframes fadeInSlow {
+  0% {
+    transform: scale(0.98);
+    filter: blur(2px);
+  }
+  100% {
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+/* Utility class to trigger the slower crossfade animation */
+.animateFadeInSlow {
+  animation: fadeInSlow 0.8s ease-in-out forwards;
+}
