@@ -1,3 +1,4 @@
+// Cookie Policy Page
 export const metadata = {
     title: "Cookie Policy - Nutrinana",
 };
