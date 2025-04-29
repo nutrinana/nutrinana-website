@@ -1,3 +1,4 @@
+// Privacy Policy Page
 export const metadata = {
     title: "Privacy Policy - Nutrinana",
 };

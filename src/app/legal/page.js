@@ -1,3 +1,4 @@
+// Legal page for the website terms of use
 export const metadata = {
     title: "Website Terms of Use - Nutrinana",
 };
