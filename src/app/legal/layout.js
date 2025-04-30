@@ -21,10 +21,10 @@ export default function LegalLayout({ children }) {
     return (
         <div className="max-w-7xl mx-auto p-10 py-12">
             <h1 className="text-3xl font-bold text-center mb-6">{heading}</h1>
-            <div className="flex justify-center gap-12 mb-10 text-md underline text-gray-700">
-                <a href="/legal">Website Terms of Use</a>
-                <a href="/legal/privacy-policy">Privacy Policy</a>
-                <a href="/legal/cookie-policy">Cookie Policy</a>
+            <div className="flex justify-center gap-12 mb-10 text-md text-center text-gray-700 underline">
+                <a href="/legal" className="hover:text-black transition-colors">Website Terms of Use</a>
+                <a href="/legal/privacy-policy" className="hover:text-black transition-colors">Privacy Policy</a>
+                <a href="/legal/cookie-policy" className="hover:text-black transition-colors">Cookie Policy</a>
             </div>
             {children}
         </div>
