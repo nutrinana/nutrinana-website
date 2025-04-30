@@ -36,7 +36,7 @@ export default function Footer() {
                         <ul className="space-y-3 text-lg mt-0 md:mt-2">
                             <li><Link href="/" className="hover:underline">Home</Link></li>
                             <li><Link href="/about" className="hover:underline">About Us</Link></li>
-                            <li><Link href="/shop" className="hover:underline">Activated Granola</Link></li>
+                            <li><Link href="/activated-granola" className="hover:underline">Activated Granola</Link></li>
                             <li><Link href="/reviews" className="hover:underline">Reviews</Link></li>
                         </ul>
                     </div>
