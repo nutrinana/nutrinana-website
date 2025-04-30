@@ -78,8 +78,9 @@ export default function Footer() {
                 <div className="flex flex-col md:flex-row justify-between text-sm px-4">
                     <span>&copy; {new Date().getFullYear()}, Nutrinana. All rights reserved.</span>
                     <div className="flex space-x-4">
-                        <Link href="/privacy" className="underline">Privacy & Cookie Policy</Link>
-                        <Link href="/terms" className="underline">Terms & Conditions</Link>
+                        <Link href="/legal/privacy-policy" className="underline">Privacy Policy</Link>
+                        <Link href="/legal/cookie-policy" className="underline">Cookie Policy</Link>
+                        <Link href="/legal" className="underline">Terms & Conditions</Link>
                     </div>
                 </div>
 
