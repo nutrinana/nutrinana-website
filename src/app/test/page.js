@@ -11,6 +11,7 @@ import { ContactForm } from "@/components/ContactForm";
 import InstagramFeed from "@/components/InstagramFeed";
 import { Button } from "@/components/ui/button";
 import SideSlider from "@/components/SideSlider";
+import NoteCard from "@/components/NoteCard";
 
 const products = [
     {
@@ -186,6 +187,8 @@ export default function TestPage() {
             <br></br>
             <br></br>
             <SideSlider slides={sideSlides} title={sideSliderTitle} description={sideSliderDescription} />
+            <br /><br />
+            <NoteCard />
             <br /><br />
             <ContactForm/>
             <br /><br /><br />
