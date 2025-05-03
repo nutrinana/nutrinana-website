@@ -10,6 +10,7 @@ import NutritionTable from "@/components/NutritionTable";
 import { ContactForm } from "@/components/ContactForm";
 import InstagramFeed from "@/components/InstagramFeed";
 import { Button } from "@/components/ui/button";
+import SideSlider from "@/components/SideSlider";
 
 const products = [
     {
@@ -74,6 +75,22 @@ const slides = [
       buttonLink: "/about"
     },
 ];
+
+const sideSlides = [
+  { image: "/about/about-slide1.jpg", alt: "Silverhand Farmers Market" },
+  { image: "/about/about-slide2.jpg", alt: "Fresh ingredients used in Nutrinana granola" },
+  { image: "/about/about-slide1.jpg", alt: "The Black Farmer Farmshop, White City " },
+];
+
+const sideSliderTitle = "Who We Are";
+
+const sideSliderDescription = (
+  <>
+    Nutrinana started in Nana Odamo’s kitchen, where she whipped up granola so good, even her kids couldn’t keep it to themselves—and neither could the neighbours! What began as a small, family-run operation quickly grew, fuelled by Nana’s mission to prove that nutritious, tasty granola doesn’t need a sprinkle of sugar or a dash of anything artificial. Our secret? “Activated” nuts and seeds that have gone through a special soaking process to make them as easy on your digestion as they are on your taste buds.
+    <br /><br />
+    At Nutrinana, we’re all about keeping it real—literally. We’re a family-run business with Nana’s kids handling the social media and website (when they’re not busy asking for more granola). We’re on a mission to become your go-to healthy breakfast alternative, so whether you’re looking to ditch the sugar or dodge the bloat, we’ve got you covered. Plus, when Nana’s not making granola, she’s growing her own veggies—because, of course, she is!
+  </>
+);
 
 const timelineData = [
     {
@@ -168,6 +185,8 @@ export default function TestPage() {
             <br></br>
             <br></br>
             <br></br>
+            <SideSlider slides={sideSlides} title={sideSliderTitle} description={sideSliderDescription} />
+            <br /><br />
             <ContactForm/>
             <br /><br /><br />
             <h2 className="text-2xl font-bold mb-4">Instagram Feed</h2>
