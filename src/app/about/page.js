@@ -8,15 +8,15 @@ import Timeline from "@/components/Timeline";
 const sideSlides = [
     {
         image: "/about/about-slide1.jpg",
-        alt: "Nana standing at a granola stall",
+        alt: "Nana at Silverhand Farmers Market",
     },
     {
         image: "/about/about-slide2.jpg",
         alt: "Granola display on a table",
     },
     {
-        image: "/about/about-slide1.jpg", // TODO: Update with the correct image
-        alt: "Customers interacting at a market",
+        image: "/about/about-slide3.jpg",
+        alt: "Nana at The Black Farmer Farmshop, White City",
     },
 ];
 
