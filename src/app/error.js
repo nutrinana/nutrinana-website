@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 /**
  * Global error page component for handling unhandled exceptions.
@@ -25,8 +26,8 @@ export default function Error({ error, reset }) {
                 Oops! Looks like one of our granola clusters fell apart.<br />
                 Please try again or head back home.
             </p>
-            <Button variant="green" onClick={() => reset()}>
-                Try Again
+            <Button variant="green" asChild>
+                <Link href="/">Go Back Home</Link>
             </Button>
         </div>
     );
