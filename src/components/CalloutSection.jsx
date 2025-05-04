@@ -1,0 +1,28 @@
+"use client";
+
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+
+/**
+ * CalloutSection component renders a section with a heading and a CTA button.
+ *
+ * @param {Object} props - The properties for the CalloutSection component.
+ * @param {string} props.heading - The headline text to display.
+ * @param {string} props.buttonText - The text inside the button.
+ * @param {string} props.buttonLink - The href the button should link to.
+ * @param {string} [props.variant] - The button variant.
+ * 
+ * @returns {JSX.Element} The rendered CalloutSection component.
+ */
+export default function CalloutSection({ heading, buttonText, buttonLink, variant }) {
+    const router = useRouter();
+
+    return (
+        <div className="text-center">
+            <h2 className="text-3xl sm:text-4xl font-semibold mb-4">{heading}</h2>
+            <Button variant={variant} size="lg" onClick={() => router.push(buttonLink)}>
+                {buttonText}
+            </Button>
+        </div>
+    );
+}

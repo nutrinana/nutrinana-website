@@ -1,7 +1,8 @@
+// Home Page
 import HeroSlider from "@/components/HeroSlider";
+import CalloutSection from "@/components/CalloutSection";
 import ProductCarousel from "@/components/ProductCarousel";
 import InstagramFeed from "@/components/InstagramFeed";
-import { Button } from "@/components/ui/button";
 
 const slides = [
   {
@@ -52,17 +53,19 @@ const products = [
   }
 ];
 
-export default function Home() {
+export default function HomePage() {
   return (
     <>
       <HeroSlider slides={slides} />
 
       <main className="px-4 sm:px-6 lg:px-10 py-10 space-y-16">
-        <section className="text-center">
-          <h2 className="text-2xl sm:text-3xl font-semibold mb-4">Great Taste Award Winner in 2025</h2>
-          <Button variant="yellow" size="sm" asChild>
-            <a href="/about">About Nutrinana</a>
-          </Button>
+        <section className="mt-12">
+          <CalloutSection
+            heading="Great Taste Award Winner in 2025"
+            buttonText="About Nutrinana"
+            buttonLink="/about"
+            variant="yellow"
+          />
         </section>
 
         <section>
