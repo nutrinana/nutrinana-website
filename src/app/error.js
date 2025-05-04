@@ -14,7 +14,7 @@ import Link from "next/link";
  * 
  * @returns {JSX.Element} The error page component.
  */
-export default function Error({ error, reset }) {
+export default function Error({ error }) {
     useEffect(() => {
         console.error("Global error caught by error.js:", error);
     }, [error]);
