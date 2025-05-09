@@ -11,13 +11,11 @@ export default function YotpoReviewWidget({
   currency = 'GBP',
   description,
 }) {
-  const [hasMounted, setHasMounted] = useState(false);
-
   useEffect(() => {
-    setHasMounted(true);
+    if (typeof window !== 'undefined' && window.yotpo?.initWidgets) {
+      window.yotpo.initWidgets();
+    }
   }, []);
-
-  if (!hasMounted) return null;
 
   return (
     <div
