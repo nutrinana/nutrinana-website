@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { useSwipeable } from "react-swipeable";
 import { Button } from "@/components/ui/button";
 import { useSlider } from "@/hooks/useSlider";
 
@@ -20,12 +20,19 @@ import { useSlider } from "@/hooks/useSlider";
  * @returns {JSX.Element} A full-width, animated image slider component.
  */
 export default function HeroSlider({ slides = [] }) {
-    // Custom hook to manage the slider state
+    // Custom hooks to manage the slider state and transitions
     const { currentSlide, goToSlide } = useSlider(slides.length);
+    const handlers = useSwipeable({
+        onSwipedLeft: () => goToSlide((currentSlide + 1) % slides.length),
+        onSwipedRight: () => goToSlide((currentSlide - 1 + slides.length) % slides.length),
+        preventDefaultTouchmoveEvent: true,
+        trackTouch: true,
+        trackMouse: false,
+    });
 
     // Container for the entire hero slider
     return (
-        <div className="relative w-full h-[600px] overflow-hidden">
+        <div {...handlers} className="relative w-full h-[600px] overflow-hidden">
             {/* Slider content, loop through slides and display each one*/}
             {slides.map((slide, index) => (
                 <div

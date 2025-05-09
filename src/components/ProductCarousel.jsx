@@ -43,8 +43,12 @@ export default function ProductCarousel({ products }) {
                 </CarouselContent>
 
                 {/* Carousel navigation buttons */}
-                <CarouselPrevious className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10" />
-                <CarouselNext className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10" />
+                {products.length > 1 && (
+                    <>
+                        <CarouselPrevious className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10" />
+                        <CarouselNext className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10" />
+                    </>
+                )}
             </Carousel>
 
             {/* Display the current slide number and total slides */}

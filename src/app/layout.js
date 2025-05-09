@@ -54,6 +54,7 @@ export const metadata = {
  * 
  * @param {object} props - The properties passed to the component.
  * @param {React.ReactNode} props.children - The child components to be rendered within the layout.
+ * 
  * @returns {JSX.Element} The page layout with global components and metadata.
  */
 export default function RootLayout({ children }) {
@@ -67,7 +68,7 @@ export default function RootLayout({ children }) {
         <Navbar />
 
         {/* Main Page Content */}
-        <main id="main-content" className="flex-1 mt-4 mb-12">
+        <main id="main-content" className="flex-1 mb-12">
           {children}
         </main>
 

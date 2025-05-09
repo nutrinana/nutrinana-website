@@ -38,19 +38,19 @@ export default function ProductCard({
 
     return (
         // Wrapper that allows navigation on click or Enter key
-        <div
-            onClick={() => router.push("/activated-granola")}
-            className="block no-underline"
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => {
-                if (e.key === 'Enter') router.push("/activated-granola");
-            }}
-        >
+        <div className="block no-underline">
             {/* Main container for the card layout */}
-            <div className="border border-gray-400 rounded-xl p-4 bg-white flex flex-col md:flex-row items-center 
+            <div
+                onClick={() => router.push("/activated-granola")}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter') router.push("/activated-granola");
+                }}
+                className="border border-gray-400 rounded-xl p-4 bg-white flex flex-col md:flex-row items-center 
                 md:items-start max-w-4xl mx-auto relative md:h-[436px] h-auto overflow-visible cursor-pointer 
-                transition-shadow duration-300 ease-in-out hover:shadow-xl">
+                transition-shadow duration-300 ease-in-out hover:shadow-xl"
+            >
                 {/* Images Section */}
                 <div className="flex-1 h-full">
                     {/* Mobile view - single image */}
