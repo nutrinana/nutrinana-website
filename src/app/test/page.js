@@ -159,6 +159,8 @@ export default function TestPage() {
         <HeroSlider slides={slides} />
         <main className="p-10">
             <h1 className="text-3xl font-bold">Component Preview</h1>
+            <h2 className="text-2xl font-bold mb-4">Error Test</h2>
+            <p>Visit <a href="test/test-error" className="text-blue-600 underline">/test-error</a> to trigger the error page.</p>
             <section className="my-10">
               <h2 className="text-2xl font-semibold mb-4">Button Variants</h2>
               <div className="flex flex-wrap gap-4">
