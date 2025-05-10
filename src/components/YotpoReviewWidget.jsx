@@ -37,17 +37,17 @@ export default function YotpoReviewWidget({
         return () => clearTimeout(timer);
     }, [productId]);
 
-  return (
-    <div
-        className="yotpo-widget-instance"
-        data-yotpo-instance-id="1092490"
-        data-yotpo-product-id={productId}
-        data-yotpo-name={name}
-        data-yotpo-url={url}
-        data-yotpo-image-url={imageUrl}
-        data-yotpo-price={price}
-        data-yotpo-currency={currency}
-        data-yotpo-description={description}
-    ></div>
-  );
+    return (
+        <div
+            className="yotpo-widget-instance"
+            data-yotpo-instance-id="1092490"
+            data-yotpo-product-id={productId}
+            data-yotpo-name={name}
+            data-yotpo-url={url}
+            data-yotpo-image-url={imageUrl}
+            data-yotpo-price={price}
+            data-yotpo-currency={currency}
+            data-yotpo-description={description}
+        ></div>
+    );
 }
