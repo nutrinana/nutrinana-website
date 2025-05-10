@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 export default function YotpoReviewWidget({
   productId,
@@ -12,10 +12,14 @@ export default function YotpoReviewWidget({
   description,
 }) {
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.yotpo?.initWidgets) {
-      window.yotpo.initWidgets();
-    }
-  }, []);
+    const timer = setTimeout(() => {
+      if (typeof window !== 'undefined' && window.yotpoWidgetsContainer?.initWidgets) {
+        console.log('🔁 Calling yotpoWidgetsContainer.initWidgets()');
+        window.yotpoWidgetsContainer.initWidgets();
+      }
+    }, 200);
+    return () => clearTimeout(timer);
+  }, [productId]);
 
   return (
     <div
