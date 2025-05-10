@@ -63,10 +63,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         {/* Yotpo Reviews Loader Script */}
-        {/* <Script
-          strategy="beforeInteractive"
-          src="https://cdn-widgetsrepository.yotpo.com/v1/loader/pzRqc28V8RSchGulPW9sriALSXjtSz2lMIsiK9kM"
-        />      */}
         <script src="https://cdn-widgetsrepository.yotpo.com/v1/loader/pzRqc28V8RSchGulPW9sriALSXjtSz2lMIsiK9kM" async></script>
       </head>
       <body className="bg-gray-50 text-gray-900 min-h-screen flex flex-col">
