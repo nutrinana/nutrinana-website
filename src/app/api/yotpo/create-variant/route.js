@@ -1,38 +1,38 @@
+/**
+ * API route to create a Yotpo product variant.
+ * 
+ * This endpoint authenticates with Yotpo, then attempts to create a variant
+ * (e.g., Mixed Fruits & Coconut) under an existing product using the Yotpo Core API.
+ * 
+ * @returns {Response} JSON response containing the variant creation result.
+ * @route GET /api/yotpo/create-variant
+ */
 export async function GET() {
+    // Retrieve Yotpo credentials from environment variables
     const storeId = process.env.YOTPO_STORE_ID;
     const secret = process.env.YOTPO_API_SECRET;
 
+    // Step 1: Get access token from Yotpo
     const tokenRes = await fetch(`https://api.yotpo.com/core/v3/stores/${storeId}/access_tokens`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ secret }),
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ secret }),
     });
 
     if (!tokenRes.ok) {
-      const err = await tokenRes.text();
-      return new Response(JSON.stringify({ message: 'Failed to generate access token', err }), {
-        status: 500,
-      });
+        const err = await tokenRes.text();
+        return new Response(JSON.stringify({ message: 'Failed to generate access token', err }), {
+            status: 500,
+        });
     }
 
     const { access_token } = await tokenRes.json();
 
-    const productId = '859099037'; // Correct parent product ID for Nutrinana's Activated Granola
+    // ID of the main product to attach this variant to
+    const productId = '859099037';
     const endpoint = `https://api.yotpo.com/core/v3/stores/${storeId}/products/${productId}/variants`;
 
-    // const variant = {
-    //     external_id: 'activated-granola-bry',
-    //     name: 'Berry Blend',
-    //     description: 'A refreshing and antioxidant-rich blend of berries in activated granola.',
-    //     url: 'https://www.nutrinana.co.uk/activated-granola',
-    //     image_url: 'https://www.nutrinana.co.uk/products/mixed-fruits/granola1.jpg',
-    //     price: 8.50,
-    //     currency: 'GBP',
-    //     sku: 'NUTR-GRAN-BRY-500G',
-    //     options: [
-    //         { name: 'flavour', value: 'berry blend' }
-    //     ],
-    // };
+    // Define the variant to be created
     const variant = {
         external_id: 'activated-granola-mfc',
         name: 'Mixed Fruits & Coconut',
@@ -48,16 +48,18 @@ export async function GET() {
     };
 
     try {
+        // Step 2: Send request to Yotpo to create the variant
         const res = await fetch(endpoint, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-Yotpo-Token': access_token,
-        },
-        body: JSON.stringify({ variant }),
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Yotpo-Token': access_token,
+            },
+            body: JSON.stringify({ variant }),
         });
 
         if (!res.ok) {
+            // Attempt to log raw error response for debugging
             let raw;
             try {
                 raw = await res.text();
@@ -70,14 +72,16 @@ export async function GET() {
             });
         }
 
+        // Return success response with created data
         const data = await res.json();
         return new Response(JSON.stringify({ message: 'Variant created successfully', data }), {
-        status: 200,
+            status: 200,
         });
     } catch (error) {
+        // Catch any unexpected errors
         console.error('Error during variant creation:', error);
         return new Response(JSON.stringify({ message: 'Unexpected error occurred', error: error?.message }), {
-        status: 500,
+            status: 500,
         });
     }
 }

@@ -34,10 +34,12 @@ export default function YotpoReviewWidget({
                 window.yotpoWidgetsContainer.initWidgets();
             }
         }, 200);
+        // Cleanup function to clear the timeout if the component unmounts before the timer completes
         return () => clearTimeout(timer);
     }, [productId]);
 
     return (
+        // Yotpo widget instance for displaying reviews
         <div
             className="yotpo-widget-instance"
             data-yotpo-instance-id="1092490"

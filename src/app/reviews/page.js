@@ -1,5 +1,4 @@
-// Reviews page with Yotpo Review Widget
-
+// Reviews page with Yotpo Reviews Widget
 'use client';
 
 import dynamic from 'next/dynamic';
