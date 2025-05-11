@@ -1,9 +1,16 @@
 // Activated Granola: Product page for Nutrinana website
+'use client';
 
+import dynamic from "next/dynamic";
 import GlobalAccordion from "@/components/GlobalAccordion";
 import ProductShowcase from "@/components/ProductShowcase";
 import NutritionTable from "@/components/NutritionTable";
 import { Separator } from "@/components/ui/separator";
+
+const YotpoSEOProductWidget = dynamic(
+  () => import("@/components/YotpoSEOProductWidget"), 
+  { ssr: false }
+);
 
 const accordionData = [
   {
@@ -50,6 +57,16 @@ const productData = [
     },
 ];
 
+  const mainProduct = {
+    productId: 'activated-granola-mfc',
+    name: 'Mixed Fruits & Coconut',
+    description: 'A delicious and nutritious blend of mixed fruits and coconut.',
+    url: 'https://www.nutrinana.co.uk/activated-granola',
+    image_url: 'https://www.nutrinana.co.uk/products/mixed-fruits/granola1.jpg',
+    price: 8.50,
+    currency: 'GBP',
+  };
+
 export default function ActivatedGranolaPage() {
   return (
     <main className="max-w-6xl mx-auto py-10 px-4">
@@ -76,7 +93,7 @@ export default function ActivatedGranolaPage() {
       {/* Reviews Placeholder */}
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-4">Reviews</h2>
-        {/* TODO: Insert Reviews component here when available */}
+            <YotpoSEOProductWidget />
       </section>
     </main>
   );
