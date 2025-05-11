@@ -3,7 +3,6 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Banner from "@/components/Banner";
 import { Toaster } from "sonner";
-import Script from "next/script";
 
 /**
  * Metadata for the page layout.
