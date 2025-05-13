@@ -6,12 +6,13 @@ import { useState } from "react";
 import { CircleCheck, Maximize2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Lightbox from "@/components/Lightbox";
+import useProductRating from "@/hooks/useProductRating";
 import { openInNewTab } from "@/lib/utils";
 import "@/styles/globals.css";
 
 /**
  * ProductShowcase component for displaying product information in a card layout.
- * It includes a grid of images, title, subtitle, feature list, price, rating, and shop links.
+ * It includes a grid of images, title, subtitle, feature list, price, and shop links.
  * Clicking an image opens a Lightbox view with a larger image and selectable thumbnails.
  * 
  * @param {Object} props - The properties for the ProductShowcase component.
@@ -20,10 +21,10 @@ import "@/styles/globals.css";
  * @param {string} props.subtitle - The subtitle or short description of the product.
  * @param {string[]} props.features - Array of product features.
  * @param {string} props.price - The price of the product (formatted as a string).
- * @param {number} props.rating - Optional product rating.
  * @param {Object[]} props.shopLinks - Array of shop link objects for purchasing the product.
  * @param {string} props.shopLinks[].text - Display text for the shop button.
  * @param {string} props.shopLinks[].href - URL for the shop link.
+ * @param {string} props.externalId - The external identifier from Yotpo for the product (used for fetching ratings).
  * 
  * @returns {JSX.Element} The rendered ProductShowcase component.
  */
@@ -33,11 +34,11 @@ export default function ProductShowcase({
     subtitle,
     features = [],
     price,
-    rating,
     shopLinks = [],
+    externalId = "",
 }) {
-    const router = useRouter();
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+    const averageRating = useProductRating(externalId || "");
 
     return (
         <div>
@@ -47,9 +48,7 @@ export default function ProductShowcase({
                 {/* Images Section */}
                 <div className="flex-1 h-full">
                     {/* Mobile view - single image */}
-                    <div
-                      className="md:hidden p-4"
-                    >
+                    <div className="md:hidden p-4">
                       <div
                         className="relative group cursor-pointer"
                         onClick={(e) => {
@@ -164,7 +163,9 @@ export default function ProductShowcase({
                         {/* Price and Rating */}
                         <div className="mt-6 flex items-center justify-between pb-3">
                             <span className="text-6xl font-bold text-gray-800">{price}</span>
-                            {rating && <span className="rating">⭐ {rating}</span>}
+                            {averageRating !== null && averageRating !== undefined && (
+                                <span className="rating">⭐ {averageRating}</span>
+                            )}
                         </div>
 
                         {/* Shop buttons */}

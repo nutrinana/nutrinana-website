@@ -49,11 +49,11 @@ const productData = [
         subtitle: "Mixed Fruits & Coconut",
         features: ["Gluten-Free", "Dairy-Free", "No Refined Sugar"],
         price: "£8.50",
-        rating: "5.0",
         shopLinks: [
             { text: "Shop DELLI", href: "https://delli.market/products/nutrinanas-special-granola?_pos=1&_sid=1d1806f92&_ss=r" },
             { text: "Shop Black Farmer", href: "https://theblackfarmer.com" }
-        ]
+        ],
+        externalId: "activated-granola-mfc",
     },
 ];
 
