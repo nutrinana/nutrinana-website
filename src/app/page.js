@@ -39,7 +39,6 @@ const products = [
     subtitle: "mixed fruits & coconuts",
     features: ["Gluten Free", "Dairy Free", "No Refined Sugar"],
     price: "£8.50",
-    rating: "5.0",
     shopLinks: [
       {
         text: "Shop DELLI",
@@ -49,7 +48,8 @@ const products = [
         text: "Shop Black Farmer",
         href: "https://theblackfarmer.com"
       }
-    ]
+    ],
+    externalId: "activated-granola-mfc"
   }
 ];
 
