@@ -27,7 +27,7 @@ export default function YotpoReviewTab({productId}) {
     return (
         // Yotpo widget instance for displaying review tab
         <div 
-            class="yotpo-widget-instance" 
+            className="yotpo-widget-instance" 
             data-yotpo-instance-id="1115782" 
             data-yotpo-product-id={productId}
         />
