@@ -12,6 +12,11 @@ const YotpoSEOProductWidget = dynamic(
   { ssr: false }
 );
 
+const YotpoReviewTab = dynamic(
+  () => import("@/components/YotpoReviewTab"),
+  { ssr: false }
+);
+
 const accordionData = [
   {
     title: "Ingredients & Allergens",
@@ -57,15 +62,15 @@ const productData = [
     },
 ];
 
-  const mainProduct = {
-    productId: 'activated-granola-mfc',
-    name: 'Mixed Fruits & Coconut',
-    description: 'A delicious and nutritious blend of mixed fruits and coconut.',
-    url: 'https://www.nutrinana.co.uk/activated-granola',
-    image_url: 'https://www.nutrinana.co.uk/products/mixed-fruits/granola1.jpg',
-    price: 8.50,
-    currency: 'GBP',
-  };
+const mainProduct = {
+  productId: 'activated-granola-mfc',
+  name: 'Mixed Fruits & Coconut',
+  description: 'A delicious and nutritious blend of mixed fruits and coconut.',
+  url: 'https://www.nutrinana.co.uk/activated-granola',
+  image_url: 'https://www.nutrinana.co.uk/products/mixed-fruits/granola1.jpg',
+  price: 8.50,
+  currency: 'GBP',
+};
 
 export default function ActivatedGranolaPage() {
   return (
@@ -90,11 +95,14 @@ export default function ActivatedGranolaPage() {
         <GlobalAccordion items={accordionData} />
       </section>
 
-      {/* Reviews Placeholder */}
+      {/* Yotpo Review Tab */}
+      <YotpoReviewTab productId={mainProduct.productId} />
+
+      {/* Reviews Placeholder
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-4">Reviews</h2>
             <YotpoSEOProductWidget />
-      </section>
+      </section> */}
     </main>
   );
 }
