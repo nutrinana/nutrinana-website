@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useState } from "react";
 import { CircleCheck, Maximize2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -164,7 +164,9 @@ export default function ProductShowcase({
                         <div className="mt-6 flex items-center justify-between pb-3">
                             <span className="text-6xl font-bold text-gray-800">{price}</span>
                             {averageRating !== null && averageRating !== undefined && (
-                                <span className="rating">⭐ {averageRating}</span>
+                                <Link href="/reviews" className="rating hover:underline">
+                                    ⭐ {averageRating}
+                                </Link>
                             )}
                         </div>
 
