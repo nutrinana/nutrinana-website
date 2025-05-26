@@ -10,9 +10,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { reviewFormSchema } from "@/lib/validation/reviewFormSchema"; // Create this Zod schema similarly to your contact schema
+import { useSubmitReviewForm } from "@/hooks/useSubmitReviewForm";
 
 export default function LeaveReviewForm({ productId }) {
-    const [rating, setRating] = useState(0);
+    //const [rating, setRating] = useState(0);
 
     const form = useForm({
         resolver: zodResolver(reviewFormSchema),
@@ -24,33 +25,13 @@ export default function LeaveReviewForm({ productId }) {
         },
     });
 
-    const onSubmit = async (data) => {
-        try {
-            const res = await fetch("/api/yotpo/submit-review", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                ...data,
-                rating,
-                productId, // Pass external_id
-                }),
-            });
+    const { handleSubmit, rating, setRating } = useSubmitReviewForm(form, productId);
 
-            const json = await res.json();
-            if (!res.ok) throw new Error(json.message || "Something went wrong");
-            alert("Thank you for your review!");
-            form.reset();
-            setRating(0);
-
-        } catch (err) {
-            console.error(err);
-            alert("There was a problem submitting your review. Please try again.");
-        }   
-    };
+    //const onSubmit = useSubmitReviewForm(form);
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 max-w-6xl mx-auto w-full">
+            <form onSubmit={handleSubmit} className="space-y-4 max-w-6xl mx-auto w-full">
                 <div className="flex flex-wrap gap-4">
                     <div className="flex flex-wrap gap-4 items-center">
                         <StarRating value={rating} onChange={setRating} size={50} />
