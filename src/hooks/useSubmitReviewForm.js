@@ -10,7 +10,7 @@ export function useSubmitReviewForm(form, productId) {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    sku: 'NUTR-GRAN',
+                    sku: 'activated-granola',
                     product_title: data.product_title || "Nutrinana's Activated Granola",
                     product_url: data.product_url || "https://www.nutrinana.co.uk/activated-granola",
                     display_name: data.name,
