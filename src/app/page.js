@@ -2,6 +2,7 @@
 import HeroSlider from "@/components/HeroSlider";
 import CalloutSection from "@/components/CalloutSection";
 import ProductCarousel from "@/components/ProductCarousel";
+import LeaveReviewForm from "@/components/LeaveReviewForm";
 import InstagramFeed from "@/components/InstagramFeed";
 
 const slides = [
@@ -75,7 +76,7 @@ export default function HomePage() {
 
         <section>
           <h2 className="text-xl font-semibold mb-4">Leave a Review</h2>
-          {/* TODO: Add review component */}
+          <LeaveReviewForm productId="activated-granola-mfc" />
         </section>
 
         <section>
