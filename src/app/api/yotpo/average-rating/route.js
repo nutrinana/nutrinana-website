@@ -1,5 +1,5 @@
 /**
- * API route to ftch the average product rating from Yotpo.
+ * API route to fetch the average product rating from Yotpo.
  * 
  * This route retrieves the average score for a product based on its external ID.
  * 
