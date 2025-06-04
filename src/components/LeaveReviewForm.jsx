@@ -1,20 +1,27 @@
 "use client";
 
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { User, Mail } from "lucide-react";
-import StarRating from "@/components/StarRating";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { reviewFormSchema } from "@/lib/validation/reviewFormSchema"; // Create this Zod schema similarly to your contact schema
+import StarRating from "@/components/StarRating";
+import { reviewFormSchema } from "@/lib/validation/reviewFormSchema";
 import { useSubmitReviewForm } from "@/hooks/useSubmitReviewForm";
 
+/**
+ * LeaveReviewForm component for submitting product reviews.
+ * 
+ * @param {Object} props - The properties for the LeaveReviewForm component.
+ * @param {string} props.productId - The unique identifier for the product being reviewed.
+ * 
+ * @returns {JSX.Element} The rendered LeaveReviewForm component.
+ */
 export default function LeaveReviewForm({ productId }) {
-    //const [rating, setRating] = useState(0);
 
+    // Initialize the form with validation schema and default values
     const form = useForm({
         resolver: zodResolver(reviewFormSchema),
         defaultValues: {
@@ -22,20 +29,33 @@ export default function LeaveReviewForm({ productId }) {
             email: "",
             title: "",
             comments: "",
+            rating: 0,
         },
     });
 
-    const { handleSubmit, rating, setRating } = useSubmitReviewForm(form, productId);
-
-    //const onSubmit = useSubmitReviewForm(form);
+    // Custom hook to handle form submission and rating state
+    const { handleSubmit } = useSubmitReviewForm(form, productId);
 
     return (
         <Form {...form}>
             <form onSubmit={handleSubmit} className="space-y-4 max-w-6xl mx-auto w-full">
                 <div className="flex flex-wrap gap-4">
+                    {/* Star Rating Field */}
                     <div className="flex flex-wrap gap-4 items-center">
-                        <StarRating value={rating} onChange={setRating} size={50} />
+                        <FormField
+                          control={form.control}
+                          name="rating"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormControl>
+                                <StarRating value={field.value} onChange={field.onChange} size={50} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
                     </div>
+                    {/* Name Field */}
                     <div className="flex-1 min-w-[200px]">
                         <FormField
                         control={form.control}

@@ -7,16 +7,6 @@ import ProductShowcase from "@/components/ProductShowcase";
 import NutritionTable from "@/components/NutritionTable";
 import { Separator } from "@/components/ui/separator";
 
-const YotpoSEOProductWidget = dynamic(
-  () => import("@/components/YotpoSEOProductWidget"), 
-  { ssr: false }
-);
-
-const YotpoReviewTab = dynamic(
-  () => import("@/components/YotpoReviewTab"),
-  { ssr: false }
-);
-
 const YotpoReviewWidget = dynamic(
   () => import("@/components/YotpoReviewWidget"),
   { ssr: false }
@@ -112,15 +102,6 @@ export default function ActivatedGranolaPage() {
           description={mainProduct.description} 
         />
       </section>
-
-      {/* Yotpo Review Tab */}
-      {/* <YotpoReviewTab productId={productData.externalId} /> */}
-
-      {/* Reviews Placeholder
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-4">Reviews</h2>
-            <YotpoSEOProductWidget />
-      </section> */}
     </main>
   );
 }

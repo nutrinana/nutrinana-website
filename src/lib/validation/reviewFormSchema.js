@@ -15,4 +15,7 @@ export const reviewFormSchema = z.object({
 
   // Comments must be at least 10 characters
   comments: z.string().min(10, { message: "Please type at least 10 characters for your comments." }),
-});
+
+  // Rating must be a number between 1 and 5
+  rating: z.number().min(1, { message: "Rating must be at least 1 star." }).max(5, { message: "Rating cannot exceed 5 stars." }),
+}); 

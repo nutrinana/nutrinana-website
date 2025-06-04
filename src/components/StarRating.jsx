@@ -5,25 +5,32 @@ import { Star } from "lucide-react";
 
 /**
  * StarRating component
+ * 
  * @param {number} value - The current rating value (for controlled mode)
  * @param {function} onChange - Callback when a star is clicked (for interactive use)
  * @param {boolean} readonly - If true, stars are static (non-clickable)
  * @param {number} size - The size of the stars in pixels
+ * 
+ * @returns {JSX.Element} A star rating component with interactive stars
  */
 export default function StarRating({ value = 0, onChange, readonly = false, size = 32 }) {
+    // State to manage hovered star for visual feedback
     const [hovered, setHovered] = useState(null);
 
+    // Handle click on a star
     const handleClick = (star) => {
         if (readonly || !onChange) return;
         onChange(star);
     };
 
+    // Handle hover on a star
     const handleHover = (star) => {
         if (!readonly) setHovered(star);
     };
 
     return (
         <div className="flex gap-1">
+            {/* Map through star numbers to create star elements */}
             {[1, 2, 3, 4, 5].map((star) => {
                 const filled = hovered ? star <= hovered : star <= value;
                 const opacity = filled ? "opacity-100" : "opacity-30"; // Full opacity if filled, low otherwise
