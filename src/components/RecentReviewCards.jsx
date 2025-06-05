@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { decode } from 'he';
 import { Star, ArrowDown } from 'lucide-react';
 import Link from 'next/link';
 
@@ -50,11 +51,11 @@ export default function RecentReviewCards() {
                             </div>
                             <h3 className="text-xl text-[var(--color-raisin)] font-bold mb-1">{review.title}</h3>
                             <p className="text-sm text-gray-700 mb-2">
-                                {review.content.length > 180
+                                {decode(review.content).length > 180
                                     ? <>
-                                        {review.content.slice(0, 180)}... <span className="text-green-700 cursor-pointer hover:underline">Read more</span>
+                                        {decode(review.content).slice(0, 180)}... <span className="text-green-700 cursor-pointer hover:underline">Read more</span>
                                       </>
-                                    : review.content}
+                                    : decode(review.content)}
                             </p>
                         </div>
                         <div className="flex items-center text-sm text-gray-600 mt-2">
