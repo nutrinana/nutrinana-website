@@ -1,6 +1,8 @@
 // Reviews page with Yotpo Reviews Widget
 'use client';
 
+import LeaveReviewForm from '@/components/LeaveReviewForm';
+import RecentReviewCards from '@/components/RecentReviewCards';
 import dynamic from 'next/dynamic';
 
 const YotpoReviewWidget = dynamic(
@@ -20,14 +22,26 @@ export default function ReviewsPage() {
   };
 
   return (
-    <YotpoReviewWidget
-      productId={mainProduct.productId}
-      name={mainProduct.name}
-      url={mainProduct.url}
-      imageUrl={mainProduct.imageUrl}
-      price={mainProduct.price}
-      currency={mainProduct.currency}
-      description={mainProduct.description} 
-    />
+    <>
+      <section className="w-full px-4 py-10 bg-white">
+        <RecentReviewCards/>
+      </section>
+
+      <section className="w-full px-4 py-10 bg-white">
+        <h2 className="text-2xl font-bold mb-6">Leave a Review</h2>
+        <LeaveReviewForm productId={mainProduct.productId} />
+      </section>
+
+      <h2 className="text-2xl font-bold mb-6">More Reviews</h2>
+      <YotpoReviewWidget
+        productId={mainProduct.productId}
+        name={mainProduct.name}
+        url={mainProduct.url}
+        imageUrl={mainProduct.imageUrl}
+        price={mainProduct.price}
+        currency={mainProduct.currency}
+        description={mainProduct.description} 
+      />
+    </>
   );
 }

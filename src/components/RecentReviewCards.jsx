@@ -29,6 +29,7 @@ export default function RecentReviewCards() {
     return (
         <section className="w-full px-4 py-10 bg-white">
             <div className="max-w-6xl mx-auto">
+                {/* TODO: Will probably need to add a loading state here with maybe caching and potentially empty state */}
                 <h2 className="text-2xl font-bold mb-6">What people are saying</h2>
                 <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
                 {reviews.slice(0, 9).map((review) => (
