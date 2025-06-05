@@ -36,6 +36,7 @@ export default function LeaveReviewForm({ productId }) {
     // Custom hook to handle form submission and rating state
     const { handleSubmit } = useSubmitReviewForm(form, productId);
 
+    // TODO: Optimise for mobile and desktop views, ensure accessibility and usability.
     return (
         <Form {...form}>
             <form onSubmit={handleSubmit} className="space-y-4 max-w-6xl mx-auto w-full">
