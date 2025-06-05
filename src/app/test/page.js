@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import SideSlider from "@/components/SideSlider";
 import NoteCard from "@/components/NoteCard";
 import LeaveReviewForm from "@/components/LeaveReviewForm";
+import RecentReviewCards from "@/components/RecentReviewCards";
 
 const products = [
     {
@@ -201,6 +202,7 @@ export default function TestPage() {
             <h2 className="text-2xl font-bold mb-4">Instagram Feed</h2>
             <InstagramFeed />
             <br /><br /><br />
+            <RecentReviewCards />
         </main>
         <Footer />
     </div>
