@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { CircleCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import useProductRating from "@/hooks/useProductRating";
 import { openInNewTab } from "@/lib/utils";
 import "@/styles/globals.css";
 
@@ -18,10 +19,10 @@ import "@/styles/globals.css";
  * @param {string} props.subtitle - The subtitle of the product.
  * @param {string[]} props.features - Array of features for the product.
  * @param {string} props.price - The price of the product.
- * @param {number} props.rating - The rating of the product.
  * @param {Object[]} props.shopLinks - Array of shop links for the product.
  * @param {string} props.shopLinks[].text - The text for the shop link.
  * @param {string} props.shopLinks[].href - The URL for the shop link.
+ * @param {string} props.externalId - The external identifier from Yotpo for the product (used for fetching ratings).
  * 
  * @returns {JSX.Element} The rendered ProductCard component.
  */
@@ -31,10 +32,11 @@ export default function ProductCard({
     subtitle,
     features = [],
     price,
-    rating,
     shopLinks = [],
+    externalId = "",
 }) {
     const router = useRouter();
+    const averageRating = useProductRating(externalId || "");
 
     return (
         // Wrapper that allows navigation on click or Enter key
@@ -117,7 +119,9 @@ export default function ProductCard({
                         {/* Price and Rating */}
                         <div className="mt-6 flex items-center justify-between pb-3">
                             <span className="text-6xl font-bold text-gray-800">{price}</span>
-                            {rating && <span className="rating">⭐ {rating}</span>}
+                            {averageRating !== null && averageRating !== undefined && (
+                                <span className="rating">⭐ {averageRating}</span>
+                            )}
                         </div>
 
                         {/* Shop buttons */}

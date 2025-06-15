@@ -37,6 +37,7 @@ const buttonVariants = cva(
           "text-primary underline-offset-4 hover:underline",
         arrow:
           "w-4 h-8 p-0 text-base font-medium bg-transparent text-[var(--color-raisin)] hover:text-white transition-colors",
+        unstyled: "",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",

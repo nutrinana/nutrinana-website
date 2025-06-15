@@ -2,6 +2,7 @@
 import HeroSlider from "@/components/HeroSlider";
 import CalloutSection from "@/components/CalloutSection";
 import ProductCarousel from "@/components/ProductCarousel";
+import LeaveReviewForm from "@/components/LeaveReviewForm";
 import InstagramFeed from "@/components/InstagramFeed";
 
 const slides = [
@@ -39,7 +40,6 @@ const products = [
     subtitle: "mixed fruits & coconuts",
     features: ["Gluten Free", "Dairy Free", "No Refined Sugar"],
     price: "£8.50",
-    rating: "5.0",
     shopLinks: [
       {
         text: "Shop DELLI",
@@ -49,7 +49,8 @@ const products = [
         text: "Shop Black Farmer",
         href: "https://theblackfarmer.com"
       }
-    ]
+    ],
+    externalId: "activated-granola-mfc"
   }
 ];
 
@@ -75,7 +76,7 @@ export default function HomePage() {
 
         <section>
           <h2 className="text-xl font-semibold mb-4">Leave a Review</h2>
-          {/* TODO: Add review component */}
+          <LeaveReviewForm productId="activated-granola-mfc" />
         </section>
 
         <section>

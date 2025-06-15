@@ -1,4 +1,4 @@
-/**
+/****
  * Utility functions used throughout the Nutrinana website.
  * Includes class name merging and safe rendering of line-breaks in strings.
  */
@@ -34,14 +34,23 @@ export function renderWithLineBreaks(text) {
 }
 
 /**
- * Formats a date string into "DD MMM YYYY" format.
+ * Formats a date string into specified format.
  *
  * @param {string} dateString - The ISO or UTC date string to format.
+ * @param {string} format - The format string, e.g., "dd/mm/yyyy", "dd/mm/yy".
  * @returns {string} Formatted date string.
  */
-export function formatDate(dateString) {
-  const options = { day: '2-digit', month: 'short', year: 'numeric' };
-  return new Date(dateString).toLocaleDateString('en-GB', options);
+export function formatDate(dateString, format = 'dd MMM yyyy') {
+  const date = new Date(dateString);
+  const formatMap = {
+    'dd/mm/yyyy': { day: '2-digit', month: '2-digit', year: 'numeric' },
+    'dd/mm/yy': { day: '2-digit', month: '2-digit', year: '2-digit' },
+    'dd MMM yy': { day: '2-digit', month: 'short', year: '2-digit' },
+    'dd MMM yyyy': { day: '2-digit', month: 'short', year: 'numeric' }
+  };
+
+  const options = formatMap[format];
+  return date.toLocaleDateString('en-GB', options);
 }
 
 /**
