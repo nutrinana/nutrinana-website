@@ -5,10 +5,16 @@ import LeaveReviewForm from '@/components/LeaveReviewForm';
 import RecentReviewCards from '@/components/RecentReviewCards';
 import dynamic from 'next/dynamic';
 
+const YotpoSEOProductWidget = dynamic(
+  () => import('@/components/YotpoSEOProductWidget'),
+  { ssr: false }
+);
+
 const YotpoReviewWidget = dynamic(
   () => import('@/components/YotpoReviewWidget'),
   { ssr: false }
 );
+
 
 export default function ReviewsPage() {
   const mainProduct = {
@@ -33,7 +39,9 @@ export default function ReviewsPage() {
       </section>
 
       <h2 id="more-reviews" className="text-2xl font-bold mb-6">More Reviews</h2>
-      <YotpoReviewWidget
+      <YotpoSEOProductWidget />
+      {/* TODO: Nedd to decide whether to use SEO or Reveiw widget based on if we can get it to work with margins */}
+      {/* <YotpoReviewWidget
         productId={mainProduct.productId}
         name={mainProduct.name}
         url={mainProduct.url}
@@ -41,7 +49,7 @@ export default function ReviewsPage() {
         price={mainProduct.price}
         currency={mainProduct.currency}
         description={mainProduct.description} 
-      />
+      /> */}
     </>
   );
 }
