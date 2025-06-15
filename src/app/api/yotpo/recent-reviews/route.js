@@ -33,10 +33,6 @@ export async function GET() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     sortings: [
-                        // {
-                        //     sort_by: "reviewer_type",
-                        //     ascending: false
-                        // },
                         {
                             sort_by: "date",
                             ascending: false
@@ -44,11 +40,8 @@ export async function GET() {
                     ],
                     scores: [5],
                     per_page: 9,
-                    // user: {
-                    //     display_name: "Anonymous",
-                    //     reviewer_type: "verified_reviewer"
-                    // }
-                })
+                }),
+                next: { revalidate: 3600 } // Revalidate every 1 hour
             }
         );
 
