@@ -47,7 +47,7 @@ export default function RecentReviewCards() {
     return (
         <div className="max-w-6xl mx-auto">
             {/* Section title */}
-            {/* TODO: cange to quirky header */}
+            {/* TODO: change to quirky header */}
             <h2 className="text-2xl font-bold mb-6">What people are saying</h2>
             <Masonry
                 breakpointCols={breakpointColumnsObj}
