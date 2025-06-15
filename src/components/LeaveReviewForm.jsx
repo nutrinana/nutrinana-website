@@ -36,7 +36,6 @@ export default function LeaveReviewForm({ productId }) {
     // Custom hook to handle form submission and rating state
     const { handleSubmit } = useSubmitReviewForm(form, productId);
 
-    // TODO: Optimise for mobile and desktop views, ensure accessibility and usability.
     return (
         <Form {...form}>
             <form onSubmit={handleSubmit} className="space-y-4 max-w-6xl mx-auto w-full">
@@ -128,7 +127,7 @@ export default function LeaveReviewForm({ productId }) {
                 {/* Submit Button and Additional Text */}
                 <div className="relative mt-4 mb-12">
                     {/* Additional text with email link */}
-                    <div className="absolute top-0 left-0 text-left text-lg text-[var(--color-raisin)]">
+                    <div className="absolute top-0 left-0 text-left text-sm md:text-lg text-[var(--color-raisin)]">
                         <p>
                             Your email will not be published.
                         </p>
