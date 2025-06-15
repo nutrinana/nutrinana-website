@@ -32,7 +32,7 @@ export default function ReviewsPage() {
         <LeaveReviewForm productId={mainProduct.productId} />
       </section>
 
-      <h2 className="text-2xl font-bold mb-6">More Reviews</h2>
+      <h2 id="more-reviews" className="text-2xl font-bold mb-6">More Reviews</h2>
       <YotpoReviewWidget
         productId={mainProduct.productId}
         name={mainProduct.name}
