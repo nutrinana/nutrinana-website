@@ -291,7 +291,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
               <p className="text-gray-400 italic mb-4">No caption provided.</p>
             )}
             <p className="text-sm text-gray-500 mb-8">
-              {post.timestamp ? formatDate(post.timestamp) : "Date unavailable"}
+              {post.timestamp ? formatDate(post.timestamp, 'dd MMM yyyy') : "Date unavailable"}
             </p>
           </div>
           {post.permalink && (
