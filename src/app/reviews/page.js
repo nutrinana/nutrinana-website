@@ -39,8 +39,18 @@ export default function ReviewsPage() {
       </section>
 
       <h2 id="more-reviews" className="text-2xl font-bold mb-6">More Reviews</h2>
-      <YotpoSEOProductWidget />
-      {/* TODO: Nedd to decide whether to use SEO or Reveiw widget based on if we can get it to work with margins */}
+      <div className="max-w-400 mx-auto px-4">
+        <YotpoSEOProductWidget />
+      </div>
+      <style jsx global>{`
+        /* Override Yotpo widget container styles */
+        .not-prose[style*="width: 100vw"] {
+          width: 100% !important;
+          margin-left: 0 !important;
+          padding: 0 !important;
+        }
+      `}</style>
+      {/* TODO: Remove this commented code block now we can get SEO to work with margins */}
       {/* <YotpoReviewWidget
         productId={mainProduct.productId}
         name={mainProduct.name}
