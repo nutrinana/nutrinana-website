@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import QueryEmail from '@/emails/ContactEmail';
+import { formatDate } from '@/lib/utils';
 import { render } from "@react-email/render";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -20,7 +21,7 @@ export async function POST(req) {
         title,
         comments,
         requestId,
-        dateTime: new Date().toLocaleString(),
+        dateTime: `${formatDate(new Date().toISOString(), 'dd/mm/yyyy')}, ${new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}`,
       })
     );
 
