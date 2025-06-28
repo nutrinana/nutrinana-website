@@ -1,9 +1,16 @@
 // Activated Granola: Product page for Nutrinana website
+'use client';
 
+import dynamic from "next/dynamic";
 import GlobalAccordion from "@/components/GlobalAccordion";
 import ProductShowcase from "@/components/ProductShowcase";
 import NutritionTable from "@/components/NutritionTable";
 import { Separator } from "@/components/ui/separator";
+
+const YotpoReviewWidget = dynamic(
+  () => import("@/components/YotpoReviewWidget"),
+  { ssr: false }
+);
 
 const accordionData = [
   {
@@ -42,13 +49,23 @@ const productData = [
         subtitle: "Mixed Fruits & Coconut",
         features: ["Gluten-Free", "Dairy-Free", "No Refined Sugar"],
         price: "£8.50",
-        rating: "5.0",
         shopLinks: [
             { text: "Shop DELLI", href: "https://delli.market/products/nutrinanas-special-granola?_pos=1&_sid=1d1806f92&_ss=r" },
             { text: "Shop Black Farmer", href: "https://theblackfarmer.com" }
-        ]
+        ],
+        externalId: "activated-granola-mfc",
     },
 ];
+
+const mainProduct = {
+  productId: 'activated-granola-mfc',
+  name: "Nutrinana's Activated Granola",
+  url: 'https://www.nutrinana.co.uk/activated-granola',
+  imageUrl: 'https://www.nutrinana.co.uk/products/mixed-fruits/granola1.jpg',
+  price: 8.50,
+  currency: 'GBP',
+  description: 'A delicious and nutritious base granola for all flavours.',
+};
 
 export default function ActivatedGranolaPage() {
   return (
@@ -73,10 +90,18 @@ export default function ActivatedGranolaPage() {
         <GlobalAccordion items={accordionData} />
       </section>
 
-      {/* Reviews Placeholder */}
+      {/* Reviews Section */}
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-4">Reviews</h2>
-        {/* TODO: Insert Reviews component here when available */}
+        <YotpoReviewWidget 
+          productId={mainProduct.productId}
+          name={mainProduct.name}
+          url={mainProduct.url}
+          imageUrl={mainProduct.imageUrl}
+          price={mainProduct.price}
+          currency={mainProduct.currency}
+          description={mainProduct.description} 
+        />
       </section>
     </main>
   );
