@@ -12,6 +12,8 @@ import InstagramFeed from "@/components/InstagramFeed";
 import { Button } from "@/components/ui/button";
 import SideSlider from "@/components/SideSlider";
 import NoteCard from "@/components/NoteCard";
+import LeaveReviewForm from "@/components/LeaveReviewForm";
+import RecentReviewCards from "@/components/RecentReviewCards";
 
 const products = [
     {
@@ -194,9 +196,13 @@ export default function TestPage() {
             <br /><br />
             <ContactForm/>
             <br /><br /><br />
+            <h2 className="text-2xl font-bold mb-4">Leave a Review</h2>
+            <LeaveReviewForm productId="activated-granola" />
+            <br /><br />
             <h2 className="text-2xl font-bold mb-4">Instagram Feed</h2>
             <InstagramFeed />
             <br /><br /><br />
+            <RecentReviewCards />
         </main>
         <Footer />
     </div>

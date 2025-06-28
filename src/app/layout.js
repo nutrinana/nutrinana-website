@@ -60,6 +60,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        {/* Yotpo Reviews Loader Script */}
+        <script src="https://cdn-widgetsrepository.yotpo.com/v1/loader/pzRqc28V8RSchGulPW9sriALSXjtSz2lMIsiK9kM" async></script>
+      </head>
       <body className="bg-gray-50 text-gray-900 min-h-screen flex flex-col">
         {/* Banner Announcement */}
         <Banner />
