@@ -58,7 +58,7 @@ const productData = [
 ];
 
 const mainProduct = {
-  productId: 'activated-granola',
+  productId: 'activated-granola-mfc',
   name: "Nutrinana's Activated Granola",
   url: 'https://www.nutrinana.co.uk/activated-granola',
   imageUrl: 'https://www.nutrinana.co.uk/products/mixed-fruits/granola1.jpg',
@@ -90,6 +90,7 @@ export default function ActivatedGranolaPage() {
         <GlobalAccordion items={accordionData} />
       </section>
 
+      {/* Reviews Section */}
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-4">Reviews</h2>
         <YotpoReviewWidget 
