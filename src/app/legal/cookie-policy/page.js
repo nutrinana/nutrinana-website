@@ -1,7 +1,4 @@
 // Cookie Policy Page
-import React from "react";
-import CookieBotDeclaration from "@/components/CookieBotDeclaration";
-
 export const metadata = {
     title: "Cookie Policy - Nutrinana",
 };
@@ -13,8 +10,6 @@ export default function CookiePolicyPage() {
             <p className="mb-4">
                 This site currently does not use cookies. When cookies are implemented in the future, this page will be updated to reflect how and why they are used.
             </p>
-
-            <CookieBotDeclaration />
         </>
     );
 }
