@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Banner from "@/components/Banner";
+import CookieBotConsent from "@/components/CookieBotConsent";
 import { Toaster } from "sonner";
 
 /**
@@ -65,6 +66,9 @@ export default function RootLayout({ children }) {
         <script src="https://cdn-widgetsrepository.yotpo.com/v1/loader/pzRqc28V8RSchGulPW9sriALSXjtSz2lMIsiK9kM" async></script>
       </head>
       <body className="bg-gray-50 text-gray-900 min-h-screen flex flex-col">
+        {/* Cookie Banner */}
+        <CookieBotConsent />
+
         {/* Banner Announcement */}
         <Banner />
 
