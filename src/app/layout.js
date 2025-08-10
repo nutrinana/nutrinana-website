@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Banner from "@/components/Banner";
-import CookieBanner from "@/components/CookieBanner";
+import CookieBotConsent from "@/components/CookieBotConsent";
 import { Toaster } from "sonner";
 
 /**
@@ -67,7 +67,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className="bg-gray-50 text-gray-900 min-h-screen flex flex-col">
         {/* Cookie Banner */}
-        <CookieBanner />
+        <CookieBotConsent />
 
         {/* Banner Announcement */}
         <Banner />
