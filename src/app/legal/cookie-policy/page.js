@@ -36,10 +36,10 @@ export default function CookiePolicyPage() {
                 </p>
                 <h3 className="text-lg font-bold mt-6 mb-2">1) Necessary cookies (always on)</h3>
                 <p>
-                    These are required for the site to work securely and correctly (e.g., to remember your cookie choices and load the consent banner). If you block these, parts of the site won’t function.
+                    These are required for the site to work securely and correctly (e.g., to remember your cookie choices and load the consent banner). If you block these, parts of the site won&rsquo;t function.
                 </p>
                 <p>
-                    <strong>Examples:</strong> Cookiebot’s consent cookie(s), security and performance cookies from our host.
+                    <strong>Examples:</strong> Cookiebot&rsquo;s consent cookie(s), security and performance cookies from our host.
                 </p>
                 <h3 className="text-lg font-bold mt-6 mb-2">2) Preference cookies (optional)</h3>
                 <p>
@@ -59,7 +59,7 @@ export default function CookiePolicyPage() {
                     <li><strong>Reviews widget</strong> (e.g., Yotpo) to collect and display product reviews.</li>
                 </ul>
                 <blockquote className="border-l-4 border-gray-300 pl-4 mt-4 text-gray-700">
-                    Some third-party cookies are only set when their content actually appears on the page (for example, when you scroll to an embedded Instagram post). If you don’t consent to the relevant category, those embeds will be blocked.
+                    Some third-party cookies are only set when their content actually appears on the page (for example, when you scroll to an embedded Instagram post). If you don&rsquo;t consent to the relevant category, those embeds will be blocked.
                 </blockquote>
             </section>
 
@@ -86,7 +86,9 @@ export default function CookiePolicyPage() {
             <section className="mb-8">
                 <h2 className="text-2xl font-bold mb-4">Cookie Declaration</h2>
 
-                <p>A detailed, automatically-updated list of cookies used on this site (by category, provider, purpose, and duration) appears below. If you don't see the table, please make sure you haven't blocked the banner and that you've allowed the page to load fully.</p>
+                <p>
+                    A detailed, automatically-updated list of cookies used on this site (by category, provider, purpose, and duration) appears below. If you don&rsquo;t see the table, please make sure you haven&rsquo;t blocked the banner and that you&rsquo;ve allowed the page to load fully.
+                </p>
                 <br />
 
                 <CookieBotTable />
@@ -95,7 +97,9 @@ export default function CookiePolicyPage() {
             <section className="mb-8">
                 <h2 className="text-2xl font-bold mb-4">Updates to this Cookie Policy</h2>
 
-                <p>We may update this policy from time to time to reflect changes to our cookies or legal requirements. When we do, we'll change the "Last updated" date above. Please check back periodically.</p>
+                <p>
+                    We may update this policy from time to time to reflect changes to our cookies or legal requirements. When we do, we&rsquo;ll change the &ldquo;Last updated&rdquo; date above. Please check back periodically.
+                </p>
             </section>
 
             <section className="mb-8">
