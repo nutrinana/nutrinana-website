@@ -1,6 +1,7 @@
-import CookieBotTable from "@/components/CookieBotTable";
-
 // Cookie Policy Page
+import CookieBotTable from "@/components/CookieBotTable";
+import CookieConsentStatus from "@/components/CookieConsentStatus";
+
 export const metadata = {
     title: "Cookie Policy - Nutrinana",
 };
@@ -34,22 +35,22 @@ export default function CookiePolicyPage() {
                 <p>
                     We only use <strong>essential</strong> cookies by default. With your consent, we may also use <strong>preferences</strong>, <strong>statistics</strong>, and <strong>marketing</strong> cookies.
                 </p>
-                <h3 className="text-lg font-bold mt-6 mb-2">1) Necessary cookies (always on)</h3>
+                <h3 className="text-lg font-bold mt-6 mb-2">1. Necessary cookies (always on)</h3>
                 <p>
                     These are required for the site to work securely and correctly (e.g., to remember your cookie choices and load the consent banner). If you block these, parts of the site won&rsquo;t function.
                 </p>
                 <p>
                     <strong>Examples:</strong> Cookiebot&rsquo;s consent cookie(s), security and performance cookies from our host.
                 </p>
-                <h3 className="text-lg font-bold mt-6 mb-2">2) Preference cookies (optional)</h3>
+                <h3 className="text-lg font-bold mt-6 mb-2">2. Preference cookies (optional)</h3>
                 <p>
                     These remember choices you make (such as language or region) to provide a more personalised experience.
                 </p>
-                <h3 className="text-lg font-bold mt-6 mb-2">3) Statistics cookies (optional)</h3>
+                <h3 className="text-lg font-bold mt-6 mb-2">3. Statistics cookies (optional)</h3>
                 <p>
                     These help us understand how visitors use the site (e.g., page views, time on page) so we can improve it. We only set these if you explicitly allow <strong>Statistics</strong> in the banner. If we are not running analytics, this category will remain unused.
                 </p>
-                <h3 className="text-lg font-bold mt-6 mb-2">4) Marketing cookies (optional)</h3>
+                <h3 className="text-lg font-bold mt-6 mb-2">4. Marketing cookies (optional)</h3>
                 <p>
                     These enable features and content provided by third parties and may be used to build a profile of your interests (for example, to show embedded Instagram posts). We only set these if you explicitly allow <strong>Marketing</strong> in the banner.
                 </p>
@@ -78,9 +79,12 @@ export default function CookiePolicyPage() {
                         You can also manage cookies through your <strong>browser settings</strong> (e.g., block or delete cookies).
                     </li>
                     <li>
-                        You can also obtain your Consent ID and consent date directly from the banner or declaration, so you can include them if you email us with any questions or requests related to your cookie choices.
+                        You can also obtain your Consent ID and consent date in the section below, or directly from the banner, so you can include them if you email us with any questions or requests related to your cookie choices.
                     </li>
                 </ul>
+                <br />
+
+                <CookieConsentStatus />
             </section>
 
             <section className="mb-8">
@@ -107,7 +111,7 @@ export default function CookiePolicyPage() {
 
                 <p>Questions about this Cookie Policy or your choices? </p>
                 
-                <p> Email privacy@nutrinana.co.uk and, if possible, include your Consent ID and consent date from the banner/declaration.</p>
+                <p> Email privacy@nutrinana.co.uk and, if possible, include your Consent ID and consent date from the banner.</p>
             </section>
             
         </>
