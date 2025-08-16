@@ -1,3 +1,12 @@
+/**
+ * Parses a raw cookie consent string into an object.
+ * The string is expected to be in a specific format, such as:
+ * "stamp: '1234567890', necessary: true, preferences: false, statistics: true, marketing: false, utc: 1633036800"
+ * This function extracts the values for each property and returns an object with those properties.
+ * 
+ * @param {string} raw - The raw cookie consent string to parse.
+ * @returns {object|null} An object containing the parsed values or null if parsing fails.
+ */
 export function parseCookieConsent(raw) {
   if (!raw) return null;
 

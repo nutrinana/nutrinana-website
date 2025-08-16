@@ -1,7 +1,15 @@
 "use client";
 
 import { useCookieConsentStatus } from "@/hooks/useCookieConsentStatus";
+import { Button } from "@/components/ui/button";
 
+/**
+ * CookieConsentStatus component to display the user's cookie consent status.
+ * It shows the current consent state, consent ID, consent date,
+ * and provides buttons to change or withdraw consent.
+ *
+ * @returns {JSX.Element} The rendered CookieConsentStatus component.
+ */
 export default function CookieConsentStatus() {
   const {
     consent,
@@ -15,31 +23,44 @@ export default function CookieConsentStatus() {
     <div className="rounded-xl border p-4 md:p-6 space-y-3">
       <h3 className="text-xl font-bold">Your cookie consent</h3>
 
+      {/* Display consent information */}
       <div className="space-y-1">
-        <p><span className="font-semibold">Current state:</span> {stateLabel}</p>
-        <p><span className="font-semibold">Consent ID:</span> {consent?.stamp ?? "Not available"}</p>
-        <p><span className="font-semibold">Consent date:</span> {consentDate ?? "Not available"}</p>
+        <p>
+          <span className="font-semibold">Current state:</span> {stateLabel}
+        </p>
+        <p>
+          <span className="font-semibold">Consent ID:</span>{" "}
+          {consent?.stamp ?? "Not available"}
+        </p>
+        <p>
+          <span className="font-semibold">Consent date:</span>{" "}
+          {consentDate ?? "Not available"}
+        </p>
       </div>
 
       <div className="flex flex-wrap gap-3 pt-2">
-        <button
+        {/* Change or withdraw consent buttons */}
+        <Button
           type="button"
+          variant="unstyled"
           onClick={reopenBanner}
           className="rounded-lg border px-3 py-2 hover:bg-gray-50"
         >
           Change consent
-        </button>
-        <button
+        </Button>
+        <Button
           type="button"
+          variant="unstyled"
           onClick={withdrawAll}
           className="rounded-lg border px-3 py-2 hover:bg-gray-50"
         >
           Withdraw consent
-        </button>
+        </Button>
       </div>
 
       <p className="text-sm text-gray-600">
-        Tip: you can always change or withdraw your consent by clicking the Cookiebot badge in the bottom-left corner of the screen.
+        Tip: you can always change or withdraw your consent by clicking the
+        Cookiebot badge in the bottom-left corner of the screen.
       </p>
     </div>
   );
