@@ -1,5 +1,6 @@
 import { useEffect, useState, useMemo } from "react";
 import { buildConsentState } from "@/lib/cookies/buildConsentState";
+import { formatConsentDate } from "@/lib/cookies/formatConsentDate";
 
 export function useCookieConsentStatus() {
   const [consent, setConsent] = useState(null);
@@ -34,12 +35,7 @@ export function useCookieConsentStatus() {
 
   const consentDate = useMemo(() => {
     if (!consent?.utc) return null;
-    try {
-      const d = new Date(consent.utc);
-      return d.toLocaleString();
-    } catch {
-      return null;
-    }
+    return formatConsentDate(consent.utc);
   }, [consent?.utc]);
 
   const stateLabel = useMemo(() => {
@@ -49,7 +45,8 @@ export function useCookieConsentStatus() {
     if (consent.preferences) enabled.push("Preferences");
     if (consent.statistics) enabled.push("Statistics");
     if (consent.marketing) enabled.push("Marketing");
-    if (enabled.length === 4) return "Allow all (Necessary, Preferences, Statistics, Marketing)";
+    if (enabled.length === 4)
+      return "Allow all (Necessary, Preferences, Statistics, Marketing)";
     if (enabled.length === 1) return `Allow ${enabled[0]}`;
     if (enabled.length > 1) return `Allow ${enabled.join(", ")}`;
     return "No categories allowed (only strictly necessary)";
