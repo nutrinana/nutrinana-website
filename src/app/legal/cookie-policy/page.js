@@ -13,10 +13,16 @@ export default function CookiePolicyPage() {
                 <p>Last updated June 28th, 2025</p>
                 <br />
 
-                <p>This website uses cookies. We use cookies to make our site work, to remember your preferences, to show embedded content (for example, Instagram posts and customer reviews), and only with your permission to understand how our website is used. We do not set any non-essential cookies unless you give explicit consent.</p>
+                <p>
+                    This website uses cookies. We use cookies to make our site work, to remember your preferences, to show embedded content (for example, Instagram posts and customer reviews), and only with your permission to understand how our website is used. We do not set any non-essential cookies unless you give explicit consent.
+                </p>
                 <br />
 
-                <p>If you want a full overview of how we handle personal data, please see our Privacy Policy. You can contact us at privacy@nutrinana.co.uk with any questions.</p>
+                <p>
+                    If you want a full overview of how we handle personal data, please see our{" "}
+                    <a href="/legal/privacy-policy" className="text-blue-600 underline">Privacy Policy</a>. You can contact us at{" "}
+                    <a href="mailto:privacy@nutrinana.co.uk" className="text-blue-600 underline">privacy@nutrinana.co.uk</a> with any questions.
+                </p>
             </section>
 
             <section className="mb-8">
@@ -111,7 +117,11 @@ export default function CookiePolicyPage() {
 
                 <p>Questions about this Cookie Policy or your choices? </p>
                 
-                <p> Email privacy@nutrinana.co.uk and, if possible, include your Consent ID and consent date from the banner.</p>
+                <p>
+                    Email{" "}
+                    <a href="mailto:privacy@nutrinana.co.uk" className="text-blue-600 underline">privacy@nutrinana.co.uk</a>
+                    {" "}and, if possible, include your Consent ID and consent date from the banner.
+                </p>
             </section>
             
         </>
