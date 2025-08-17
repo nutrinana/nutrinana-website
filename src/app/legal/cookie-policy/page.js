@@ -76,7 +76,7 @@ export default function CookiePolicyPage() {
             <section className="mb-8">
                 <h2 className="text-2xl font-bold mb-4">Managing your consent (Change or withdraw at anytime)</h2>
                 <p className="mb-4">You can change your cookie choices whenever you like:</p>
-                <ul className="list-disc pl-10">
+                <ul className="list-disc pl-10 mb-4">
                     <li>
                         <strong>Click the Cookiebot badge</strong> (small icon) in the <strong>bottom-left corner</strong> of any page to <strong>reopen the banner</strong>.
                         <ul className="list-disc pl-10">
