@@ -52,18 +52,24 @@ export const metadata = {
  * The root layout for the Nutrinana website.
  * Applies global styles, wraps all pages with the Navbar, Footer, and Banner components.
  * It also includes a Toaster for notifications.
- * 
+ *
  * @param {object} props - The properties passed to the component.
  * @param {React.ReactNode} props.children - The child components to be rendered within the layout.
- * 
+ *
  * @returns {JSX.Element} The page layout with global components and metadata.
  */
 export default function RootLayout({ children }) {
+  const yotpoStoreId = process.env.NEXT_PUBLIC_YOTPO_STORE_ID;
   return (
     <html lang="en">
       <head>
         {/* Yotpo Reviews Loader Script */}
-        <script src="https://cdn-widgetsrepository.yotpo.com/v1/loader/pzRqc28V8RSchGulPW9sriALSXjtSz2lMIsiK9kM" async></script>
+        {yotpoStoreId && (
+          <script
+            src={`https://cdn-widgetsrepository.yotpo.com/v1/loader/${yotpoStoreId}`}
+            async
+          ></script>
+        )}
       </head>
       <body className="bg-gray-50 text-gray-900 min-h-screen flex flex-col">
         {/* Cookie Banner */}
