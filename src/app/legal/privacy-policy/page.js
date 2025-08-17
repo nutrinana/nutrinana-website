@@ -242,7 +242,7 @@ export default function PrivacyPolicyPage() {
 
             <hr className="my-6" />
 
-            <section className="mb-8">
+            <section>
                 <h2 className="text-2xl font-semibold mb-2">Contact Information</h2>
                 <p className="mb-2">If you have any questions or concerns about this Privacy Policy or how your personal information is handled, you can contact us at:</p>
                 <p className="mb-2"><strong>Email:</strong> <a href="mailto:privacy@nutrinana.co.uk" className="underline text-blue-600">privacy@nutrinana.co.uk</a></p>

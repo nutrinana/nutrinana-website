@@ -115,7 +115,7 @@ export default function CookiePolicyPage() {
 
             <hr className="my-6" />
 
-            <section className="mb-8">
+            <section>
                 <h2 className="text-2xl font-bold mb-4">Contact</h2>
                 <p className="mb-4">Questions about this Cookie Policy or your choices? </p>
                 <p className="mb-4">
