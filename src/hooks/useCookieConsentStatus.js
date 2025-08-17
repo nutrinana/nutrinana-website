@@ -35,7 +35,7 @@ export function useCookieConsentStatus() {
             window.addEventListener(evt, update);
         });
 
-        const fallbackPoll = setInterval(update, 1500);
+        const fallbackPoll = setInterval(update, 5000);
 
         return () => {
             events.forEach((evt) => {
