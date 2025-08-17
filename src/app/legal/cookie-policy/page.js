@@ -10,7 +10,7 @@ export default function CookiePolicyPage() {
     return (
         <>
             <section className="mb-8">
-                <p className="mb-2 text-sm text-gray-500"><strong>Last updated June 17th, 2025</strong></p>
+                <p className="mb-2 text-sm text-gray-500"><strong>Last updated August 17th, 2025</strong></p>
 
                 <p className="mb-4">
                     This website uses cookies. We use cookies to make our site work, to remember your preferences, to show embedded content (for example, Instagram posts and customer reviews), and only with your permission to understand how our website is used. We do not set any non-essential cookies unless you give explicit consent.
