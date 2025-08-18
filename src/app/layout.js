@@ -60,6 +60,7 @@ export const metadata = {
  */
 export default function RootLayout({ children }) {
     const yotpoStoreId = process.env.NEXT_PUBLIC_YOTPO_STORE_ID;
+
     return (
         <html lang="en">
             <head>

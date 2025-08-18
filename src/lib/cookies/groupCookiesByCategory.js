@@ -13,8 +13,12 @@ export function groupCookiesByCategory(cookies) {
     const buckets = { 1: [], 2: [], 3: [], 4: [], 5: [] };
     for (const c of cookies) {
         const cat = parseInt(c?.category ?? 5, 10);
-        if (buckets[cat]) buckets[cat].push(c);
-        else buckets[5].push(c);
+        if (buckets[cat]) {
+            buckets[cat].push(c);
+        } else {
+            buckets[5].push(c);
+        }
     }
+
     return buckets;
 }

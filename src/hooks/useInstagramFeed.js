@@ -18,7 +18,9 @@ export function useInstagramFeed() {
             try {
                 const res = await fetch("/api/instagram-feed");
                 // If the response is not OK, throw an error
-                if (!res.ok) throw new Error("Failed to fetch");
+                if (!res.ok) {
+                    throw new Error("Failed to fetch");
+                }
                 // Parse the response JSON and update the posts state
                 const data = await res.json();
 

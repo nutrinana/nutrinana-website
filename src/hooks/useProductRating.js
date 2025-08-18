@@ -12,7 +12,9 @@ export default function useProductRating(productId) {
 
     useEffect(() => {
         // Check if productId is provided
-        if (!productId) return;
+        if (!productId) {
+            return;
+        }
 
         const fetchRating = async () => {
             try {

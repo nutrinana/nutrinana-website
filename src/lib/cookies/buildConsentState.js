@@ -22,8 +22,9 @@ import { parseCookieConsent } from "./parseCookieConsent";
 export function buildConsentState() {
     const val = readCookie("CookieConsent");
     const parsed = parseCookieConsent(val) || {};
-    const cb = typeof window !== "undefined" ? window.Cookiebot : undefined;
+    const cb = typeof window === "undefined" ? undefined : window.Cookiebot;
     const cbc = cb?.consent;
+
     return {
         ...parsed,
         necessary: typeof cbc?.necessary === "boolean" ? cbc.necessary : parsed.necessary,

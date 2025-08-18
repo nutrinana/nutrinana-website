@@ -18,6 +18,18 @@ const eslintConfig = [
             "prettier/prettier": "error",
         },
     },
+    {
+        rules: {
+            curly: ["error", "all"],
+            "brace-style": ["error", "1tbs", { allowSingleLine: false }],
+            "no-else-return": "error",
+            "no-negated-condition": "warn",
+            "padding-line-between-statements": [
+                "error",
+                { blankLine: "always", prev: "*", next: "return" },
+            ],
+        },
+    },
 ];
 
 export default eslintConfig;

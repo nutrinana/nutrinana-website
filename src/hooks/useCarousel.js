@@ -18,7 +18,9 @@ export default function useCarousel() {
     const [count, setCount] = useState(0);
 
     useEffect(() => {
-        if (!api) return;
+        if (!api) {
+            return;
+        }
 
         // Initialise the current index and total slide count
         setCount(api.scrollSnapList().length);

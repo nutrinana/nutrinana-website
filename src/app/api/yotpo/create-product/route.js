@@ -28,6 +28,7 @@ export async function GET() {
 
     if (!tokenRes.ok) {
         const err = await tokenRes.json();
+
         return new Response(JSON.stringify({ message: "Failed to generate utoken", err }), {
             status: 500,
         });
@@ -61,8 +62,10 @@ export async function GET() {
         body: JSON.stringify({ product }),
     });
 
-    // Handle creation failure (e.g., product already exists)
-    if (!createRes.ok) {
+    // Handle creation success
+    if (createRes.ok) {
+        productResponse = await createRes.json();
+    } else {
         const err = await createRes.json();
         const alreadyExists = err.errors?.some((e) =>
             e.message?.toLowerCase().includes("already exists")
@@ -83,6 +86,7 @@ export async function GET() {
             // Handle lookup failure
             if (!lookupRes.ok) {
                 const lookupErrText = await lookupRes.text();
+
                 return new Response(
                     JSON.stringify({ message: "Product lookup failed", lookupErr: lookupErrText }),
                     {
@@ -121,6 +125,7 @@ export async function GET() {
             // Handle update failure
             if (!updateRes.ok) {
                 const updateErrText = await updateRes.text();
+
                 return new Response(
                     JSON.stringify({ message: "Product update failed", updateErr: updateErrText }),
                     {
@@ -155,8 +160,6 @@ export async function GET() {
                 status: 500,
             });
         }
-    } else {
-        productResponse = await createRes.json();
     }
 
     // Respond with product creation or update result

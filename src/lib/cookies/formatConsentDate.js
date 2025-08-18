@@ -7,7 +7,9 @@
  * @returns {string|null} The formatted date string or null if the input is invalid.
  */
 export function formatConsentDate(dateStr) {
-    if (!dateStr) return null;
+    if (!dateStr) {
+        return null;
+    }
 
     try {
         const d = new Date(dateStr);

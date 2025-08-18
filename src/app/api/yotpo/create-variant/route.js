@@ -21,6 +21,7 @@ export async function GET() {
 
     if (!tokenRes.ok) {
         const err = await tokenRes.text();
+
         return new Response(JSON.stringify({ message: "Failed to generate access token", err }), {
             status: 500,
         });
@@ -65,6 +66,7 @@ export async function GET() {
                 raw = "Could not parse error response";
             }
             console.error("Variant creation failed:", raw);
+
             return new Response(JSON.stringify({ message: "Variant creation failed", raw }), {
                 status: 500,
             });
@@ -72,12 +74,14 @@ export async function GET() {
 
         // Return success response with created data
         const data = await res.json();
+
         return new Response(JSON.stringify({ message: "Variant created successfully", data }), {
             status: 200,
         });
     } catch (error) {
         // Catch any unexpected errors
         console.error("Error during variant creation:", error);
+
         return new Response(
             JSON.stringify({ message: "Unexpected error occurred", error: error?.message }),
             {

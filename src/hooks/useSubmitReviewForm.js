@@ -33,7 +33,9 @@ export function useSubmitReviewForm(form, productId) {
 
             // Parse the response JSON and check for errors
             const json = await res.json();
-            if (!res.ok) throw new Error(json.message || "Something went wrong");
+            if (!res.ok) {
+                throw new Error(json.message || "Something went wrong");
+            }
 
             if (res.ok) {
                 // Show success toast and reset the form

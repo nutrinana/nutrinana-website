@@ -50,6 +50,7 @@ export function formatDate(dateString, format = "dd MMM yyyy") {
     };
 
     const options = formatMap[format];
+
     return date.toLocaleDateString("en-GB", options);
 }
 
@@ -60,7 +61,10 @@ export function formatDate(dateString, format = "dd MMM yyyy") {
  * @returns {string[]} Array of hashtags.
  */
 export function extractHashtags(text) {
-    if (!text) return [];
+    if (!text) {
+        return [];
+    }
+
     return text.match(/#[a-zA-Z0-9_]+/g) || [];
 }
 
@@ -84,6 +88,7 @@ export function formatCaption(caption) {
                 );
             }
         }
+
         return word;
     });
 }
@@ -94,6 +99,8 @@ export function formatCaption(caption) {
  * @param {string} url - The URL to open.
  */
 export function openInNewTab(url) {
-    if (!url) return;
+    if (!url) {
+        return;
+    }
     window.open(url, "_blank", "noopener,noreferrer");
 }

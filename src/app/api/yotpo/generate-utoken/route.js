@@ -36,6 +36,7 @@ export async function POST(req) {
         // Handle failed request to Yotpo
         if (!yotpoRes.ok) {
             const error = await yotpoRes.json();
+
             return new Response(JSON.stringify({ message: "Yotpo request failed", error }), {
                 status: yotpoRes.status,
             });
@@ -43,10 +44,12 @@ export async function POST(req) {
 
         // Return access token on success
         const data = await yotpoRes.json();
+
         return new Response(JSON.stringify(data), { status: 200 });
     } catch (error) {
         // Log and return internal error response
         console.error("Yotpo token generation error:", error);
+
         return new Response(JSON.stringify({ message: "Internal server error" }), {
             status: 500,
         });
