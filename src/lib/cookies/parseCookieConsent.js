@@ -8,13 +8,16 @@
  * @returns {object|null} An object containing the parsed values or null if parsing fails.
  */
 export function parseCookieConsent(raw) {
-    if (!raw) return null;
+    if (!raw) {
+        return null;
+    }
 
     try {
         const decoded = decodeURIComponent(raw);
 
         const getBool = (key) => {
             const m = decoded.match(new RegExp(`${key}\\s*:\\s*(true|false)`));
+
             return m ? m[1] === "true" : undefined;
         };
 

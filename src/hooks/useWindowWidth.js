@@ -11,13 +11,14 @@ import { useEffect, useState } from "react";
 export default function useWindowWidth(defaultWidth = 1024) {
     // Initialize state with the current window width or a default value
     const [width, setWidth] = useState(
-        typeof window !== "undefined" ? window.innerWidth : defaultWidth
+        typeof window === "undefined" ? defaultWidth : window.innerWidth
     );
 
     // Effect to update the width state on window resize
     useEffect(() => {
         const handleResize = () => setWidth(window.innerWidth);
         window.addEventListener("resize", handleResize);
+
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 

@@ -58,6 +58,7 @@ export async function POST(req) {
         // Check if the Yotpo API response is successful
         if (!yotpoResponse.ok) {
             const err = await yotpoResponse.text();
+
             return new Response(JSON.stringify({ message: "Review submission failed", err }), {
                 status: 500,
             });
@@ -65,6 +66,7 @@ export async function POST(req) {
 
         // Parse the response from Yotpo and return it
         const result = await yotpoResponse.json();
+
         return new Response(JSON.stringify(result), { status: 200 });
     } catch (error) {
         // Handle any errors that occur during the process

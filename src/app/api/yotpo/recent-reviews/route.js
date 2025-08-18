@@ -32,6 +32,7 @@ export async function GET() {
 
         if (!tokenRes.ok) {
             const err = await tokenRes.json();
+
             return new Response(JSON.stringify({ message: "Failed to generate utoken", err }), {
                 status: 500,
             });
@@ -62,6 +63,7 @@ export async function GET() {
         // Check if the response is ok
         if (!reviewRes.ok) {
             const err = await reviewRes.text();
+
             return new Response(JSON.stringify({ message: "Failed to fetch reviews", err }), {
                 status: 500,
             });
@@ -77,6 +79,7 @@ export async function GET() {
     } catch (error) {
         // Log and handle any unexpected errors
         console.error("Error fetching recent reviews:", error);
+
         return new Response(JSON.stringify({ message: "Unexpected error", error: error.message }), {
             status: 500,
         });

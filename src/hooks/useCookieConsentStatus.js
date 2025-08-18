@@ -46,26 +46,42 @@ export function useCookieConsentStatus() {
     }, []);
 
     const consentDate = useMemo(() => {
-        if (!consent?.utc) return null;
+        if (!consent?.utc) {
+            return null;
+        }
 
         return formatConsentDate(consent.utc);
     }, [consent?.utc]);
 
     const stateLabel = useMemo(() => {
-        if (!consent) return "Unknown";
+        if (!consent) {
+            return "Unknown";
+        }
 
         const enabled = [];
 
-        if (consent.necessary) enabled.push("Necessary");
-        if (consent.preferences) enabled.push("Preferences");
-        if (consent.statistics) enabled.push("Statistics");
-        if (consent.marketing) enabled.push("Marketing");
+        if (consent.necessary) {
+            enabled.push("Necessary");
+        }
+        if (consent.preferences) {
+            enabled.push("Preferences");
+        }
+        if (consent.statistics) {
+            enabled.push("Statistics");
+        }
+        if (consent.marketing) {
+            enabled.push("Marketing");
+        }
 
         if (enabled.length === 4) {
             return "Allow all (Necessary, Preferences, Statistics, Marketing)";
         }
-        if (enabled.length === 1) return `Allow ${enabled[0]}`;
-        if (enabled.length > 1) return `Allow ${enabled.join(", ")}`;
+        if (enabled.length === 1) {
+            return `Allow ${enabled[0]}`;
+        }
+        if (enabled.length > 1) {
+            return `Allow ${enabled.join(", ")}`;
+        }
 
         return "No categories allowed (only strictly necessary)";
     }, [consent]);

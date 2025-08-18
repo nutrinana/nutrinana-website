@@ -54,6 +54,7 @@ export async function GET(request) {
 
         if (!res.ok) {
             const body = await res.text();
+
             return jsonError("Failed to fetch data from Cookiebot.", 502, {
                 statusText: res.statusText,
                 statusCode: res.status,

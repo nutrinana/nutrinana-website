@@ -30,6 +30,7 @@ export async function GET() {
         // If product fetch fails, return error response
         if (!productRes.ok) {
             const errText = await productRes.text();
+
             return NextResponse.json(
                 { message: "Product fetch failed", raw: errText },
                 { status: 500 }

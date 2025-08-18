@@ -35,6 +35,7 @@ export async function GET(req) {
     // Check if the response is ok
     if (!ratingRes.ok) {
         const err = await ratingRes.text();
+
         return new Response(JSON.stringify({ message: "Failed to fetch star rating data", err }), {
             status: 500,
         });

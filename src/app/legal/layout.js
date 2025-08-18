@@ -15,8 +15,11 @@ export default function LegalLayout({ children }) {
     const pathname = usePathname();
 
     let heading = "Terms and Conditions"; // Default
-    if (pathname.includes("privacy-policy")) heading = "Privacy Policy";
-    else if (pathname.includes("cookie-policy")) heading = "Cookie Policy";
+    if (pathname.includes("privacy-policy")) {
+        heading = "Privacy Policy";
+    } else if (pathname.includes("cookie-policy")) {
+        heading = "Cookie Policy";
+    }
 
     return (
         <div className="mx-auto max-w-7xl p-10 py-12">
