@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
  *
  * @param {number} length - The total number of slides in the slider.
  * @param {number} [interval=5000] - The time interval for automatic slide change (in milliseconds).
+ *
  * @returns {Object} - Contains:
  * - currentSlide: The current index of the selected item (0-indexed).
  * - goToNextSlide: Function to go to the next slide.
@@ -34,6 +35,7 @@ export function useSlider(length, interval = 5000) {
 
     /**
      * Function to go to a specific slide by index.
+     *
      * @param {number} index - The index of the slide to go to (0-indexed).
      */
     const goToSlide = (index) => {

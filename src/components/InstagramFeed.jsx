@@ -12,8 +12,11 @@ import { extractHashtags } from "@/lib/utils";
 
 /**
  * InstagramFeed component renders a responsive Instagram grid.
+ *
  * Displays latest posts fetched via Instagram API or fallback embeds on error.
  * Allows users to click a post and open a detailed modal view.
+ *
+ * @component
  *
  * @returns {JSX.Element} Instagram feed grid or error fallback.
  */
@@ -24,6 +27,7 @@ export default function InstagramFeed() {
 
     /**
      * Opens the Instagram modal for the selected post.
+     *
      * @param {number} index - Index of the post to show in modal.
      */
     const openModal = (index) => {
@@ -40,6 +44,7 @@ export default function InstagramFeed() {
     /**
      * Determines which posts to show based on screen size.
      * Shows 4 posts on mobile and 10 on larger screens.
+     *
      * @type {Array<Object>}
      */
     const visiblePosts = posts.slice(0, isMobile ? 4 : 10);
@@ -78,7 +83,9 @@ export default function InstagramFeed() {
                     const imageUrl =
                         post.media_type === "VIDEO" ? post.thumbnail_url : post.media_url;
 
-                    if (!imageUrl) return null;
+                    if (!imageUrl) {
+                        return null;
+                    }
 
                     // Individual post preview block with hover effect for icon overlay
                     return (

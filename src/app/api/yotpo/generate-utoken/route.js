@@ -1,14 +1,16 @@
 /**
- * Generate a Yotpo access token
+ * Generate a Yotpo access token.
  *
  * This function handles POST requests to generate a Yotpo access token.
  * It retrieves the store ID and secret from environment variables,
  * validates them, and then makes a request to Yotpo's API to obtain the token.
  * If successful, it returns the token; otherwise, it handles errors appropriately.
  *
- * @param {Request} req - The incoming request object
- * @returns {Response} - A JSON response containing the access token or an error message
  * @route POST /api/yotpo/generate-utoken
+ *
+ * @param {Request} req - The incoming request object.
+ *
+ * @returns {Response} - A JSON response containing the access token or an error message.
  */
 export async function POST(req) {
     // Retrieve Yotpo credentials from environment variables

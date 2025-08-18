@@ -17,7 +17,7 @@ import { parseCookieConsent } from "./parseCookieConsent";
  * - {string} [consentLanguage] - The language of the consent.
  * - {string} [consentType] - The type of consent.
  * - {string} [consentDescription] - The description of the consent.
- * - {string} [consentUrl] - The URL for more information about the consent
+ * - {string} [consentUrl] - The URL for more information about the consent.
  */
 export function buildConsentState() {
     const val = readCookie("CookieConsent");

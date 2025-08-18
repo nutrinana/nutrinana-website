@@ -4,8 +4,9 @@
  * This endpoint authenticates with Yotpo, then attempts to create a variant
  * (e.g., Mixed Fruits & Coconut) under an existing product using the Yotpo Core API.
  *
- * @returns {Response} JSON response containing the variant creation result.
  * @route GET /api/yotpo/create-variant
+ *
+ * @returns {Response} JSON response containing the variant creation result.
  */
 export async function GET() {
     // Retrieve Yotpo credentials from environment variables

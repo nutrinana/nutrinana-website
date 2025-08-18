@@ -4,6 +4,7 @@
  * and formats it to a string like "Month Day, Year at HH:MM AM/PM".
  *
  * @param {string} dateStr - The date string to format.
+ *
  * @returns {string|null} The formatted date string or null if the input is invalid.
  */
 export function formatConsentDate(dateStr) {

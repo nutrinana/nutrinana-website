@@ -1,14 +1,15 @@
 import { NextResponse } from "next/server";
 
 /**
- * API route to fetch all products and their variants from Yotpo
+ * API route to fetch all products and their variants from Yotpo.
  *
  * This function handles GET requests to retrieve product data from Yotpo's API.
  * It fetches all products and their associated variants,
  * returning the combined data in a JSON response.
  *
- * @returns {Response} JSON response containing the product and variant data
  * @route GET /api/yotpo/list-products
+ *
+ * @returns {Response} JSON response containing the product and variant data.
  */
 export async function GET() {
     const STORE_ID = process.env.YOTPO_STORE_ID;

@@ -2,6 +2,15 @@
 
 import { useEffect } from "react";
 
+/**
+ * Yotpo SEO Product Widget component for displaying Yotpo reviews.
+ *
+ * It initializes the Yotpo widgets after the component mounts.
+ *
+ * @component
+ *
+ * @returns {JSX.Element} The rendered YotpoSEOProductWidget component.
+ */
 export default function YotpoSEOProductWidget() {
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -9,6 +18,7 @@ export default function YotpoSEOProductWidget() {
                 window.yotpoWidgetsContainer.initWidgets();
             }
         }, 300);
+
         return () => clearTimeout(timer);
     }, []);
 

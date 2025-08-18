@@ -1,5 +1,5 @@
 /**
- * Contact Form Validation Schema
+ * Contact Form Validation Schema.
  *
  * This schema validates the fields of the contact form using Zod.
  * It ensures that all fields meet the required criteria before submission.

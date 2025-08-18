@@ -12,8 +12,11 @@ import "@/styles/globals.css";
 
 /**
  * ProductShowcase component for displaying product information in a card layout.
+ *
  * It includes a grid of images, title, subtitle, feature list, price, and shop links.
  * Clicking an image opens a Lightbox view with a larger image and selectable thumbnails.
+ *
+ * @component
  *
  * @param {Object} props - The properties for the ProductShowcase component.
  * @param {string[]} props.images - Array of image URLs for the product.

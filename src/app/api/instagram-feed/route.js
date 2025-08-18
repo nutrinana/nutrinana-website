@@ -7,8 +7,9 @@ import { instagramCache as cache } from "@/lib/instagramCache";
  * Uses the Instagram Graph API to retrieve up to 10 recent media items
  * including their ID, caption, media type, media URL, thumbnail, permalink, and timestamp.
  *
- * @returns {NextResponse} JSON response containing the media data or an error message.
  * @route GET /api/instagram-feed
+ *
+ * @returns {NextResponse} JSON response containing the media data or an error message.
  */
 export async function GET() {
     const now = Date.now();

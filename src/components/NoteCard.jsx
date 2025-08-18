@@ -6,7 +6,10 @@ import { Pin, Sprout } from "lucide-react";
 
 /**
  * Displays a styled note card from Nana using ShadCN's Card component.
+ *
  * Includes title, note text, and an image representing Nana's signature.
+ *
+ * @component
  *
  * @returns {JSX.Element} A themed card styled to reflect Nana's personality and message.
  */
@@ -21,13 +24,14 @@ export default function NanaNoteCard() {
 
                 {/* Card content */}
                 <p className="text-base leading-relaxed text-gray-900 sm:text-lg">
-                    Hey there! I’m Nana, but you can call me Nutrinana. What started as a way to
-                    sneak some healthy granola into my kids’ breakfasts has blossomed into this
-                    incredible journey of sharing my passion for wholesome, no-nonsense food with
-                    all of you. Every batch of granola I make is like a little love letter to your
-                    taste buds— packed with nutrition and free from anything artificial. Whether
-                    you're here for the flavour or the health benefits, I’m thrilled to have you
-                    join the Nutrinana family. Now, let’s make breakfast the best meal of the day!
+                    Hey there! I&apos;m Nana, but you can call me Nutrinana. What started as a way
+                    to sneak some healthy granola into my kids&apos; breakfasts has blossomed into
+                    this incredible journey of sharing my passion for wholesome, no-nonsense food
+                    with all of you. Every batch of granola I make is like a little love letter to
+                    your taste buds— packed with nutrition and free from anything artificial.
+                    Whether you&apos;re here for the flavour or the health benefits, I&apos;m
+                    thrilled to have you join the Nutrinana family. Now, let&apos;s make breakfast
+                    the best meal of the day!
                 </p>
 
                 {/* Signature image */}

@@ -13,8 +13,11 @@ import { contactFormSchema } from "@/lib/validation/contactFormSchema";
 
 /**
  * This component renders a contact form with fields for name, email, title, and comments.
+ *
  * It uses `react-hook-form` for form handling and validation with Zod schema.
- * On successful submission, the form sends data to the server and displays a toast notification
+ * On successful submission, the form sends data to the server and displays a toast notification.
+ *
+ * @component
  *
  * @returns {JSX.Element} - The rendered ContactForm component.
  */
@@ -133,8 +136,8 @@ export function ContactForm() {
                             </Link>
                         </p>
                         <p className="text-xs text-gray-500">
-                            Please start the subject line with "Customer Enquiry" to help us respond
-                            as soon as possible!
+                            Please start the subject line with &quot;Customer Enquiry&quot; to help
+                            us respond as soon as possible!
                         </p>
                     </div>
 

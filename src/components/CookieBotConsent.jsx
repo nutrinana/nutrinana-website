@@ -4,7 +4,10 @@ import ReactCookieBot from "react-cookiebot";
 
 /**
  * CookieBotConsent component to handle cookie consent management.
+ *
  * It uses the react-cookiebot library to display a cookie consent banner.
+ *
+ * @component
  *
  * @returns {JSX.Element} The CookieBot consent banner component.
  */

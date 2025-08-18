@@ -5,8 +5,9 @@
  * If the product already exists, it retrieves the existing product's Yotpo ID
  * and updates the product with the latest data.
  *
- * @returns {Response} JSON response containing the product creation or update result.
  * @route GET /api/yotpo/create-product
+ *
+ * @returns {Response} JSON response containing the product creation or update result.
  */
 export async function GET() {
     // Ensure required environment variables are configured

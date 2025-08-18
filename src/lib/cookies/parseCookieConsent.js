@@ -5,6 +5,7 @@
  * This function extracts the values for each property and returns an object with those properties.
  *
  * @param {string} raw - The raw cookie consent string to parse.
+ *
  * @returns {object|null} An object containing the parsed values or null if parsing fails.
  */
 export function parseCookieConsent(raw) {

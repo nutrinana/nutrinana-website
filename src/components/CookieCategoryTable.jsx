@@ -31,14 +31,25 @@ const CATEGORY_INFO = {
 /**
  * CookieCategoryTable component to display cookies in a categorised table format.
  *
+ * 1. Necessary cookies
+ * 2. Preference cookies
+ * 3. Statistics cookies
+ * 4. Marketing cookies
+ * 5. Unclassified cookies.
+ *
+ * @component
+ *
  * @param {object} props - The properties for the component.
  * - {number} props.category - The category of cookies to display.
  * - {Array} [props.cookies=[]] - The list of cookies in this category
  * - {boolean} [props.showAdvanced=false] - Whether to show advanced cookie details.
+ *
  * @returns {JSX.Element|null} The rendered table of cookies or null if no cookies are present.
  */
 export default function CookieCategoryTable({ category, cookies = [], showAdvanced = false }) {
-    if (!cookies.length) return null;
+    if (!cookies.length) {
+        return null;
+    }
 
     const { title, subtitle } = CATEGORY_INFO[category] || {
         title: "Unclassified cookies",

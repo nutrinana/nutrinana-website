@@ -3,6 +3,7 @@
  * It uses a regular expression to find the cookie value.
  *
  * @param {string} name - The name of the cookie to read.
+ *
  * @returns {string|null} The value of the cookie or null if not found.
  */
 export function readCookie(name) {

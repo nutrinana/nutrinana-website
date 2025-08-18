@@ -6,7 +6,10 @@ import { useSlider } from "@/hooks/useSlider";
 
 /**
  * SideSlider component displays a horizontally split slider with image on one side and text on the other.
+ *
  * On smaller screens, the layout stacks vertically.
+ *
+ * @component
  *
  * @param {Object[]} slides - Array of slide objects.
  * @param {string} [slides[].image] - URL of the slide image.
