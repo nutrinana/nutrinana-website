@@ -1,7 +1,7 @@
 "use client";
 
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import TimelineItem from "@/components/TimelineItem";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import useTimeline from "@/hooks/useTimeline";
 import styles from "@/styles/Timeline.module.css";
 

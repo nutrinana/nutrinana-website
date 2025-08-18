@@ -1,7 +1,7 @@
 "use client";
 
-import { useCookieConsentStatus } from "@/hooks/useCookieConsentStatus";
 import { Button } from "@/components/ui/button";
+import { useCookieConsentStatus } from "@/hooks/useCookieConsentStatus";
 
 /**
  * CookieConsentStatus component to display the user's cookie consent status.

@@ -1,9 +1,9 @@
 // Home Page
-import HeroSlider from "@/components/HeroSlider";
 import CalloutSection from "@/components/CalloutSection";
-import ProductCarousel from "@/components/ProductCarousel";
-import LeaveReviewForm from "@/components/LeaveReviewForm";
+import HeroSlider from "@/components/HeroSlider";
 import InstagramFeed from "@/components/InstagramFeed";
+import LeaveReviewForm from "@/components/LeaveReviewForm";
+import ProductCarousel from "@/components/ProductCarousel";
 
 const slides = [
     {

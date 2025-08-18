@@ -1,10 +1,12 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
+
 import { X, Play, ArrowLeft, ArrowRight, MoveRight } from "lucide-react";
-import { useSwipeable } from "react-swipeable";
 import Image from "next/image";
 import Link from "next/link";
+import { useSwipeable } from "react-swipeable";
+
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { formatDate, formatCaption } from "@/lib/utils";

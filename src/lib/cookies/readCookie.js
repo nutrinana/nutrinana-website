@@ -1,6 +1,9 @@
 /**
  * Reads a cookie by name from the document's cookies.
+ *
  * It uses a regular expression to find the cookie value.
+ *
+ * @util cookies
  *
  * @param {string} name - The name of the cookie to read.
  *

@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { SiInstagram } from "react-icons/si";
+
 import Image from "next/image";
 import Link from "next/link";
+import { SiInstagram } from "react-icons/si";
+
 import InstagramEmbed from "@/components/InstagramEmbed";
 import InstagramModal from "@/components/InstagramModal";
 import { useInstagramFeed } from "@/hooks/useInstagramFeed";

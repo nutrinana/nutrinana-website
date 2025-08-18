@@ -2,14 +2,17 @@ import { useState, useEffect } from "react";
 
 /**
  * Custom hook to manage a carousel component.
+ *
  * It provides the API of the carousel, the current index of the selected item,
  * and the total count of items in the carousel.
  *
+ * @hook
+ *
  * @returns {Object} - Contains:
- *  - api: The carousel API instance.
- * - setApi: Function to set the API.
- * - current: The current index of the selected item (1-indexed).
- * - count: The total count of items in the carousel (total number of slides).
+ * @returns {Object} api: The carousel API instance.
+ * @returns {Function} setApi: Function to set the API.
+ * @returns {number} current: The current index of the selected item (1-indexed).
+ * @returns {number} count: The total count of items in the carousel (total number of slides).
  */
 export default function useCarousel() {
     // State to hold the carousel API, current index, and total count

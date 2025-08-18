@@ -1,15 +1,16 @@
 "use client";
 
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { User, Mail } from "lucide-react";
+import { useForm } from "react-hook-form";
+
+import StarRating from "@/components/StarRating";
+import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-import StarRating from "@/components/StarRating";
-import { reviewFormSchema } from "@/lib/validation/reviewFormSchema";
 import { useSubmitReviewForm } from "@/hooks/useSubmitReviewForm";
+import { reviewFormSchema } from "@/lib/validation/reviewFormSchema";
 
 /**
  * LeaveReviewForm component for submitting product reviews.

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useSwipeable } from "react-swipeable";
+
 import { Button } from "@/components/ui/button";
 import { useSlider } from "@/hooks/useSlider";
 

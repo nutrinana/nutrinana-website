@@ -2,8 +2,11 @@ import { useState, useEffect } from "react";
 
 /**
  * Custom hook to check if a media query matches.
+ *
  * It listens for changes in the media query and updates the state accordingly.
  * Use this hook to conditionally render components based on screen size or other media features.
+ *
+ * @hook
  *
  * @param {string} query - The media query string to match against.
  *

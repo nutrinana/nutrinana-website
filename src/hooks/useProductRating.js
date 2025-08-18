@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 /**
  * Custom hook to fetch and return the average product rating from Yotpo API.
  *
+ * @hook
+ *
  * @param {string} productId - The external product ID for which to fetch the rating.
  *
  * @returns {string|null} The average score of the product formatted to one decimal place, or null if unavailable.

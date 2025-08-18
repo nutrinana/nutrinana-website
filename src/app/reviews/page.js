@@ -1,9 +1,10 @@
 // Reviews page with Yotpo Reviews Widget
 "use client";
 
+import dynamic from "next/dynamic";
+
 import LeaveReviewForm from "@/components/LeaveReviewForm";
 import RecentReviewCards from "@/components/RecentReviewCards";
-import dynamic from "next/dynamic";
 
 const YotpoSEOProductWidget = dynamic(() => import("@/components/YotpoSEOProductWidget"), {
     ssr: false,

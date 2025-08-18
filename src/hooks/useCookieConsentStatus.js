@@ -1,18 +1,22 @@
 import { useEffect, useState, useMemo } from "react";
+
 import { buildConsentState } from "@/lib/cookies/buildConsentState";
 import { formatConsentDate } from "@/lib/cookies/formatConsentDate";
 
 /**
  * Custom hook to manage and retrieve cookie consent status.
+ *
  * It listens for Cookiebot events to update the consent state and provides methods
  * to reopen the consent banner or withdraw consent.
  *
+ * @hook
+ *
  * @returns {Object} An object containing:
- * - {Object} consent - The current consent state.
- * - {string|null} consentDate - The formatted consent date or null if not available.
- * - {string} stateLabel - A human-readable label of the current consent state.
- * - {Function} reopenBanner - Function to reopen the consent banner.
- * - {Function} withdrawAll - Function to withdraw all consent.
+ * @returns {Object} consent - The current consent state.
+ * @returns {string|null} consentDate - The formatted consent date or null if not available.
+ * @returns {string} stateLabel - A human-readable label of the current consent state.
+ * @returns {Function} reopenBanner - Function to reopen the consent banner.
+ * @returns {Function} withdrawAll - Function to withdraw all consent.
  */
 export function useCookieConsentStatus() {
     const [consent, setConsent] = useState(null);

@@ -1,8 +1,9 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
-import Image from "next/image";
 import { Pin, Sprout } from "lucide-react";
+import Image from "next/image";
+
+import { Card, CardContent } from "@/components/ui/card";
 
 /**
  * Displays a styled note card from Nana using ShadCN's Card component.

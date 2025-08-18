@@ -2,16 +2,19 @@ import { useState, useEffect } from "react";
 
 /**
  * Custom hook to manage a slider component.
+ *
  * It provides the API of the slider, the current index of the selected item,
  * and the total count of items in the slider.
+ *
+ * @hook
  *
  * @param {number} length - The total number of slides in the slider.
  * @param {number} [interval=5000] - The time interval for automatic slide change (in milliseconds).
  *
  * @returns {Object} - Contains:
- * - currentSlide: The current index of the selected item (0-indexed).
- * - goToNextSlide: Function to go to the next slide.
- * - goToSlide: Function to go to a specific slide by index.
+ * @returns {number} currentSlide: The current index of the selected item (0-indexed).
+ * @returns {Function} goToNextSlide: Function to go to the next slide.
+ * @returns {Function} goToSlide: Function to go to a specific slide by index.
  */
 export function useSlider(length, interval = 5000) {
     // State to hold the current slide index

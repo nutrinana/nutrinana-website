@@ -1,19 +1,19 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import Banner from "@/components/Banner";
-import Timeline from "@/components/Timeline";
-import ProductCarousel from "@/components/ProductCarousel";
-import ProductCard from "@/components/ProductCard";
-import HeroSlider from "@/components/HeroSlider";
-import GlobalAccordion from "@/components/GlobalAccordion";
-import NutritionTable from "@/components/NutritionTable";
 import { ContactForm } from "@/components/ContactForm";
+import Footer from "@/components/Footer";
+import GlobalAccordion from "@/components/GlobalAccordion";
+import HeroSlider from "@/components/HeroSlider";
 import InstagramFeed from "@/components/InstagramFeed";
-import { Button } from "@/components/ui/button";
-import SideSlider from "@/components/SideSlider";
-import NoteCard from "@/components/NoteCard";
 import LeaveReviewForm from "@/components/LeaveReviewForm";
+import Navbar from "@/components/Navbar";
+import NoteCard from "@/components/NoteCard";
+import NutritionTable from "@/components/NutritionTable";
+import ProductCard from "@/components/ProductCard";
+import ProductCarousel from "@/components/ProductCarousel";
 import RecentReviewCards from "@/components/RecentReviewCards";
+import SideSlider from "@/components/SideSlider";
+import Timeline from "@/components/Timeline";
+import { Button } from "@/components/ui/button";
 
 const products = [
     {

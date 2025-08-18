@@ -1,22 +1,26 @@
 import { useEffect, useMemo, useState, useRef } from "react";
+
 import { groupCookiesByCategory } from "@/lib/cookies/groupCookiesByCategory";
 
 /**
  * Custom hook to fetch and manage Cookiebot data.
+ *
  * It retrieves cookie data for a specified domain and culture,
  * and groups the cookies by their categories.
  *
+ * @hook
+ *
  * @param {Object} params - The parameters for the hook.
- * - {string} [params.domain="www.nutrinana.co.uk"] - The domain to fetch cookies for.
- * - {string} [params.culture="default"] - The culture/language for the cookies.
+ * @param {string} [params.domain="www.nutrinana.co.uk"] - The domain to fetch cookies for.
+ * @param {string} [params.culture="default"] - The culture/language for the cookies.
  *
  * @returns {Object} An object containing:
- * - {Array} data.cookies - The list of cookies.
- * - {string} data.domain - The domain for which cookies were fetched.
- * - {string} data.culture - The culture/language for the cookies.
- * - {boolean} loading - Whether the data is currently being loaded.
- * - {Error|null} error - Any error that occurred during the fetch.
- * - {Object} grouped - An object with categories as keys and arrays of cookies as values.
+ * @returns {Array} data.cookies - The list of cookies.
+ * @returns {string} data.domain - The domain for which cookies were fetched.
+ * @returns {string} data.culture - The culture/language for the cookies.
+ * @returns {boolean} loading - Whether the data is currently being loaded.
+ * @returns {Error|null} error - Any error that occurred during the fetch.
+ * @returns {Object} grouped - An object with categories as keys and arrays of cookies as values.
  */
 export function useCookieBotData({ domain = "www.nutrinana.co.uk", culture = "default" }) {
     const [data, setData] = useState({ cookies: [], domain: "", culture: "" });

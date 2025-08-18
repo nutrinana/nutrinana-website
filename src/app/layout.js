@@ -1,9 +1,10 @@
 import "@/styles/globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import { Toaster } from "sonner";
+
 import Banner from "@/components/Banner";
 import CookieBotConsent from "@/components/CookieBotConsent";
-import { Toaster } from "sonner";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 
 /**
  * Metadata for the page layout.

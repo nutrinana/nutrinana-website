@@ -1,8 +1,9 @@
 import { dirname } from "path";
 import { fileURLToPath } from "url";
+
 import { FlatCompat } from "@eslint/eslintrc";
-import eslintPluginPrettier from "eslint-plugin-prettier";
 import eslintPluginJsdoc from "eslint-plugin-jsdoc";
+import eslintPluginPrettier from "eslint-plugin-prettier";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -30,6 +31,34 @@ const eslintConfig = [
                 "error",
                 { blankLine: "always", prev: "*", next: "return" },
             ],
+            "import/order": [
+                "error",
+                {
+                    groups: [
+                        "builtin",
+                        "external",
+                        "internal",
+                        "parent",
+                        "sibling",
+                        "index",
+                        "object",
+                    ],
+                    pathGroups: [
+                        {
+                            pattern: "react",
+                            group: "external",
+                            position: "before",
+                        },
+                        {
+                            pattern: "src/**",
+                            group: "internal",
+                        },
+                    ],
+                    pathGroupsExcludedImportTypes: ["react"],
+                    alphabetize: { order: "asc", caseInsensitive: true },
+                    "newlines-between": "always",
+                },
+            ],
         },
     },
     {
@@ -45,24 +74,19 @@ const eslintConfig = [
             "jsdoc/require-jsdoc": [
                 "error",
                 {
-                    // Only require JSDoc when these selector contexts match
                     contexts: [
-                        // React components (PascalCase)
                         "FunctionDeclaration[id.name=/^[A-Z]/]",
                         "VariableDeclaration > VariableDeclarator[id.name=/^[A-Z]/] > FunctionExpression",
 
-                        // Hooks (useXxx)
                         "FunctionDeclaration[id.name=/^use[A-Z]/]",
                         "VariableDeclaration > VariableDeclarator[id.name=/^use[A-Z]/] > FunctionExpression",
 
-                        // Exported utilities (named or default exports)
                         "ExportNamedDeclaration > FunctionDeclaration",
                         "ExportNamedDeclaration > VariableDeclaration > VariableDeclarator > ArrowFunctionExpression",
                         "ExportNamedDeclaration > VariableDeclaration > VariableDeclarator > FunctionExpression",
                         "ExportDefaultDeclaration > FunctionDeclaration",
                         "ExportDefaultDeclaration > ArrowFunctionExpression",
 
-                        // Next.js API route handlers (GET/POST/etc.)
                         "VariableDeclarator[id.name=/^(GET|POST|PUT|PATCH|DELETE|OPTIONS|HEAD)$/] > ArrowFunctionExpression",
                         "FunctionDeclaration[id.name=/^(GET|POST|PUT|PATCH|DELETE|OPTIONS|HEAD)$/]",
                     ],
@@ -73,12 +97,16 @@ const eslintConfig = [
                     },
                     exemptEmptyFunctions: true,
                     publicOnly: true,
-                    // Optional: don't require for very short bodies
                     minLineCount: 4,
                 },
             ],
             "jsdoc/require-description": "error",
-            "jsdoc/require-description-complete-sentence": "error",
+            "jsdoc/match-description": [
+                "error",
+                {
+                    matchDescription: "^[A-Z][\\s\\S]*[.:]\\s*$",
+                },
+            ],
             "jsdoc/check-tag-names": [
                 "error",
                 { definedTags: ["component", "hook", "route", "util"] },

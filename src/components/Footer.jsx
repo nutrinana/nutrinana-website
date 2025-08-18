@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { SiInstagram, SiTiktok } from "react-icons/si";
+
 import delliLogo from "/public/icons/delli-logo.svg";
 import blackFarmerLogo from "/public/icons/black-farmer-logo.svg";
 

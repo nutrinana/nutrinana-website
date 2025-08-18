@@ -1,15 +1,17 @@
 "use client";
 
 import { useState } from "react";
+
+import { motion } from "framer-motion";
 import { decode } from "he";
 import { Star, ArrowDown } from "lucide-react";
 import Link from "next/link";
 import Masonry from "react-masonry-css";
-import styles from "@/styles/RecentReviewCards.module.css";
-import { motion } from "framer-motion";
-import { formatDate } from "@/lib/utils";
+
 import useRecentReviewCards from "@/hooks/useRecentReviewCards";
 import useWindowWidth from "@/hooks/useWindowWidth";
+import { formatDate } from "@/lib/utils";
+import styles from "@/styles/RecentReviewCards.module.css";
 
 /**
  * RecentReviewCards component displays a grid of recent reviews.

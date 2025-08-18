@@ -1,8 +1,9 @@
 "use client";
 
+import { CircleCheck } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { CircleCheck } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import useProductRating from "@/hooks/useProductRating";
 import { openInNewTab } from "@/lib/utils";

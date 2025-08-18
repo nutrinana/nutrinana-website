@@ -2,8 +2,11 @@ import { Html, Section, Container, Text } from "@react-email/components";
 
 /**
  * QueryEmail Component
+ *
  * This component generates an automated email response for contact form submissions.
  * It includes the user's name, request details, and additional information.
+ *
+ * @component
  *
  * @param {object} props - The properties for the email.
  * @param {string} props.name - The name of the user.
@@ -72,7 +75,7 @@ export default function QueryEmail({ name, title, comments, requestId, dateTime 
 
 // Styles for the email template
 const main = {
-    backgroundColor: "#F7FDF2", // Light green background
+    backgroundColor: "#F7FDF2",
 };
 
 const container = {
@@ -86,7 +89,7 @@ const heading = {
     fontSize: "1.5rem",
     lineHeight: "1.3",
     fontWeight: "700",
-    color: "#191923", // Raisin color
+    color: "#191923",
     fontFamily: "'Verdana', sans-serif",
 };
 
@@ -94,7 +97,7 @@ const heading_2 = {
     fontSize: "1.25rem",
     lineHeight: "1.3",
     fontWeight: "700",
-    color: "#191923", // Raisin color
+    color: "#191923",
     marginLeft: "20px",
     fontFamily: "'Verdana', sans-serif",
 };
@@ -102,20 +105,20 @@ const heading_2 = {
 const paragraph = {
     fontSize: "1.0rem",
     lineHeight: "1.4",
-    color: "#191923", // Raisin color
+    color: "#191923",
     fontFamily: "'Verdana', sans-serif",
 };
 
 const detail = {
     fontSize: "1.0rem",
     lineHeight: "1.4",
-    color: "#191923", // Raisin color
+    color: "#191923",
     marginLeft: "20px",
     fontFamily: "'Verdana', sans-serif",
 };
 
 const linkStyle = {
-    color: "#507153", // Theme green
+    color: "#507153",
     textDecoration: "underline",
     fontFamily: "'Verdana', sans-serif",
 };
@@ -126,6 +129,6 @@ const logoContainer = {
 };
 
 const logoStyle = {
-    width: "150px", // Adjust the width as needed
+    width: "150px",
     height: "auto",
 };

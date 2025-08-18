@@ -2,7 +2,10 @@ import { toast } from "sonner";
 
 /**
  * This hook handles the submission of the contact form.
+ *
  * It sends the form data to the server and provides feedback to the user via toast notifications.
+ *
+ * @hook
  *
  * @param {object} form - The form instance from `react-hook-form`.
  *
