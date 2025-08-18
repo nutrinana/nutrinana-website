@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 /**
  * Custom hook to fetch recent review cards from the Yotpo API.
  * It retrieves the latest reviews and returns them as an array.
- * 
+ *
  * @returns {Array} An array of recent review cards.
  */
 export default function useRecentReviewCards() {
@@ -14,11 +14,11 @@ export default function useRecentReviewCards() {
     useEffect(() => {
         async function fetchReviews() {
             try {
-                const res = await fetch('/api/yotpo/recent-reviews');
+                const res = await fetch("/api/yotpo/recent-reviews");
                 const data = await res.json();
                 setReviews(data.reviews || []);
             } catch (err) {
-                console.error('Failed to fetch recent reviews', err);
+                console.error("Failed to fetch recent reviews", err);
             }
         }
         // Call the fetch function to get reviews when the component mounts

@@ -12,19 +12,19 @@ import React from "react";
  * @returns {JSX.Element|null} The rendered iframe or null if no src is provided.
  */
 export default function InstagramEmbed({ src }) {
-  if (!src) return null;
+    if (!src) return null;
 
-  return (
-    <div className="w-full h-[460px] sm:h-[580px] border shadow-md overflow-hidden">
-      <iframe
-        src={src}
-        className="w-full h-full"
-        allowTransparency
-        loading="lazy"
-        title="Instagram Embed"
-        scrolling="no"
-        style={{ border: "none" }}
-      />
-    </div>
-  );
+    return (
+        <div className="h-[460px] w-full overflow-hidden border shadow-md sm:h-[580px]">
+            <iframe
+                src={src}
+                className="h-full w-full"
+                allowTransparency
+                loading="lazy"
+                title="Instagram Embed"
+                scrolling="no"
+                style={{ border: "none" }}
+            />
+        </div>
+    );
 }

@@ -10,15 +10,20 @@ import { useBanner } from "@/hooks/useBanner";
  * Each message can include text, a link, link text, and emojis.
  */
 const messages = [
-    { text: "Our New Website is Live! Explore now!", link:"#", linkText:"", emoji: "🚀" },
+    { text: "Our New Website is Live! Explore now!", link: "#", linkText: "", emoji: "🚀" },
     { text: "Find out more about Nutrinana!", link: "#", linkText: "Learn More", emoji: "🤔👩🏾‍🍳" },
-    { text: "Shop now on DELLI or The Black Farmer!", link: "#", linkText: "Shop Now", emoji: "🥰🛍️" }
+    {
+        text: "Shop now on DELLI or The Black Farmer!",
+        link: "#",
+        linkText: "Shop Now",
+        emoji: "🥰🛍️",
+    },
 ];
 
 /**
  * Banner functional component that renders the banner UI with navigation arrows.
  * It uses the useBanner hook to manage the current message index and navigation.
- * 
+ *
  * @returns {JSX.Element} The rendered banner component.
  */
 export default function Banner() {
@@ -26,28 +31,32 @@ export default function Banner() {
     const { currentIndex, prevMessage, nextMessage } = useBanner(messages);
 
     return (
-        <div className="bg-[var(--color-pink)] text-black text-sm py-0 px-4 flex items-center justify-between relative">
+        <div className="relative flex items-center justify-between bg-[var(--color-pink)] px-4 py-0 text-sm text-black">
             {/* Left Arrow Button to navigate to previous message */}
-            <Button  variant="arrow" onClick={prevMessage}>
-                <ArrowLeft size={20} /> 
+            <Button variant="arrow" onClick={prevMessage}>
+                <ArrowLeft size={20} />
             </Button>
             {/* Banner Content: message text, optional link and emoji */}
-            <p className="flex-1 text-center whitespace-nowrap overflow-hidden text-ellipsis">
+            <p className="flex-1 overflow-hidden text-center text-ellipsis whitespace-nowrap">
                 <strong>{messages[currentIndex].text}</strong>{" "}
                 {messages[currentIndex].link && (
                     <>
-                        <Link href={messages[currentIndex].link} className="underline hover:text-gray-100">
+                        <Link
+                            href={messages[currentIndex].link}
+                            className="underline hover:text-gray-100"
+                        >
                             {messages[currentIndex].linkText}
                         </Link>{" "}
                         {/* {messages[currentIndex].emoji} */}
-                        <span className="text-lg">{messages[currentIndex].emoji}</span> {/* Increased emoji size */}
+                        <span className="text-lg">{messages[currentIndex].emoji}</span>{" "}
+                        {/* Increased emoji size */}
                     </>
                 )}
             </p>
 
             {/* Right Arrow Button to navigate to next message */}
-            <Button  variant="arrow" onClick={nextMessage}>
-                <ArrowRight size={20} /> 
+            <Button variant="arrow" onClick={nextMessage}>
+                <ArrowRight size={20} />
             </Button>
         </div>
     );

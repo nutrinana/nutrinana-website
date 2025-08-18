@@ -12,22 +12,22 @@ import { Pin, Sprout } from "lucide-react";
  */
 export default function NanaNoteCard() {
     return (
-        <Card className="bg-[#fdf2cf] rounded-2xl shadow border border-black relative max-w-4xl mx-auto">
-            <CardContent className="py-8 px-6 sm:px-12 text-center">
+        <Card className="relative mx-auto max-w-4xl rounded-2xl border border-black bg-[#fdf2cf] shadow">
+            <CardContent className="px-6 py-8 text-center sm:px-12">
                 {/* Card title */}
-                <h2 className="pt-6 text-2xl sm:text-3xl font-bold font-handwriting mb-6">
-                A Note From Nana (aka, Nutrinana)
+                <h2 className="font-handwriting mb-6 pt-6 text-2xl font-bold sm:text-3xl">
+                    A Note From Nana (aka, Nutrinana)
                 </h2>
 
                 {/* Card content */}
-                <p className="text-base sm:text-lg leading-relaxed text-gray-900">
-                Hey there! I’m Nana, but you can call me Nutrinana. What started as a way to sneak
-                some healthy granola into my kids’ breakfasts has blossomed into this incredible
-                journey of sharing my passion for wholesome, no-nonsense food with all of you.
-                Every batch of granola I make is like a little love letter to your taste buds—
-                packed with nutrition and free from anything artificial. Whether you're here for the
-                flavour or the health benefits, I’m thrilled to have you join the Nutrinana family.
-                Now, let’s make breakfast the best meal of the day!
+                <p className="text-base leading-relaxed text-gray-900 sm:text-lg">
+                    Hey there! I’m Nana, but you can call me Nutrinana. What started as a way to
+                    sneak some healthy granola into my kids’ breakfasts has blossomed into this
+                    incredible journey of sharing my passion for wholesome, no-nonsense food with
+                    all of you. Every batch of granola I make is like a little love letter to your
+                    taste buds— packed with nutrition and free from anything artificial. Whether
+                    you're here for the flavour or the health benefits, I’m thrilled to have you
+                    join the Nutrinana family. Now, let’s make breakfast the best meal of the day!
                 </p>
 
                 {/* Signature image */}
@@ -41,10 +41,10 @@ export default function NanaNoteCard() {
                     />
                 </div>
             </CardContent>
-            
+
             {/* Decorative elements */}
             {/* TODO: Sprout or Pin? */}
-            <Sprout className="absolute top-6 left-1/2 -translate-x-1/2 text-black w-9 h-9 z-10 fill-current" />
+            <Sprout className="absolute top-6 left-1/2 z-10 h-9 w-9 -translate-x-1/2 fill-current text-black" />
             {/* <Pin className="absolute -top-3 -left-3 rotate-[-45deg] text-black w-9 h-9 z-10 fill-current" /> */}
         </Card>
     );

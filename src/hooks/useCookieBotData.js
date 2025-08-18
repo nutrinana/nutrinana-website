@@ -5,7 +5,7 @@ import { groupCookiesByCategory } from "@/lib/cookies/groupCookiesByCategory";
  * Custom hook to fetch and manage Cookiebot data.
  * It retrieves cookie data for a specified domain and culture,
  * and groups the cookies by their categories.
- * 
+ *
  * @param {Object} params - The parameters for the hook.
  * - {string} [params.domain="www.nutrinana.co.uk"] - The domain to fetch cookies for.
  * - {string} [params.culture="default"] - The culture/language for the cookies.
