@@ -9,7 +9,10 @@ import {
 
 /**
  * GlobalAccordion component that renders an accessible, stylised accordion.
+ *
  * Utilises the ShadCN Accordion UI component library.
+ *
+ * @component
  *
  * @param {Array} items - Array of objects representing accordion items. Each item should contain:
  * - {string} title: The main title of the accordion item.

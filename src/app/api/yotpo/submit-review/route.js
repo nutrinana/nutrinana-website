@@ -3,10 +3,11 @@
  *
  * This route handles the submission of a review including product details and user feedback.
  *
+ * @route POST /api/yotpo/submit-review
+ *
  * @param {Request} req - The incoming request object.
  *
  * @returns {Response} - A JSON response containing the result of the review submission or an error message.
- * @route POST /api/yotpo/submit-review
  */
 export async function POST(req) {
     // Ensure the Yotpo app key is configured in environment variables

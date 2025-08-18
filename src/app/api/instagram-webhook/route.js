@@ -2,9 +2,13 @@ import { instagramCache as cache } from "@/lib/instagramCache";
 
 /**
  * Verifies the webhook subscription request from Instagram.
+ *
  * Responds with the challenge value if the mode and verify token are correct.
  *
+ * @route GET /api/instagram-webhook
+ *
  * @param {Request} req - The incoming request object.
+ *
  * @returns {Response} - The response containing the challenge or a forbidden status.
  */
 export async function GET(req) {
@@ -25,9 +29,13 @@ export async function GET(req) {
 
 /**
  * Handles incoming webhook events from Instagram.
+ *
  * Logs the event body to the console and responds with a success status.
  *
+ * @route POST /api/instagram-webhook
+ *
  * @param {Request} req - The incoming request object.
+ *
  * @returns {Response} - The response confirming receipt of the event.
  */
 export async function POST(req) {

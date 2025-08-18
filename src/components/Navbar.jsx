@@ -10,8 +10,11 @@ import { Button } from "@/components/ui/button";
 
 /**
  * Navbar component for Nutrinana website.
+ *
  * Handles both mobile and desktop navigation with responsive layout.
  * Includes a slide-in menu on smaller screens and inline navigation on desktop.
+ *
+ * @component
  *
  * @returns {JSX.Element} The rendered Navbar component.
  */
@@ -28,6 +31,7 @@ export default function Navbar() {
         };
 
         window.addEventListener("resize", handleResize);
+
         return () => {
             window.removeEventListener("resize", handleResize);
         };

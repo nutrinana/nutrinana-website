@@ -5,8 +5,11 @@ import { Button } from "@/components/ui/button";
 
 /**
  * CookieConsentStatus component to display the user's cookie consent status.
+ *
  * It shows the current consent state, consent ID, consent date,
  * and provides buttons to change or withdraw consent.
+ *
+ * @component
  *
  * @returns {JSX.Element} The rendered CookieConsentStatus component.
  */

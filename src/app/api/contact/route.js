@@ -7,6 +7,17 @@ import { v4 as uuidv4 } from "uuid";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+/**
+ * Resend API route handler.
+ *
+ * Handles the POST request for the contact form.
+ *
+ * @route POST /api/contact
+ *
+ * @param {Request} req - The request object.
+ *
+ * @returns {NextResponse} The response object.
+ */
 export async function POST(req) {
     try {
         const body = await req.json();

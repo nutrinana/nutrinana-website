@@ -3,13 +3,16 @@ import { renderWithLineBreaks } from "@/lib/utils";
 /**
  * NutritionTable component for displaying nutritional values in a structured table format.
  *
+ * Table structure includes headers for each nutritional category and rows for each food item.
+ *
+ * @component
+ *
  * @param {Object[]} data - Array of objects containing nutritional data with properties: name, per100g, perServing, and ri (Reference Intake).
  * @param {string} note - Optional note displayed below the table (e.g. "*Reference Intake").
  * @param {string} recommendation - Optional additional text or guidance displayed below the table.
  *
  * @returns {JSX.Element} A formatted nutrition table with optional footer notes.
  */
-
 export default function NutritionTable({ data, note, recommendation }) {
     return (
         <>

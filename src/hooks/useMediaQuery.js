@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
  * Use this hook to conditionally render components based on screen size or other media features.
  *
  * @param {string} query - The media query string to match against.
+ *
  * @returns {boolean} - `true` if the media query matches, false otherwise.
  */
 export function useMediaQuery(query) {

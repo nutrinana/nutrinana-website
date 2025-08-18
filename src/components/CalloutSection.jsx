@@ -4,7 +4,11 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
 /**
- * CalloutSection component renders a section with a heading and a CTA button.
+ * CalloutSection component.
+ *
+ * Renders a section with a heading and a CTA button.
+ *
+ * @component
  *
  * @param {Object} props - The properties for the CalloutSection component.
  * @param {string} props.heading - The headline text to display.

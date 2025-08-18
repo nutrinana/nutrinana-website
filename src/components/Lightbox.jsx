@@ -8,7 +8,10 @@ import "@/styles/globals.css";
 
 /**
  * Lightbox component for displaying images in a modal format.
+ *
  * It allows users to view a larger version of an image and navigate through a gallery of images.
+ *
+ * @component
  *
  * @param {Object} props - The properties for the Lightbox component.
  * @param {string[]} props.images - Array of image URLs to be displayed in the lightbox.
@@ -19,7 +22,9 @@ import "@/styles/globals.css";
  * @returns {JSX.Element|null} The rendered Lightbox component or null if no image is selected.
  */
 export default function Lightbox({ images, selectedImageIndex, setSelectedImageIndex, onClose }) {
-    if (selectedImageIndex === null) return null;
+    if (selectedImageIndex === null) {
+        return null;
+    }
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80">

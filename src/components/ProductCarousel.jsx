@@ -12,9 +12,12 @@ import useCarousel from "@/hooks/useCarousel";
 
 /**
  * ProductCarousel component that displays a list of products in a carousel format.
+ *
  * Each product is represented by a ProductCard component.
  * The carousel allows users to navigate through the products using next and previous buttons.
  * The current slide number and total count of slides are displayed below the carousel.
+ *
+ * @component
  *
  * @param {Object[]} products - Array of product objects to be displayed in the carousel.
  * Each product object should contain properties that ProductCard can accept.

@@ -4,7 +4,10 @@ import { useEffect } from "react";
 
 /**
  * YotpoReviewWidget component for displaying Yotpo reviews.
+ *
  * It initializes the Yotpo widgets after the component mounts.
+ *
+ * @component
  *
  * @param {Object} props - The properties for the YotpoReviewWidget component.
  * @param {string} props.productId - The unique identifier for the product.
@@ -34,6 +37,7 @@ export default function YotpoReviewWidget({
                 window.yotpoWidgetsContainer.initWidgets();
             }
         }, 200);
+
         // Cleanup function to clear the timeout if the component unmounts before the timer completes
         return () => clearTimeout(timer);
     }, [productId]);

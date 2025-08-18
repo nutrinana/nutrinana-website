@@ -10,8 +10,11 @@ import "@/styles/globals.css";
 
 /**
  * ProductCard component for displaying product information.
+ *
  * It includes images, title, subtitle, feature list, price, rating, and shop links.
  * Clicking on the card navigates to a specific product page.
+ *
+ * @component
  *
  * @param {Object} props - The properties for the ProductCard component.
  * @param {string[]} props.images - Array of image URLs for the product.
@@ -47,7 +50,9 @@ export default function ProductCard({
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => {
-                    if (e.key === "Enter") router.push("/activated-granola");
+                    if (e.key === "Enter") {
+                        router.push("/activated-granola");
+                    }
                 }}
                 className="relative mx-auto flex h-auto max-w-4xl cursor-pointer flex-col items-center overflow-visible rounded-xl border border-gray-400 bg-white p-4 transition-shadow duration-300 ease-in-out hover:shadow-xl md:h-[436px] md:flex-row md:items-start"
             >

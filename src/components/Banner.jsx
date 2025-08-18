@@ -22,7 +22,10 @@ const messages = [
 
 /**
  * Banner functional component that renders the banner UI with navigation arrows.
+ *
  * It uses the useBanner hook to manage the current message index and navigation.
+ *
+ * @component
  *
  * @returns {JSX.Element} The rendered banner component.
  */

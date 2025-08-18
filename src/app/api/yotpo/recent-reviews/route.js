@@ -5,8 +5,9 @@
  * It first generates an access token (utoken) using the store ID and API secret,
  * then uses that token to fetch the latest reviews from Yotpo's review filter endpoint.
  *
- * @returns {Response} - A JSON response containing the latest reviews or an error message.
  * @route GET /api/yotpo/recent-reviews
+ *
+ * @returns {Response} - A JSON response containing the latest reviews or an error message.
  */
 export async function GET() {
     const appKey = process.env.YOTPO_STORE_ID;

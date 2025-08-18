@@ -14,6 +14,10 @@ import { useSubmitReviewForm } from "@/hooks/useSubmitReviewForm";
 /**
  * LeaveReviewForm component for submitting product reviews.
  *
+ * This component provides a form for users to leave reviews for products, including star ratings and comments.
+ *
+ * @component
+ *
  * @param {Object} props - The properties for the LeaveReviewForm component.
  * @param {string} props.productId - The unique identifier for the product being reviewed.
  *

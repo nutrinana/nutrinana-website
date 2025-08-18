@@ -8,7 +8,10 @@ import blackFarmerLogo from "/public/icons/black-farmer-logo.svg";
 
 /**
  * Footer component for the Nutrinana website.
+ *
  * Includes navigation links, social media icons, legal links, and address.
+ *
+ * @component
  *
  * @returns {JSX.Element} The rendered footer component.
  */

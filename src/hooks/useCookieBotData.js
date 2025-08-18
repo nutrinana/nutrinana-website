@@ -9,13 +9,14 @@ import { groupCookiesByCategory } from "@/lib/cookies/groupCookiesByCategory";
  * @param {Object} params - The parameters for the hook.
  * - {string} [params.domain="www.nutrinana.co.uk"] - The domain to fetch cookies for.
  * - {string} [params.culture="default"] - The culture/language for the cookies.
+ *
  * @returns {Object} An object containing:
  * - {Array} data.cookies - The list of cookies.
  * - {string} data.domain - The domain for which cookies were fetched.
  * - {string} data.culture - The culture/language for the cookies.
  * - {boolean} loading - Whether the data is currently being loaded.
  * - {Error|null} error - Any error that occurred during the fetch.
- * - {Object} grouped - An object with categories as keys and arrays of cookies as values
+ * - {Object} grouped - An object with categories as keys and arrays of cookies as values.
  */
 export function useCookieBotData({ domain = "www.nutrinana.co.uk", culture = "default" }) {
     const [data, setData] = useState({ cookies: [], domain: "", culture: "" });

@@ -12,6 +12,10 @@ import { formatDate, formatCaption } from "@/lib/utils";
 /**
  * InstagramModal component displays an Instagram post in a modal.
  *
+ * Uses a combination of image and video elements to display the post content.
+ *
+ * @component
+ *
  * @param {Object} props - The props for the component.
  * @param {Object} props.post - The Instagram post data.
  * @param {Function} props.onClose - Function to call when the modal is closed.
@@ -23,7 +27,6 @@ import { formatDate, formatCaption } from "@/lib/utils";
 export default function InstagramModal({ post, onClose, onNext, onPrev }) {
     const modalRef = useRef(null);
     const handlers = useSwipeable({
-        onSwipedLeft: () => onNext(),
         onSwipedRight: () => onPrev(),
         preventDefaultTouchmoveEvent: true,
         trackTouch: true,
@@ -72,15 +75,17 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
         }
     };
 
-    if (!post) return null;
     // TODO: Handle the case when post is null or undefined
-    const imageSrc = post.media_url || post.thumbnail_url || post.cover_url || "";
+    const imageSrc = post?.media_url || post?.thumbnail_url || post?.cover_url || "";
     //const imageSrc = ""
     //const imageSrc = "https://example.com/does-not-exist.jpg"
     //const imageSrc = "blue";
 
     // Validate the image source and media type once post data is available
     useEffect(() => {
+        if (!post) {
+            return;
+        }
         const isMalformed =
             !imageSrc ||
             (post.media_type !== "IMAGE" &&
@@ -90,7 +95,11 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
         if (isMalformed) {
             setHasError(true);
         }
-    }, [imageSrc, post.media_type]);
+    }, [imageSrc, post?.media_type, post]);
+
+    if (!post) {
+        return null;
+    }
 
     if (hasError) {
         return (
@@ -108,7 +117,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
                     className="flex h-full max-h-screen w-full flex-col items-center justify-center overflow-y-auto bg-white p-6 text-center shadow-lg md:max-h-[90vh] md:max-w-6xl md:overflow-hidden md:rounded-lg"
                 >
                     <p className="mb-2 text-lg font-semibold">
-                        Oops! This post couldn't be loaded.
+                        Oops! This post couldn&apos;t be loaded.
                     </p>
                     <p className="mb-4 text-sm text-gray-500">
                         It may have been removed or is unavailable right now.
@@ -249,10 +258,12 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
                         </div>
                     ) : (
                         <div className="relative h-full w-full">
-                            <img
+                            <Image
                                 src={imageSrc}
                                 alt={post.caption || "Instagram post"}
                                 loading="lazy"
+                                width={800}
+                                height={800}
                                 className={`h-full max-h-[90vh] w-full object-cover transition-opacity duration-500 ${
                                     isImageLoaded ? "blur-0 opacity-100" : "opacity-0 blur-md"
                                 }`}

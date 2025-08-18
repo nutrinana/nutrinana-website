@@ -6,6 +6,7 @@ import { useState, useMemo } from "react";
  * and the state of the timeline (open or closed).
  *
  * @param {Array} timelineData - The data for the timeline.
+ *
  * @returns {Object} - Contains:
  * - isOpen: Boolean indicating if the timeline is open or closed.
  * - setIsOpen: Function to set the state of the timeline (open or closed).

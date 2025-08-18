@@ -11,6 +11,7 @@ import { twMerge } from "tailwind-merge";
  * Merges Tailwind CSS classes conditionally using `clsx` and `tailwind-merge`.
  *
  * @param  {...any} inputs - Class names or conditional expressions.
+ *
  * @returns {string} A single merged class name string.
  */
 export function cn(...inputs) {
@@ -21,6 +22,7 @@ export function cn(...inputs) {
  * Renders a string with newline characters (`\n`) as line breaks (`<br />`) in JSX.
  *
  * @param {string} text - The text to be rendered with line breaks.
+ *
  * @returns {JSX.Element} A React fragment containing the text with line breaks.
  */
 export function renderWithLineBreaks(text) {
@@ -38,6 +40,7 @@ export function renderWithLineBreaks(text) {
  *
  * @param {string} dateString - The ISO or UTC date string to format.
  * @param {string} format - The format string, e.g., "dd/mm/yyyy", "dd/mm/yy".
+ *
  * @returns {string} Formatted date string.
  */
 export function formatDate(dateString, format = "dd MMM yyyy") {
@@ -58,6 +61,7 @@ export function formatDate(dateString, format = "dd MMM yyyy") {
  * Extracts hashtags from a given text string.
  *
  * @param {string} text - The text to extract hashtags from.
+ *
  * @returns {string[]} Array of hashtags.
  */
 export function extractHashtags(text) {
@@ -72,6 +76,7 @@ export function extractHashtags(text) {
  * Formats a caption string by wrapping hashtags and mentions with styled spans.
  *
  * @param {string} caption - The Instagram caption to format.
+ *
  * @returns {JSX.Element[]} Array of React elements with styled hashtags/mentions.
  */
 export function formatCaption(caption) {

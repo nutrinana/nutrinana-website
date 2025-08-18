@@ -8,9 +8,11 @@ export const dynamic = "force-dynamic"; // avoid caching of response in Next.js
  * This route retrieves cookies for a specified domain and culture
  * from the Cookiebot API and returns them in a structured format.
  *
- * @param {Request} request - The incoming request object.
- * @returns {NextResponse} - The JSON response containing cookie data or an error message.
  * @route GET /api/cookiebot
+ *
+ * @param {Request} request - The incoming request object.
+ *
+ * @returns {NextResponse} - The JSON response containing cookie data or an error message.
  */
 export async function GET(request) {
     try {
@@ -102,9 +104,10 @@ export async function GET(request) {
  * Helper function to create a JSON error response.
  *
  * @param {string} message - The error message to include in the response.
- * @param {number} [status=500] - The HTTP status code for the response
+ * @param {number} [status=500] - The HTTP status code for the response.
  * @param {object} [extra={}] - Additional data to include in the response.
- * @return {NextResponse} - The JSON response with the error message and status code.
+ *
+ * @returns {NextResponse} - The JSON response with the error message and status code.
  */
 function jsonError(message, status = 500, extra = {}) {
     return NextResponse.json({ error: message, ...extra }, { status });

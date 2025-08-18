@@ -13,7 +13,10 @@ import useWindowWidth from "@/hooks/useWindowWidth";
 
 /**
  * RecentReviewCards component displays a grid of recent reviews.
+ *
  * It fetches reviews from a custom hook and displays them in a responsive masonry layout.
+ *
+ * @component
  *
  * @returns {JSX.Element} The rendered RecentReviewCards component.
  */

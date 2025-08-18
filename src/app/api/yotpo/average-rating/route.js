@@ -3,10 +3,11 @@
  *
  * This route retrieves the average score for a product based on its external ID.
  *
+ * @route GET /api/yotpo/average-rating?productId=${externalId}
+ *
  * @param {Request} req - The incoming request object.
  *
  * @returns {Response} - A JSON response containing the average score or an error message.
- * @route GET /api/yotpo/average-rating?productId=${externalId}
  */
 export async function GET(req) {
     const appKey = process.env.YOTPO_STORE_ID;
