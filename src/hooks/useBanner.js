@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 /**
  * Custom React hook for cycling through an array of banner messages.
  *
+ * @hook
+ *
  * @param {string[]} messages - An array of messages to cycle through.
  * Each message can include text, a link, link text, and emojis.
  * @param {number} [intervalTime=5000] - Time interval in milliseconds for automatic message switching.

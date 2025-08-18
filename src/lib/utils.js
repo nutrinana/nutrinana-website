@@ -1,14 +1,12 @@
-/****
- * Utility functions used throughout the Nutrinana website.
- * Includes class name merging and safe rendering of line-breaks in strings.
- */
-
 import React from "react";
+
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 /**
  * Merges Tailwind CSS classes conditionally using `clsx` and `tailwind-merge`.
+ *
+ * @util
  *
  * @param  {...any} inputs - Class names or conditional expressions.
  *
@@ -20,6 +18,8 @@ export function cn(...inputs) {
 
 /**
  * Renders a string with newline characters (`\n`) as line breaks (`<br />`) in JSX.
+ *
+ * @util
  *
  * @param {string} text - The text to be rendered with line breaks.
  *
@@ -37,6 +37,8 @@ export function renderWithLineBreaks(text) {
 
 /**
  * Formats a date string into specified format.
+ *
+ * @util
  *
  * @param {string} dateString - The ISO or UTC date string to format.
  * @param {string} format - The format string, e.g., "dd/mm/yyyy", "dd/mm/yy".
@@ -60,6 +62,8 @@ export function formatDate(dateString, format = "dd MMM yyyy") {
 /**
  * Extracts hashtags from a given text string.
  *
+ * @util
+ *
  * @param {string} text - The text to extract hashtags from.
  *
  * @returns {string[]} Array of hashtags.
@@ -74,6 +78,8 @@ export function extractHashtags(text) {
 
 /**
  * Formats a caption string by wrapping hashtags and mentions with styled spans.
+ *
+ * @util
  *
  * @param {string} caption - The Instagram caption to format.
  *
@@ -100,6 +106,8 @@ export function formatCaption(caption) {
 
 /**
  * Opens a given URL in a new browser tab.
+ *
+ * @util
  *
  * @param {string} url - The URL to open.
  */

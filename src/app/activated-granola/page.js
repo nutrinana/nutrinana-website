@@ -2,9 +2,10 @@
 "use client";
 
 import dynamic from "next/dynamic";
+
 import GlobalAccordion from "@/components/GlobalAccordion";
-import ProductShowcase from "@/components/ProductShowcase";
 import NutritionTable from "@/components/NutritionTable";
+import ProductShowcase from "@/components/ProductShowcase";
 import { Separator } from "@/components/ui/separator";
 
 const YotpoReviewWidget = dynamic(() => import("@/components/YotpoReviewWidget"), { ssr: false });

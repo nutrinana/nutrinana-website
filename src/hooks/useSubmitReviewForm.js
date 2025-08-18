@@ -6,6 +6,8 @@ import { toast } from "sonner";
  * This hook takes a form object and a product ID,
  * and provides a function to handle the form submission.
  *
+ * @hook
+ *
  * @param {Object} form - The form object containing methods for handling form state and submission.
  * @param {string} productId - The unique identifier for the product being reviewed.
  *

@@ -1,5 +1,6 @@
 "use client";
 
+import ProductCard from "@/components/ProductCard";
 import {
     Carousel,
     CarouselContent,
@@ -7,7 +8,6 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel";
-import ProductCard from "./ProductCard";
 import useCarousel from "@/hooks/useCarousel";
 
 /**

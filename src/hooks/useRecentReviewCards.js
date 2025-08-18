@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 
 /**
  * Custom hook to fetch recent review cards from the Yotpo API.
+ *
  * It retrieves the latest reviews and returns them as an array.
+ *
+ * @hook
  *
  * @returns {Array} An array of recent review cards.
  */

@@ -1,11 +1,13 @@
 "use client";
 
+import { useState } from "react";
+
+import { CircleCheck, Maximize2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import { CircleCheck, Maximize2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+
 import Lightbox from "@/components/Lightbox";
+import { Button } from "@/components/ui/button";
 import useProductRating from "@/hooks/useProductRating";
 import { openInNewTab } from "@/lib/utils";
 import "@/styles/globals.css";

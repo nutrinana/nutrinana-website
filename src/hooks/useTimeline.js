@@ -2,16 +2,19 @@ import { useState, useMemo } from "react";
 
 /**
  * Custom hook to manage the timeline component.
+ *
  * It provides the API of the timeline, the collapsed and expanded heights,
  * and the state of the timeline (open or closed).
+ *
+ * @hook
  *
  * @param {Array} timelineData - The data for the timeline.
  *
  * @returns {Object} - Contains:
- * - isOpen: Boolean indicating if the timeline is open or closed.
- * - setIsOpen: Function to set the state of the timeline (open or closed).
- * - collapsedHeight: The height of the timeline when collapsed.
- * - expandedHeight: The height of the timeline when expanded.
+ * @returns {boolean} isOpen: Boolean indicating if the timeline is open or closed.
+ * @returns {Function} setIsOpen: Function to set the state of the timeline (open or closed).
+ * @returns {number} collapsedHeight: The height of the timeline when collapsed.
+ * @returns {number} expandedHeight: The height of the timeline when expanded.
  */
 export default function useTimeline(timelineData) {
     // State to hold the open/closed state of the timeline

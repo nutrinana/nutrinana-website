@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 
 /**
  * Custom hook to get the current window width.
+ *
  * It listens for resize events and updates the width state accordingly.
+ *
+ * @hook
  *
  * @param {number} defaultWidth - The default width to use if window is not defined (e.g., during server-side rendering).
  *

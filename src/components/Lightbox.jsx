@@ -1,7 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { X } from "lucide-react";
+import Image from "next/image";
+
 import { Button } from "@/components/ui/button";
 import styles from "@/styles/Lightbox.module.css";
 import "@/styles/globals.css";

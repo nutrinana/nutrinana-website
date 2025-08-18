@@ -1,11 +1,12 @@
 "use client";
-import Image from "next/image";
+import { useState, useEffect } from "react";
 
+import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
 import { SiInstagram, SiTiktok } from "react-icons/si";
+
 import { Button } from "@/components/ui/button";
 
 /**

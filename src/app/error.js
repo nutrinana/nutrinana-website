@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect } from "react";
-import { Button } from "@/components/ui/button";
+
 import Link from "next/link";
+
+import { Button } from "@/components/ui/button";
 
 /**
  * Global error page component for handling unhandled exceptions.

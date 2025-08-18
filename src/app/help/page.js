@@ -1,6 +1,6 @@
 // Help Centre page: FAQ and contact form for Nutrinana website
-import GlobalAccordion from "@/components/GlobalAccordion";
 import { ContactForm } from "@/components/ContactForm";
+import GlobalAccordion from "@/components/GlobalAccordion";
 
 const accordionData = [
     {

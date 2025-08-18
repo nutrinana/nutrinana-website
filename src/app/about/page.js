@@ -1,8 +1,8 @@
 // About Page for Nutrinana
 "use client";
 
-import SideSlider from "@/components/SideSlider";
 import NoteCard from "@/components/NoteCard";
+import SideSlider from "@/components/SideSlider";
 import Timeline from "@/components/Timeline";
 
 const sideSlides = [

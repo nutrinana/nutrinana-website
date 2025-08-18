@@ -2,9 +2,16 @@ import { useState, useEffect } from "react";
 
 /**
  * Custom hook to fetch Instagram posts from the API.
+ *
  * Falls back to static embeds if the API fails.
  *
- * @returns {Object} { posts: Array, error: boolean, fallback: boolean, loading: boolean }.
+ * @hook
+ *
+ * @returns {Object} - Contains:
+ * @returns {Array} Posts: The fetched Instagram posts.
+ * @returns {boolean} Error: Whether an error occurred during fetching.
+ * @returns {boolean} Fallback: Whether the fallback content is being shown.
+ * @returns {boolean} Loading: Whether the posts are still being loaded.
  */
 export function useInstagramFeed() {
     const [posts, setPosts] = useState([]);
