@@ -42,34 +42,45 @@ export default function Navbar() {
     ];
 
     return (
-        <nav className="bg-white sticky top-0 w-full z-50 py-4 border-b border-gray-300">
+        <nav className="sticky top-0 z-50 w-full border-b border-gray-300 bg-white py-4">
             {/* Header wrapper */}
-            <div className="w-full px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-
+            <div className="flex w-full items-center justify-between px-4 sm:px-6 lg:px-8">
                 {/* Mobile layout: Hamburger left, logo center */}
-                <div className="flex items-center md:hidden w-full justify-between">
+                <div className="flex w-full items-center justify-between md:hidden">
                     <Button variant="ghost" onClick={() => setIsOpen(!isOpen)}>
                         {isOpen ? <X size={24} /> : <Menu size={24} />}
                     </Button>
-                    <Link href="/" className="absolute left-1/2 transform -translate-x-1/2">
-                        <Image src="/nutrinana-logo.svg" alt="Nutrinana Logo" width={120} height={48} className="h-12 w-auto mb-2" />
+                    <Link href="/" className="absolute left-1/2 -translate-x-1/2 transform">
+                        <Image
+                            src="/nutrinana-logo.svg"
+                            alt="Nutrinana Logo"
+                            width={120}
+                            height={48}
+                            className="mb-2 h-12 w-auto"
+                        />
                     </Link>
                 </div>
 
                 {/* Desktop layout: logo top center, links underneath */}
-                <div className="hidden md:flex flex-col items-center w-full">
+                <div className="hidden w-full flex-col items-center md:flex">
                     <Link href="/">
-                        <Image src="/nutrinana-logo.svg" alt="Nutrinana Logo" width={160} height={64} className="h-16 w-auto my-0" />
+                        <Image
+                            src="/nutrinana-logo.svg"
+                            alt="Nutrinana Logo"
+                            width={160}
+                            height={64}
+                            className="my-0 h-16 w-auto"
+                        />
                     </Link>
 
-                    <div className="flex space-x-12 mt-5">
+                    <div className="mt-5 flex space-x-12">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.name}
                                 href={link.href}
-                                className={`px-4 py-0 rounded-full transition-all ${
+                                className={`rounded-full px-4 py-0 transition-all ${
                                     pathname === link.href
-                                        ? "bg-[var(--color-green)] text-white font-bold"
+                                        ? "bg-[var(--color-green)] font-bold text-white"
                                         : "text-gray-900 hover:text-[var(--color-green)]"
                                 }`}
                             >
@@ -81,28 +92,39 @@ export default function Navbar() {
             </div>
 
             {/* Mobile menu overlay with slide-in effect */}
-            <div className={`fixed inset-0 bg-white z-50 w-full h-screen flex flex-col border-r border-gray-300 transform transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"}`}>
-                
+            <div
+                className={`fixed inset-0 z-50 flex h-screen w-full transform flex-col border-r border-gray-300 bg-white transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
+            >
                 {/* Close button and logo in mobile menu */}
-                <div className="flex items-center px-4 py-4 ">
-                    <Button variant="ghost" className=" absolute left-5 mt-11" onClick={() => setIsOpen(false)}>
+                <div className="flex items-center px-4 py-4">
+                    <Button
+                        variant="ghost"
+                        className="absolute left-5 mt-11"
+                        onClick={() => setIsOpen(false)}
+                    >
                         <X size={24} />
                     </Button>
                     <Link href="/" onClick={() => setIsOpen(false)} className="mx-auto">
-                        <Image src="/nutrinana-logo.svg" alt="Nutrinana Logo" width={120} height={48} className="h-12 w-auto mt-6" />
+                        <Image
+                            src="/nutrinana-logo.svg"
+                            alt="Nutrinana Logo"
+                            width={120}
+                            height={48}
+                            className="mt-6 h-12 w-auto"
+                        />
                     </Link>
                 </div>
 
                 {/* Mobile navigation links */}
-                <div className="flex flex-col space-y-6 mt-12 w-full">
+                <div className="mt-12 flex w-full flex-col space-y-6">
                     {navLinks.map((link) => (
                         <Link
                             key={link.name}
                             href={link.href}
                             className={`block w-full px-8 py-4 text-left text-2xl transition-all ${
                                 pathname === link.href
-                                    ? "text-[var(--color-green)] font-bold"
-                                    : "text-gray-900 hover:text-black hover:bg-muted"
+                                    ? "font-bold text-[var(--color-green)]"
+                                    : "hover:bg-muted text-gray-900 hover:text-black"
                             }`}
                             onClick={() => setIsOpen(false)}
                         >
@@ -112,13 +134,17 @@ export default function Navbar() {
                 </div>
 
                 {/* Divider line */}
-                <hr className="my-8 border-gray-300 mt-auto w-[80%] ml-8" />
+                <hr className="my-8 mt-auto ml-8 w-[80%] border-gray-300" />
 
                 {/* Social media buttons in mobile menu */}
-                <div className="flex justify-start space-x-4 px-6 pb-6 w-full">
+                <div className="flex w-full justify-start space-x-4 px-6 pb-6">
                     {/* Instagram */}
                     {/* Link to the Instagram profile */}
-                    <Link href="https://instagram.com/nutrinanaa" target="_blank" className="social-icon">
+                    <Link
+                        href="https://instagram.com/nutrinanaa"
+                        target="_blank"
+                        className="social-icon"
+                    >
                         <SiInstagram size={24} />
                     </Link>
                     {/* TikTok */}
@@ -128,13 +154,26 @@ export default function Navbar() {
                     </Link>
                     {/* DELLI */}
                     {/* Link to the Delli marketplace */}
-                    <Link href="https://delli.market/collections/nutrinana" target="_blank" className="social-icon">
+                    <Link
+                        href="https://delli.market/collections/nutrinana"
+                        target="_blank"
+                        className="social-icon"
+                    >
                         <Image src="/icons/delli-logo.svg" alt="Delli" width={50} height={25} />
                     </Link>
                     {/* The Black Farmer */}
                     {/* Link to The Black Farmer website */}
-                    <Link href="https://theblackfarmer.com/" target="_blank" className="social-icon">
-                        <Image src="/icons/black-farmer-logo.svg" alt="The Black Farmer" width={100} height={50} />
+                    <Link
+                        href="https://theblackfarmer.com/"
+                        target="_blank"
+                        className="social-icon"
+                    >
+                        <Image
+                            src="/icons/black-farmer-logo.svg"
+                            alt="The Black Farmer"
+                            width={100}
+                            height={50}
+                        />
                     </Link>
                 </div>
             </div>

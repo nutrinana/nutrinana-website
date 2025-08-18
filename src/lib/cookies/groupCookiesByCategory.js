@@ -1,6 +1,6 @@
 /**
  * Function to group cookies by their category.
- * 
+ *
  * @param {Array} cookies - The list of cookies to group.
  * @returns {Object} An object with categories as keys and arrays of cookies as values.
  * - 1: Necessary cookies

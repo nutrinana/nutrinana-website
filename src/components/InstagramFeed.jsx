@@ -14,7 +14,7 @@ import { extractHashtags } from "@/lib/utils";
  * InstagramFeed component renders a responsive Instagram grid.
  * Displays latest posts fetched via Instagram API or fallback embeds on error.
  * Allows users to click a post and open a detailed modal view.
- * 
+ *
  * @returns {JSX.Element} Instagram feed grid or error fallback.
  */
 export default function InstagramFeed() {
@@ -58,8 +58,10 @@ export default function InstagramFeed() {
         ];
 
         return (
-            <section className="flex flex-col items-center justify-center text-center py-10 px-2 sm:px-4 bg-white">
-                <div className={`grid ${isMobile ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-3"} gap-2 w-full max-w-screen-xl`}>
+            <section className="flex flex-col items-center justify-center bg-white px-2 py-10 text-center sm:px-4">
+                <div
+                    className={`grid ${isMobile ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-3"} w-full max-w-screen-xl gap-2`}
+                >
                     {fallbackEmbeds.slice(0, isMobile ? 1 : 3).map((src) => (
                         <InstagramEmbed key={src} src={src} />
                     ))}
@@ -71,9 +73,10 @@ export default function InstagramFeed() {
     // Instagram feed grid: Displays a responsive set of Instagram posts
     return (
         <div>
-            <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-px">
+            <section className="grid grid-cols-2 gap-px sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
                 {(visiblePosts || []).map((post, index) => {
-                    const imageUrl = post.media_type === "VIDEO" ? post.thumbnail_url : post.media_url;
+                    const imageUrl =
+                        post.media_type === "VIDEO" ? post.thumbnail_url : post.media_url;
 
                     if (!imageUrl) return null;
 
@@ -82,16 +85,16 @@ export default function InstagramFeed() {
                         <div
                             key={post.id}
                             onClick={() => openModal(index)}
-                            className="relative cursor-pointer group"
+                            className="group relative cursor-pointer"
                         >
                             <Image
                                 src={imageUrl}
                                 alt="Instagram Post"
                                 width={500}
                                 height={500}
-                                className="w-full h-full aspect-square object-cover"
+                                className="aspect-square h-full w-full object-cover"
                             />
-                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+                            <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
                                 {post.media_type === "VIDEO" ? (
                                     <Image
                                         src="/icons/instagram-reels-icon.svg"
@@ -101,7 +104,7 @@ export default function InstagramFeed() {
                                         className="invert"
                                     />
                                 ) : (
-                                    <SiInstagram className="w-8 h-8 text-white" />
+                                    <SiInstagram className="h-8 w-8 text-white" />
                                 )}
                             </div>
                         </div>
@@ -122,8 +125,8 @@ export default function InstagramFeed() {
                             setSelectedPostIndex((prev) => (prev + 1) % visiblePosts.length)
                         }
                         onPrev={() =>
-                            setSelectedPostIndex((prev) =>
-                                (prev - 1 + visiblePosts.length) % visiblePosts.length
+                            setSelectedPostIndex(
+                                (prev) => (prev - 1 + visiblePosts.length) % visiblePosts.length
                             )
                         }
                     />
@@ -133,7 +136,7 @@ export default function InstagramFeed() {
                 href="https://www.instagram.com/nutrinanaa"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xl sm:text-2xl text-gray-500 mt-2 ml-1 hover:underline"
+                className="mt-2 ml-1 text-xl text-gray-500 hover:underline sm:text-2xl"
             >
                 @nutrinanaa
             </Link>

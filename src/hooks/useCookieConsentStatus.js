@@ -6,13 +6,13 @@ import { formatConsentDate } from "@/lib/cookies/formatConsentDate";
  * Custom hook to manage and retrieve cookie consent status.
  * It listens for Cookiebot events to update the consent state and provides methods
  * to reopen the consent banner or withdraw consent.
- * 
+ *
  * @returns {Object} An object containing:
  * - {Object} consent - The current consent state.
  * - {string|null} consentDate - The formatted consent date or null if not available.
  * - {string} stateLabel - A human-readable label of the current consent state.
  * - {Function} reopenBanner - Function to reopen the consent banner.
- * - {Function} withdrawAll - Function to withdraw all consent. 
+ * - {Function} withdrawAll - Function to withdraw all consent.
  */
 export function useCookieConsentStatus() {
     const [consent, setConsent] = useState(null);
@@ -74,8 +74,7 @@ export function useCookieConsentStatus() {
         if (window.Cookiebot?.renew) {
             window.Cookiebot.renew();
             setTimeout(() => setConsent(buildConsentState()), 200);
-        } 
-        else {
+        } else {
             alert(
                 "To change or withdraw your consent, click the Cookiebot badge in the bottom-left corner of the page."
             );
@@ -86,12 +85,10 @@ export function useCookieConsentStatus() {
         if (window.Cookiebot?.withdraw) {
             window.Cookiebot.withdraw();
             setTimeout(() => setConsent(buildConsentState()), 200);
-        } 
-        else if (window.Cookiebot?.renew) {
+        } else if (window.Cookiebot?.renew) {
             window.Cookiebot.renew();
             setTimeout(() => setConsent(buildConsentState()), 200);
-        } 
-        else {
+        } else {
             alert(
                 "To withdraw your consent, click the Cookiebot badge in the bottom-left corner of the page."
             );

@@ -23,9 +23,19 @@ const sideSlides = [
 const sideSliderTitle = "Who We Are";
 const sideSliderDescription = (
     <>
-        Nutrinana started in Nana Odamo’s kitchen, where she whipped up granola so good, even her kids couldn’t keep it to themselves—and neither could the neighbours! What began as a small, family-run operation quickly grew, fuelled by Nana’s mission to prove that nutritious, tasty granola doesn’t need a sprinkle of sugar or a dash of anything artificial. Our secret? “Activated” nuts and seeds that have gone through a special soaking process to make them as easy on your digestion as they are on your taste buds.
-        <br /><br />
-        At Nutrinana, we’re all about keeping it real—literally. We’re a family-run business with Nana’s kids handling the social media and website (when they’re not busy asking for more granola). We’re on a mission to become your go-to healthy breakfast alternative, so whether you’re looking to ditch the sugar or dodge the bloat, we’ve got you covered. Plus, when Nana’s not making granola, she’s growing her own veggies—because, of course, she is!
+        Nutrinana started in Nana Odamo’s kitchen, where she whipped up granola so good, even her
+        kids couldn’t keep it to themselves—and neither could the neighbours! What began as a small,
+        family-run operation quickly grew, fuelled by Nana’s mission to prove that nutritious, tasty
+        granola doesn’t need a sprinkle of sugar or a dash of anything artificial. Our secret?
+        “Activated” nuts and seeds that have gone through a special soaking process to make them as
+        easy on your digestion as they are on your taste buds.
+        <br />
+        <br />
+        At Nutrinana, we’re all about keeping it real—literally. We’re a family-run business with
+        Nana’s kids handling the social media and website (when they’re not busy asking for more
+        granola). We’re on a mission to become your go-to healthy breakfast alternative, so whether
+        you’re looking to ditch the sugar or dodge the bloat, we’ve got you covered. Plus, when
+        Nana’s not making granola, she’s growing her own veggies—because, of course, she is!
     </>
 );
 
@@ -54,9 +64,13 @@ const timelineData = [
 
 export default function AboutPage() {
     return (
-        <main className="max-w-6xl mx-auto p-10 mt-2">
+        <main className="mx-auto mt-2 max-w-6xl p-10">
             <section className="mb-12">
-                <SideSlider slides={sideSlides} title={sideSliderTitle} description={sideSliderDescription} />
+                <SideSlider
+                    slides={sideSlides}
+                    title={sideSliderTitle}
+                    description={sideSliderDescription}
+                />
             </section>
 
             <section className="mb-12">
@@ -64,8 +78,8 @@ export default function AboutPage() {
             </section>
 
             <section className="mb-12">
-                <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[var(--color-green)]/76 py-3 mb-20">
-                    <h2 className="text-3xl font-semibold text-center text-white">A Timeline...</h2>
+                <div className="relative right-1/2 left-1/2 -mx-[50vw] mb-20 w-screen bg-[var(--color-green)]/76 py-3">
+                    <h2 className="text-center text-3xl font-semibold text-white">A Timeline...</h2>
                 </div>
                 <Timeline timelineData={timelineData} />
             </section>
