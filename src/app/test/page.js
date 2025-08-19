@@ -1,121 +1,153 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import Banner from "@/components/Banner";
-import Timeline from "@/components/Timeline";
-import ProductCarousel from "@/components/ProductCarousel";
-import ProductCard from "@/components/ProductCard";
-import HeroSlider from "@/components/HeroSlider";
-import GlobalAccordion from "@/components/GlobalAccordion";
-import NutritionTable from "@/components/NutritionTable";
 import { ContactForm } from "@/components/ContactForm";
+import Footer from "@/components/Footer";
+import GlobalAccordion from "@/components/GlobalAccordion";
+import HeroSlider from "@/components/HeroSlider";
 import InstagramFeed from "@/components/InstagramFeed";
-import { Button } from "@/components/ui/button";
-import SideSlider from "@/components/SideSlider";
-import NoteCard from "@/components/NoteCard";
 import LeaveReviewForm from "@/components/LeaveReviewForm";
+import Navbar from "@/components/Navbar";
+import NoteCard from "@/components/NoteCard";
+import NutritionTable from "@/components/NutritionTable";
+import ProductCard from "@/components/ProductCard";
+import ProductCarousel from "@/components/ProductCarousel";
 import RecentReviewCards from "@/components/RecentReviewCards";
+import SideSlider from "@/components/SideSlider";
+import Timeline from "@/components/Timeline";
+import { Button } from "@/components/ui/button";
 
 const products = [
     {
-        images: ["/products/mixed-fruits/granola1.jpg", "/products/mixed-fruits/granola2.jpg", "/products/mixed-fruits/granola3.jpg"],
+        images: [
+            "/products/mixed-fruits/granola1.jpg",
+            "/products/mixed-fruits/granola2.jpg",
+            "/products/mixed-fruits/granola3.jpg",
+        ],
         title: "Nutrinana's Activated Granola",
         subtitle: "Mixed Fruits & Coconut",
         features: ["Gluten-Free", "Dairy-Free", "No Refined Sugar"],
         price: "£8.50",
         rating: "5.0",
         shopLinks: [
-            { text: "Shop DELLI", href: "https://delli.market/products/nutrinanas-special-granola?_pos=1&_sid=1d1806f92&_ss=r" },
-            { text: "Shop Black Farmer", href: "https://theblackfarmer.com" }
-        ]
+            {
+                text: "Shop DELLI",
+                href: "https://delli.market/products/nutrinanas-special-granola?_pos=1&_sid=1d1806f92&_ss=r",
+            },
+            { text: "Shop Black Farmer", href: "https://theblackfarmer.com" },
+        ],
     },
     {
-        images: ["/products/mixed-fruits/granola1.jpg", "/products/mixed-fruits/granola2.jpg", "/products/mixed-fruits/granola3.jpg"],
+        images: [
+            "/products/mixed-fruits/granola1.jpg",
+            "/products/mixed-fruits/granola2.jpg",
+            "/products/mixed-fruits/granola3.jpg",
+        ],
         title: "Nutrinana's Activated Granola",
         subtitle: "Mixed Fruits & Coconut",
         features: ["Gluten-Free", "Dairy-Free", "No Refined Sugar"],
         price: "£8.50",
         rating: "5.0",
         shopLinks: [
-            { text: "Shop DELLI", href: "https://delli.market/products/nutrinanas-special-granola?_pos=1&_sid=1d1806f92&_ss=r" },
-            { text: "Shop Black Farmer", href: "https://theblackfarmer.com" }
-        ]
+            {
+                text: "Shop DELLI",
+                href: "https://delli.market/products/nutrinanas-special-granola?_pos=1&_sid=1d1806f92&_ss=r",
+            },
+            { text: "Shop Black Farmer", href: "https://theblackfarmer.com" },
+        ],
     },
     {
-        images: ["/products/mixed-fruits/granola1.jpg", "/products/mixed-fruits/granola2.jpg", "/products/mixed-fruits/granola3.jpg"],
+        images: [
+            "/products/mixed-fruits/granola1.jpg",
+            "/products/mixed-fruits/granola2.jpg",
+            "/products/mixed-fruits/granola3.jpg",
+        ],
         title: "Nutrinana's Activated Granola",
         subtitle: "Mixed Fruits & Coconut",
         features: ["Gluten-Free", "Dairy-Free", "No Refined Sugar"],
         price: "£8.50",
         rating: "5.0",
         shopLinks: [
-            { text: "Shop DELLI", href: "https://delli.market/products/nutrinanas-special-granola?_pos=1&_sid=1d1806f92&_ss=r" },
-            { text: "Shop Black Farmer", href: "https://theblackfarmer.com" }
-        ]
+            {
+                text: "Shop DELLI",
+                href: "https://delli.market/products/nutrinanas-special-granola?_pos=1&_sid=1d1806f92&_ss=r",
+            },
+            { text: "Shop Black Farmer", href: "https://theblackfarmer.com" },
+        ],
     },
     // Add more products
 ];
 
 const slides = [
     {
-      image: "/home/slide1.jpg",
-      title: "Tasting Session with The Black Farmer!",
-      subtitle: "Saturday 7th July @ The Black Farmer’s Market, Market Row, SW9 8LD",
-      buttonText: "Shop Now",
-      buttonLink: "https://theblackfarmer.com"
+        image: "/home/slide1.jpg",
+        title: "Tasting Session with The Black Farmer!",
+        subtitle: "Saturday 7th July @ The Black Farmer’s Market, Market Row, SW9 8LD",
+        buttonText: "Shop Now",
+        buttonLink: "https://theblackfarmer.com",
     },
     {
-      image: "/home/slide2.jpg",
-      title: "Activated Granola, Made with Love",
-      subtitle: "Handcrafted with wholesome ingredients to nourish your gut and delight your taste buds.",
-      buttonText: "Discover More",
-      buttonLink: "/products"
+        image: "/home/slide2.jpg",
+        title: "Activated Granola, Made with Love",
+        subtitle:
+            "Handcrafted with wholesome ingredients to nourish your gut and delight your taste buds.",
+        buttonText: "Discover More",
+        buttonLink: "/products",
     },
     {
-      image: "/home/slide3.jpg",
-      title: "From Allotment to Table",
-      subtitle: "Inspired by fresh, homegrown produce and Nana’s timeless recipes.",
-      buttonText: "Our Story",
-      buttonLink: "/about"
+        image: "/home/slide3.jpg",
+        title: "From Allotment to Table",
+        subtitle: "Inspired by fresh, homegrown produce and Nana’s timeless recipes.",
+        buttonText: "Our Story",
+        buttonLink: "/about",
     },
 ];
 
 const sideSlides = [
-  { image: "/about/about-slide1.jpg", alt: "Silverhand Farmers Market" },
-  { image: "/about/about-slide2.jpg", alt: "Fresh ingredients used in Nutrinana granola" },
-  { image: "/about/about-slide1.jpg", alt: "The Black Farmer Farmshop, White City " },
+    { image: "/about/about-slide1.jpg", alt: "Silverhand Farmers Market" },
+    { image: "/about/about-slide2.jpg", alt: "Fresh ingredients used in Nutrinana granola" },
+    { image: "/about/about-slide1.jpg", alt: "The Black Farmer Farmshop, White City " },
 ];
 
 const sideSliderTitle = "Who We Are";
 
 const sideSliderDescription = (
-  <>
-    Nutrinana started in Nana Odamo’s kitchen, where she whipped up granola so good, even her kids couldn’t keep it to themselves—and neither could the neighbours! What began as a small, family-run operation quickly grew, fuelled by Nana’s mission to prove that nutritious, tasty granola doesn’t need a sprinkle of sugar or a dash of anything artificial. Our secret? “Activated” nuts and seeds that have gone through a special soaking process to make them as easy on your digestion as they are on your taste buds.
-    <br /><br />
-    At Nutrinana, we’re all about keeping it real—literally. We’re a family-run business with Nana’s kids handling the social media and website (when they’re not busy asking for more granola). We’re on a mission to become your go-to healthy breakfast alternative, so whether you’re looking to ditch the sugar or dodge the bloat, we’ve got you covered. Plus, when Nana’s not making granola, she’s growing her own veggies—because, of course, she is!
-  </>
+    <>
+        Nutrinana started in Nana Odamo’s kitchen, where she whipped up granola so good, even her
+        kids couldn’t keep it to themselves—and neither could the neighbours! What began as a small,
+        family-run operation quickly grew, fuelled by Nana’s mission to prove that nutritious, tasty
+        granola doesn’t need a sprinkle of sugar or a dash of anything artificial. Our secret?
+        “Activated” nuts and seeds that have gone through a special soaking process to make them as
+        easy on your digestion as they are on your taste buds.
+        <br />
+        <br />
+        At Nutrinana, we’re all about keeping it real—literally. We’re a family-run business with
+        Nana’s kids handling the social media and website (when they’re not busy asking for more
+        granola). We’re on a mission to become your go-to healthy breakfast alternative, so whether
+        you’re looking to ditch the sugar or dodge the bloat, we’ve got you covered. Plus, when
+        Nana’s not making granola, she’s growing her own veggies—because, of course, she is!
+    </>
 );
 
 const timelineData = [
     {
         year: "2021",
         text: "The magic begins! Nana perfects her activated granola recipe and starts selling it to her local neighbourhood.",
-        image: "/timeline/2021.jpg"
+        image: "/timeline/2021.jpg",
     },
     {
         year: "2022",
         text: "Nutrinana goes digital! The Activated Granola hits the virtual shelves on DELLI, making its way to kitchens across the UK.",
-        image: "/timeline/2022.jpeg"
+        image: "/timeline/2022.jpeg",
     },
     {
         year: "2023",
         text: "Nana joins forces with a group of green-thumbed garden enthusiasts to grow her own veggies in a shared allotment. Fresh, home-grown ingredients inspire new recipes, which she shares with her growing Instagram family.",
-        image: "/timeline/2023.jpg"
+        image: "/timeline/2023.jpg",
     },
     {
         year: "2024",
         text: "Nutrinana’s Activated Granola finds a home in the Black Farmers Shop in Brixton, bringing the taste of Nana’s kitchen to even more happy customers. This is only just the beginning!",
-        image: "/timeline/2024.jpeg"
-    }
+        image: "/timeline/2024.jpeg",
+    },
 ];
 
 const accordionData = [
@@ -123,8 +155,13 @@ const accordionData = [
         title: "Ingredients & Allergens",
         content: (
             <>
-                Activated Seeds and <strong>Nuts</strong> (<strong>Almonds, Cashews, Walnuts, Brazil nuts, Pecan nuts, Hazelnuts</strong>, Pumpkin seeds, Sunflower seeds); Organic Oats; Dried Mixed Fruits (Raisins, Sultanas, Cranberries); Unsweetened Dried Coconut Chips; Himalayan Salt; Organic Virgin Coconut Oil; Maple Syrup; Mixed Spices.
-                <br /><br />
+                Activated Seeds and <strong>Nuts</strong> (
+                <strong>Almonds, Cashews, Walnuts, Brazil nuts, Pecan nuts, Hazelnuts</strong>,
+                Pumpkin seeds, Sunflower seeds); Organic Oats; Dried Mixed Fruits (Raisins,
+                Sultanas, Cranberries); Unsweetened Dried Coconut Chips; Himalayan Salt; Organic
+                Virgin Coconut Oil; Maple Syrup; Mixed Spices.
+                <br />
+                <br />
                 <strong>For allergens, see words in bold.</strong>
             </>
         ),
@@ -132,16 +169,32 @@ const accordionData = [
     {
         title: "Storage and Date",
         subtitle: "How should I store my granola, and how long does it last?",
-        content: "To keep your granola fresh and crunchy, store it in an airtight container in a cool, dry place. Our granola has a shelf life of 6-12 months if stored properly—but let's be honest, it'll probably last less than that because it's just that tasty! You'll find the best-before date printed on the package, so you can enjoy every bite at its peak. Remember to reseal the packaging after each use to maintain its freshness!",
+        content:
+            "To keep your granola fresh and crunchy, store it in an airtight container in a cool, dry place. Our granola has a shelf life of 6-12 months if stored properly—but let's be honest, it'll probably last less than that because it's just that tasty! You'll find the best-before date printed on the package, so you can enjoy every bite at its peak. Remember to reseal the packaging after each use to maintain its freshness!",
     },
     {
         title: "Nutritional Information",
         content: (
             <NutritionTable
                 data={[
-                    { name: "Energy", per100g: "2300 kJ / 550 kcal", perServing: "1400 kJ / 330 kcal", ri: "17%" },
-                    { name: "Fat\nof which saturates", per100g: "42 g\n7.1 g", perServing: "25 g\n4.3 g", ri: "36%\n22%" },
-                    { name: "Carbohydrate\nof which sugars", per100g: "30 g\n4.4 g", perServing: "18 g\n2.7 g", ri: "7%\n3%" },
+                    {
+                        name: "Energy",
+                        per100g: "2300 kJ / 550 kcal",
+                        perServing: "1400 kJ / 330 kcal",
+                        ri: "17%",
+                    },
+                    {
+                        name: "Fat\nof which saturates",
+                        per100g: "42 g\n7.1 g",
+                        perServing: "25 g\n4.3 g",
+                        ri: "36%\n22%",
+                    },
+                    {
+                        name: "Carbohydrate\nof which sugars",
+                        per100g: "30 g\n4.4 g",
+                        perServing: "18 g\n2.7 g",
+                        ri: "7%\n3%",
+                    },
                     { name: "Protein", per100g: "22 g", perServing: "13 g", ri: "26%" },
                     { name: "Salt", per100g: "0.14 g", perServing: "0.08 g", ri: "1%" },
                     { name: "Fibre", per100g: "17 g", perServing: "10 g", ri: "33%" },
@@ -154,57 +207,74 @@ const accordionData = [
 ];
 
 export default function TestPage() {
-  return (
-    <div>
-        <Banner />
-        <Navbar />
-        <HeroSlider slides={slides} />
-        <main className="p-10">
-            <h1 className="text-3xl font-bold">Component Preview</h1>
-            <h2 className="text-2xl font-bold mb-4">Error Test</h2>
-            <p>Visit <a href="test/test-error" className="text-blue-600 underline">/test-error</a> to trigger the error page.</p>
-            <section className="my-10">
-              <h2 className="text-2xl font-semibold mb-4">Button Variants</h2>
-              <div className="flex flex-wrap gap-4">
-                <Button variant="default">Default</Button>
-                <Button variant="ghost">Ghost</Button>
-                <Button variant="outline">Outline</Button>
-                <Button variant="destructive">Destructive</Button>
-                <Button variant="green">Green</Button>
-                <Button variant="greenOutlined">Green Outlined</Button>
-                <Button variant="yellow">Yellow</Button>
-                <Button variant="pink">Pink</Button>
-                <Button variant="pinkOutlined">Pink Outlined</Button>
-                <Button variant="grey">Grey</Button>
-              </div>
-            </section>
-            <ProductCarousel products={products} />
-            <br></br>
-            <br></br>
-            <br></br>
-            <GlobalAccordion items={accordionData} />
-            <br></br>
-            <br></br>
-            <br></br>
-            <Timeline timelineData={timelineData} />  
-            <br></br>
-            <br></br>
-            <br></br>
-            <SideSlider slides={sideSlides} title={sideSliderTitle} description={sideSliderDescription} />
-            <br /><br />
-            <NoteCard />
-            <br /><br />
-            <ContactForm/>
-            <br /><br /><br />
-            <h2 className="text-2xl font-bold mb-4">Leave a Review</h2>
-            <LeaveReviewForm productId="activated-granola" />
-            <br /><br />
-            <h2 className="text-2xl font-bold mb-4">Instagram Feed</h2>
-            <InstagramFeed />
-            <br /><br /><br />
-            <RecentReviewCards />
-        </main>
-        <Footer />
-    </div>
-  );
+    return (
+        <div>
+            <Banner />
+            <Navbar />
+            <HeroSlider slides={slides} />
+            <main className="p-10">
+                <h1 className="text-3xl font-bold">Component Preview</h1>
+                <h2 className="mb-4 text-2xl font-bold">Error Test</h2>
+                <p>
+                    Visit{" "}
+                    <a href="test/test-error" className="text-blue-600 underline">
+                        /test-error
+                    </a>{" "}
+                    to trigger the error page.
+                </p>
+                <section className="my-10">
+                    <h2 className="mb-4 text-2xl font-semibold">Button Variants</h2>
+                    <div className="flex flex-wrap gap-4">
+                        <Button variant="default">Default</Button>
+                        <Button variant="ghost">Ghost</Button>
+                        <Button variant="outline">Outline</Button>
+                        <Button variant="destructive">Destructive</Button>
+                        <Button variant="green">Green</Button>
+                        <Button variant="greenOutlined">Green Outlined</Button>
+                        <Button variant="yellow">Yellow</Button>
+                        <Button variant="pink">Pink</Button>
+                        <Button variant="pinkOutlined">Pink Outlined</Button>
+                        <Button variant="grey">Grey</Button>
+                    </div>
+                </section>
+                <ProductCarousel products={products} />
+                <br></br>
+                <br></br>
+                <br></br>
+                <GlobalAccordion items={accordionData} />
+                <br></br>
+                <br></br>
+                <br></br>
+                <Timeline timelineData={timelineData} />
+                <br></br>
+                <br></br>
+                <br></br>
+                <SideSlider
+                    slides={sideSlides}
+                    title={sideSliderTitle}
+                    description={sideSliderDescription}
+                />
+                <br />
+                <br />
+                <NoteCard />
+                <br />
+                <br />
+                <ContactForm />
+                <br />
+                <br />
+                <br />
+                <h2 className="mb-4 text-2xl font-bold">Leave a Review</h2>
+                <LeaveReviewForm productId="activated-granola" />
+                <br />
+                <br />
+                <h2 className="mb-4 text-2xl font-bold">Instagram Feed</h2>
+                <InstagramFeed />
+                <br />
+                <br />
+                <br />
+                <RecentReviewCards />
+            </main>
+            <Footer />
+        </div>
+    );
 }
