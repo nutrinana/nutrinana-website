@@ -1,9 +1,10 @@
 import "@/styles/globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import { Toaster } from "sonner";
+
 import Banner from "@/components/Banner";
 import CookieBotConsent from "@/components/CookieBotConsent";
-import { Toaster } from "sonner";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 
 /**
  * Metadata for the page layout.
@@ -11,41 +12,41 @@ import { Toaster } from "sonner";
  * This metadata applies to all pages unless overridden in a nested layout or page.
  */
 export const metadata = {
-  metadataBase: new URL("https://www.nutrinana.co.uk"),
-  title: "Nutrinana's Activated Granola",
-  description:
-    "Discover Nutrinana’s Activated Granola, made with activated nuts for better digestion. Shop online via DELLI or find us at the Black Farmer Farmshop in London.",
-  openGraph: {
+    metadataBase: new URL("https://www.nutrinana.co.uk"),
     title: "Nutrinana's Activated Granola",
     description:
-      "Discover Nutrinana’s Activated Granola, made with activated nuts for better digestion. Shop online via DELLI or find us at the Black Farmer Farmshop in London.",
-    url: "https://www.nutrinana.co.uk",
-    siteName: "Nutrinana",
-    images: [
-      {
-        url: "/opengraph-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Nutrinana's Activated Granola",
-      },
-    ],
-    locale: "en_GB",
-    type: "website",
-  },
-  icons: {
-    icon: "/icon1.png",
-    shortcut: "/favicon.ico",
-    apple: "/apple-icon.png",
-    other: [
-      {
-        rel: "icon",
-        url: "/icon.svg",
-      },
-    ],
-  },
-  appleWebApp: {
-    title: "Nutrinana",
-  },
+        "Discover Nutrinana’s Activated Granola, made with activated nuts for better digestion. Shop online via DELLI or find us at the Black Farmer Farmshop in London.",
+    openGraph: {
+        title: "Nutrinana's Activated Granola",
+        description:
+            "Discover Nutrinana’s Activated Granola, made with activated nuts for better digestion. Shop online via DELLI or find us at the Black Farmer Farmshop in London.",
+        url: "https://www.nutrinana.co.uk",
+        siteName: "Nutrinana",
+        images: [
+            {
+                url: "/opengraph-image.jpg",
+                width: 1200,
+                height: 630,
+                alt: "Nutrinana's Activated Granola",
+            },
+        ],
+        locale: "en_GB",
+        type: "website",
+    },
+    icons: {
+        icon: "/icon1.png",
+        shortcut: "/favicon.ico",
+        apple: "/apple-icon.png",
+        other: [
+            {
+                rel: "icon",
+                url: "/icon.svg",
+            },
+        ],
+    },
+    appleWebApp: {
+        title: "Nutrinana",
+    },
 };
 
 /**
@@ -59,39 +60,40 @@ export const metadata = {
  * @returns {JSX.Element} The page layout with global components and metadata.
  */
 export default function RootLayout({ children }) {
-  const yotpoStoreId = process.env.NEXT_PUBLIC_YOTPO_STORE_ID;
-  return (
-    <html lang="en">
-      <head>
-        {/* Yotpo Reviews Loader Script */}
-        {yotpoStoreId && (
-          <script
-            src={`https://cdn-widgetsrepository.yotpo.com/v1/loader/${yotpoStoreId}`}
-            async
-          ></script>
-        )}
-      </head>
-      <body className="bg-gray-50 text-gray-900 min-h-screen flex flex-col">
-        {/* Cookie Banner */}
-        <CookieBotConsent />
+    const yotpoStoreId = process.env.NEXT_PUBLIC_YOTPO_STORE_ID;
 
-        {/* Banner Announcement */}
-        <Banner />
+    return (
+        <html lang="en">
+            <head>
+                {/* Yotpo Reviews Loader Script */}
+                {yotpoStoreId && (
+                    <script
+                        src={`https://cdn-widgetsrepository.yotpo.com/v1/loader/${yotpoStoreId}`}
+                        async
+                    ></script>
+                )}
+            </head>
+            <body className="flex min-h-screen flex-col bg-gray-50 text-gray-900">
+                {/* Cookie Banner */}
+                <CookieBotConsent />
 
-        {/* Sticky Navbar */}
-        <Navbar />
+                {/* Banner Announcement */}
+                <Banner />
 
-        {/* Main Page Content */}
-        <main id="main-content" className="flex-1 mb-12">
-          {children}
-        </main>
+                {/* Sticky Navbar */}
+                <Navbar />
 
-        {/* Footer */}
-        <Footer />
+                {/* Main Page Content */}
+                <main id="main-content" className="mb-12 flex-1">
+                    {children}
+                </main>
 
-        {/* Toaster for notifications */}
-        <Toaster position="bottom-right" richColors />
-      </body>
-    </html>
-  );
+                {/* Footer */}
+                <Footer />
+
+                {/* Toaster for notifications */}
+                <Toaster position="bottom-right" richColors />
+            </body>
+        </html>
+    );
 }

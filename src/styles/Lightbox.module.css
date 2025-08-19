@@ -1,16 +1,14 @@
-/* Fade-in animation with slight scaling for general appearance */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
-/* Utility class to trigger the fadeIn animation */
 .animateFadeIn {
-  animation: fadeIn 0.3s forwards;
+    animation: fadeIn 0.3s forwards;
 }

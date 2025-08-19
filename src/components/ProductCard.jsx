@@ -1,8 +1,9 @@
 "use client";
 
+import { CircleCheck } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { CircleCheck } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import useProductRating from "@/hooks/useProductRating";
 import { openInNewTab } from "@/lib/utils";
@@ -10,9 +11,12 @@ import "@/styles/globals.css";
 
 /**
  * ProductCard component for displaying product information.
+ *
  * It includes images, title, subtitle, feature list, price, rating, and shop links.
  * Clicking on the card navigates to a specific product page.
- * 
+ *
+ * @component
+ *
  * @param {Object} props - The properties for the ProductCard component.
  * @param {string[]} props.images - Array of image URLs for the product.
  * @param {string} props.title - The title of the product.
@@ -23,7 +27,7 @@ import "@/styles/globals.css";
  * @param {string} props.shopLinks[].text - The text for the shop link.
  * @param {string} props.shopLinks[].href - The URL for the shop link.
  * @param {string} props.externalId - The external identifier from Yotpo for the product (used for fetching ratings).
- * 
+ *
  * @returns {JSX.Element} The rendered ProductCard component.
  */
 export default function ProductCard({
@@ -47,70 +51,75 @@ export default function ProductCard({
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => {
-                    if (e.key === 'Enter') router.push("/activated-granola");
+                    if (e.key === "Enter") {
+                        router.push("/activated-granola");
+                    }
                 }}
-                className="border border-gray-400 rounded-xl p-4 bg-white flex flex-col md:flex-row items-center 
-                md:items-start max-w-4xl mx-auto relative md:h-[436px] h-auto overflow-visible cursor-pointer 
-                transition-shadow duration-300 ease-in-out hover:shadow-xl"
+                className="relative mx-auto flex h-auto max-w-4xl cursor-pointer flex-col items-center overflow-visible rounded-xl border border-gray-400 bg-white p-4 transition-shadow duration-300 ease-in-out hover:shadow-xl md:h-[436px] md:flex-row md:items-start"
             >
                 {/* Images Section */}
-                <div className="flex-1 h-full">
+                <div className="h-full flex-1">
                     {/* Mobile view - single image */}
-                    <div className="md:hidden p-4">
-                        <Image 
-                            src={images[0]} 
-                            alt={title} 
-                            width={1536} 
-                            height={2048} 
-                            className="rounded-xl w-full h-full object-cover"
+                    <div className="p-4 md:hidden">
+                        <Image
+                            src={images[0]}
+                            alt={title}
+                            width={1536}
+                            height={2048}
+                            className="h-full w-full rounded-xl object-cover"
                         />
                     </div>
                     {/* Desktop view - 3 image grid */}
-                    <div className="hidden md:grid grid-cols-2 grid-rows-2 gap-2 h-[400px] items-end">
+                    <div className="hidden h-[400px] grid-cols-2 grid-rows-2 items-end gap-2 md:grid">
                         <div className="row-span-2 h-full">
-                            <Image 
-                                src={images[0]} 
-                                alt={title} 
-                                width={1536} 
-                                height={2048} 
-                                className="rounded-xl w-full h-full object-cover"
+                            <Image
+                                src={images[0]}
+                                alt={title}
+                                width={1536}
+                                height={2048}
+                                className="h-full w-full rounded-xl object-cover"
                             />
                         </div>
                         <div className="h-full">
-                            <Image 
-                                src={images[1]} 
-                                alt={title} 
-                                width={1536} 
-                                height={2048} 
-                                className="rounded-xl w-full h-full object-cover"
+                            <Image
+                                src={images[1]}
+                                alt={title}
+                                width={1536}
+                                height={2048}
+                                className="h-full w-full rounded-xl object-cover"
                             />
                         </div>
-                        <div className="h-full flex items-end">
-                            <Image 
-                                src={images[2]} 
-                                alt={title} 
-                                width={1536} 
-                                height={2048} 
-                                className="rounded-xl w-full h-full object-cover rounded-br-xl"
+                        <div className="flex h-full items-end">
+                            <Image
+                                src={images[2]}
+                                alt={title}
+                                width={1536}
+                                height={2048}
+                                className="h-full w-full rounded-xl rounded-br-xl object-cover"
                             />
                         </div>
                     </div>
                 </div>
-                
+
                 {/* Content Section */}
-                <div className="md:w-1/2 p-4 flex flex-col h-auto md:h-full">
-                    <div className="flex-grow px-0 pb-4 pt-4 md:pb-0">
+                <div className="flex h-auto flex-col p-4 md:h-full md:w-1/2">
+                    <div className="flex-grow px-0 pt-4 pb-4 md:pb-0">
                         {/* Title and Subtitle */}
-                        <h2 className="text-2xl font-bold text-center">{title}</h2>
-                        <p className="text-lg p-2 text-gray-600 text-center">{subtitle}</p>
-                        
+                        <h2 className="text-center text-2xl font-bold">{title}</h2>
+                        <p className="p-2 text-center text-lg text-gray-600">{subtitle}</p>
+
                         {/* Features list with icons */}
-                        <div className="hidden sm:block w-full justify-center">
-                            <ul className="mt-4 text-center flex flex-col items-start mx-auto space-y-2 sm:ml-28 md:ml-28 md:text-left w-full">
+                        <div className="hidden w-full justify-center sm:block">
+                            <ul className="mx-auto mt-4 flex w-full flex-col items-start space-y-2 text-center sm:ml-28 md:ml-28 md:text-left">
                                 {features.map((feature, index) => (
-                                    <li key={index} className="flex items-center gap-2 text-green-600 w-full">
-                                        <CircleCheck className="w-6 h-6 text-green-600" />
-                                        <span className="text-lg md:text-base sm:text-xs whitespace-nowrap">{feature}</span>
+                                    <li
+                                        key={index}
+                                        className="flex w-full items-center gap-2 text-green-600"
+                                    >
+                                        <CircleCheck className="h-6 w-6 text-green-600" />
+                                        <span className="text-lg whitespace-nowrap sm:text-xs md:text-base">
+                                            {feature}
+                                        </span>
                                     </li>
                                 ))}
                             </ul>
@@ -125,7 +134,7 @@ export default function ProductCard({
                         </div>
 
                         {/* Shop buttons */}
-                        <div className="w-full flex flex-col sm:flex-row gap-4 mt-auto pt-4">
+                        <div className="mt-auto flex w-full flex-col gap-4 pt-4 sm:flex-row">
                             <Button
                                 variant="yellow"
                                 size="default"

@@ -1,13 +1,19 @@
 /**
  * Formats a date string into a human-readable format.
+ *
  * This function takes a date string, converts it to a Date object,
  * and formats it to a string like "Month Day, Year at HH:MM AM/PM".
- * 
+ *
+ * @util cookies
+ *
  * @param {string} dateStr - The date string to format.
+ *
  * @returns {string|null} The formatted date string or null if the input is invalid.
  */
 export function formatConsentDate(dateStr) {
-    if (!dateStr) return null;
+    if (!dateStr) {
+        return null;
+    }
 
     try {
         const d = new Date(dateStr);
@@ -21,9 +27,9 @@ export function formatConsentDate(dateStr) {
             second: "2-digit",
             hour12: true,
         });
-        
+
         time = time.replace(/\s?(am|pm)$/i, (m) => m.toUpperCase());
-        
+
         return `${month} ${day}, ${year} at ${time}`;
     } catch {
         return null;

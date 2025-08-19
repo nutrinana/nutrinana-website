@@ -2,14 +2,17 @@ import { useState, useEffect } from "react";
 
 /**
  * Custom React hook for cycling through an array of banner messages.
- * 
+ *
+ * @hook
+ *
  * @param {string[]} messages - An array of messages to cycle through.
  * Each message can include text, a link, link text, and emojis.
  * @param {number} [intervalTime=5000] - Time interval in milliseconds for automatic message switching.
+ *
  * @returns {Object} - Object containing the current message index and functions to navigate.
- * @returns {number} currentIndex - The index of the currently displayed message.
- * @returns {function} prevMessage - Function to navigate to the previous message.
- * @returns {function} nextMessage - Function to navigate to the next message.
+ * @returns {number} CurrentIndex - The index of the currently displayed message.
+ * @returns {function} PrevMessage - Function to navigate to the previous message.
+ * @returns {function} NextMessage - Function to navigate to the next message.
  */
 export function useBanner(messages, intervalTime = 5000) {
     // State to keep track of the current message index
