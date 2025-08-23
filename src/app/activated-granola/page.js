@@ -102,9 +102,9 @@ export default function ActivatedGranolaPage() {
 
             {/* Product Information */}
             <section className="mb-12">
-                <h2 className="mb-4 text-2xl font-bold">Product Information</h2>
+                <h2 className="font-heading mb-4 text-2xl">Product Information</h2>
                 <Separator className="my-4 bg-black" />
-                <h3 className="mb-2 text-xl font-semibold text-yellow-600">What is Activated?</h3>
+                <h3 className="font-display mb-2 text-lg text-yellow-600">What is activated?</h3>
                 <p className="text-lg">
                     Our nuts and seeds go through a soaking process known as activation. This
                     process helps to break down phytic acid and enzyme inhibitors, making the
@@ -121,7 +121,7 @@ export default function ActivatedGranolaPage() {
 
             {/* Reviews Section */}
             <section className="mb-12">
-                <h2 className="mb-4 text-2xl font-bold">Reviews</h2>
+                <h2 className="font-heading mb-4 text-2xl">Reviews</h2>
                 <YotpoReviewWidget
                     productId={mainProduct.productId}
                     name={mainProduct.name}
