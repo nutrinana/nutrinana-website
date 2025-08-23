@@ -19,7 +19,7 @@ export default function NanaNoteCard() {
         <Card className="relative mx-auto max-w-4xl rounded-2xl border border-black bg-[#fdf2cf] shadow">
             <CardContent className="px-6 py-8 text-center sm:px-12">
                 {/* Card title */}
-                <h2 className="font-heading mb-6 pt-6 text-2xl sm:text-3xl">
+                <h2 className="mb-6 pt-6 text-2xl sm:text-3xl">
                     A Note From Nana <em>(aka, Nutrinana)</em>
                 </h2>
 
