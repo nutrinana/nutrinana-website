@@ -1,33 +1,8 @@
 @import "tailwindcss";
-@import url("https://fonts.googleapis.com/css2?family=Belleza&family=Combo&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
-
-@font-face {
-    font-family: "Tanuki Permanent Marker";
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url("fonts/TanukiMagic.ttf") format("truetype");
-}
-.belleza-regular {
-    font-family: "Belleza", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-.montserrat-regular > {
-    font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-}
-.combo-regular {
-    font-family: "Combo", system-ui;
-    font-weight: 400;
-    font-style: normal;
-}
 
 :root {
     /*font usage: style={{ fontFamily: 'var(--font-tanuki)' }}*/
-    --font-tanuki: "Tanuki Permanent Marker", sans-serif;
+    /* --font-tanuki: "Tanuki Permanent Marker", sans-serif; */
 
     /*color usage: bg-[var(--color-green)] etc.*/
     --color-green: #507153;
