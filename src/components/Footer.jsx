@@ -24,8 +24,8 @@ export default function Footer() {
                     {/* Quick Links */}
                     {/* Section for quick access to help and information */}
                     <div className="w-full">
-                        <h4 className="mb-3 text-4xl font-bold">Quick Links</h4>
-                        <h5 className="mb-2 text-lg font-semibold">HELP & INFORMATION</h5>
+                        <h5 className="mb-3 text-4xl font-bold">Quick Links</h5>
+                        <h6 className="mb-2 text-lg font-semibold">HELP & INFORMATION</h6>
                         <ul className="space-y-3 text-lg">
                             <li>
                                 <Link href="/help" className="hover:underline">

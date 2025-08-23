@@ -58,7 +58,9 @@ export default function HeroSlider({ slides = [] }) {
 
                     {/* Text content and CTA button overlay */}
                     <div className="absolute inset-0 z-20 flex flex-col items-start justify-center p-8 text-white md:p-20">
-                        <h2 className="mb-4 text-4xl font-bold md:text-6xl">{slide.title}</h2>
+                        <h2 className="font-script mb-4 text-4xl font-bold md:text-6xl">
+                            {slide.title}
+                        </h2>
                         <p className="mb-6 max-w-xl text-lg md:text-2xl">{slide.subtitle}</p>
                         <Button
                             variant="green"

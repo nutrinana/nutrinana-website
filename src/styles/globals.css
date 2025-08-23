@@ -1,34 +1,6 @@
 @import "tailwindcss";
-@import url("https://fonts.googleapis.com/css2?family=Belleza&family=Combo&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
-
-@font-face {
-    font-family: "Tanuki Permanent Marker";
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url("fonts/TanukiMagic.ttf") format("truetype");
-}
-.belleza-regular {
-    font-family: "Belleza", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-.montserrat-regular > {
-    font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-}
-.combo-regular {
-    font-family: "Combo", system-ui;
-    font-weight: 400;
-    font-style: normal;
-}
 
 :root {
-    /*font usage: style={{ fontFamily: 'var(--font-tanuki)' }}*/
-    --font-tanuki: "Tanuki Permanent Marker", sans-serif;
-
     /*color usage: bg-[var(--color-green)] etc.*/
     --color-green: #507153;
     --color-yellow: #e5bd68;
@@ -77,6 +49,12 @@
     --sidebar-border: oklch(0.922 0 0);
     --sidebar-ring: oklch(0.708 0 0);
     --dynamic-font-size: 1.25rem;
+
+    /*font usage: style={{ fontFamily: 'var(--font-montserrat)' }}*/
+    --font-body: var(--font-montserrat);
+    --font-heading: var(--font-playfair);
+    --font-display: var(--font-tan-nimbus);
+    --font-script: var(--font-feeling-passionate);
 }
 
 .dark {
@@ -153,12 +131,53 @@
     --color-sidebar-ring: var(--sidebar-ring);
 }
 
-body {
-    font-family: "Inter", sans-serif;
+body,
+.font-body {
+    font-family: var(--font-body), sans-serif;
     margin: 0;
     padding: 0;
     background-color: #ffffff;
     color: #000000;
+}
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-heading,
+.font-display,
+.font-script,
+.font-handwritten,
+.logo,
+.brand {
+    font-synthesis-weight: none;
+    font-synthesis-style: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-heading {
+    font-family: var(--font-heading), serif;
+}
+
+.font-display,
+.logo,
+.brand {
+    font-family: var(--font-display), serif;
+}
+
+.font-script,
+.font-handwritten {
+    font-family: var(--font-script), cursive;
 }
 
 .navbar {

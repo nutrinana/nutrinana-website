@@ -38,7 +38,7 @@ export default function CookiePolicyPage() {
             <hr className="my-6" />
 
             <section className="mb-8">
-                <h2 className="mb-4 text-2xl font-bold">What are cookies?</h2>
+                <h2 className="mb-4 text-2xl font-semibold">What are cookies?</h2>
 
                 <p className="mb-4">
                     Cookies are small text files that a website stores on your device. They help
@@ -63,7 +63,7 @@ export default function CookiePolicyPage() {
             <hr className="my-6" />
 
             <section className="mb-8">
-                <h2 className="mb-4 text-2xl font-bold">How we use Cookies</h2>
+                <h2 className="mb-4 text-2xl font-semibold">How we use Cookies</h2>
 
                 <p className="mb-4">
                     We only use <strong>essential</strong> cookies by default. With your consent, we
@@ -71,7 +71,9 @@ export default function CookiePolicyPage() {
                     <strong>marketing</strong> cookies.
                 </p>
 
-                <h3 className="mt-6 mb-2 text-lg font-bold">1. Necessary cookies (always on)</h3>
+                <h3 className="mt-6 mb-2 text-lg font-semibold">
+                    1. Necessary cookies (always on)
+                </h3>
 
                 <p className="mb-4">
                     These are required for the site to work securely and correctly (e.g., to
@@ -84,14 +86,18 @@ export default function CookiePolicyPage() {
                     performance cookies from our host.
                 </p>
 
-                <h3 className="mt-6 mb-2 text-lg font-bold">2. Preference cookies (optional)</h3>
+                <h3 className="mt-6 mb-2 text-lg font-semibold">
+                    2. Preference cookies (optional)
+                </h3>
 
                 <p className="mb-4">
                     These remember choices you make (such as language or region) to provide a more
                     personalised experience.
                 </p>
 
-                <h3 className="mt-6 mb-2 text-lg font-bold">3. Statistics cookies (optional)</h3>
+                <h3 className="mt-6 mb-2 text-lg font-semibold">
+                    3. Statistics cookies (optional)
+                </h3>
 
                 <p className="mb-4">
                     These help us understand how visitors use the site (e.g., page views, time on
@@ -100,7 +106,7 @@ export default function CookiePolicyPage() {
                     category will remain unused.
                 </p>
 
-                <h3 className="mt-6 mb-2 text-lg font-bold">4. Marketing cookies (optional)</h3>
+                <h3 className="mt-6 mb-2 text-lg font-semibold">4. Marketing cookies (optional)</h3>
 
                 <p className="mb-4">
                     These enable features and content provided by third parties and may be used to
@@ -133,7 +139,7 @@ export default function CookiePolicyPage() {
             <hr className="my-6" />
 
             <section className="mb-8">
-                <h2 className="mb-4 text-2xl font-bold">
+                <h2 className="mb-4 text-2xl font-semibold">
                     Managing your consent (Change or withdraw at anytime)
                 </h2>
 
@@ -171,7 +177,7 @@ export default function CookiePolicyPage() {
             <hr className="my-6" />
 
             <section className="mb-8">
-                <h2 className="mb-4 text-2xl font-bold">Cookie Declaration</h2>
+                <h2 className="mb-4 text-2xl font-semibold">Cookie Declaration</h2>
 
                 <p className="mb-4">
                     A detailed, automatically-updated list of cookies used on this site (by
@@ -186,7 +192,7 @@ export default function CookiePolicyPage() {
             <hr className="my-6" />
 
             <section className="mb-8">
-                <h2 className="mb-4 text-2xl font-bold">Updates to this Cookie Policy</h2>
+                <h2 className="mb-4 text-2xl font-semibold">Updates to this Cookie Policy</h2>
 
                 <p className="mb-4">
                     We may update this policy from time to time to reflect changes to our cookies or
@@ -198,7 +204,7 @@ export default function CookiePolicyPage() {
             <hr className="my-6" />
 
             <section>
-                <h2 className="mb-4 text-2xl font-bold">Contact</h2>
+                <h2 className="mb-4 text-2xl font-semibold">Contact</h2>
 
                 <p className="mb-4">Questions about this Cookie Policy or your choices? </p>
 
