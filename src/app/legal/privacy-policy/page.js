@@ -92,7 +92,7 @@ export default function PrivacyPolicyPage() {
                     information we collect.
                 </p>
 
-                <h3 className="mt-4 mb-2 text-xl font-bold">
+                <h3 className="mt-4 mb-2 text-xl font-semibold">
                     Information We Collect Directly from You
                 </h3>
 
@@ -126,7 +126,7 @@ export default function PrivacyPolicyPage() {
                     forms).
                 </p>
 
-                <h3 className="mt-4 mb-2 text-xl font-bold">
+                <h3 className="mt-4 mb-2 text-xl font-semibold">
                     Information We Collect through Cookies
                 </h3>
 
@@ -149,7 +149,7 @@ export default function PrivacyPolicyPage() {
                     and to provide or improve our Services.
                 </p>
 
-                <h3 className="mt-4 mb-2 text-xl font-bold">
+                <h3 className="mt-4 mb-2 text-xl font-semibold">
                     Information We Obtain from Third Parties
                 </h3>
 
@@ -399,11 +399,11 @@ export default function PrivacyPolicyPage() {
                     disclose sensitive personal information.
                 </p>
 
-                <h3 className="mt-4 mb-2 text-xl font-bold">
+                <h3 className="mt-4 mb-2 text-xl font-semibold">
                     Categories of Personal Information Disclosed
                 </h3>
 
-                <h4 className="mt-4 mb-2 text-lg font-bold">Category:</h4>
+                <h4 className="mt-4 mb-2 text-lg font-medium">Category:</h4>
                 <ul className="mb-4 list-disc pl-6">
                     <li>
                         <strong>Identifiers</strong> such as basic contact details (e.g., name,
@@ -419,7 +419,7 @@ export default function PrivacyPolicyPage() {
                     </li>
                 </ul>
 
-                <h4 className="mt-4 mb-2 text-lg font-bold">Categories of Recipients:</h4>
+                <h4 className="mt-4 mb-2 text-lg font-medium">Categories of Recipients:</h4>
                 <ul className="mb-4 list-disc pl-6">
                     <li>
                         <strong>Vendors and service providers</strong> who perform services on our

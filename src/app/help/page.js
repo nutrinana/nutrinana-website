@@ -56,10 +56,10 @@ export default function HelpPage() {
         <main className="mx-auto mt-4 max-w-6xl p-10">
             {/* TODO: Check if we need a title, try "Help Centre or "Help & Information" (like the footer) */}
             {/* <h1 className="text-4xl font-extrabold mb-8 text-center">Help Centre</h1> */}
-            <h2 className="mb-8 text-3xl font-bold">Frequently Asked Questions</h2>
+            <h2 className="mb-8 text-3xl">Frequently Asked Questions</h2>
             <GlobalAccordion items={accordionData} />
             <section className="mt-15">
-                <h2 className="mb-8 text-3xl font-bold">Contact Us</h2>
+                <h2 className="mb-8 text-3xl">Contact Us</h2>
                 <ContactForm />
             </section>
         </main>
