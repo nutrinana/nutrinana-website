@@ -19,7 +19,7 @@ export default function NanaNoteCard() {
         <Card className="relative mx-auto max-w-4xl rounded-2xl border border-black bg-[#fdf2cf] shadow">
             <CardContent className="px-6 py-8 text-center sm:px-12">
                 {/* Card title */}
-                <h2 className="font-handwriting mb-6 pt-6 text-2xl font-bold sm:text-3xl">
+                <h2 className="mb-6 pt-6 text-2xl font-bold sm:text-3xl">
                     A Note From Nana (aka, Nutrinana)
                 </h2>
 
@@ -37,13 +37,18 @@ export default function NanaNoteCard() {
 
                 {/* Signature image */}
                 <div className="mt-8">
-                    <Image
+                    {/* <Image
                         src="/about/nana-signature-placeholder.png"
                         alt="With love and a sprinkle of granola, Nana x"
                         width={300}
                         height={100}
                         className="mx-auto object-contain"
-                    />
+                    /> */}
+                    <p className="font-script mx-auto text-2xl text-black">
+                        With love and a sprinkle of granola,
+                        <br />
+                        Nana x
+                    </p>
                 </div>
             </CardContent>
 
