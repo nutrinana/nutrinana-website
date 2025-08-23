@@ -71,17 +71,19 @@ export default function HomePage() {
                 </section>
 
                 <section>
-                    <h2 className="mb-4 text-xl font-semibold">Activated Granola</h2>
+                    <h2 className="font-display mb-4 text-xl">activated granola</h2>
                     <ProductCarousel products={products} />
                 </section>
 
                 <section>
-                    <h2 className="mb-4 text-xl font-semibold">Leave a Review</h2>
+                    <h2 className="font-heading mb-4 text-xl font-semibold">Leave a Review</h2>
                     <LeaveReviewForm productId="activated-granola-mfc" />
                 </section>
 
                 <section>
-                    <h2 className="mb-4 text-xl font-semibold">Follow us on Instagram!</h2>
+                    <h2 className="font-heading mb-4 text-xl font-semibold">
+                        Follow us on Instagram!
+                    </h2>
                     <InstagramFeed />
                 </section>
             </main>
