@@ -22,8 +22,9 @@ const TimelineItem = ({ item, index }) => (
         className={`absolute inline-flex w-[40%] flex-col items-center gap-2.5 ${index % 2 === 0 ? "right-1/2" : "left-1/2"}`}
         style={{ top: `${30 + index * 300}px` }}
     >
+        {/* Timeline Year */}
         <div
-            className={`absolute top-[-40px] h-auto w-full ${index % 2 === 0 ? "text-right" : "text-left"} px-5 text-3xl font-semibold text-zinc-900`}
+            className={`absolute top-[-40px] h-auto w-full ${index % 2 === 0 ? "text-right" : "text-left"} font-display px-5 text-3xl text-zinc-900`}
         >
             {item.year}
         </div>
@@ -33,6 +34,7 @@ const TimelineItem = ({ item, index }) => (
         <div
             className={`absolute top-[-7px] h-5 w-5 rounded-full bg-[#507153] ${index % 2 === 0 ? "right-[142px]" : "left-[142px]"}`}
         ></div>
+        {/* Timeline Text and Image */}
         <div
             className={`absolute h-auto w-full font-normal text-black ${index % 2 === 0 ? "left-[-20px] text-right" : "left-[20px] text-left"} top-[20px]`}
             style={{ display: "block", fontSize: "var(--dynamic-font-size)" }}
