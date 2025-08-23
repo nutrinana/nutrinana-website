@@ -30,11 +30,11 @@ export default function ReviewsPage() {
             </section>
 
             <section className="w-full bg-white px-4 py-10">
-                <h2 className="font-heading mb-6 text-2xl">Leave a Review</h2>
+                <h2 className="mb-6 text-2xl">Leave a Review</h2>
                 <LeaveReviewForm productId={mainProduct.productId} />
             </section>
 
-            <h2 id="more-reviews" className="font-heading mb-6 text-2xl">
+            <h2 id="more-reviews" className="mb-6 text-2xl">
                 More Reviews
             </h2>
             <div className="mx-auto max-w-400 px-4">
