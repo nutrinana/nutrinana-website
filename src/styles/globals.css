@@ -1,9 +1,6 @@
 @import "tailwindcss";
 
 :root {
-    /*font usage: style={{ fontFamily: 'var(--font-tanuki)' }}*/
-    /* --font-tanuki: "Tanuki Permanent Marker", sans-serif; */
-
     /*color usage: bg-[var(--color-green)] etc.*/
     --color-green: #507153;
     --color-yellow: #e5bd68;
@@ -53,11 +50,7 @@
     --sidebar-ring: oklch(0.708 0 0);
     --dynamic-font-size: 1.25rem;
 
-    --font-montserrat: "Montserrat", sans-serif;
-    --font-playfair: "Playfair Display", serif;
-    --font-tan-nimbus: "Tan Nimbus", serif;
-    --font-feeling-passionate: "Feeling Passionate", cursive;
-
+    /*font usage: style={{ fontFamily: 'var(--font-montserrat)' }}*/
     --font-body: var(--font-montserrat);
     --font-heading: var(--font-playfair);
     --font-display: var(--font-tan-nimbus);
@@ -146,6 +139,27 @@ body {
     color: #000000;
 }
 
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-heading,
+.font-display,
+.font-script,
+.font-handwritten,
+.logo,
+.brand {
+    font-synthesis-weight: none;
+    font-synthesis-style: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
 h1,
 h2,
 h3,
@@ -153,14 +167,14 @@ h3,
     font-family: var(--font-heading), serif;
 }
 
-.display,
+.font-display,
 .logo,
 .brand {
     font-family: var(--font-display), serif;
 }
 
-.script,
-.handwritten {
+.font-script,
+.font-handwritten {
     font-family: var(--font-script), cursive;
 }
 
