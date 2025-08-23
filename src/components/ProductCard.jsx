@@ -105,7 +105,7 @@ export default function ProductCard({
                 <div className="flex h-auto flex-col p-4 md:h-full md:w-1/2">
                     <div className="flex-grow px-0 pt-4 pb-4 md:pb-0">
                         {/* Title and Subtitle */}
-                        <h2 className="text-center text-2xl font-bold">{title}</h2>
+                        <h2 className="font-display text-center text-2xl">{title}</h2>
                         <p className="p-2 text-center text-lg text-gray-600">{subtitle}</p>
 
                         {/* Features list with icons */}
