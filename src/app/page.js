@@ -76,14 +76,12 @@ export default function HomePage() {
                 </section>
 
                 <section>
-                    <h2 className="font-heading mb-4 text-xl font-semibold">Leave a Review</h2>
+                    <h2 className="mb-4 text-2xl">Leave a Review</h2>
                     <LeaveReviewForm productId="activated-granola-mfc" />
                 </section>
 
                 <section>
-                    <h2 className="font-heading mb-4 text-xl font-semibold">
-                        Follow us on Instagram!
-                    </h2>
+                    <h2 className="mb-4 text-2xl">Follow us on Instagram!</h2>
                     <InstagramFeed />
                 </section>
             </main>
