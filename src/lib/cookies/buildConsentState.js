@@ -1,5 +1,5 @@
-import { parseCookieConsent } from "@lib/cookies/parseCookieConsent";
-import { readCookie } from "@lib/cookies/readCookie";
+import { parseCookieConsent } from "@/lib/cookies/parseCookieConsent";
+import { readCookie } from "@/lib/cookies/readCookie";
 
 /**
  * Builds the consent state from the CookieConsent cookie and the Cookiebot consent object.

@@ -1,10 +1,38 @@
 import "@/styles/globals.css";
+import { Montserrat, Playfair_Display } from "next/font/google";
+import localFont from "next/font/local";
 import { Toaster } from "sonner";
 
 import Banner from "@/components/Banner";
 import CookieBotConsent from "@/components/CookieBotConsent";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+
+const montserrat = Montserrat({
+    subsets: ["latin"],
+    variable: "--font-montserrat",
+    display: "swap",
+});
+
+const playfairDisplay = Playfair_Display({
+    subsets: ["latin"],
+    weight: ["400", "500", "600", "700"],
+    variable: "--font-playfair",
+    style: ["normal", "italic"],
+    display: "swap",
+});
+
+const tanNimbus = localFont({
+    src: "../fonts/tan-nimbus.woff2",
+    variable: "--font-tan-nimbus",
+    display: "swap",
+});
+
+const feelingPassionate = localFont({
+    src: "../fonts/feeling-passionate.woff2",
+    variable: "--font-feeling-passionate",
+    display: "swap",
+});
 
 /**
  * Metadata for the page layout.
@@ -63,7 +91,10 @@ export default function RootLayout({ children }) {
     const yotpoStoreId = process.env.NEXT_PUBLIC_YOTPO_STORE_ID;
 
     return (
-        <html lang="en">
+        <html
+            lang="en"
+            className={`${montserrat.variable} ${playfairDisplay.variable} ${tanNimbus.variable} ${feelingPassionate.variable}`}
+        >
             <head>
                 {/* Yotpo Reviews Loader Script */}
                 {yotpoStoreId && (
