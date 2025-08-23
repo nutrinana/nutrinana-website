@@ -28,19 +28,19 @@ export default function GlobalAccordion({ items }) {
             {items.map((item, index) => (
                 <AccordionItem value={`item-${index}`} key={index}>
                     {/* Accordion header trigger (click to expand/collapse) */}
-                    <AccordionTrigger className="font-heading text-left text-xl font-bold">
+                    <AccordionTrigger className="font-heading text-left text-xl font-semibold">
                         {/* Accordion header */}
                         {item.title}
                     </AccordionTrigger>
                     <AccordionContent className="font-body space-y-4 text-base text-black">
                         {/* Optional subtitle, displayed only when item is expanded */}
                         {item.subtitle && (
-                            <div className="font-heading text-lg font-bold text-black">
+                            <div className="font-heading text-lg font-semibold text-black">
                                 {item.subtitle}
                             </div>
                         )}
                         {/* Accordion content */}
-                        <div>{item.content}</div>
+                        <div className="mb-4">{item.content}</div>
                     </AccordionContent>
                 </AccordionItem>
             ))}
