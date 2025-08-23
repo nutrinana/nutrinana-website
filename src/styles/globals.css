@@ -131,7 +131,8 @@
     --color-sidebar-ring: var(--sidebar-ring);
 }
 
-body {
+body,
+.font-body {
     font-family: var(--font-body), sans-serif;
     margin: 0;
     padding: 0;
