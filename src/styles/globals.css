@@ -164,6 +164,7 @@ h6,
 h1,
 h2,
 h3,
+h4,
 .font-heading {
     font-family: var(--font-heading), serif;
 }

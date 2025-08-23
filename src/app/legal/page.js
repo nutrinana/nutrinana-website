@@ -11,7 +11,7 @@ export default function LegalPage() {
                     <strong>Last updated August 17th 2025</strong>
                 </p>
 
-                <h2 className="mb-4 text-2xl font-bold">Overview</h2>
+                <h2 className="mb-4 text-2xl font-semibold">Overview</h2>
 
                 <p className="mb-4">
                     This website is operated by <strong>Nutrinana</strong>. Throughout the site, the

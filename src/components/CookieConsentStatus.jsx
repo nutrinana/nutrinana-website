@@ -19,7 +19,7 @@ export default function CookieConsentStatus() {
 
     return (
         <div className="space-y-3 rounded-xl border p-4 md:p-6">
-            <h3 className="text-xl font-bold">Your cookie consent</h3>
+            <h3 className="font-body text-xl font-bold">Your cookie consent</h3>
 
             {/* Display consent information */}
             <div className="space-y-1">
