@@ -42,7 +42,7 @@ export default function RecentReviewCards() {
         return (
             <div className="w-full bg-white px-4 py-10">
                 <div className="mx-auto max-w-6xl text-center">
-                    <h2 className="mb-4 text-2xl font-bold">What people are saying</h2>
+                    <h2 className="font-heading mb-4 text-2xl">What people are saying</h2>
                     <p className="text-gray-600">
                         No reviews available just yet. Be the first to leave one!
                     </p>
@@ -55,7 +55,7 @@ export default function RecentReviewCards() {
         <div className="mx-auto max-w-6xl">
             {/* Section title */}
             {/* TODO: change to quirky header */}
-            <h2 className="mb-6 text-2xl font-bold">What people are saying</h2>
+            <h2 className="font-heading mb-6 text-2xl">What people are saying</h2>
             <Masonry
                 breakpointCols={breakpointColumnsObj}
                 className={styles.myMasonryGrid}
@@ -86,7 +86,7 @@ export default function RecentReviewCards() {
                                 </span>
                             </div>
                             {/* Review title and content */}
-                            <h3 className="mb-1 text-xl font-bold text-[var(--color-raisin)]">
+                            <h3 className="font-display mb-1 text-lg text-[var(--color-raisin)]">
                                 {review.title}
                             </h3>
                             <p className="mb-2 text-sm text-gray-700">
