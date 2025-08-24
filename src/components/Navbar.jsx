@@ -79,19 +79,33 @@ export default function Navbar() {
                     </Link>
 
                     <div className="mt-5 flex space-x-12">
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.name}
-                                href={link.href}
-                                className={`rounded-full px-4 py-0 transition-all ${
-                                    pathname === link.href
-                                        ? "bg-green font-bold text-white"
-                                        : "hover:text-green text-gray-900"
-                                }`}
-                            >
-                                {link.name}
-                            </Link>
-                        ))}
+                        {navLinks.map((link) => {
+                            const isActive = pathname === link.href;
+                            const isActivatedGranola = link.name === "Activated Granola";
+
+                            return (
+                                <Link
+                                    key={link.name}
+                                    href={link.href}
+                                    className={`rounded-full px-4 py-0 transition-all ${
+                                        isActive
+                                            ? isActivatedGranola
+                                                ? "activated-granola-active text-green font-bold"
+                                                : "bg-green font-bold text-white"
+                                            : "hover:text-green text-gray-900"
+                                    }`}
+                                    style={
+                                        isActive && isActivatedGranola
+                                            ? { fontFamily: "var(--font-tan-nimbus), serif" }
+                                            : undefined
+                                    }
+                                >
+                                    {isActive && isActivatedGranola
+                                        ? "activated granola"
+                                        : link.name}
+                                </Link>
+                            );
+                        })}
                     </div>
                 </div>
             </div>
@@ -122,20 +136,32 @@ export default function Navbar() {
 
                 {/* Mobile navigation links */}
                 <div className="mt-12 flex w-full flex-col space-y-6">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.name}
-                            href={link.href}
-                            className={`block w-full px-8 py-4 text-left text-2xl transition-all ${
-                                pathname === link.href
-                                    ? "text-green font-bold"
-                                    : "hover:bg-muted hover:text-raisin text-gray-900"
-                            }`}
-                            onClick={() => setIsOpen(false)}
-                        >
-                            {link.name}
-                        </Link>
-                    ))}
+                    {navLinks.map((link) => {
+                        const isActive = pathname === link.href;
+                        const isActivatedGranola = link.name === "Activated Granola";
+
+                        return (
+                            <Link
+                                key={link.name}
+                                href={link.href}
+                                className={`block w-full px-8 py-4 text-left text-2xl transition-all ${
+                                    isActive
+                                        ? isActivatedGranola
+                                            ? "activated-granola-active text-green font-bold"
+                                            : "text-green font-bold"
+                                        : "hover:bg-muted hover:text-raisin text-gray-900"
+                                }`}
+                                style={
+                                    isActive && isActivatedGranola
+                                        ? { fontFamily: "var(--font-tan-nimbus), serif" }
+                                        : undefined
+                                }
+                                onClick={() => setIsOpen(false)}
+                            >
+                                {isActive && isActivatedGranola ? "activated granola" : link.name}
+                            </Link>
+                        );
+                    })}
                 </div>
 
                 {/* Divider line */}

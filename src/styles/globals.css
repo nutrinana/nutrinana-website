@@ -289,3 +289,7 @@ a {
     pointer-events: none;
     opacity: 0.5;
 }
+
+.activated-granola-active {
+    font-family: var(--font-tan-nimbus), serif !important;
+}
