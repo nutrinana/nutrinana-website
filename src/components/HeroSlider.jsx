@@ -54,7 +54,7 @@ export default function HeroSlider({ slides = [] }) {
                         priority={index === 0}
                     />
                     {/* Overlay for darkening the image*/}
-                    <div className="absolute inset-0 z-10 bg-black/40" />
+                    <div className="bg-raisin/40 absolute inset-0 z-10" />
 
                     {/* Text content and CTA button overlay */}
                     <div className="absolute inset-0 z-20 flex flex-col items-start justify-center p-8 text-white md:p-20">
