@@ -36,7 +36,7 @@ const TimelineItem = ({ item, index }) => (
         ></div>
         {/* Timeline Text and Image */}
         <div
-            className={`absolute h-auto w-full font-normal text-black ${index % 2 === 0 ? "left-[-20px] text-right" : "left-[20px] text-left"} top-[20px]`}
+            className={`text-raisin absolute h-auto w-full font-normal ${index % 2 === 0 ? "left-[-20px] text-right" : "left-[20px] text-left"} top-[20px]`}
             style={{ display: "block", fontSize: "var(--dynamic-font-size)" }}
         >
             {item.text}

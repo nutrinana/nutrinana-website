@@ -28,7 +28,7 @@ export default function Lightbox({ images, selectedImageIndex, setSelectedImageI
     }
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80">
+        <div className="bg-raisin/80 fixed inset-0 z-50 flex items-center justify-center">
             {/* Background overlay */}
             <div className="absolute inset-0" onClick={onClose}></div>
 
@@ -42,7 +42,7 @@ export default function Lightbox({ images, selectedImageIndex, setSelectedImageI
                     variant="ghost"
                     size="icon"
                     onClick={onClose}
-                    className="absolute top-4 right-4 z-20 h-8 w-8 rounded-full bg-black/50 text-white hover:bg-black/70 hover:text-gray-300"
+                    className="bg-raisin/50 hover:bg-raisin/70 absolute top-4 right-4 z-20 h-8 w-8 rounded-full text-white hover:text-gray-300"
                 >
                     <X className="size-4" />
                 </Button>
@@ -69,7 +69,7 @@ export default function Lightbox({ images, selectedImageIndex, setSelectedImageI
                     {images.map((img, idx) => (
                         <div
                             key={idx}
-                            className={`cursor-pointer border-2 ${selectedImageIndex === idx ? "border-black" : "border-transparent"} overflow-hidden`}
+                            className={`cursor-pointer border-2 ${selectedImageIndex === idx ? "border-raisin" : "border-transparent"} overflow-hidden`}
                             onClick={() => setSelectedImageIndex(idx)}
                         >
                             <Image

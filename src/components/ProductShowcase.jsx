@@ -68,7 +68,7 @@ export default function ProductShowcase({
                                 className="h-full w-full rounded-xl object-cover"
                             />
                             <div className="absolute top-2 right-2 opacity-0 transition-opacity group-hover:opacity-100">
-                                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-black/60">
+                                <div className="bg-raisin/60 flex h-8 w-8 items-center justify-center rounded-full">
                                     <Maximize2 className="h-5 w-5 text-white" strokeWidth={1} />
                                 </div>
                             </div>
@@ -92,7 +92,7 @@ export default function ProductShowcase({
                                     className="h-full w-full rounded-xl object-cover"
                                 />
                                 <div className="absolute top-2 right-2 opacity-0 transition-opacity group-hover:opacity-100">
-                                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-black/60">
+                                    <div className="bg-raisin/60 flex h-8 w-8 items-center justify-center rounded-full">
                                         <Maximize2 className="h-5 w-5 text-white" strokeWidth={1} />
                                     </div>
                                 </div>
@@ -114,7 +114,7 @@ export default function ProductShowcase({
                                     className="h-full w-full rounded-xl object-cover"
                                 />
                                 <div className="absolute top-2 right-2 opacity-0 transition-opacity group-hover:opacity-100">
-                                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-black/60">
+                                    <div className="bg-raisin/60 flex h-8 w-8 items-center justify-center rounded-full">
                                         <Maximize2 className="h-5 w-5 text-white" strokeWidth={1} />
                                     </div>
                                 </div>
@@ -136,7 +136,7 @@ export default function ProductShowcase({
                                     className="h-full w-full rounded-xl rounded-br-xl object-cover"
                                 />
                                 <div className="absolute top-2 right-2 opacity-0 transition-opacity group-hover:opacity-100">
-                                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-black/60">
+                                    <div className="bg-raisin/60 flex h-8 w-8 items-center justify-center rounded-full">
                                         <Maximize2 className="h-5 w-5 text-white" strokeWidth={1} />
                                     </div>
                                 </div>

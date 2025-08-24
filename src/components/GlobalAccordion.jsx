@@ -32,10 +32,10 @@ export default function GlobalAccordion({ items }) {
                         {/* Accordion header */}
                         {item.title}
                     </AccordionTrigger>
-                    <AccordionContent className="font-body space-y-4 text-base text-black">
+                    <AccordionContent className="font-body text-raisin space-y-4 text-base">
                         {/* Optional subtitle, displayed only when item is expanded */}
                         {item.subtitle && (
-                            <div className="font-heading text-lg font-semibold text-black">
+                            <div className="font-heading text-raisin text-lg font-semibold">
                                 {item.subtitle}
                             </div>
                         )}

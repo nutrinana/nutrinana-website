@@ -106,7 +106,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
     if (hasError) {
         return (
             <div
-                className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+                className="bg-raisin/50 fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm"
                 onClick={(e) => {
                     if (modalRef.current && !modalRef.current.contains(e.target)) {
                         onClose();
@@ -136,7 +136,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
                         variant="ghost"
                         size="icon"
                         onClick={onClose}
-                        className="absolute top-4 right-4 rounded-full bg-black/50 text-white hover:bg-black/70 hover:text-gray-300 md:h-16 md:w-16 md:rounded-full md:bg-black/50 md:backdrop-blur-sm md:hover:bg-black/70"
+                        className="bg-raisin/50 hover:bg-raisin/70 md:bg-raisin/50 md:hover:bg-raisin/70 absolute top-4 right-4 rounded-full text-white hover:text-gray-300 md:h-16 md:w-16 md:rounded-full md:backdrop-blur-sm"
                     >
                         <X className="size-6 md:!size-9" />
                     </Button>
@@ -147,7 +147,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
 
     return (
         <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+            className="bg-raisin/50 fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm"
             onClick={(e) => {
                 if (modalRef.current && !modalRef.current.contains(e.target)) {
                     onClose();
@@ -156,7 +156,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
         >
             {/* Skeleton UI for modal loading */}
             {!isMediaLoaded && (
-                <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+                <div className="bg-raisin/50 absolute inset-0 z-50 flex items-center justify-center backdrop-blur-sm">
                     <div className="flex h-full max-h-[90vh] w-full max-w-6xl flex-col overflow-hidden rounded-lg bg-white shadow-lg md:flex-row">
                         <Skeleton className="h-[300px] w-full flex-shrink-0 md:h-auto md:w-1/2" />
                         <div className="flex w-full flex-col justify-between space-y-4 p-6 md:w-1/2">
@@ -185,7 +185,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
                         variant="ghost"
                         size="icon"
                         onClick={onPrev}
-                        className="rounded-full bg-black/50 text-white hover:bg-black/70 hover:text-gray-300"
+                        className="bg-raisin/50 hover:bg-raisin/70 rounded-full text-white hover:text-gray-300"
                         aria-label="Previous post"
                     >
                         <ArrowLeft size={36} />
@@ -195,7 +195,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
                         variant="ghost"
                         size="icon"
                         onClick={onNext}
-                        className="rounded-full bg-black/50 text-white hover:bg-black/70 hover:text-gray-300"
+                        className="bg-raisin/50 hover:bg-raisin/70 rounded-full text-white hover:text-gray-300"
                         aria-label="Next post"
                     >
                         <ArrowRight size={36} />
@@ -207,7 +207,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
                     variant="ghost"
                     size="icon"
                     onClick={onPrev}
-                    className="absolute top-1/2 left-16 z-50 hidden size-10 -translate-y-1/2 text-white hover:bg-transparent hover:text-gray-300 md:flex md:h-14 md:w-14 md:rounded-full md:bg-black/50 md:backdrop-blur-sm md:hover:bg-black/70"
+                    className="md:bg-raisin/50 md:hover:bg-raisin/70 absolute top-1/2 left-16 z-50 hidden size-10 -translate-y-1/2 text-white hover:bg-transparent hover:text-gray-300 md:flex md:h-14 md:w-14 md:rounded-full md:backdrop-blur-sm"
                     aria-label="Previous post"
                 >
                     <ArrowLeft size={36} className="md:!size-9" />
@@ -217,7 +217,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
                     variant="ghost"
                     size="icon"
                     onClick={onNext}
-                    className="absolute top-1/2 right-16 z-50 hidden size-10 -translate-y-1/2 text-white hover:bg-transparent hover:text-gray-300 md:flex md:h-14 md:w-14 md:rounded-full md:bg-black/50 md:backdrop-blur-sm md:hover:bg-black/70"
+                    className="md:bg-raisin/50 md:hover:bg-raisin/70 absolute top-1/2 right-16 z-50 hidden size-10 -translate-y-1/2 text-white hover:bg-transparent hover:text-gray-300 md:flex md:h-14 md:w-14 md:rounded-full md:backdrop-blur-sm"
                     aria-label="Next post"
                 >
                     <ArrowRight size={36} className="md:!size-9" />
@@ -225,11 +225,11 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
                 </Button>
 
                 {/* Media rendering: Image or Video */}
-                <div className="w-full flex-shrink-0 bg-black md:w-1/2">
+                <div className="bg-raisin w-full flex-shrink-0 md:w-1/2">
                     {post.media_type === "VIDEO" ? (
                         <div className="relative h-full w-full">
                             {!isVideoLoaded && (
-                                <div className="absolute inset-0 z-10 h-full w-full bg-black blur-md" />
+                                <div className="bg-raisin absolute inset-0 z-10 h-full w-full blur-md" />
                             )}
                             <video
                                 ref={videoRef}
@@ -251,7 +251,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
                             />
                             {!isPlaying && isVideoLoaded && (
                                 <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                                    <div className="rounded-full bg-black/50 p-5">
+                                    <div className="bg-raisin/50 rounded-full p-5">
                                         {/* TODO: try className=w-10 w-10 */}
                                         <Play className="h-8 w-8 text-white" />
                                     </div>
@@ -298,14 +298,14 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
                                 href="https://www.instagram.com/nutrinanaa"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-lg font-semibold text-black hover:underline"
+                                className="text-raisin text-lg font-semibold hover:underline"
                             >
                                 nutrinanaa
                             </Link>
                         </div>
                         <hr className="mb-8 -ml-6 w-[calc(100%+3rem)] border-t border-gray-200" />
                         {post.caption ? (
-                            <p className="mb-4 text-base whitespace-pre-line text-black">
+                            <p className="text-raisin mb-4 text-base whitespace-pre-line">
                                 {formatCaption(post.caption)}
                             </p>
                         ) : (
@@ -335,7 +335,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
                 variant="ghost"
                 size="icon"
                 onClick={onClose}
-                className="absolute top-4 right-4 rounded-full bg-black/50 text-white hover:bg-black/70 hover:text-gray-300 md:h-12 md:w-12 md:rounded-full md:bg-black/50 md:backdrop-blur-sm md:hover:bg-black/70"
+                className="bg-raisin/50 hover:bg-raisin/70 md:bg-raisin/50 md:hover:bg-raisin/70 absolute top-4 right-4 rounded-full text-white hover:text-gray-300 md:h-12 md:w-12 md:rounded-full md:backdrop-blur-sm"
             >
                 <X className="size-4 md:!size-9" />
             </Button>

@@ -16,7 +16,7 @@ import { Card, CardContent } from "@/components/ui/card";
  */
 export default function NanaNoteCard() {
     return (
-        <Card className="relative mx-auto max-w-4xl rounded-2xl border border-black bg-[#fdf2cf] shadow">
+        <Card className="border-raisin relative mx-auto max-w-4xl rounded-2xl border bg-[#fdf2cf] shadow">
             <CardContent className="px-6 py-8 text-center sm:px-12">
                 {/* Card title */}
                 <h2 className="mb-6 pt-6 text-2xl sm:text-3xl">
@@ -44,7 +44,7 @@ export default function NanaNoteCard() {
                         height={100}
                         className="mx-auto object-contain"
                     /> */}
-                    <p className="font-script mx-auto text-2xl text-black">
+                    <p className="font-script text-raisin mx-auto text-2xl">
                         With love and a sprinkle of granola,
                         <br />
                         Nana x
@@ -54,8 +54,8 @@ export default function NanaNoteCard() {
 
             {/* Decorative elements */}
             {/* TODO: Sprout or Pin? */}
-            <Sprout className="absolute top-6 left-1/2 z-10 h-9 w-9 -translate-x-1/2 fill-current text-black" />
-            {/* <Pin className="absolute -top-3 -left-3 rotate-[-45deg] text-black w-9 h-9 z-10 fill-current" /> */}
+            <Sprout className="text-raisin absolute top-6 left-1/2 z-10 h-9 w-9 -translate-x-1/2 fill-current" />
+            {/* <Pin className="absolute -top-3 -left-3 rotate-[-45deg] text-raisin w-9 h-9 z-10 fill-current" /> */}
         </Card>
     );
 }

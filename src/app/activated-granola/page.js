@@ -103,7 +103,7 @@ export default function ActivatedGranolaPage() {
             {/* Product Information */}
             <section className="mb-12">
                 <h2 className="mb-4 text-2xl">Product Information</h2>
-                <Separator className="my-4 bg-black" />
+                <Separator className="bg-raisin my-4" />
                 <h3 className="font-display mb-2 text-lg text-yellow-600">What is activated?</h3>
                 <p className="text-lg">
                     Our nuts and seeds go through a soaking process known as activation. This

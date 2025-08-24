@@ -129,7 +129,7 @@ export default function Navbar() {
                             className={`block w-full px-8 py-4 text-left text-2xl transition-all ${
                                 pathname === link.href
                                     ? "font-bold text-[var(--color-green)]"
-                                    : "hover:bg-muted text-gray-900 hover:text-black"
+                                    : "hover:bg-muted hover:text-raisin text-gray-900"
                             }`}
                             onClick={() => setIsOpen(false)}
                         >
