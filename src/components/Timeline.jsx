@@ -34,7 +34,7 @@ export default function Timeline({ timelineData }) {
         >
             {/* Vertical line in the center of the timeline */}
             <div
-                className="absolute left-1/2 w-[6px] -translate-x-1/2 transform rounded-full bg-[#507153] transition-all duration-500"
+                className="bg-green absolute left-1/2 w-[6px] -translate-x-1/2 transform rounded-full transition-all duration-500"
                 style={{ height: isOpen ? `${expandedHeight}px` : `${collapsedHeight}px`, top: 0 }}
             />
             {/* Collapsible section for additional timeline items */}
@@ -44,7 +44,7 @@ export default function Timeline({ timelineData }) {
                         {/* Invisible layer to trigger the open/close interaction */}
                         <div className="absolute inset-0 z-10 cursor-pointer opacity-0"></div>
                         {/* Display text when collapsed */}
-                        <div className="absolute top-[420px] z-10 cursor-pointer text-3xl hover:text-[#507153]">
+                        <div className="hover:text-green absolute top-[420px] z-10 cursor-pointer text-3xl">
                             <div className="absolute right-[50%] px-1">{isOpen ? "" : "See "}</div>
                             <div className="absolute left-[50%] px-1">
                                 {isOpen ? "" : " More..."}
@@ -69,7 +69,7 @@ export default function Timeline({ timelineData }) {
             {/* Initial timeline items always shown */}
             <TimelineItem item={timelineData[0]} index={0} />
             <div
-                className="absolute top-[-5px] h-6 w-6 rounded-full bg-[#507153]"
+                className="bg-green absolute top-[-5px] h-6 w-6 rounded-full"
                 style={{ left: "calc(50% - 12px)" }}
             ></div>
             <TimelineItem item={timelineData[1]} index={1} />

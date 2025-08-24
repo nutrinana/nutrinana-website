@@ -131,6 +131,13 @@
     --color-sidebar-ring: var(--sidebar-ring);
     --color-black: var(--color-raisin);
     --color-raisin: var(--color-raisin);
+    --color-green: var(--color-green);
+    --color-yellow: var(--color-yellow);
+    --color-pink: var(--color-pink);
+    --color-light-yellow: var(--color-light-yellow);
+    --color-light-green: var(--color-light-green);
+    --color-grey: var(--color-grey);
+    --color-brown: var(--color-brown);
 }
 
 body,
