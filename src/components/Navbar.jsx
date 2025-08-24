@@ -150,12 +150,12 @@ export default function Navbar() {
                         target="_blank"
                         className="social-icon"
                     >
-                        <SiInstagram size={24} />
+                        <SiInstagram size={24} className="text-raisin" />
                     </Link>
                     {/* TikTok */}
                     {/* Link to the TikTok profile */}
                     <Link href="https://tiktok.com/" target="_blank" className="social-icon">
-                        <SiTiktok size={24} />
+                        <SiTiktok size={24} className="text-raisin" />
                     </Link>
                     {/* DELLI */}
                     {/* Link to the Delli marketplace */}
