@@ -10,23 +10,23 @@ const buttonVariants = cva(
         variants: {
             variant: {
                 default: "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
-                green: "border border-white bg-[var(--color-green)] text-primary-foreground shadow-xs transition-transform duration-250 ease-in-out hover:scale-110 hover:border-2",
+                green: "border border-white bg-green text-primary-foreground shadow-xs transition-transform duration-250 ease-in-out hover:scale-110 hover:border-2",
                 greenOutlined:
-                    "border border-[var(--color-raisin)] bg-[var(--color-green)] text-primary-foreground shadow-xs transition-transform duration-250 ease-in-out hover:scale-110 hover:border-2",
-                yellow: "border border-primary bg-[var(--color-light-yellow)] text-[var(--color-raisin)] shadow-xs transition-transform duration-250 ease-in-out hover:scale-110 hover:border-2",
-                pink: "border border-white bg-[var(--color-pink)] text-primary-foreground shadow-xs transition-transform duration-250 ease-in-out hover:scale-110 hover:border-2",
+                    "border border-raisin bg-green text-primary-foreground shadow-xs transition-transform duration-250 ease-in-out hover:scale-110 hover:border-2",
+                yellow: "border border-primary bg-light-yellow text-raisin shadow-xs transition-transform duration-250 ease-in-out hover:scale-110 hover:border-2",
+                pink: "border border-white bg-pink text-primary-foreground shadow-xs transition-transform duration-250 ease-in-out hover:scale-110 hover:border-2",
                 pinkOutlined:
-                    "border border-[var(--color-raisin)] bg-[var(--color-pink)] text-primary-foreground shadow-xs transition-transform duration-250 ease-in-out hover:scale-110 hover:border-2",
+                    "border border-raisin bg-pink text-primary-foreground shadow-xs transition-transform duration-250 ease-in-out hover:scale-110 hover:border-2",
                 destructive:
                     "bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40",
-                grey: "border border-[var(--color-raisin)] bg-[var(--color-grey)] text-[var(--color-raisin)] shadow-xs transition-transform duration-250 ease-in-out hover:scale-110 hover:border-2",
+                grey: "border border-raisin bg-grey text-raisin shadow-xs transition-transform duration-250 ease-in-out hover:scale-110 hover:border-2",
                 outline:
                     "border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground",
                 noOutline: "bg-background shadow-xs hover:bg-accent hover:text-accent-foreground",
                 secondary: "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80",
                 ghost: "hover:bg-accent hover:text-accent-foreground",
                 link: "text-primary underline-offset-4 hover:underline",
-                arrow: "w-4 h-8 p-0 text-base font-medium bg-transparent text-[var(--color-raisin)] hover:text-white transition-colors",
+                arrow: "w-4 h-8 p-0 text-base font-medium bg-transparent text-raisin hover:text-white transition-colors",
                 unstyled: "",
             },
             size: {

@@ -29,10 +29,10 @@ const TimelineItem = ({ item, index }) => (
             {item.year}
         </div>
         <div
-            className={`absolute h-[6px] w-40 bg-[#507153] ${index % 2 === 0 ? "right-0" : "left-0"} top-full`}
+            className={`bg-green absolute h-[6px] w-40 ${index % 2 === 0 ? "right-0" : "left-0"} top-full`}
         />
         <div
-            className={`absolute top-[-7px] h-5 w-5 rounded-full bg-[#507153] ${index % 2 === 0 ? "right-[142px]" : "left-[142px]"}`}
+            className={`bg-green absolute top-[-7px] h-5 w-5 rounded-full ${index % 2 === 0 ? "right-[142px]" : "left-[142px]"}`}
         ></div>
         {/* Timeline Text and Image */}
         <div
