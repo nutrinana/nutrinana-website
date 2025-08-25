@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import { SiInstagram, SiTiktok } from "react-icons/si";
 
 import { Button } from "@/components/ui/button";
+import styles from "@/styles/Navbar.module.css";
 
 /**
  * Navbar component for Nutrinana website.
@@ -87,12 +88,14 @@ export default function Navbar() {
                                 <Link
                                     key={link.name}
                                     href={link.href}
-                                    className={`rounded-full px-4 py-0 transition-all ${
+                                    className={`rounded-full px-4 py-0 transition-all duration-300 ${
                                         isActive
                                             ? isActivatedGranola
-                                                ? "activated-granola-active text-green font-bold"
+                                                ? `${styles.activatedGranolaActive} text-green font-bold`
                                                 : "bg-green font-bold text-white"
-                                            : "hover:text-green text-gray-900"
+                                            : isActivatedGranola
+                                              ? `${styles.activatedGranolaLink} hover:text-green text-gray-900`
+                                              : "hover:text-green text-gray-900"
                                     }`}
                                     style={
                                         isActive && isActivatedGranola
@@ -100,9 +103,51 @@ export default function Navbar() {
                                             : undefined
                                     }
                                 >
-                                    {isActive && isActivatedGranola
-                                        ? "activated granola"
-                                        : link.name}
+                                    {isActivatedGranola ? (
+                                        <span
+                                            className={`${styles.activatedGranolaHoverGroup} inline-block ${
+                                                isActive ? "" : styles.activatedGranolaHover
+                                            } ${styles.activatedGranolaLink}`}
+                                        >
+                                            {isActive
+                                                ? [..."activated granola"].map((char, i) => {
+                                                      const isSpace = char === " ";
+
+                                                      return (
+                                                          <span
+                                                              key={i}
+                                                              className={
+                                                                  styles.activatedGranolaLetter
+                                                              }
+                                                              style={{
+                                                                  transitionDelay: `${i * 40}ms`,
+                                                              }}
+                                                          >
+                                                              {isSpace ? "\u00A0" : char}
+                                                          </span>
+                                                      );
+                                                  })
+                                                : [...link.name].map((char, i) => {
+                                                      const isSpace = char === " ";
+
+                                                      return (
+                                                          <span
+                                                              key={i}
+                                                              className={
+                                                                  styles.activatedGranolaLetter
+                                                              }
+                                                              style={{
+                                                                  transitionDelay: `${i * 40}ms`,
+                                                              }}
+                                                          >
+                                                              {isSpace ? "\u00A0" : char}
+                                                          </span>
+                                                      );
+                                                  })}
+                                        </span>
+                                    ) : (
+                                        link.name
+                                    )}
                                 </Link>
                             );
                         })}

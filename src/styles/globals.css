@@ -179,7 +179,7 @@ h4,
 }
 
 .font-display,
-.logo,
+logo,
 .brand {
     font-family: var(--font-display), serif;
 }
@@ -282,14 +282,12 @@ a {
         transform 0.2s;
     cursor: pointer;
 }
+
 .social-icon:hover {
     background-color: var(--accent-color, #f3f4f6);
 }
+
 .social-icon:disabled {
     pointer-events: none;
     opacity: 0.5;
-}
-
-.activated-granola-active {
-    font-family: var(--font-tan-nimbus), serif !important;
 }
