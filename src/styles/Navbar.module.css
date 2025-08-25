@@ -1,0 +1,43 @@
+.activatedGranolaActive {
+    font-family: var(--font-tan-nimbus), serif !important;
+}
+
+.activatedGranolaLink .activatedGranolaHover {
+    transition:
+        font-family 0.3s,
+        color 0.3s,
+        transform 0.3s;
+    will-change: font-family, color, transform;
+    display: inline-block;
+}
+
+.activatedGranolaLink:hover .activatedGranolaHover {
+    font-family: var(--font-tan-nimbus), serif !important;
+    color: var(--color-green) !important;
+    transform: translateY(-4px);
+}
+
+.activatedGranolaHoverGroup .activatedGranolaLetter {
+    display: inline-block;
+    transition:
+        font-family 0.3s,
+        color 0.3s,
+        transform 0.3s,
+        text-transform 0.3s;
+    will-change: font-family, color, transform, text-transform;
+}
+
+.activatedGranolaLink:hover .activatedGranolaLetter,
+.activatedGranolaLink.activatedGranolaActive .activatedGranolaLetter {
+    font-family: var(--font-tan-nimbus), serif !important;
+    color: var(--color-green) !important;
+    transform: translateY(-4px);
+    text-transform: lowercase;
+}
+
+.activatedGranolaLink .activatedGranolaLetter {
+    font-family: inherit;
+    color: inherit;
+    transform: translateY(0);
+    text-transform: none;
+}
