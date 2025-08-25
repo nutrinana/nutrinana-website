@@ -22,6 +22,7 @@ import styles from "@/styles/Navbar.module.css";
  */
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false); // State to track mobile menu open/closed
+    const [granolaHovered, setGranolaHovered] = useState(false);
     const pathname = usePathname(); // Hook to get the current path
 
     // Close the mobile menu if screen is resized above mobile breakpoint
@@ -79,7 +80,11 @@ export default function Navbar() {
                         />
                     </Link>
 
-                    <div className="mt-5 flex space-x-12">
+                    <div
+                        className={`mt-5 ${styles.navbarLinks} ${
+                            granolaHovered ? styles.activatedGranolaHovered : ""
+                        }`}
+                    >
                         {navLinks.map((link) => {
                             const isActive = pathname === link.href;
                             const isActivatedGranola = link.name === "Activated Granola";
@@ -92,14 +97,24 @@ export default function Navbar() {
                                         isActive
                                             ? isActivatedGranola
                                                 ? `${styles.activatedGranolaActive} text-green font-bold`
-                                                : "bg-green font-bold text-white"
+                                                : styles.navActive
                                             : isActivatedGranola
                                               ? `${styles.activatedGranolaLink} hover:text-green text-gray-900`
-                                              : "hover:text-green text-gray-900"
+                                              : `hover:text-green text-gray-900 ${styles.navLink}`
                                     }`}
                                     style={
                                         isActive && isActivatedGranola
                                             ? { fontFamily: "var(--font-tan-nimbus), serif" }
+                                            : undefined
+                                    }
+                                    onMouseEnter={
+                                        isActivatedGranola
+                                            ? () => setGranolaHovered(true)
+                                            : undefined
+                                    }
+                                    onMouseLeave={
+                                        isActivatedGranola
+                                            ? () => setGranolaHovered(false)
                                             : undefined
                                     }
                                 >
