@@ -24,12 +24,12 @@ export default function SideSlider({ slides = [], title, description }) {
     const { currentSlide, goToSlide } = useSlider(slides.length);
 
     return (
-        <div className="relative mx-auto flex min-h-[500px] w-full max-w-6xl flex-col overflow-hidden border border-black bg-white md:flex-row">
+        <div className="border-raisin relative mx-auto flex min-h-[500px] w-full max-w-6xl flex-col overflow-hidden border bg-white md:flex-row">
             {/* Static Text Section */}
             <div className="flex w-full items-center p-6 md:w-1/2 md:p-10">
                 <div>
                     <h2 className="mb-4 text-2xl md:text-3xl">{title}</h2>
-                    <p className="text-base text-gray-700 md:text-lg">{description}</p>
+                    <p className="text-raisin text-base md:text-lg">{description}</p>
                 </div>
             </div>
 

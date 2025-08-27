@@ -78,7 +78,7 @@ export default function AboutPage() {
             </section>
 
             <section className="mb-12">
-                <div className="relative right-1/2 left-1/2 -mx-[50vw] mb-20 w-screen bg-[var(--color-green)]/76 py-3">
+                <div className="bg-green/76 relative right-1/2 left-1/2 -mx-[50vw] mb-20 w-screen py-3">
                     <h2 className="text-center text-3xl text-white">A Timeline...</h2>
                 </div>
                 <Timeline timelineData={timelineData} />

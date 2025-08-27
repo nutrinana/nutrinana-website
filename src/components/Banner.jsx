@@ -35,7 +35,7 @@ export default function Banner() {
     const { currentIndex, prevMessage, nextMessage } = useBanner(messages);
 
     return (
-        <div className="relative flex items-center justify-between bg-[var(--color-pink)] px-4 py-0 text-sm text-black">
+        <div className="text-raisin bg-pink relative flex items-center justify-between px-4 py-0 text-sm">
             {/* Left Arrow Button to navigate to previous message */}
             <Button variant="arrow" onClick={prevMessage}>
                 <ArrowLeft size={20} />

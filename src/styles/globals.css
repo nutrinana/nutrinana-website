@@ -129,6 +129,15 @@
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-ring: var(--sidebar-ring);
+    --color-black: var(--color-raisin);
+    --color-raisin: var(--color-raisin);
+    --color-green: var(--color-green);
+    --color-yellow: var(--color-yellow);
+    --color-pink: var(--color-pink);
+    --color-light-yellow: var(--color-light-yellow);
+    --color-light-green: var(--color-light-green);
+    --color-grey: var(--color-grey);
+    --color-brown: var(--color-brown);
 }
 
 body,
@@ -137,7 +146,7 @@ body,
     margin: 0;
     padding: 0;
     background-color: #ffffff;
-    color: #000000;
+    color: var(--color-raisin);
 }
 
 html,
@@ -170,7 +179,7 @@ h4,
 }
 
 .font-display,
-.logo,
+logo,
 .brand {
     font-family: var(--font-display), serif;
 }
@@ -273,9 +282,11 @@ a {
         transform 0.2s;
     cursor: pointer;
 }
+
 .social-icon:hover {
     background-color: var(--accent-color, #f3f4f6);
 }
+
 .social-icon:disabled {
     pointer-events: none;
     opacity: 0.5;
