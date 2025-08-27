@@ -37,18 +37,13 @@ export default function NanaNoteCard() {
 
                 {/* Signature image */}
                 <div className="mt-8">
-                    {/* <Image
-                        src="/about/nana-signature-placeholder.png"
+                    <Image
+                        src="/about/nana-signature.png"
                         alt="With love and a sprinkle of granola, Nana x"
-                        width={300}
-                        height={100}
+                        width={500}
+                        height={150}
                         className="mx-auto object-contain"
-                    /> */}
-                    <p className="font-script text-raisin mx-auto text-2xl">
-                        With love and a sprinkle of granola,
-                        <br />
-                        Nana x
-                    </p>
+                    />
                 </div>
             </CardContent>
 
