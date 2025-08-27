@@ -25,13 +25,13 @@ export default function LegalLayout({ children }) {
         <div className="mx-auto max-w-7xl p-10 py-12">
             <h1 className="mb-6 text-center text-3xl">{heading}</h1>
             <div className="text-md mb-10 flex justify-center gap-12 text-center text-gray-700 underline">
-                <a href="/legal" className="transition-colors hover:text-black">
+                <a href="/legal" className="hover:text-raisin transition-colors">
                     Website Terms of Use
                 </a>
-                <a href="/legal/privacy-policy" className="transition-colors hover:text-black">
+                <a href="/legal/privacy-policy" className="hover:text-raisin transition-colors">
                     Privacy Policy
                 </a>
-                <a href="/legal/cookie-policy" className="transition-colors hover:text-black">
+                <a href="/legal/cookie-policy" className="hover:text-raisin transition-colors">
                     Cookie Policy
                 </a>
             </div>

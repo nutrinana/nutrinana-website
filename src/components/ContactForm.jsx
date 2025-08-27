@@ -125,13 +125,13 @@ export function ContactForm() {
                 {/* Submit Button and Additional Text */}
                 <div className="relative mt-4 mb-12">
                     {/* Additional text with email link */}
-                    <div className="absolute top-0 left-0 text-left text-lg text-[var(--color-raisin)]">
+                    <div className="text-raisin absolute top-0 left-0 text-left text-lg">
                         <p>
                             Or... <br />
                             email{" "}
                             <Link
                                 href="mailto:help@nutrinana.co.uk"
-                                className="text-[var(--color-green)] underline hover:text-[var(--color-raisin)]"
+                                className="text-green hover:text-raisin underline"
                             >
                                 help@nutrinana.co.uk
                             </Link>

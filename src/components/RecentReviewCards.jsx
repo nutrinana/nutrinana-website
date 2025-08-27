@@ -67,7 +67,7 @@ export default function RecentReviewCards() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4, delay: i * 0.1 }}
-                        className="break-inside-avoid bg-[var(--color-light-green)]/40 p-6"
+                        className="bg-light-green/40 break-inside-avoid p-6"
                     >
                         <div>
                             <div className="mb-2 flex items-center justify-between">
@@ -86,7 +86,7 @@ export default function RecentReviewCards() {
                                 </span>
                             </div>
                             {/* Review title and content */}
-                            <h3 className="font-display mb-1 text-lg text-[var(--color-raisin)]">
+                            <h3 className="font-display text-raisin mb-1 text-lg">
                                 {review.title}
                             </h3>
                             <p className="mb-2 text-sm text-gray-700">
@@ -102,7 +102,7 @@ export default function RecentReviewCards() {
                                                     [review.id]: !prev[review.id],
                                                 }))
                                             }
-                                            className="ml-1 cursor-pointer text-xs font-bold text-[var(--color-green)] hover:underline"
+                                            className="text-green ml-1 cursor-pointer text-xs font-bold hover:underline"
                                         >
                                             {expandedReviews[review.id] ? "Read less" : "Read more"}
                                         </button>
@@ -114,13 +114,11 @@ export default function RecentReviewCards() {
                         </div>
                         {/* Review details and verified badge */}
                         <div className="mt-2 flex items-center text-sm text-gray-600">
-                            <span className="text-sm text-[var(--color-green)]">
-                                {review.user.display_name}
-                            </span>
+                            <span className="text-green text-sm">{review.user.display_name}</span>
                             {review.user.user_type === "User" && (
                                 <span className="ml-2 flex items-center">
                                     <span className="mx-1 text-sm text-gray-500">|</span>
-                                    <span className="flex items-center gap-1 text-xs text-[var(--color-raisin)]">
+                                    <span className="text-raisin flex items-center gap-1 text-xs">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             className="h-3 w-3"
@@ -154,7 +152,7 @@ export default function RecentReviewCards() {
             <div className="mt-6 flex justify-end">
                 <Link
                     href="#more-reviews"
-                    className="relative inline-flex items-center gap-1 text-[var(--color-raisin)] transition-colors duration-200 after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[var(--color-green)] after:transition-transform after:duration-300 after:content-[''] hover:font-semibold hover:text-[var(--color-green)] hover:after:scale-x-100"
+                    className="after:bg-green hover:text-green text-raisin relative inline-flex items-center gap-1 transition-colors duration-200 after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:transition-transform after:duration-300 after:content-[''] hover:font-semibold hover:after:scale-x-100"
                 >
                     See more reviews <ArrowDown className="h-4 w-4" />
                 </Link>

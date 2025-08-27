@@ -18,7 +18,7 @@ import blackFarmerLogo from "/public/icons/black-farmer-logo.svg";
  */
 export default function Footer() {
     return (
-        <footer className="mt-10 border-t border-black bg-gray-200 py-9 text-gray-800">
+        <footer className="border-raisin mt-10 border-t bg-gray-200 py-9 text-gray-800">
             <div className="mx-auto max-w-full px-6 md:px-20">
                 <div className="mb-4 flex flex-col gap-4 md:grid md:grid-cols-3 md:gap-6">
                     {/* Quick Links */}
@@ -78,7 +78,7 @@ export default function Footer() {
                                 target="_blank"
                                 className="social-icon"
                             >
-                                <SiInstagram size={24} />
+                                <SiInstagram size={24} className="text-raisin" />
                             </Link>
                             {/* TikTok */}
                             {/* Link to the TikTok profile */}
@@ -87,7 +87,7 @@ export default function Footer() {
                                 target="_blank"
                                 className="social-icon"
                             >
-                                <SiTiktok size={24} />
+                                <SiTiktok size={24} className="text-raisin" />
                             </Link>
                             {/* DELLI */}
                             {/* Link to the Delli marketplace */}
