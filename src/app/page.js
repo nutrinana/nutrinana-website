@@ -60,8 +60,8 @@ export default function HomePage() {
         <>
             <HeroSlider slides={slides} />
 
-            <main className="space-y-16 px-4 py-10 sm:px-6 lg:px-10">
-                <section className="mt-12">
+            <div className="site-container section-y flow">
+                <section className="section-y">
                     <CalloutSection
                         heading="Great Taste Award Winner in 2025"
                         buttonText="About Nutrinana"
@@ -70,21 +70,21 @@ export default function HomePage() {
                     />
                 </section>
 
-                <section>
-                    <h2 className="font-display mb-4 text-xl">activated granola</h2>
+                <section className="section-y">
+                    <h2 className="font-display h2">activated granola</h2>
                     <ProductCarousel products={products} />
                 </section>
 
-                <section>
-                    <h2 className="mb-4 text-2xl">Leave a Review</h2>
+                <section className="section-y">
+                    <h2 className="h2">Leave a Review</h2>
                     <LeaveReviewForm productId="activated-granola-mfc" />
                 </section>
 
-                <section>
-                    <h2 className="mb-4 text-2xl">Follow us on Instagram!</h2>
+                <section className="section-y">
+                    <h2 className="h2">Follow us on Instagram!</h2>
                     <InstagramFeed />
                 </section>
-            </main>
+            </div>
         </>
     );
 }
