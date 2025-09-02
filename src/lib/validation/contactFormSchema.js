@@ -1,12 +1,15 @@
+import { z } from "zod";
+
 /**
  * Contact Form Validation Schema.
  *
- * This schema validates the fields of the contact form using Zod.
+ * This schema is used to validate the contact form inputs.
  * It ensures that all fields meet the required criteria before submission.
+ *
+ * @util validation
+ *
+ * @returns {z.ZodObject} The Zod schema object for contact form validation.
  */
-
-import { z } from "zod";
-
 export const contactFormSchema = z.object({
     // Name must be at least 2 characters and contain only letters, spaces, hyphens, or apostrophes
     name: z

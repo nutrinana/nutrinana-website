@@ -230,7 +230,6 @@ export default function Navbar() {
                 {/* Social media buttons in mobile menu */}
                 <div className="flex w-full justify-start space-x-4 px-6 pb-6">
                     {/* Instagram */}
-                    {/* Link to the Instagram profile */}
                     <Link
                         href="https://instagram.com/nutrinanaa"
                         target="_blank"
@@ -239,12 +238,14 @@ export default function Navbar() {
                         <SiInstagram size={24} className="text-raisin" />
                     </Link>
                     {/* TikTok */}
-                    {/* Link to the TikTok profile */}
-                    <Link href="https://tiktok.com/" target="_blank" className="social-icon">
+                    <Link
+                        href="https://www.tiktok.com/@nutrinanaa"
+                        target="_blank"
+                        className="social-icon"
+                    >
                         <SiTiktok size={24} className="text-raisin" />
                     </Link>
                     {/* DELLI */}
-                    {/* Link to the Delli marketplace */}
                     <Link
                         href="https://delli.market/collections/nutrinana"
                         target="_blank"
@@ -253,7 +254,6 @@ export default function Navbar() {
                         <Image src="/icons/delli-logo.svg" alt="Delli" width={50} height={25} />
                     </Link>
                     {/* The Black Farmer */}
-                    {/* Link to The Black Farmer website */}
                     <Link
                         href="https://theblackfarmer.com/"
                         target="_blank"

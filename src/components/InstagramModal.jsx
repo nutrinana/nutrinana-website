@@ -77,11 +77,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
         }
     };
 
-    // TODO: Handle the case when post is null or undefined
     const imageSrc = post?.media_url || post?.thumbnail_url || post?.cover_url || "";
-    //const imageSrc = ""
-    //const imageSrc = "https://example.com/does-not-exist.jpg"
-    //const imageSrc = "blue";
 
     // Validate the image source and media type once post data is available
     useEffect(() => {
@@ -252,7 +248,6 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
                             {!isPlaying && isVideoLoaded && (
                                 <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
                                     <div className="bg-raisin/50 rounded-full p-5">
-                                        {/* TODO: try className=w-10 w-10 */}
                                         <Play className="h-8 w-8 text-white" />
                                     </div>
                                 </div>
