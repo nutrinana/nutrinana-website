@@ -42,7 +42,7 @@ export default function StarRating({ value = 0, onChange, readonly = false, size
             {/* Map through star numbers to create star elements */}
             {[1, 2, 3, 4, 5].map((star) => {
                 const filled = hovered ? star <= hovered : star <= value;
-                const opacity = filled ? "opacity-100" : "opacity-30"; // Full opacity if filled, low otherwise
+                const opacity = filled ? "opacity-100" : "opacity-30";
 
                 return (
                     <span
