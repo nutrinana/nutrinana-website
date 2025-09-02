@@ -13,7 +13,7 @@ const buttonVariants = cva(
                 green: "border border-white bg-green text-primary-foreground shadow-xs transition-transform duration-250 ease-in-out hover:scale-110 hover:border-2",
                 greenOutlined:
                     "border border-raisin bg-green text-primary-foreground shadow-xs transition-transform duration-250 ease-in-out hover:scale-110 hover:border-2",
-                yellow: "border border-primary bg-light-yellow text-raisin shadow-xs transition-transform duration-250 ease-in-out hover:scale-110 hover:border-2",
+                yellow: "border border-raisin bg-light-yellow text-raisin shadow-xs transition-transform duration-250 ease-in-out hover:scale-110 hover:border-2",
                 pink: "border border-white bg-pink text-primary-foreground shadow-xs transition-transform duration-250 ease-in-out hover:scale-110 hover:border-2",
                 pinkOutlined:
                     "border border-raisin bg-pink text-primary-foreground shadow-xs transition-transform duration-250 ease-in-out hover:scale-110 hover:border-2",
