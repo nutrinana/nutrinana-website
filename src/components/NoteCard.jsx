@@ -14,7 +14,7 @@ import { Card, CardContent } from "@/components/ui/card";
  *
  * @returns {JSX.Element} A themed card styled to reflect Nana's personality and message.
  */
-export default function NanaNoteCard() {
+export default function NoteCard() {
     return (
         <Card className="border-raisin relative mx-auto max-w-4xl rounded-2xl border bg-[#fdf2cf] shadow">
             <CardContent className="px-6 py-8 text-center sm:px-12">

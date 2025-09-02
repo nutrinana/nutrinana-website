@@ -65,7 +65,7 @@ export default function InstagramFeed() {
         ];
 
         return (
-            <section className="flex flex-col items-center justify-center bg-white px-2 py-10 text-center sm:px-4">
+            <section className="flex flex-col items-center justify-center bg-white px-2 text-center sm:px-4">
                 <div
                     className={`grid ${isMobile ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-3"} w-full max-w-screen-xl gap-2`}
                 >

@@ -42,7 +42,7 @@ export default function LeaveReviewForm({ productId }) {
 
     return (
         <Form {...form}>
-            <form onSubmit={handleSubmit} className="mx-auto w-full max-w-6xl space-y-4">
+            <form onSubmit={handleSubmit} className="w-full space-y-4">
                 <div className="flex flex-wrap gap-4">
                     {/* Star Rating Field */}
                     <div className="flex flex-wrap items-center gap-4">

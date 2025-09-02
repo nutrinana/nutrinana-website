@@ -18,7 +18,7 @@ import blackFarmerLogo from "/public/icons/black-farmer-logo.svg";
  */
 export default function Footer() {
     return (
-        <footer className="border-raisin mt-10 border-t bg-gray-200 py-9 text-gray-800">
+        <footer className="border-raisin border-t bg-gray-200 py-9 text-gray-800">
             <div className="mx-auto max-w-full px-6 md:px-20">
                 <div className="mb-4 flex flex-col gap-4 md:grid md:grid-cols-3 md:gap-6">
                     {/* Quick Links */}

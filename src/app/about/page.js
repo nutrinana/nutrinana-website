@@ -64,8 +64,8 @@ const timelineData = [
 
 export default function AboutPage() {
     return (
-        <main className="mx-auto mt-2 max-w-6xl p-10">
-            <section className="mb-12">
+        <div className="site-container section-y flow">
+            <section className="section-y">
                 <SideSlider
                     slides={sideSlides}
                     title={sideSliderTitle}
@@ -73,16 +73,16 @@ export default function AboutPage() {
                 />
             </section>
 
-            <section className="mb-12">
+            <section className="section-y">
                 <NoteCard />
             </section>
 
-            <section className="mb-12">
+            <section className="section-y">
                 <div className="bg-green/76 relative right-1/2 left-1/2 -mx-[50vw] mb-20 w-screen py-3">
                     <h2 className="text-center text-3xl text-white">A Timeline...</h2>
                 </div>
                 <Timeline timelineData={timelineData} />
             </section>
-        </main>
+        </div>
     );
 }
