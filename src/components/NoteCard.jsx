@@ -48,9 +48,7 @@ export default function NoteCard() {
             </CardContent>
 
             {/* Decorative elements */}
-            {/* TODO: Sprout or Pin? */}
             <Sprout className="text-raisin absolute top-6 left-1/2 z-10 h-9 w-9 -translate-x-1/2 fill-current" />
-            {/* <Pin className="absolute -top-3 -left-3 rotate-[-45deg] text-raisin w-9 h-9 z-10 fill-current" /> */}
         </Card>
     );
 }
