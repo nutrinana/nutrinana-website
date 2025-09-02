@@ -19,27 +19,27 @@ export default function NutritionTable({ data, note, recommendation }) {
             {/* Nutritional Information Table */}
             <table className="mt-2 w-full border-collapse text-left text-sm md:w-[75%] md:text-base">
                 <thead>
-                    <tr className="bg-gray-200 text-black">
-                        <th className="border border-black p-2">Average Values</th>
-                        <th className="border border-black p-2">Per 100g</th>
-                        <th className="border border-black p-2">Per 60g Serving</th>
-                        <th className="border border-black p-2">%*RI Per Serving</th>
+                    <tr className="text-raisin bg-gray-200">
+                        <th className="border-raisin border p-2">Average Values</th>
+                        <th className="border-raisin border p-2">Per 100g</th>
+                        <th className="border-raisin border p-2">Per 60g Serving</th>
+                        <th className="border-raisin border p-2">%*RI Per Serving</th>
                     </tr>
                 </thead>
                 <tbody>
                     {/* Map through the data array and create a table row for each item */}
                     {data.map((row, idx) => (
                         <tr key={idx}>
-                            <td className="border border-black p-2">
+                            <td className="border-raisin border p-2">
                                 {renderWithLineBreaks(row.name)}
                             </td>
-                            <td className="border border-black p-2">
+                            <td className="border-raisin border p-2">
                                 {renderWithLineBreaks(row.per100g)}
                             </td>
-                            <td className="border border-black p-2">
+                            <td className="border-raisin border p-2">
                                 {renderWithLineBreaks(row.perServing)}
                             </td>
-                            <td className="border border-black p-2">
+                            <td className="border-raisin border p-2">
                                 {renderWithLineBreaks(row.ri)}
                             </td>
                         </tr>

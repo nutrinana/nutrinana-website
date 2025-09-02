@@ -94,34 +94,34 @@ const mainProduct = {
 
 export default function ActivatedGranolaPage() {
     return (
-        <main className="mx-auto max-w-6xl px-4 py-10">
+        <div className="site-container">
             {/* Product Card Section */}
-            <section className="mb-12">
+            <section className="section-y">
                 <ProductShowcase {...productData[0]} />
             </section>
 
             {/* Product Information */}
-            <section className="mb-12">
-                <h2 className="mb-4 text-2xl">Product Information</h2>
-                <Separator className="my-4 bg-black" />
+            <section className="section-y">
+                <h2 className="h2 text-2xl">Product Information</h2>
+                <Separator className="bg-raisin my-4" />
                 <h3 className="font-display mb-2 text-lg text-yellow-600">What is activated?</h3>
                 <p className="text-lg">
-                    Our nuts and seeds go through a soaking process known as activation. This
-                    process helps to break down phytic acid and enzyme inhibitors, making the
-                    nutrients more bioavailable and easier to digest. By activating our granola
-                    ingredients, we ensure that you get the maximum nutritional benefit with every
-                    bite, supporting a healthier and more balanced diet.
+                    Activation is a traditional method that involves soaking nuts and seeds before
+                    drying them. This process is commonly used by those looking to replicate natural
+                    sprouting conditions, and is often associated with traditional food preparation
+                    techniques. At Nutrinana, we use this method as part of our careful ingredient
+                    preparation.
                 </p>
             </section>
 
             {/* Accordion (Ingredients & Nutritional Info) */}
-            <section className="mb-12">
+            <section className="section-y">
                 <GlobalAccordion items={accordionData} />
             </section>
 
             {/* Reviews Section */}
-            <section className="mb-12">
-                <h2 className="mb-4 text-2xl">Reviews</h2>
+            <section className="section-y">
+                <h2 className="h2 text-2xl">Reviews</h2>
                 <YotpoReviewWidget
                     productId={mainProduct.productId}
                     name={mainProduct.name}
@@ -132,6 +132,6 @@ export default function ActivatedGranolaPage() {
                     description={mainProduct.description}
                 />
             </section>
-        </main>
+        </div>
     );
 }

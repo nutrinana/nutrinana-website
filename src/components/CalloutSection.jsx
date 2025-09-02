@@ -24,7 +24,7 @@ export default function CalloutSection({ heading, buttonText, buttonLink, varian
 
     return (
         <div className="text-center">
-            <h2 className="mb-4 text-3xl font-medium sm:text-4xl">{heading}</h2>
+            <h2 className="mx-auto mb-4 max-w-prose text-xl sm:text-2xl">{heading}</h2>
             <Button variant={variant} size="lg" onClick={() => router.push(buttonLink)}>
                 {buttonText}
             </Button>

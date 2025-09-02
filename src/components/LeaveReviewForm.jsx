@@ -42,7 +42,7 @@ export default function LeaveReviewForm({ productId }) {
 
     return (
         <Form {...form}>
-            <form onSubmit={handleSubmit} className="mx-auto w-full max-w-6xl space-y-4">
+            <form onSubmit={handleSubmit} className="w-full space-y-4">
                 <div className="flex flex-wrap gap-4">
                     {/* Star Rating Field */}
                     <div className="flex flex-wrap items-center gap-4">
@@ -151,8 +151,10 @@ export default function LeaveReviewForm({ productId }) {
                 {/* Submit Button and Additional Text */}
                 <div className="relative mt-4 mb-12">
                     {/* Additional text with email link */}
-                    <div className="absolute top-0 left-0 text-left text-sm text-[var(--color-raisin)] md:text-lg">
-                        <p>Your email will not be published.</p>
+                    <div className="text-raisin absolute top-0 left-0 text-left text-sm md:text-lg">
+                        <p className="max-w-[200px] sm:max-w-none">
+                            Your email will not be published.
+                        </p>
                     </div>
                     {/* Submit button */}
                     <Button

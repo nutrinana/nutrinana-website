@@ -8,10 +8,11 @@ import ProductCarousel from "@/components/ProductCarousel";
 const slides = [
     {
         image: "/home/slide1.jpg",
-        title: "Tasting Session with The Black Farmer!",
-        subtitle: "Saturday 7th July @ The Black Farmer’s Market, Market Row, SW9 8LD",
+        title: "Available Now on DELLI",
+        subtitle: "Shop Nutrinana’s Activated Granola today on the DELLI marketplace.",
         buttonText: "Shop Now",
-        buttonLink: "https://theblackfarmer.com",
+        buttonLink:
+            "https://delli.market/products/nutrinanas-special-granola?_pos=1&_psq=nutrin&_ss=e&_v=1.0",
     },
     {
         image: "/home/slide2.jpg",
@@ -19,12 +20,13 @@ const slides = [
         subtitle:
             "Handcrafted with wholesome ingredients to nourish your gut and delight your taste buds.",
         buttonText: "Discover More",
-        buttonLink: "/products",
+        buttonLink: "/activated-granola",
     },
     {
         image: "/home/slide3.jpg",
-        title: "From Allotment to Table",
-        subtitle: "Inspired by fresh, homegrown produce and Nana’s timeless recipes.",
+        title: "It All Began in Nana’s Kitchen",
+        subtitle:
+            "Nutrinana started as homemade granola for loved ones, now enjoyed by families everywhere.",
         buttonText: "Our Story",
         buttonLink: "/about",
     },
@@ -60,31 +62,31 @@ export default function HomePage() {
         <>
             <HeroSlider slides={slides} />
 
-            <main className="space-y-16 px-4 py-10 sm:px-6 lg:px-10">
-                <section className="mt-12">
+            <div className="site-container section-y flow">
+                <section className="section-y">
                     <CalloutSection
-                        heading="Great Taste Award Winner in 2025"
+                        heading="Started in Nana’s kitchen, Nutrinana brings handcrafted, activated granola made with love and honest ingredients to breakfast tables everywhere."
                         buttonText="About Nutrinana"
                         buttonLink="/about"
                         variant="yellow"
                     />
                 </section>
 
-                <section>
-                    <h2 className="font-display mb-4 text-xl">activated granola</h2>
+                <section className="section-y">
+                    <h2 className="font-display h2">activated granola</h2>
                     <ProductCarousel products={products} />
                 </section>
 
-                <section>
-                    <h2 className="mb-4 text-2xl">Leave a Review</h2>
+                <section className="section-y">
+                    <h2 className="h2">Leave a Review</h2>
                     <LeaveReviewForm productId="activated-granola-mfc" />
                 </section>
 
-                <section>
-                    <h2 className="mb-4 text-2xl">Follow us on Instagram!</h2>
+                <section className="section-y">
+                    <h2 className="h2">Follow us on Instagram!</h2>
                     <InstagramFeed />
                 </section>
-            </main>
+            </div>
         </>
     );
 }

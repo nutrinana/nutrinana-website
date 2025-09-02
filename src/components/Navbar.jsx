@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import { SiInstagram, SiTiktok } from "react-icons/si";
 
 import { Button } from "@/components/ui/button";
+import styles from "@/styles/Navbar.module.css";
 
 /**
  * Navbar component for Nutrinana website.
@@ -21,6 +22,7 @@ import { Button } from "@/components/ui/button";
  */
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false); // State to track mobile menu open/closed
+    const [granolaHovered, setGranolaHovered] = useState(false);
     const pathname = usePathname(); // Hook to get the current path
 
     // Close the mobile menu if screen is resized above mobile breakpoint
@@ -78,20 +80,92 @@ export default function Navbar() {
                         />
                     </Link>
 
-                    <div className="mt-5 flex space-x-12">
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.name}
-                                href={link.href}
-                                className={`rounded-full px-4 py-0 transition-all ${
-                                    pathname === link.href
-                                        ? "bg-[var(--color-green)] font-bold text-white"
-                                        : "text-gray-900 hover:text-[var(--color-green)]"
-                                }`}
-                            >
-                                {link.name}
-                            </Link>
-                        ))}
+                    <div
+                        className={`mt-5 ${styles.navbarLinks} ${
+                            granolaHovered ? styles.activatedGranolaHovered : ""
+                        }`}
+                    >
+                        {navLinks.map((link) => {
+                            const isActive = pathname === link.href;
+                            const isActivatedGranola = link.name === "Activated Granola";
+
+                            return (
+                                <Link
+                                    key={link.name}
+                                    href={link.href}
+                                    className={`rounded-full px-4 py-0 transition-all duration-300 ${
+                                        isActive
+                                            ? isActivatedGranola
+                                                ? `${styles.activatedGranolaActive} text-green font-bold`
+                                                : styles.navActive
+                                            : isActivatedGranola
+                                              ? `${styles.activatedGranolaLink} hover:text-green text-gray-900`
+                                              : `hover:text-green text-gray-900 ${styles.navLink}`
+                                    }`}
+                                    style={
+                                        isActive && isActivatedGranola
+                                            ? { fontFamily: "var(--font-tan-nimbus), serif" }
+                                            : undefined
+                                    }
+                                    onMouseEnter={
+                                        isActivatedGranola
+                                            ? () => setGranolaHovered(true)
+                                            : undefined
+                                    }
+                                    onMouseLeave={
+                                        isActivatedGranola
+                                            ? () => setGranolaHovered(false)
+                                            : undefined
+                                    }
+                                >
+                                    {isActivatedGranola ? (
+                                        <span
+                                            className={`${styles.activatedGranolaHoverGroup} inline-block ${
+                                                isActive ? "" : styles.activatedGranolaHover
+                                            } ${styles.activatedGranolaLink}`}
+                                        >
+                                            {isActive
+                                                ? [..."activated granola"].map((char, i) => {
+                                                      const isSpace = char === " ";
+
+                                                      return (
+                                                          <span
+                                                              key={i}
+                                                              className={
+                                                                  styles.activatedGranolaLetter
+                                                              }
+                                                              style={{
+                                                                  transitionDelay: `${i * 40}ms`,
+                                                              }}
+                                                          >
+                                                              {isSpace ? "\u00A0" : char}
+                                                          </span>
+                                                      );
+                                                  })
+                                                : [...link.name].map((char, i) => {
+                                                      const isSpace = char === " ";
+
+                                                      return (
+                                                          <span
+                                                              key={i}
+                                                              className={
+                                                                  styles.activatedGranolaLetter
+                                                              }
+                                                              style={{
+                                                                  transitionDelay: `${i * 40}ms`,
+                                                              }}
+                                                          >
+                                                              {isSpace ? "\u00A0" : char}
+                                                          </span>
+                                                      );
+                                                  })}
+                                        </span>
+                                    ) : (
+                                        link.name
+                                    )}
+                                </Link>
+                            );
+                        })}
                     </div>
                 </div>
             </div>
@@ -122,20 +196,32 @@ export default function Navbar() {
 
                 {/* Mobile navigation links */}
                 <div className="mt-12 flex w-full flex-col space-y-6">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.name}
-                            href={link.href}
-                            className={`block w-full px-8 py-4 text-left text-2xl transition-all ${
-                                pathname === link.href
-                                    ? "font-bold text-[var(--color-green)]"
-                                    : "hover:bg-muted text-gray-900 hover:text-black"
-                            }`}
-                            onClick={() => setIsOpen(false)}
-                        >
-                            {link.name}
-                        </Link>
-                    ))}
+                    {navLinks.map((link) => {
+                        const isActive = pathname === link.href;
+                        const isActivatedGranola = link.name === "Activated Granola";
+
+                        return (
+                            <Link
+                                key={link.name}
+                                href={link.href}
+                                className={`block w-full px-8 py-4 text-left text-2xl transition-all ${
+                                    isActive
+                                        ? isActivatedGranola
+                                            ? "activated-granola-active text-green font-bold"
+                                            : "text-green font-bold"
+                                        : "hover:bg-muted hover:text-raisin text-gray-900"
+                                }`}
+                                style={
+                                    isActive && isActivatedGranola
+                                        ? { fontFamily: "var(--font-tan-nimbus), serif" }
+                                        : undefined
+                                }
+                                onClick={() => setIsOpen(false)}
+                            >
+                                {isActive && isActivatedGranola ? "activated granola" : link.name}
+                            </Link>
+                        );
+                    })}
                 </div>
 
                 {/* Divider line */}
@@ -144,21 +230,22 @@ export default function Navbar() {
                 {/* Social media buttons in mobile menu */}
                 <div className="flex w-full justify-start space-x-4 px-6 pb-6">
                     {/* Instagram */}
-                    {/* Link to the Instagram profile */}
                     <Link
                         href="https://instagram.com/nutrinanaa"
                         target="_blank"
                         className="social-icon"
                     >
-                        <SiInstagram size={24} />
+                        <SiInstagram size={24} className="text-raisin" />
                     </Link>
                     {/* TikTok */}
-                    {/* Link to the TikTok profile */}
-                    <Link href="https://tiktok.com/" target="_blank" className="social-icon">
-                        <SiTiktok size={24} />
+                    <Link
+                        href="https://www.tiktok.com/@nutrinanaa"
+                        target="_blank"
+                        className="social-icon"
+                    >
+                        <SiTiktok size={24} className="text-raisin" />
                     </Link>
                     {/* DELLI */}
-                    {/* Link to the Delli marketplace */}
                     <Link
                         href="https://delli.market/collections/nutrinana"
                         target="_blank"
@@ -167,7 +254,6 @@ export default function Navbar() {
                         <Image src="/icons/delli-logo.svg" alt="Delli" width={50} height={25} />
                     </Link>
                     {/* The Black Farmer */}
-                    {/* Link to The Black Farmer website */}
                     <Link
                         href="https://theblackfarmer.com/"
                         target="_blank"
