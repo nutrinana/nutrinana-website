@@ -41,7 +41,7 @@ export default function RecentReviewCards() {
     if (reviews.length === 0) {
         return (
             <div className="w-full bg-white px-4 py-10">
-                <div className="mx-auto max-w-6xl text-center">
+                <div className="text-center">
                     <h2 className="mb-4 text-2xl">What people are saying</h2>
                     <p className="text-gray-600">
                         No reviews available just yet. Be the first to leave one!
@@ -52,7 +52,7 @@ export default function RecentReviewCards() {
     }
 
     return (
-        <div className="mx-auto max-w-6xl">
+        <div>
             {/* Section title */}
             {/* TODO: change to quirky header */}
             <h2 className="mb-6 text-2xl">What people are saying</h2>
