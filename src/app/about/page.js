@@ -23,19 +23,20 @@ const sideSlides = [
 const sideSliderTitle = "Who We Are";
 const sideSliderDescription = (
     <>
-        Nutrinana started in Nana Odamo’s kitchen, where she whipped up granola so good, even her
-        kids couldn’t keep it to themselves—and neither could the neighbours! What began as a small,
-        family-run operation quickly grew, fuelled by Nana’s mission to prove that nutritious, tasty
-        granola doesn’t need a sprinkle of sugar or a dash of anything artificial. Our secret?
-        “Activated” nuts and seeds that have gone through a special soaking process to make them as
-        easy on your digestion as they are on your taste buds.
+        Nutrinana started in Nana&apos;s kitchen, where she whipped up granola so good, even her
+        kids couldn&apos;t keep it to themselves—and neither could the neighbours! What began as a
+        small, family-run operation quickly grew, fuelled by Nana&apos;s mission to prove that
+        nutritious, tasty granola doesn&apos;t need a sprinkle of sugar or a dash of anything
+        artificial. Our secret? “Activated” nuts and seeds that have gone through a special soaking
+        process to make them as easy on your digestion as they are on your taste buds.
         <br />
         <br />
-        At Nutrinana, we’re all about keeping it real—literally. We’re a family-run business with
-        Nana’s kids handling the social media and website (when they’re not busy asking for more
-        granola). We’re on a mission to become your go-to healthy breakfast alternative, so whether
-        you’re looking to ditch the sugar or dodge the bloat, we’ve got you covered. Plus, when
-        Nana’s not making granola, she’s growing her own veggies—because, of course, she is!
+        At Nutrinana, we&apos;re all about keeping it real—literally. We&apos;re a family-run
+        business with Nana&apos;s kids handling the social media and website (when they&apos;re not
+        busy asking for more granola). We’re on a mission to become your go-to healthy breakfast
+        alternative, so whether you&apos;re looking to ditch the sugar or dodge the bloat,
+        we&apos;ve got you covered. Plus, when Nana&apos;s not making granola, she&apos;s growing
+        her own veggies—because, of course she is!
     </>
 );
 
@@ -57,8 +58,8 @@ const timelineData = [
     },
     {
         year: "2024",
-        text: "Nutrinana’s Activated Granola finds a home in the Black Farmers Shop in Brixton, bringing the taste of Nana’s kitchen to even more happy customers. This is only just the beginning!",
-        image: "/timeline/2024.jpeg",
+        text: "Nutrinana’s Activated Granola finds a home in the Black Farmers Shop in Brixton and White City, bringing the taste of Nana’s kitchen to even more happy customers.",
+        image: "/timeline/2024.jpg",
     },
 ];
 

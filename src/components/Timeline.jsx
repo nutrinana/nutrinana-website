@@ -64,6 +64,11 @@ export default function Timeline({ timelineData }) {
                         <TimelineItem key={index + 2} item={item} index={index + 2} />
                     ))}
                 </CollapsibleContent>
+                {isOpen && (
+                    <div className="font-display text-green absolute bottom-[-60px] left-1/2 -translate-x-1/2 text-2xl">
+                        This is only the beginning!
+                    </div>
+                )}
             </Collapsible>
 
             {/* Initial timeline items always shown */}
