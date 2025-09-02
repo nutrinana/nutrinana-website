@@ -24,7 +24,7 @@ export default function SideSlider({ slides = [], title, description }) {
     const { currentSlide, goToSlide } = useSlider(slides.length);
 
     return (
-        <div className="border-raisin relative mx-auto flex min-h-[500px] w-full max-w-6xl flex-col overflow-hidden border bg-white md:flex-row">
+        <div className="border-raisin relative flex min-h-[650px] flex-col overflow-hidden border bg-white md:flex-row">
             {/* Static Text Section */}
             <div className="flex w-full items-center p-6 md:w-1/2 md:p-10">
                 <div>
@@ -34,7 +34,7 @@ export default function SideSlider({ slides = [], title, description }) {
             </div>
 
             {/* Slider Image Section */}
-            <div className="relative h-[300px] w-full md:h-auto md:min-h-[500px] md:w-1/2">
+            <div className="relative h-[400px] w-full md:h-auto md:min-h-[650px] md:w-1/2">
                 {slides.map((slide, index) => (
                     <div
                         key={index}
