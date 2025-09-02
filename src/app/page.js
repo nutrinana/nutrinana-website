@@ -65,7 +65,7 @@ export default function HomePage() {
             <div className="site-container section-y flow">
                 <section className="section-y">
                     <CalloutSection
-                        heading="Great Taste Award Winner in 2025"
+                        heading="Started in Nana’s kitchen, Nutrinana brings handcrafted, activated granola made with love and honest ingredients to breakfast tables everywhere."
                         buttonText="About Nutrinana"
                         buttonLink="/about"
                         variant="yellow"
