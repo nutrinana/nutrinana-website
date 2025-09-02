@@ -39,7 +39,7 @@ const accordionData = [
     },
     {
         title: "What Does ‟Activated” Mean?",
-        subtitle: 'What does it mean when we say our granola is "Activated"?',
+        subtitle: "What does it mean when we say our granola is ‟Activated”?",
         content:
             "‟Activated” means that the nuts and seeds in our granola are soaked and gently dried as part of a traditional preparation method. This process is often used to mirror the natural sprouting conditions of seeds and is valued for its thoughtful approach to ingredient preparation. At Nutrinana, it’s one of the ways we give extra care to what goes into every batch, contributing to the unique texture and flavour of our granola.",
     },
