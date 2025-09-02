@@ -94,15 +94,15 @@ const mainProduct = {
 
 export default function ActivatedGranolaPage() {
     return (
-        <main className="mx-auto max-w-6xl px-4 py-10">
+        <div className="site-container">
             {/* Product Card Section */}
-            <section className="mb-12">
+            <section className="section-y">
                 <ProductShowcase {...productData[0]} />
             </section>
 
             {/* Product Information */}
-            <section className="mb-12">
-                <h2 className="mb-4 text-2xl">Product Information</h2>
+            <section className="section-y">
+                <h2 className="h2 text-2xl">Product Information</h2>
                 <Separator className="bg-raisin my-4" />
                 <h3 className="font-display mb-2 text-lg text-yellow-600">What is activated?</h3>
                 <p className="text-lg">
@@ -115,13 +115,13 @@ export default function ActivatedGranolaPage() {
             </section>
 
             {/* Accordion (Ingredients & Nutritional Info) */}
-            <section className="mb-12">
+            <section className="section-y">
                 <GlobalAccordion items={accordionData} />
             </section>
 
             {/* Reviews Section */}
-            <section className="mb-12">
-                <h2 className="mb-4 text-2xl">Reviews</h2>
+            <section className="section-y">
+                <h2 className="h2 text-2xl">Reviews</h2>
                 <YotpoReviewWidget
                     productId={mainProduct.productId}
                     name={mainProduct.name}
@@ -132,6 +132,6 @@ export default function ActivatedGranolaPage() {
                     description={mainProduct.description}
                 />
             </section>
-        </main>
+        </div>
     );
 }

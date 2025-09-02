@@ -48,7 +48,7 @@ export default function ProductShowcase({
     return (
         <div>
             {/* Main container for the card layout */}
-            <div className="relative mx-auto flex h-auto max-w-4xl flex-col items-center overflow-visible rounded-xl border border-gray-400 bg-white p-4 md:h-[436px] md:flex-row md:items-start">
+            <div className="relative flex h-auto max-w-4xl flex-col items-center overflow-visible rounded-xl border border-gray-400 bg-white p-4 md:h-[436px] md:flex-row md:items-start">
                 {/* Images Section */}
                 <div className="h-full flex-1">
                     {/* Mobile view - single image */}
