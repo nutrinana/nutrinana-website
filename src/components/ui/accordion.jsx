@@ -22,7 +22,7 @@ function AccordionItem({ className, ...props }) {
     return (
         <AccordionPrimitive.Item
             data-slot="accordion-item"
-            className={cn("border-b border-black first:border-t last:border-b", className)}
+            className={cn("border-raisin border-b first:border-t last:border-b", className)}
             {...props}
         />
     );
@@ -42,7 +42,7 @@ function AccordionTrigger({ className, children, ...props }) {
                 {children}
                 <CircleChevronDown
                     strokeWidth={0.75}
-                    className="pointer-events-none size-8 shrink-0 fill-black text-white transition-transform duration-200 data-[state=open]:rotate-180"
+                    className="fill-raisin pointer-events-none size-8 shrink-0 text-white transition-transform duration-200 data-[state=open]:rotate-180"
                 />
             </AccordionPrimitive.Trigger>
         </AccordionPrimitive.Header>

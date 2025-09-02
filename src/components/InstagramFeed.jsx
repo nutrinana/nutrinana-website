@@ -65,7 +65,7 @@ export default function InstagramFeed() {
         ];
 
         return (
-            <section className="flex flex-col items-center justify-center bg-white px-2 py-10 text-center sm:px-4">
+            <section className="flex flex-col items-center justify-center bg-white px-2 text-center sm:px-4">
                 <div
                     className={`grid ${isMobile ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-3"} w-full max-w-screen-xl gap-2`}
                 >
@@ -103,7 +103,7 @@ export default function InstagramFeed() {
                                 height={500}
                                 className="aspect-square h-full w-full object-cover"
                             />
-                            <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                            <div className="bg-raisin/40 absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100">
                                 {post.media_type === "VIDEO" ? (
                                     <Image
                                         src="/icons/instagram-reels-icon.svg"
