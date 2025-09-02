@@ -294,9 +294,24 @@ a {
 
 /* ---- Global layout container ---- */
 .site-container {
-    max-width: 80rem; /* ~1280px */
-    margin-inline: auto;
-    padding-inline: clamp(1rem, 4vw, 50px); /* 8–16px responsive gutters */
+    margin: 0 auto; /* center, no external gap */
+    padding: 50px; /* 50px on all sides inside the page */
+    /* max-width: 80rem; */
+}
+
+/* Ensure total bottom gap stays exactly 50px (no extra from last section) */
+.site-container .section-y:last-child {
+    padding-bottom: 0;
+}
+
+/* Prevent double top gap: container already has 50px padding */
+.site-container > .section-y:first-child {
+    padding-top: 0;
+}
+
+/* Ensure only one vertical gap between sections (use bottom padding only) */
+.site-container > .section-y + .section-y {
+    padding-top: 0;
 }
 
 /* ---- Vertical section rhythm ---- */
