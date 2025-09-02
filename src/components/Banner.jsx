@@ -51,9 +51,7 @@ export default function Banner() {
                         >
                             {messages[currentIndex].linkText}
                         </Link>{" "}
-                        {/* {messages[currentIndex].emoji} */}
                         <span className="text-lg">{messages[currentIndex].emoji}</span>{" "}
-                        {/* Increased emoji size */}
                     </>
                 )}
             </p>
