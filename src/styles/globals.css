@@ -292,41 +292,28 @@ a {
     opacity: 0.5;
 }
 
-/* ---- Global layout container ---- */
 .site-container {
-    margin: 0 auto; /* center, no external gap */
-    padding: 50px; /* 50px on all sides inside the page */
-    /* max-width: 80rem; */
+    margin: 0 auto;
+    padding: 50px;
 }
 
-/* Prevent double top gap: container already has 50px padding */
 .site-container > .section-y:first-child {
     padding-top: 0;
 }
 
-/* Ensure only one vertical gap between sections (use bottom padding only) */
 .site-container > .section-y + .section-y {
     padding-top: 0;
 }
 
-/* ---- Vertical section rhythm ---- */
 .section-y {
-    padding-block: clamp(2rem, 5vw, 3rem); /* 32–48px */
+    padding-block: clamp(2rem, 5vw, 3rem);
 }
 
-/* ---- Flow spacing between siblings ---- */
 .flow > * + * {
-    margin-top: clamp(1rem, 2.5vw, 2rem); /* 16–32px */
+    margin-top: clamp(1rem, 2.5vw, 2rem);
 }
 
-/* ---- Consistent h2 sizing/spacing ---- */
 .h2 {
     font-size: clamp(1.25rem, 1.8vw, 1.5rem);
-    /* font-weight: 600; */
-    margin-bottom: 0.75rem;
-}
-.h2 {
-    font-size: clamp(1.25rem, 1.8vw, 1.5rem);
-    /* font-weight: 600; */
     margin-bottom: 0.75rem;
 }
