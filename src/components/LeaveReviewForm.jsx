@@ -152,7 +152,9 @@ export default function LeaveReviewForm({ productId }) {
                 <div className="relative mt-4 mb-12">
                     {/* Additional text with email link */}
                     <div className="text-raisin absolute top-0 left-0 text-left text-sm md:text-lg">
-                        <p>Your email will not be published.</p>
+                        <p className="max-w-[200px] sm:max-w-none">
+                            Your email will not be published.
+                        </p>
                     </div>
                     {/* Submit button */}
                     <Button
