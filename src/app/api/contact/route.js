@@ -25,7 +25,7 @@ export async function POST(req) {
         const { name, email, title, comments } = body;
 
         // Generate a unique ID for the request
-        const requestId = uuidv4().split("-")[0]; // first segment of the uuid
+        const requestId = uuidv4().split("-")[0];
 
         const html = await render(
             QueryEmail({
@@ -38,10 +38,10 @@ export async function POST(req) {
         );
 
         const response = await resend.emails.send({
-            from: "Nutrinana Help <noreply@nutrinana.co.uk>", // Must be verified on Resend
-            to: email, // requestor's email
-            bcc: "nana@nutrinana.co.uk", // CC the admin so we can reply
-            replyTo: email, // reply to the requestor
+            from: "Nutrinana Help <noreply@nutrinana.co.uk>",
+            to: email,
+            bcc: "nana@nutrinana.co.uk",
+            replyTo: email,
 
             subject: `Customer Enquiry ${requestId}: ${title}`,
             html,
