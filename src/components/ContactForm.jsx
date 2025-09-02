@@ -39,10 +39,7 @@ export function ContactForm() {
 
     return (
         <Form {...form}>
-            <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="mx-auto w-full max-w-6xl space-y-4"
-            >
+            <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-4">
                 {/* Name and Email Fields Side by Side */}
                 <div className="flex flex-wrap gap-4">
                     {/* Name Field */}

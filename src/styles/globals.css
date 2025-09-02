@@ -291,3 +291,29 @@ a {
     pointer-events: none;
     opacity: 0.5;
 }
+
+.site-container {
+    margin: 0 auto;
+    padding: 50px;
+}
+
+.site-container > .section-y:first-child {
+    padding-top: 0;
+}
+
+.site-container > .section-y + .section-y {
+    padding-top: 0;
+}
+
+.section-y {
+    padding-block: clamp(2rem, 5vw, 3rem);
+}
+
+.flow > * + * {
+    margin-top: clamp(1rem, 2.5vw, 2rem);
+}
+
+.h2 {
+    font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+    margin-bottom: 0.75rem;
+}

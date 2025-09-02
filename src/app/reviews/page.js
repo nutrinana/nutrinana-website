@@ -24,22 +24,24 @@ export default function ReviewsPage() {
     };
 
     return (
-        <>
-            <section className="w-full bg-white px-4 py-10">
+        <div className="site-container">
+            <section className="section-y">
                 <RecentReviewCards />
             </section>
 
-            <section className="w-full bg-white px-4 py-10">
-                <h2 className="mb-6 text-2xl">Leave a Review</h2>
+            <section className="section-y">
+                <h2 className="h2 mb-6">Leave a Review</h2>
                 <LeaveReviewForm productId={mainProduct.productId} />
             </section>
 
-            <h2 id="more-reviews" className="mb-6 text-2xl">
-                More Reviews
-            </h2>
-            <div className="mx-auto max-w-400 px-4">
-                <YotpoSEOProductWidget />
-            </div>
+            <section className="section-y">
+                <h2 id="more-reviews" className="h2 mb-6">
+                    More Reviews
+                </h2>
+                <div className="max-w-400">
+                    <YotpoSEOProductWidget />
+                </div>
+            </section>
             <style jsx global>{`
                 /* Override Yotpo widget container styles */
                 .not-prose[style*="width: 100vw"] {
@@ -48,16 +50,6 @@ export default function ReviewsPage() {
                     padding: 0 !important;
                 }
             `}</style>
-            {/* TODO: Remove this commented code block now we can get SEO to work with margins */}
-            {/* <YotpoReviewWidget
-        productId={mainProduct.productId}
-        name={mainProduct.name}
-        url={mainProduct.url}
-        imageUrl={mainProduct.imageUrl}
-        price={mainProduct.price}
-        currency={mainProduct.currency}
-        description={mainProduct.description} 
-      /> */}
-        </>
+        </div>
     );
 }

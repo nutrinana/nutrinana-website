@@ -115,7 +115,7 @@ export default function RootLayout({ children }) {
                 <Navbar />
 
                 {/* Main Page Content */}
-                <main id="main-content" className="mb-12 flex-1">
+                <main id="main-content" className="flex-1">
                     {children}
                 </main>
 
