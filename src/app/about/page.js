@@ -36,7 +36,7 @@ const sideSliderDescription = (
         busy asking for more granola). We’re on a mission to become your go-to healthy breakfast
         alternative, so whether you&apos;re looking to ditch the sugar or dodge the bloat,
         we&apos;ve got you covered. Plus, when Nana&apos;s not making granola, she&apos;s growing
-        her own veggies—because, of course, she is!
+        her own veggies—because, of course she is!
     </>
 );
 
