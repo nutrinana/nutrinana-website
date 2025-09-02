@@ -1,5 +1,15 @@
 import { z } from "zod";
 
+/**
+ * Review Form Validation Schema.
+ *
+ * This schema is used to validate the review form inputs.
+ * It ensures that all fields meet the required criteria before submission.
+ *
+ * @util validation
+ *
+ * @returns {z.ZodObject} The Zod schema object for review form validation.
+ */
 export const reviewFormSchema = z.object({
     // Name must be at least 2 characters and contain only letters, spaces, hyphens, or apostrophes
     name: z
