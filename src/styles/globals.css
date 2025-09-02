@@ -299,11 +299,6 @@ a {
     /* max-width: 80rem; */
 }
 
-/* Ensure total bottom gap stays exactly 50px (no extra from last section) */
-.site-container .section-y:last-child {
-    padding-bottom: 0;
-}
-
 /* Prevent double top gap: container already has 50px padding */
 .site-container > .section-y:first-child {
     padding-top: 0;
@@ -325,6 +320,11 @@ a {
 }
 
 /* ---- Consistent h2 sizing/spacing ---- */
+.h2 {
+    font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+    /* font-weight: 600; */
+    margin-bottom: 0.75rem;
+}
 .h2 {
     font-size: clamp(1.25rem, 1.8vw, 1.5rem);
     /* font-weight: 600; */
