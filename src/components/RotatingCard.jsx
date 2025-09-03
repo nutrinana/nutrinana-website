@@ -1,0 +1,101 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
+import { Leaf, Sparkles, ShieldCheck } from "lucide-react";
+
+/**
+ * Rotating card component for displaying benefits.
+ *
+ * @component
+ *
+ * @param {number} param0.intervalMs - The interval in milliseconds for auto-rotation (default: 6000).
+ * @param {string} param0.className - Additional class names for the outer <aside> element.
+ *
+ * @returns {JSX.Element} The rotating card component.
+ */
+export default function RotatingCard({ intervalMs = 6000, className = "" }) {
+    const BENEFITS = [
+        {
+            icon: Leaf,
+            title: "Gentle on digestion",
+            copy: "Activation helps reduce phytic acid and enzyme inhibitors, making every spoonful easier on the gut.",
+        },
+        {
+            id: 1,
+            icon: ShieldCheck,
+            title: "Nutrient availability",
+            copy: "Soaking and drying supports mineral absorption so your body can make the most of honest ingredients.",
+        },
+        {
+            id: 2,
+            icon: Sparkles,
+            title: "Naturally delicious",
+            copy: "Small-batch, no refined sugar — just wholesome taste crafted with care in Nana’s kitchen.",
+        },
+    ];
+
+    const [index, setIndex] = useState(0);
+
+    // Auto-rotate
+    useEffect(() => {
+        const t = setInterval(
+            () => setIndex((i) => (i + 1) % BENEFITS.length),
+            Math.max(2000, intervalMs)
+        );
+
+        return () => clearInterval(t);
+    }, [intervalMs]);
+
+    const benefit = BENEFITS[index];
+    const Icon = benefit.icon;
+
+    return (
+        <aside
+            aria-label="Why Activated Granola"
+            className={[
+                "rounded-2xl border border-[var(--color-grey)] bg-white/70 p-6 shadow-sm",
+                "backdrop-blur supports-[backdrop-filter]:bg-white/50",
+                className,
+            ].join(" ")}
+        >
+            <h3 className="font-heading mb-4 text-center text-xl sm:text-2xl">
+                Why Activated Granola
+            </h3>
+
+            <div className="flex items-start gap-4">
+                <div className="shrink-0 rounded-full border border-[var(--color-grey)] p-3">
+                    <Icon className="h-6 w-6 text-[var(--color-green)]" aria-hidden="true" />
+                </div>
+                <div>
+                    <p className="mb-1 font-medium">{benefit.title}</p>
+                    <p className="text-raisin/80 text-sm sm:text-base">{benefit.copy}</p>
+                </div>
+            </div>
+
+            {/* controls */}
+            <div className="mt-4 flex items-center justify-between">
+                <div className="flex gap-2" role="tablist" aria-label="Benefits">
+                    {BENEFITS.map((b, i) => (
+                        <button
+                            key={b.id}
+                            role="tab"
+                            aria-selected={i === index}
+                            aria-controls={`benefit-panel-${b.id}`}
+                            onClick={() => setIndex(i)}
+                            className={`h-2 w-6 rounded-full transition-all ${
+                                i === index
+                                    ? "bg-[var(--color-green)]"
+                                    : "bg-[var(--color-grey)]/60 hover:bg-[var(--color-grey)]"
+                            }`}
+                            title={b.title}
+                        />
+                    ))}
+                </div>
+                <span className="text-raisin/60 text-xs">
+                    {index + 1} / {BENEFITS.length}
+                </span>
+            </div>
+        </aside>
+    );
+}
