@@ -91,10 +91,11 @@ export default function HomePage() {
                 </section>
 
                 <section className="section-y">
-                    <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-2 lg:gap-8">
-                        <TopFiveReviews />
-
-                        <div>
+                    <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-3 lg:gap-8">
+                        <div className="lg:col-span-1">
+                            <TopFiveReviews />
+                        </div>
+                        <div className="lg:col-span-2">
                             <h2 className="h2">Leave a Review</h2>
                             <LeaveReviewForm productId="activated-granola-mfc" />
                         </div>

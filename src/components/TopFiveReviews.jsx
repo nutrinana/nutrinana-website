@@ -4,7 +4,7 @@ import { useMemo, useState, useEffect } from "react";
 
 import { motion, AnimatePresence } from "framer-motion";
 import { decode } from "he";
-import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { Star } from "lucide-react";
 
 import useRecentReviewCards from "@/hooks/useRecentReviewCards";
 import { formatDate } from "@/lib/utils";
@@ -77,6 +77,7 @@ export default function TopFiveReviews({ autoRotateMs = 7000, className = "" }) 
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
         >
+            <h3 className="font-handwritten mb-4 text-center text-xl">Activated Thoughts!</h3>
             <div className="relative">
                 {/* Card */}
                 <div className="px-10">
@@ -140,23 +141,6 @@ export default function TopFiveReviews({ autoRotateMs = 7000, className = "" }) 
                         </motion.div>
                     </AnimatePresence>
                 </div>
-            </div>
-
-            {/* Dots */}
-            <div className="mt-4 flex justify-center gap-2">
-                {topFive.map((r, i) => (
-                    <button
-                        key={r.id}
-                        aria-label={`Go to review ${i + 1}`}
-                        aria-current={i === index ? "true" : "false"}
-                        onClick={() => setIndex(i)}
-                        className={`h-2 w-6 rounded-full transition ${
-                            i === index
-                                ? "bg-[var(--color-green)]"
-                                : "bg-[var(--color-grey)]/60 hover:bg-[var(--color-grey)]"
-                        }`}
-                    />
-                ))}
             </div>
         </section>
     );
