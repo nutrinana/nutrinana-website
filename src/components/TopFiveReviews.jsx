@@ -1,11 +1,11 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
-
 import { motion, AnimatePresence } from "framer-motion";
 import { decode } from "he";
-import { Star } from "lucide-react";
+import { Star, MoveRight } from "lucide-react";
+import Link from "next/link";
 
+import { useAutoRotateIndex } from "@/hooks/useAutoRotateIndex";
 import useRecentReviewCards from "@/hooks/useRecentReviewCards";
 import { formatDate } from "@/lib/utils";
 
@@ -21,42 +21,9 @@ import { formatDate } from "@/lib/utils";
  */
 export default function TopFiveReviews({ autoRotateMs = 7000, className = "" }) {
     const reviews = useRecentReviewCards();
+    const topFive = Array.isArray(reviews) ? reviews.slice(0, 5) : [];
 
-    const topFive = useMemo(() => {
-        if (!Array.isArray(reviews)) {
-            return [];
-        }
-        const sorted = [...reviews].sort((a, b) => {
-            // Higher score first
-            if (b.score !== a.score) {
-                return b.score - a.score;
-            }
-            // Most recent first
-            const bd = new Date(b.created_at).getTime();
-            const ad = new Date(a.created_at).getTime();
-
-            return bd - ad;
-        });
-
-        return sorted.slice(0, 5);
-    }, [reviews]);
-
-    const [index, setIndex] = useState(0);
-    const [paused, setPaused] = useState(false);
-
-    useEffect(() => {
-        if (paused || topFive.length <= 1) {
-            return;
-        }
-        const t = setInterval(
-            () => {
-                setIndex((i) => (i + 1) % topFive.length);
-            },
-            Math.max(2500, autoRotateMs)
-        );
-
-        return () => clearInterval(t);
-    }, [paused, autoRotateMs, topFive.length]);
+    const [index, setPaused] = useAutoRotateIndex(topFive.length, autoRotateMs);
 
     if (topFive.length === 0) {
         return (
@@ -108,7 +75,11 @@ export default function TopFiveReviews({ autoRotateMs = 7000, className = "" }) 
                             <h4 className="font-display text-raisin mb-1 text-lg">
                                 {review.title}
                             </h4>
-                            <p className="text-sm text-gray-700">{decode(review.content)}</p>
+                            <p className="text-sm text-gray-700">
+                                {decode(review.content).length > 100
+                                    ? decode(review.content).slice(0, 100) + "..."
+                                    : decode(review.content)}
+                            </p>
 
                             <footer className="mt-3 flex items-center gap-2 text-sm text-gray-600">
                                 <span className="text-green">{review.user.display_name}</span>
@@ -142,6 +113,12 @@ export default function TopFiveReviews({ autoRotateMs = 7000, className = "" }) 
                     </AnimatePresence>
                 </div>
             </div>
+            <Link
+                href="/reviews"
+                className="mt-4 flex items-center justify-center gap-1 text-sm font-medium text-[var(--color-green)] hover:underline"
+            >
+                See more reviews <MoveRight className="h-4 w-4 align-middle" />
+            </Link>
         </section>
     );
 }
