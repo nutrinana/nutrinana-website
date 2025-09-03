@@ -55,7 +55,7 @@ export default function ProductCard({
                         router.push("/activated-granola");
                     }
                 }}
-                className="relative mx-auto flex h-auto max-w-4xl cursor-pointer flex-col items-center overflow-visible rounded-xl border border-gray-400 bg-white p-4 transition-shadow duration-300 ease-in-out hover:shadow-xl md:h-[436px] md:flex-row md:items-start"
+                className="border-grey relative mx-auto flex h-auto max-w-4xl cursor-pointer flex-col items-center overflow-visible rounded-xl border bg-white p-4 transition-shadow duration-300 ease-in-out hover:shadow-xl md:h-[436px] md:flex-row md:items-start"
             >
                 {/* Images Section */}
                 <div className="h-full flex-1">
