@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
 import { Leaf, HandHeart, ChefHat } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { useRotatingCard } from "@/hooks/useRotatingCard";
 
 /**
  * Rotating card component for displaying benefits.
@@ -38,17 +37,7 @@ export default function RotatingCard({ intervalMs = 6000 }) {
         },
     ];
 
-    const [index, setIndex] = useState(0);
-
-    // Auto-rotate
-    useEffect(() => {
-        const t = setInterval(
-            () => setIndex((i) => (i + 1) % BENEFITS.length),
-            Math.max(2000, intervalMs)
-        );
-
-        return () => clearInterval(t);
-    }, [intervalMs, BENEFITS.length]);
+    const [index, setIndex] = useRotatingCard(BENEFITS.length, intervalMs);
 
     const benefit = BENEFITS[index];
     const Icon = benefit.icon;
