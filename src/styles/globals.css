@@ -179,7 +179,7 @@ h4,
 }
 
 .font-display,
-logo,
+.logo,
 .brand {
     font-family: var(--font-display), serif;
 }
