@@ -75,16 +75,14 @@ export default function HomePage() {
                 </section>
 
                 <section className="section-y">
-                    <h2 className="font-display h2">activated granola</h2>
+                    <h2 className="font-display h2 text-green">activated granola</h2>
 
                     <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-3 lg:gap-8">
-                        {/* Carousel spans two columns on desktop */}
                         <div className="lg:col-span-2">
                             <ProductCarousel products={products} />
                         </div>
 
                         <div className="flex flex-col gap-6">
-                            {/* Rotating benefits card */}
                             <RotatingCard />
                             <TipCard />
                         </div>
