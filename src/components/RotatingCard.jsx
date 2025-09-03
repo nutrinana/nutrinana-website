@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { Leaf, Sparkles, ShieldCheck } from "lucide-react";
+import { Leaf, HandHeart, ChefHat } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
@@ -20,19 +20,19 @@ export default function RotatingCard({ intervalMs = 6000 }) {
     const BENEFITS = [
         {
             id: 0,
-            icon: Leaf,
+            icon: HandHeart,
             title: "Traditionally Made",
             copy: "We soak and slowly dry our nuts and seeds — a mindful method inspired by natural sprouting conditions.",
         },
         {
             id: 1,
-            icon: ShieldCheck,
+            icon: Leaf,
             title: "Naturally Nutritious",
             copy: "Made with whole food ingredients and no refined sugar, our granola is high in fibre, low in salt, and a source of protein.",
         },
         {
             id: 2,
-            icon: Sparkles,
+            icon: ChefHat,
             title: "Crafted in Small Batches",
             copy: "Prepared with care in Nana’s kitchen, every batch is slowly baked for a deliciously crisp and wholesome crunch.",
         },
