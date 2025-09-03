@@ -3,20 +3,11 @@
  *
  * @component
  *
- * @param {string} className - Optional additional class names for the component.
- *
  * @returns {JSX.Element}  The rendered TipCard component.
  */
-export default function TipCard({ className = "" }) {
+export default function TipCard() {
     return (
-        <div
-            className={[
-                "bg-[var(--color-light-yellow, #fff9e6)]/60 rounded-xl border border-[var(--color-grey)]",
-                "p-5 shadow-sm",
-                className,
-            ].join(" ")}
-            aria-label="Nana’s tip"
-        >
+        <div className="bg-light-yellow/40 rounded-xl p-5" aria-label="Nana's tip">
             <p className="text-raisin/70 mb-2 text-sm tracking-wide uppercase">
                 Nana&apos;s tip to activate your tastebuds
             </p>
@@ -24,8 +15,7 @@ export default function TipCard({ className = "" }) {
                 Try it with Greek yoghurt, fresh berries, and a drizzle of honey—simple, nourishing,
                 delicious.
             </p>
-            {/* If you have a handwritten font class, add it: font-handwritten */}
-            <p className="text-raisin/70 mt-3 text-right text-sm">— Nana</p>
+            <p className="font-handwritten text-raisin/70 mt-3 text-right text-sm">— Nana</p>
         </div>
     );
 }
