@@ -19,7 +19,7 @@ import { formatDate } from "@/lib/utils";
  *
  * @returns {JSX.Element} TopFiveReviews component.
  */
-export default function TopFiveReviews({ autoRotateMs = 7000, className = "" }) {
+export default function TopFiveReviews({ autoRotateMs = 7000 }) {
     const reviews = useRecentReviewCards();
     const topFive = Array.isArray(reviews) ? reviews.slice(0, 5) : [];
 
@@ -27,7 +27,7 @@ export default function TopFiveReviews({ autoRotateMs = 7000, className = "" }) 
 
     if (topFive.length === 0) {
         return (
-            <div className={["p-6", className].join(" ")}>
+            <div className="p-6">
                 <p className="text-raisin/70 text-sm">
                     No reviews yet. Be the first to share your thoughts!
                 </p>
@@ -40,7 +40,7 @@ export default function TopFiveReviews({ autoRotateMs = 7000, className = "" }) 
     return (
         <section
             aria-labelledby="top-reviews-title"
-            className={["flex flex-col p-6", className].join(" ")}
+            className="flex flex-col p-6"
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
         >
