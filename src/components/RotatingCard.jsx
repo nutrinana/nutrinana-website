@@ -16,25 +16,25 @@ import { Button } from "@/components/ui/button";
  *
  * @returns {JSX.Element} The rotating card component.
  */
-export default function RotatingCard({ intervalMs = 6000, className = "" }) {
+export default function RotatingCard({ intervalMs = 6000 }) {
     const BENEFITS = [
         {
             id: 0,
             icon: Leaf,
-            title: "Gentle on digestion",
-            copy: "Activation helps reduce phytic acid and enzyme inhibitors, making every spoonful easier on the gut.",
+            title: "Traditionally Made",
+            copy: "We soak and slowly dry our nuts and seeds — a mindful method inspired by natural sprouting conditions.",
         },
         {
             id: 1,
             icon: ShieldCheck,
-            title: "Nutrient availability",
-            copy: "Soaking and drying supports mineral absorption so your body can make the most of honest ingredients.",
+            title: "Naturally Nutritious",
+            copy: "Made with whole food ingredients and no refined sugar, our granola is high in fibre, low in salt, and a source of protein.",
         },
         {
             id: 2,
             icon: Sparkles,
-            title: "Naturally delicious",
-            copy: "Small-batch, no refined sugar — just wholesome taste crafted with care in Nana’s kitchen.",
+            title: "Crafted in Small Batches",
+            copy: "Prepared with care in Nana’s kitchen, every batch is slowly baked for a deliciously crisp and wholesome crunch.",
         },
     ];
 
@@ -56,18 +56,14 @@ export default function RotatingCard({ intervalMs = 6000, className = "" }) {
     return (
         <aside
             aria-label="Why Activated Granola"
-            className={[
-                "bg-light-green/40 rounded-2xl p-6",
-                "supports-[backdrop-filter]:bg-light-green/40 backdrop-blur",
-                className,
-            ].join(" ")}
+            className="bg-light-green/40 supports-[backdrop-filter]:bg-light-green/40 rounded-2xl p-6 backdrop-blur"
         >
             <h3 className="font-heading mb-4 text-center text-xl sm:text-2xl">
                 Why Activated Granola
             </h3>
 
             <div className="flex items-start gap-4">
-                <div className="border-grey shrink-0 rounded-full border p-3">
+                <div className="border-green/60 shrink-0 rounded-full border p-3">
                     <Icon className="text-green h-6 w-6" aria-hidden="true" />
                 </div>
                 <div>
