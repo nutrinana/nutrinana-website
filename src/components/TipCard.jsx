@@ -12,8 +12,8 @@ export default function TipCard() {
                 Nana&apos;s tip to activate your tastebuds
             </p>
             <p className="text-raisin/90 text-base italic">
-                Try it with Greek yoghurt, fresh berries, and a drizzle of honey—simple, nourishing,
-                delicious.
+                Try it with Greek yoghurt, fresh berries, and a drizzle of honey — simple,
+                nourishing, delicious.
             </p>
             <p className="font-handwritten text-raisin/70 mt-3 text-right text-sm">— Nana</p>
         </div>
