@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 
 import { Leaf, Sparkles, ShieldCheck } from "lucide-react";
 
+import { Button } from "@/components/ui/button";
+
 /**
  * Rotating card component for displaying benefits.
  *
@@ -17,6 +19,7 @@ import { Leaf, Sparkles, ShieldCheck } from "lucide-react";
 export default function RotatingCard({ intervalMs = 6000, className = "" }) {
     const BENEFITS = [
         {
+            id: 0,
             icon: Leaf,
             title: "Gentle on digestion",
             copy: "Activation helps reduce phytic acid and enzyme inhibitors, making every spoonful easier on the gut.",
@@ -45,7 +48,7 @@ export default function RotatingCard({ intervalMs = 6000, className = "" }) {
         );
 
         return () => clearInterval(t);
-    }, [intervalMs]);
+    }, [intervalMs, BENEFITS.length]);
 
     const benefit = BENEFITS[index];
     const Icon = benefit.icon;
@@ -77,13 +80,15 @@ export default function RotatingCard({ intervalMs = 6000, className = "" }) {
             <div className="mt-4 flex items-center justify-between">
                 <div className="flex gap-2" role="tablist" aria-label="Benefits">
                     {BENEFITS.map((b, i) => (
-                        <button
+                        <Button
                             key={b.id}
                             role="tab"
                             aria-selected={i === index}
                             aria-controls={`benefit-panel-${b.id}`}
                             onClick={() => setIndex(i)}
-                            className={`h-2 w-6 rounded-full transition-all ${
+                            variant="noOutline"
+                            size="icon"
+                            className={`h-2 w-6 rounded-full shadow-none transition-all ${
                                 i === index
                                     ? "bg-[var(--color-green)]"
                                     : "bg-[var(--color-grey)]/60 hover:bg-[var(--color-grey)]"
