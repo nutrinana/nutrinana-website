@@ -5,6 +5,7 @@ import InstagramFeed from "@/components/InstagramFeed";
 import LeaveReviewForm from "@/components/LeaveReviewForm";
 import ProductCarousel from "@/components/ProductCarousel";
 import RotatingCard from "@/components/RotatingCard";
+import TipCard from "@/components/TipCard";
 
 const slides = [
     {
@@ -82,8 +83,11 @@ export default function HomePage() {
                             <ProductCarousel products={products} />
                         </div>
 
-                        {/* Rotating benefits card */}
-                        <RotatingCard />
+                        <div className="flex flex-col gap-6">
+                            {/* Rotating benefits card */}
+                            <RotatingCard />
+                            <TipCard />
+                        </div>
                     </div>
                 </section>
 
