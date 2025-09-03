@@ -6,6 +6,7 @@ import LeaveReviewForm from "@/components/LeaveReviewForm";
 import ProductCarousel from "@/components/ProductCarousel";
 import RotatingCard from "@/components/RotatingCard";
 import TipCard from "@/components/TipCard";
+import TopFiveReviews from "@/components/TopFiveReviews";
 
 const slides = [
     {
@@ -90,8 +91,14 @@ export default function HomePage() {
                 </section>
 
                 <section className="section-y">
-                    <h2 className="h2">Leave a Review</h2>
-                    <LeaveReviewForm productId="activated-granola-mfc" />
+                    <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-2 lg:gap-8">
+                        <TopFiveReviews />
+
+                        <div>
+                            <h2 className="h2">Leave a Review</h2>
+                            <LeaveReviewForm productId="activated-granola-mfc" />
+                        </div>
+                    </div>
                 </section>
 
                 <section className="section-y">
