@@ -57,8 +57,8 @@ export default function RotatingCard({ intervalMs = 6000, className = "" }) {
         <aside
             aria-label="Why Activated Granola"
             className={[
-                "rounded-2xl border border-[var(--color-grey)] bg-white/70 p-6 shadow-sm",
-                "backdrop-blur supports-[backdrop-filter]:bg-white/50",
+                "bg-light-green/40 rounded-2xl p-6",
+                "supports-[backdrop-filter]:bg-light-green/40 backdrop-blur",
                 className,
             ].join(" ")}
         >
@@ -67,8 +67,8 @@ export default function RotatingCard({ intervalMs = 6000, className = "" }) {
             </h3>
 
             <div className="flex items-start gap-4">
-                <div className="shrink-0 rounded-full border border-[var(--color-grey)] p-3">
-                    <Icon className="h-6 w-6 text-[var(--color-green)]" aria-hidden="true" />
+                <div className="border-grey shrink-0 rounded-full border p-3">
+                    <Icon className="text-green h-6 w-6" aria-hidden="true" />
                 </div>
                 <div>
                     <p className="mb-1 font-medium">{benefit.title}</p>
@@ -89,9 +89,7 @@ export default function RotatingCard({ intervalMs = 6000, className = "" }) {
                             variant="noOutline"
                             size="icon"
                             className={`h-2 w-6 rounded-full shadow-none transition-all ${
-                                i === index
-                                    ? "bg-[var(--color-green)]"
-                                    : "bg-[var(--color-grey)]/60 hover:bg-[var(--color-grey)]"
+                                i === index ? "bg-green" : "bg-green/20 hover:bg-green"
                             }`}
                             title={b.title}
                         />
