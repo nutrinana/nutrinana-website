@@ -4,6 +4,7 @@ import HeroSlider from "@/components/HeroSlider";
 import InstagramFeed from "@/components/InstagramFeed";
 import LeaveReviewForm from "@/components/LeaveReviewForm";
 import ProductCarousel from "@/components/ProductCarousel";
+import RotatingCard from "@/components/RotatingCard";
 
 const slides = [
     {
@@ -76,6 +77,8 @@ export default function HomePage() {
                     <h2 className="font-display h2">activated granola</h2>
                     <ProductCarousel products={products} />
                 </section>
+
+                <RotatingCard />
 
                 <section className="section-y">
                     <h2 className="h2">Leave a Review</h2>
