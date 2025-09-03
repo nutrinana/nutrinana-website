@@ -4,6 +4,9 @@ import HeroSlider from "@/components/HeroSlider";
 import InstagramFeed from "@/components/InstagramFeed";
 import LeaveReviewForm from "@/components/LeaveReviewForm";
 import ProductCarousel from "@/components/ProductCarousel";
+import RotatingCard from "@/components/RotatingCard";
+import TipCard from "@/components/TipCard";
+import TopFiveReviews from "@/components/TopFiveReviews";
 
 const slides = [
     {
@@ -73,13 +76,30 @@ export default function HomePage() {
                 </section>
 
                 <section className="section-y">
-                    <h2 className="font-display h2">activated granola</h2>
-                    <ProductCarousel products={products} />
+                    <h2 className="font-display h2 text-green">activated granola</h2>
+
+                    <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-3 lg:gap-8">
+                        <div className="lg:col-span-2">
+                            <ProductCarousel products={products} />
+                        </div>
+
+                        <div className="flex flex-col gap-6">
+                            <RotatingCard />
+                            <TipCard />
+                        </div>
+                    </div>
                 </section>
 
                 <section className="section-y">
-                    <h2 className="h2">Leave a Review</h2>
-                    <LeaveReviewForm productId="activated-granola-mfc" />
+                    <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-3 lg:gap-8">
+                        <div className="lg:col-span-1">
+                            <TopFiveReviews />
+                        </div>
+                        <div className="lg:col-span-2">
+                            <h2 className="h2">Leave a Review</h2>
+                            <LeaveReviewForm productId="activated-granola-mfc" />
+                        </div>
+                    </div>
                 </section>
 
                 <section className="section-y">
