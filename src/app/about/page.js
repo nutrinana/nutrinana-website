@@ -24,19 +24,19 @@ const sideSliderTitle = "Who We Are";
 const sideSliderDescription = (
     <>
         Nutrinana started in Nana&apos;s kitchen, where she whipped up granola so good, even her
-        kids couldn&apos;t keep it to themselves—and neither could the neighbours! What began as a
+        kids couldn&apos;t keep it to themselves — and neither could the neighbours! What began as a
         small, family-run operation quickly grew, fuelled by Nana&apos;s mission to prove that
         nutritious, tasty granola doesn&apos;t need a sprinkle of sugar or a dash of anything
         artificial. Our secret? “Activated” nuts and seeds that have gone through a special soaking
         process to make them as easy on your digestion as they are on your taste buds.
         <br />
         <br />
-        At Nutrinana, we&apos;re all about keeping it real—literally. We&apos;re a family-run
+        At Nutrinana, we&apos;re all about keeping it real — literally. We&apos;re a family-run
         business with Nana&apos;s kids handling the social media and website (when they&apos;re not
-        busy asking for more granola). We’re on a mission to become your go-to healthy breakfast
-        alternative, so whether you&apos;re looking to ditch the sugar or dodge the bloat,
+        busy asking for more granola). We&apos;re on a mission to become your go-to healthy
+        breakfast alternative, so whether you&apos;re looking to ditch the sugar or dodge the bloat,
         we&apos;ve got you covered. Plus, when Nana&apos;s not making granola, she&apos;s growing
-        her own veggies—because, of course she is!
+        her own veggies — because, of course she is!
     </>
 );
 

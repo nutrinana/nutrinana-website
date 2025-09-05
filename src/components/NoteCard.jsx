@@ -29,7 +29,7 @@ export default function NoteCard() {
                     to sneak some healthy granola into my kids&apos; breakfasts has blossomed into
                     this incredible journey of sharing my passion for wholesome, no-nonsense food
                     with all of you. Every batch of granola I make is like a little love letter to
-                    your taste buds— packed with nutrition and free from anything artificial.
+                    your taste buds — packed with nutrition and free from anything artificial.
                     Whether you&apos;re here for the flavour or the health benefits, I&apos;m
                     thrilled to have you join the Nutrinana family. Now, let&apos;s make breakfast
                     the best meal of the day!
