@@ -6,10 +6,11 @@ import useTimeline from "@/hooks/useTimeline";
 import styles from "@/styles/Timeline.module.css";
 
 /**
- * Timeline component that displays a vertical timeline with collapsible sections.
+ * Timeline component that displays a vertical timeline.
  *
  * It uses the TimelineItem component to render individual items.
  * The timeline can be expanded or collapsed to show more items.
+ * It supports both collapsible and non-collapsible modes.
  *
  * @component
  *
@@ -19,14 +20,47 @@ import styles from "@/styles/Timeline.module.css";
  * @param {string} props.timelineData[].year - The year associated with the timeline item.
  * @param {string} props.timelineData[].text - The text description of the timeline item.
  * @param {string} props.timelineData[].image - The URL of the image associated with the timeline item.
+ * @param {boolean} [props.collapsible=true] - Whether the timeline is collapsible.
  *
  * @returns {JSX.Element} The rendered Timeline component.
  */
-export default function Timeline({ timelineData }) {
+export default function Timeline({ timelineData, collapsible = true }) {
     // Custom hook to manage the timeline state
     // It provides the API for the collapsible component, current state, and height calculations
     const { isOpen, setIsOpen, collapsedHeight, expandedHeight } = useTimeline(timelineData);
 
+    // non-collapsible timeline rendering
+    if (!collapsible) {
+        return (
+            <div
+                className="relative flex h-full w-full items-center justify-center overflow-visible"
+                style={{ height: `${expandedHeight}px` }}
+            >
+                {/* Vertical line */}
+                <div
+                    className="bg-green absolute left-1/2 w-[6px] -translate-x-1/2 transform rounded-full"
+                    style={{ height: `${expandedHeight}px`, top: 0 }}
+                />
+
+                {/* Render all timeline items */}
+                {timelineData.map((item, index) => (
+                    <TimelineItem key={index} item={item} index={index} />
+                ))}
+
+                {/* Starting dot */}
+                <div
+                    className="bg-green absolute top-[-5px] h-6 w-6 rounded-full"
+                    style={{ left: "calc(50% - 12px)" }}
+                />
+
+                <div className="font-display text-green absolute bottom-[-60px] left-1/2 -translate-x-1/2 text-2xl">
+                    This is only the beginning!
+                </div>
+            </div>
+        );
+    }
+
+    // Collapsible timeline rendering
     return (
         <div
             className={`relative flex h-full w-full items-center justify-center overflow-visible transition-all duration-500`}
