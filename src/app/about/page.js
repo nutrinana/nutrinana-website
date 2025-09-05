@@ -12,11 +12,11 @@ const sideSlides = [
     },
     {
         image: "/about/about-slide2.jpg",
-        alt: "Granola display on a table",
+        alt: "Nana at DELLI warehouse",
     },
     {
         image: "/about/about-slide3.jpg",
-        alt: "Nana at The Black Farmer Farmshop, White City",
+        alt: "Nana preparing granola in her kitchen",
     },
 ];
 
