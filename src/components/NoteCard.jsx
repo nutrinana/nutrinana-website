@@ -1,6 +1,6 @@
 "use client";
 
-import { Pin, Sprout } from "lucide-react";
+import { Sprout } from "lucide-react";
 import Image from "next/image";
 
 import { Card, CardContent } from "@/components/ui/card";
