@@ -33,7 +33,7 @@ export default function Timeline({ timelineData, collapsible = true }) {
     if (!collapsible) {
         return (
             <div
-                className="relative flex h-full w-full items-center justify-center overflow-visible"
+                className="relative mb-20 flex h-full w-full items-center justify-center overflow-visible"
                 style={{ height: `${expandedHeight}px` }}
             >
                 {/* Vertical line */}
@@ -53,7 +53,7 @@ export default function Timeline({ timelineData, collapsible = true }) {
                     style={{ left: "calc(50% - 12px)" }}
                 />
 
-                <div className="font-display text-green absolute bottom-[-60px] left-1/2 -translate-x-1/2 text-2xl">
+                <div className="font-display text-green absolute bottom-[-60px] left-1/2 -translate-x-1/2 text-center text-lg sm:text-2xl md:text-3xl lg:text-3xl">
                     This is only the beginning!
                 </div>
             </div>
@@ -63,7 +63,7 @@ export default function Timeline({ timelineData, collapsible = true }) {
     // Collapsible timeline rendering
     return (
         <div
-            className={`relative flex h-full w-full items-center justify-center overflow-visible transition-all duration-500`}
+            className={`relative mb-20 flex h-full w-full items-center justify-center overflow-visible transition-all duration-50`}
             style={{ height: isOpen ? `${expandedHeight}px` : `${collapsedHeight}px` }}
         >
             {/* Vertical line in the center of the timeline */}
@@ -99,7 +99,7 @@ export default function Timeline({ timelineData, collapsible = true }) {
                     ))}
                 </CollapsibleContent>
                 {isOpen && (
-                    <div className="font-display text-green absolute bottom-[-60px] left-1/2 -translate-x-1/2 text-2xl">
+                    <div className="font-display text-green absolute bottom-[-60px] left-1/2 -translate-x-1/2 text-center text-lg sm:text-2xl md:text-3xl lg:text-3xl">
                         This is only the beginning!
                     </div>
                 )}
