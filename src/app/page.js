@@ -102,7 +102,7 @@ export default function HomePage() {
                     </div>
                 </section>
 
-                <section className="section-y">
+                <section className="section-y:last-child">
                     <h2 className="h2">Follow us on Instagram!</h2>
                     <InstagramFeed />
                 </section>
