@@ -30,7 +30,7 @@ export default function NoteCard() {
                     this incredible journey of sharing my passion for wholesome, no-nonsense food
                     with all of you.
                     <br /> <br />
-                    Every batch of granola I make is like a little love letter to your taste buds —
+                    Every batch of granola I make is like a little love letter to your taste buds,
                     packed with nutrition and free from anything artificial.
                     <br /> <br />
                     I&apos;ve always believed that what we leave out is just as important as what we

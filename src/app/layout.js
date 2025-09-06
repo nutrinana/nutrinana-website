@@ -105,7 +105,7 @@ export default function RootLayout({ children }) {
                     ></script>
                 )}
             </head>
-            <body className="flex min-h-screen flex-col bg-gray-50 text-gray-900">
+            <body className="flex min-h-screen flex-col bg-white text-gray-900">
                 {/* Cookie Banner */}
                 <CookieBotConsent />
 
