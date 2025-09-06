@@ -76,10 +76,9 @@ export default function AboutPage() {
             </section>
 
             <section className="section-y">
-                <NoteCard />
-            </section>
-
-            <section className="section-y">
+                <div className="bg-light-yellow/40 relative right-1/2 left-1/2 -mx-[50vw] w-screen py-3">
+                    <NoteCard />
+                </div>
                 <div className="bg-green/76 relative right-1/2 left-1/2 -mx-[50vw] mb-20 w-screen py-3">
                     <h2 className="text-center text-3xl text-white">A Timeline...</h2>
                 </div>
