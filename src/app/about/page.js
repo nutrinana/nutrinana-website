@@ -85,7 +85,7 @@ export default function AboutPage() {
                 <Timeline timelineData={timelineData} collapsible={false} />
             </section>
 
-            <section className="section-y">
+            <section className="section-y:last-child">
                 <ClosingCTA />
             </section>
         </div>
