@@ -221,3 +221,11 @@ export default function ProductShowcase({
         </div>
     );
 }
+
+// TODO: Edit this component to take the accordions and product description into the props
+// Make another component <ActivatedGranolaMFCProductShowcase /> that uses this one and passes in the right props
+// Rename this component to <ProductShowcase />
+// Update the src/app/page.js file to use the new <ActivatedGranolaMFCProductShowcase /> component instead of this one directly
+// Update the src/components/ActivatedGranolaMFCProductShowcase.jsx file to use the new <ActivatedGranolaMFCProductShowcase /> component instead of this one directly
+// Ensure all necessary imports are added in the files where this component is used
+// Test the changes to ensure everything works as expected
