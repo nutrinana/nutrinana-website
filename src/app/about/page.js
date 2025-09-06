@@ -1,6 +1,7 @@
 // About Page for Nutrinana
 "use client";
 
+import ClosingCTA from "@/components/ClosingCTA";
 import NoteCard from "@/components/NoteCard";
 import SideSlider from "@/components/SideSlider";
 import Timeline from "@/components/Timeline";
@@ -12,11 +13,11 @@ const sideSlides = [
     },
     {
         image: "/about/about-slide2.jpg",
-        alt: "Granola display on a table",
+        alt: "Nana at DELLI warehouse",
     },
     {
         image: "/about/about-slide3.jpg",
-        alt: "Nana at The Black Farmer Farmshop, White City",
+        alt: "Nana preparing granola in her kitchen",
     },
 ];
 
@@ -24,19 +25,19 @@ const sideSliderTitle = "Who We Are";
 const sideSliderDescription = (
     <>
         Nutrinana started in Nana&apos;s kitchen, where she whipped up granola so good, even her
-        kids couldn&apos;t keep it to themselves—and neither could the neighbours! What began as a
+        kids couldn&apos;t keep it to themselves — and neither could the neighbours! What began as a
         small, family-run operation quickly grew, fuelled by Nana&apos;s mission to prove that
         nutritious, tasty granola doesn&apos;t need a sprinkle of sugar or a dash of anything
         artificial. Our secret? “Activated” nuts and seeds that have gone through a special soaking
         process to make them as easy on your digestion as they are on your taste buds.
         <br />
         <br />
-        At Nutrinana, we&apos;re all about keeping it real—literally. We&apos;re a family-run
+        At Nutrinana, we&apos;re all about keeping it real — literally. We&apos;re a family-run
         business with Nana&apos;s kids handling the social media and website (when they&apos;re not
-        busy asking for more granola). We’re on a mission to become your go-to healthy breakfast
-        alternative, so whether you&apos;re looking to ditch the sugar or dodge the bloat,
+        busy asking for more granola). We&apos;re on a mission to become your go-to healthy
+        breakfast alternative, so whether you&apos;re looking to ditch the sugar or dodge the bloat,
         we&apos;ve got you covered. Plus, when Nana&apos;s not making granola, she&apos;s growing
-        her own veggies—because, of course she is!
+        her own veggies — because, of course she is!
     </>
 );
 
@@ -75,14 +76,17 @@ export default function AboutPage() {
             </section>
 
             <section className="section-y">
-                <NoteCard />
-            </section>
-
-            <section className="section-y">
+                <div className="bg-light-yellow/40 relative right-1/2 left-1/2 -mx-[50vw] w-screen py-3">
+                    <NoteCard />
+                </div>
                 <div className="bg-green/76 relative right-1/2 left-1/2 -mx-[50vw] mb-20 w-screen py-3">
                     <h2 className="text-center text-3xl text-white">A Timeline...</h2>
                 </div>
-                <Timeline timelineData={timelineData} />
+                <Timeline timelineData={timelineData} collapsible={false} />
+            </section>
+
+            <section className="section-y:last-child">
+                <ClosingCTA />
             </section>
         </div>
     );
