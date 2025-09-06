@@ -16,12 +16,12 @@ import { Card, CardContent } from "@/components/ui/card";
  */
 export default function NoteCard() {
     return (
-        <Card className="border-raisin relative mx-auto max-w-4xl rounded-2xl border bg-[#fdf2cf] shadow">
+        <Card className="bg-light-yellow/40 relative mx-auto max-w-4xl rounded-2xl">
             <CardContent className="px-6 py-8 text-center sm:px-12">
                 {/* Card title */}
-                <h2 className="mb-6 pt-6 text-2xl sm:text-3xl">
+                <p className="text-raisin/70 mb-6 pt-6 text-xl tracking-wide uppercase">
                     A Note From Nana <em>(aka, Nutrinana)</em>
-                </h2>
+                </p>
 
                 {/* Card content */}
                 <p className="text-base leading-relaxed text-gray-900 sm:text-lg">
