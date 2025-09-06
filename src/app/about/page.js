@@ -1,6 +1,7 @@
 // About Page for Nutrinana
 "use client";
 
+import ClosingCTA from "@/components/ClosingCTA";
 import NoteCard from "@/components/NoteCard";
 import SideSlider from "@/components/SideSlider";
 import Timeline from "@/components/Timeline";
@@ -83,6 +84,10 @@ export default function AboutPage() {
                     <h2 className="text-center text-3xl text-white">A Timeline...</h2>
                 </div>
                 <Timeline timelineData={timelineData} collapsible={false} />
+            </section>
+
+            <section className="section-y">
+                <ClosingCTA />
             </section>
         </div>
     );
