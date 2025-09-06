@@ -11,6 +11,7 @@ import Navbar from "@/components/Navbar";
 const montserrat = Montserrat({
     subsets: ["latin"],
     variable: "--font-montserrat",
+    style: ["normal", "italic"],
     display: "swap",
 });
 
