@@ -62,7 +62,7 @@ const productData = {
     title: "Nutrinana's Activated Granola",
     subtitle: "Mixed Fruits & Coconut",
     description:
-        "Our activated granola is gluten-free, dairy-free, and contains no refined sugar. Made with traditionally activated nuts and seeds for better digestibility.",
+        "Our activated granola is gluten-free, dairy-free, and made without refined sugar. Crafted with traditionally soaked and dried nuts and seeds, wholesome oats, dried fruits, and coconut. Perfect for breakfast or a nourishing snack, enjoy it with Greek yoghurt and fresh berries, sprinkled over porridge, or simply by the handful straight from the bag.",
     price: "£8.50",
     size: "500g",
     shopLinks: [
