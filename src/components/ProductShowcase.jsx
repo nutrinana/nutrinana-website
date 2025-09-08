@@ -6,6 +6,7 @@ import { CircleCheck, Maximize2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+import GlobalAccordion from "@/components/GlobalAccordion";
 import Lightbox from "@/components/Lightbox";
 import { Button } from "@/components/ui/button";
 import useProductRating from "@/hooks/useProductRating";
@@ -15,7 +16,7 @@ import "@/styles/globals.css";
 /**
  * ProductShowcase component for displaying product information in a card layout.
  *
- * It includes a grid of images, title, subtitle, feature list, price, and shop links.
+ * It includes a grid of images, title, subtitle, feature list, price, shop links, and optional accordions.
  * Clicking an image opens a Lightbox view with a larger image and selectable thumbnails.
  *
  * @component
@@ -30,6 +31,7 @@ import "@/styles/globals.css";
  * @param {string} props.shopLinks[].text - Display text for the shop button.
  * @param {string} props.shopLinks[].href - URL for the shop link.
  * @param {string} props.externalId - The external identifier from Yotpo for the product (used for fetching ratings).
+ * @param {Object[]} [props.accordionData] - Optional array of accordion items to display below shop buttons.
  *
  * @returns {JSX.Element} The rendered ProductShowcase component.
  */
@@ -41,6 +43,7 @@ export default function ProductShowcase({
     price,
     shopLinks = [],
     externalId = "",
+    accordionData = [],
 }) {
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
     const averageRating = useProductRating(externalId || "");
@@ -208,6 +211,13 @@ export default function ProductShowcase({
                                 {shopLinks[1]?.text}
                             </Button>
                         </div>
+
+                        {/* Accordions */}
+                        {accordionData.length > 0 && (
+                            <div className="mt-6">
+                                <GlobalAccordion items={accordionData} />
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
@@ -224,7 +234,6 @@ export default function ProductShowcase({
 
 // TODO: Edit this component to take the accordions and product description into the props
 // Make another component <ActivatedGranolaMFCProductShowcase /> that uses this one and passes in the right props
-// Rename this component to <ProductShowcase />
 // Update the src/app/page.js file to use the new <ActivatedGranolaMFCProductShowcase /> component instead of this one directly
 // Update the src/components/ActivatedGranolaMFCProductShowcase.jsx file to use the new <ActivatedGranolaMFCProductShowcase /> component instead of this one directly
 // Ensure all necessary imports are added in the files where this component is used
