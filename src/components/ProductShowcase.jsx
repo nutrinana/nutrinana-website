@@ -149,11 +149,11 @@ export default function ProductShowcase({
                 </div>
 
                 {/* Content Section */}
-                <div className="flex h-auto flex-col p-4 md:h-full md:w-2/5">
+                <div className="flex h-auto flex-col md:h-full md:w-2/5">
                     <div className="flex-grow px-0 pt-4 pb-4 md:pb-0">
                         {/* Title and Subtitle */}
-                        <h2 className="font-display text-center text-2xl">{title}</h2>
-                        <p className="p-2 text-center text-lg text-gray-600">{subtitle}</p>
+                        <h2 className="font-display text-2xl">{title}</h2>
+                        <p className="text-lg text-gray-600">{subtitle}</p>
 
                         {/* Description */}
                         {description && (
@@ -164,7 +164,7 @@ export default function ProductShowcase({
 
                         {/* Price and Rating */}
                         <div className="mt-6 flex items-center justify-between pb-3">
-                            <span className="text-6xl font-bold text-gray-800">{price}</span>
+                            <span className="text-4xl font-bold text-gray-800">{price}</span>
                             {averageRating !== null && averageRating !== undefined && (
                                 <Link href="/reviews" className="rating hover:underline">
                                     ⭐ {averageRating}
@@ -173,11 +173,10 @@ export default function ProductShowcase({
                         </div>
 
                         {/* Shop buttons */}
-                        <div className="mt-auto flex w-full flex-col gap-4 pt-4 sm:flex-row">
+                        <div className="mt-auto flex flex-col gap-4 pt-4 sm:flex-row">
                             <Button
                                 variant="yellow"
                                 size="default"
-                                className="w-full sm:w-1/2"
                                 onClick={(event) => {
                                     event.stopPropagation();
                                     if (shopLinks[0]?.href) {
@@ -190,7 +189,6 @@ export default function ProductShowcase({
                             <Button
                                 variant="greenOutlined"
                                 size="default"
-                                className="w-full sm:w-1/2"
                                 onClick={(event) => {
                                     event.stopPropagation();
                                     if (shopLinks[1]?.href) {
