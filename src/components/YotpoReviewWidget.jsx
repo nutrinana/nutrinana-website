@@ -53,7 +53,6 @@ export default function YotpoReviewWidget({
                 paddingTop: "0",
                 paddingBottom: "0",
                 marginTop: "0",
-                backgroundColor: "#fff",
             }}
         >
             <div
