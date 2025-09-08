@@ -99,7 +99,7 @@ export default function ActivatedGranolaPage() {
     return (
         <div className="site-container">
             {/* Product Card Section */}
-            <section className="section-y">
+            <section className="section-y:first-child">
                 <ProductShowcase {...productData[0]} />
             </section>
 
