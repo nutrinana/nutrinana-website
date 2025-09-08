@@ -28,31 +28,45 @@ const DEFAULT_ITEMS = [
 export default function KeyFeaturesBand({ items = DEFAULT_ITEMS, className = "" }) {
     return (
         <div
-            className={`bg-light-green/40 relative right-1/2 left-1/2 -mx-[50vw] w-screen${className}`}
+            className={`bg-light-green/40 relative right-1/2 left-1/2 -mx-[50vw] w-screen ${className}`}
         >
-            <div className="site-container">
-                <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 lg:gap-20">
-                    {items.map((item) => {
-                        const IconComponent = item.icon;
+            {/* Mobile */}
+            <div className="flex gap-8 overflow-x-auto px-8 py-12 md:hidden">
+                {items.map((item) => {
+                    const IconComponent = item.icon;
 
-                        return (
-                            <div
-                                key={item.id}
-                                className="flex flex-col items-center gap-2 text-center"
-                            >
-                                <div className="flex h-24 w-24 items-center justify-center rounded-full bg-white">
-                                    <IconComponent
-                                        className="text-green h-12 w-12"
-                                        strokeWidth={1.5}
-                                    />
-                                </div>
-                                <span className="text-m font-medium tracking-wide text-gray-700">
-                                    {item.label}
-                                </span>
+                    return (
+                        <div
+                            key={item.id}
+                            className="flex min-w-[120px] flex-col items-center gap-2 text-center"
+                        >
+                            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white">
+                                <IconComponent className="text-green h-10 w-10" strokeWidth={1.5} />
                             </div>
-                        );
-                    })}
-                </div>
+                            <span className="text-sm font-medium tracking-wide text-gray-700">
+                                {item.label}
+                            </span>
+                        </div>
+                    );
+                })}
+            </div>
+
+            {/* Desktop: Centered layout */}
+            <div className="hidden flex-wrap items-center justify-center gap-6 py-12 md:flex lg:gap-20">
+                {items.map((item) => {
+                    const IconComponent = item.icon;
+
+                    return (
+                        <div key={item.id} className="flex flex-col items-center gap-2 text-center">
+                            <div className="flex h-24 w-24 items-center justify-center rounded-full bg-white">
+                                <IconComponent className="text-green h-12 w-12" strokeWidth={1.5} />
+                            </div>
+                            <span className="text-base font-medium tracking-wide text-gray-700">
+                                {item.label}
+                            </span>
+                        </div>
+                    );
+                })}
             </div>
         </div>
     );
