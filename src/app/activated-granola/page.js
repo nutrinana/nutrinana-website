@@ -47,7 +47,7 @@ export default function ActivatedGranolaPage() {
                 </section>
 
                 {/* Reviews Section */}
-                <section className="section-y">
+                <section className="section-y:last-child">
                     <h2 className="h2 text-2xl">Reviews</h2>
                     <YotpoReviewWidget
                         productId={mainProduct.productId}
