@@ -57,7 +57,7 @@ export default function ProductShowcase({
                 {/* Images Section */}
                 <div className="h-full flex-1 md:sticky md:top-24 md:self-start">
                     {/* Mobile view - single image */}
-                    <div className="p-4 md:hidden">
+                    <div className="pb-4 md:hidden">
                         <div
                             className="group relative cursor-pointer"
                             onClick={(e) => {

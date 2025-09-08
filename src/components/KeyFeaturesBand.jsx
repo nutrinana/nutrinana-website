@@ -1,0 +1,57 @@
+"use client";
+
+import { WheatOff, Dumbbell, Vegan, Leaf } from "lucide-react";
+import { TbWheat } from "react-icons/tb";
+
+const DEFAULT_ITEMS = [
+    { id: "plant", icon: Leaf, label: "100% PLANT-BASED" },
+    { id: "fibre", icon: TbWheat, label: "HIGH IN FIBRE" },
+    { id: "protein", icon: Dumbbell, label: "HIGH IN PROTEIN" },
+    { id: "gluten", icon: WheatOff, label: "GLUTEN FREE" },
+    { id: "vegan", icon: Vegan, label: "VEGAN FRIENDLY" },
+];
+
+/**
+ * KeyFeaturesBand component for displaying product features in a horizontal band.
+ *
+ * @component
+ *
+ * @param {Object} props - The properties for the KeyFeaturesBand component.
+ * @param {Object[]} [props.items] - Array of feature items to display. Defaults to DEFAULT_ITEMS.
+ * @param {string} props.items[].id - Unique identifier for the feature.
+ * @param {React.Component} props.items[].icon - Lucide icon component.
+ * @param {string} props.items[].label - Display label for the feature.
+ * @param {string} [props.className] - Additional CSS classes to apply to the container.
+ *
+ * @returns {JSX.Element} The rendered KeyFeaturesBand component.
+ */
+export default function KeyFeaturesBand({ items = DEFAULT_ITEMS, className = "" }) {
+    return (
+        <div className={`w-full bg-gray-50 py-8 ${className}`}>
+            <div className="site-container">
+                <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 lg:gap-12">
+                    {items.map((item) => {
+                        const IconComponent = item.icon;
+
+                        return (
+                            <div
+                                key={item.id}
+                                className="flex flex-col items-center gap-2 text-center"
+                            >
+                                <div className="flex h-16 w-16 items-center justify-center rounded-full border border-gray-100 bg-white shadow-sm">
+                                    <IconComponent
+                                        className="h-7 w-7 text-yellow-600"
+                                        strokeWidth={1.5}
+                                    />
+                                </div>
+                                <span className="text-xs font-medium tracking-wide text-gray-700">
+                                    {item.label}
+                                </span>
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+        </div>
+    );
+}
