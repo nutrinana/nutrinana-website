@@ -69,7 +69,8 @@ const productData = [
         ],
         title: "Nutrinana's Activated Granola",
         subtitle: "Mixed Fruits & Coconut",
-        features: ["Gluten-Free", "Dairy-Free", "No Refined Sugar"],
+        description:
+            "Our activated granola is gluten-free, dairy-free, and contains no refined sugar. Made with traditionally activated nuts and seeds for better digestibility.",
         price: "£8.50",
         shopLinks: [
             {

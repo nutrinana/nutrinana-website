@@ -16,7 +16,7 @@ import "@/styles/globals.css";
 /**
  * ProductShowcase component for displaying product information in a card layout.
  *
- * It includes a grid of images, title, subtitle, feature list, price, shop links, and optional accordions.
+ * It includes a grid of images, title, subtitle, description, price, shop links, and optional accordions.
  * Clicking an image opens a Lightbox view with a larger image and selectable thumbnails.
  *
  * @component
@@ -25,7 +25,7 @@ import "@/styles/globals.css";
  * @param {string[]} props.images - Array of image URLs for the product.
  * @param {string} props.title - The title of the product.
  * @param {string} props.subtitle - The subtitle or short description of the product.
- * @param {string[]} props.features - Array of product features.
+ * @param {string} props.description - Product description text.
  * @param {string} props.price - The price of the product (formatted as a string).
  * @param {Object[]} props.shopLinks - Array of shop link objects for purchasing the product.
  * @param {string} props.shopLinks[].text - Display text for the shop button.
@@ -39,7 +39,7 @@ export default function ProductShowcase({
     images = [],
     title,
     subtitle,
-    features = [],
+    description,
     price,
     shopLinks = [],
     externalId = "",
@@ -155,22 +155,12 @@ export default function ProductShowcase({
                         <h2 className="font-display text-center text-2xl">{title}</h2>
                         <p className="p-2 text-center text-lg text-gray-600">{subtitle}</p>
 
-                        {/* Features list with icons */}
-                        <div className="hidden w-full justify-center sm:block">
-                            <ul className="mx-auto mt-4 flex w-full flex-col items-start space-y-2 text-center sm:ml-28 md:ml-28 md:text-left">
-                                {features.map((feature, index) => (
-                                    <li
-                                        key={index}
-                                        className="flex w-full items-center gap-2 text-green-600"
-                                    >
-                                        <CircleCheck className="h-6 w-6 text-green-600" />
-                                        <span className="text-lg whitespace-nowrap sm:text-xs md:text-base">
-                                            {feature}
-                                        </span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+                        {/* Description */}
+                        {description && (
+                            <div className="mt-4">
+                                <p className="text-base text-gray-700">{description}</p>
+                            </div>
+                        )}
 
                         {/* Price and Rating */}
                         <div className="mt-6 flex items-center justify-between pb-3">
