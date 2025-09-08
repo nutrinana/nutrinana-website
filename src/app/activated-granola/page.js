@@ -112,8 +112,6 @@ export default function ActivatedGranolaPage() {
 
                 {/* Product Information */}
                 <section className="section-y">
-                    <h2 className="h2 text-2xl">Product Information</h2>
-                    <Separator className="bg-raisin my-4" />
                     <h3 className="font-display mb-2 text-lg text-yellow-600">
                         What is activated?
                     </h3>
@@ -124,15 +122,15 @@ export default function ActivatedGranolaPage() {
                         traditional food preparation techniques. At Nutrinana, we use this method as
                         part of our careful ingredient preparation.
                         <br /> <br />
-                        Try it with yoghurt and berries, sprinkle it over porridge, or enjoy as a
-                        crunchy snack straight from the bag.
+                        <em>Serving suggestion:</em> Try it with yoghurt and berries, sprinkle it
+                        over porridge, or enjoy as a crunchy snack straight from the bag.
                         <br /> <br />
-                        To keep your granola fresh and crunchy, store it in an airtight container in
-                        a cool, dry place. Our granola has a shelf life of 6-12 months if stored
-                        properly—but let’s be honest, it’ll probably last less than that because
-                        it’s just that tasty! You’ll find the best-before date printed on the
-                        package, so you can enjoy every bite at its peak. Remember to reseal the
-                        packaging after each use to maintain its freshness!
+                        <em>Storage tip:</em> Keep your granola fresh and crunchy by storing it in
+                        an airtight container in a cool, dry place. Our granola has a shelf life of
+                        6–12 months if stored properly — but let’s be honest, it’ll probably last
+                        less than that because it’s just that tasty! You’ll find the best-before
+                        date printed on the package, so you can enjoy every bite at its peak.
+                        Remember to reseal the packaging after each use to maintain its freshness.
                     </p>
                 </section>
 
