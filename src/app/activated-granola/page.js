@@ -4,6 +4,7 @@
 import dynamic from "next/dynamic";
 
 import GlobalAccordion from "@/components/GlobalAccordion";
+import KeyFeaturesBand from "@/components/KeyFeaturesBand";
 import NutritionTable from "@/components/NutritionTable";
 import ProductShowcase from "@/components/ProductShowcase";
 import { Separator } from "@/components/ui/separator";
@@ -102,6 +103,9 @@ export default function ActivatedGranolaPage() {
             <section className="section-y:first-child">
                 <ProductShowcase {...productData[0]} />
             </section>
+
+            {/* Key Features Band */}
+            <KeyFeaturesBand />
 
             {/* Product Information */}
             <section className="section-y">
