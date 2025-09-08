@@ -79,6 +79,7 @@ const productData = [
             { text: "Shop Black Farmer", href: "https://theblackfarmer.com" },
         ],
         externalId: "activated-granola-mfc",
+        accordionData: accordionData,
     },
 ];
 
@@ -112,11 +113,6 @@ export default function ActivatedGranolaPage() {
                     techniques. At Nutrinana, we use this method as part of our careful ingredient
                     preparation.
                 </p>
-            </section>
-
-            {/* Accordion (Ingredients & Nutritional Info) */}
-            <section className="section-y">
-                <GlobalAccordion items={accordionData} />
             </section>
 
             {/* Reviews Section */}
