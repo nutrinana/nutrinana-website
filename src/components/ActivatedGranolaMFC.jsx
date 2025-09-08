@@ -80,6 +80,7 @@ const productData = [
 
 /**
  * ActivatedGranolaMFC component for displaying the Mixed Fruits & Coconut granola product.
+ *
  * This component wraps ProductShowcase with the specific data for this product variant.
  *
  * @component
