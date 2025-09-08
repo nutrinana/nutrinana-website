@@ -123,6 +123,16 @@ export default function ActivatedGranolaPage() {
                         replicate natural sprouting conditions, and is often associated with
                         traditional food preparation techniques. At Nutrinana, we use this method as
                         part of our careful ingredient preparation.
+                        <br /> <br />
+                        Try it with yoghurt and berries, sprinkle it over porridge, or enjoy as a
+                        crunchy snack straight from the bag.
+                        <br /> <br />
+                        To keep your granola fresh and crunchy, store it in an airtight container in
+                        a cool, dry place. Our granola has a shelf life of 6-12 months if stored
+                        properly—but let’s be honest, it’ll probably last less than that because
+                        it’s just that tasty! You’ll find the best-before date printed on the
+                        package, so you can enjoy every bite at its peak. Remember to reseal the
+                        packaging after each use to maintain its freshness!
                     </p>
                 </section>
 
