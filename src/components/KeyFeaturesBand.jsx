@@ -27,7 +27,9 @@ const DEFAULT_ITEMS = [
  */
 export default function KeyFeaturesBand({ items = DEFAULT_ITEMS, className = "" }) {
     return (
-        <div className={`bg-light-green/40 w-full ${className}`}>
+        <div
+            className={`bg-light-green/40 relative right-1/2 left-1/2 -mx-[50vw] w-screen${className}`}
+        >
             <div className="site-container">
                 <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 lg:gap-20">
                     {items.map((item) => {
