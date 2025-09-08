@@ -104,14 +104,12 @@ export default function ActivatedGranolaPage() {
                 <section className="section-y:first-child">
                     <ProductShowcase {...productData[0]} />
                 </section>
-            </div>
 
-            <section className="section-y">
-                {/* Key Features Band - Full Width */}
-                <KeyFeaturesBand />
-            </section>
+                <section className="section-y">
+                    {/* Key Features Band - Full Width */}
+                    <KeyFeaturesBand />
+                </section>
 
-            <div className="site-container">
                 {/* Product Information */}
                 <section className="section-y">
                     <h2 className="h2 text-2xl">Product Information</h2>
