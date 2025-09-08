@@ -55,7 +55,7 @@ export default function ProductShowcase({
             {/* Main container for the card layout */}
             <div className="relative flex h-auto w-full flex-col items-center overflow-visible rounded-xl md:flex-row md:items-start md:gap-8">
                 {/* Images Section */}
-                <div className="h-full flex-1">
+                <div className="h-full flex-1 md:sticky md:top-24 md:self-start">
                     {/* Mobile view - single image */}
                     <div className="p-4 md:hidden">
                         <div
@@ -151,7 +151,7 @@ export default function ProductShowcase({
                 </div>
 
                 {/* Content Section */}
-                <div className="flex h-auto flex-col md:h-full md:w-2/5">
+                <div className="flex h-auto flex-col md:w-2/5">
                     <div className="flex-grow px-0 pt-4 pb-4 md:pb-0">
                         {/* Title and Subtitle */}
                         <h2 className="font-display text-2xl">{title}</h2>
