@@ -98,42 +98,50 @@ const mainProduct = {
 
 export default function ActivatedGranolaPage() {
     return (
-        <div className="site-container">
-            {/* Product Card Section */}
-            <section className="section-y:first-child">
-                <ProductShowcase {...productData[0]} />
-            </section>
+        <>
+            <div className="site-container">
+                {/* Product Card Section */}
+                <section className="section-y:first-child">
+                    <ProductShowcase {...productData[0]} />
+                </section>
+            </div>
 
-            {/* Key Features Band */}
-            <KeyFeaturesBand />
-
-            {/* Product Information */}
             <section className="section-y">
-                <h2 className="h2 text-2xl">Product Information</h2>
-                <Separator className="bg-raisin my-4" />
-                <h3 className="font-display mb-2 text-lg text-yellow-600">What is activated?</h3>
-                <p className="text-lg">
-                    Activation is a traditional method that involves soaking nuts and seeds before
-                    drying them. This process is commonly used by those looking to replicate natural
-                    sprouting conditions, and is often associated with traditional food preparation
-                    techniques. At Nutrinana, we use this method as part of our careful ingredient
-                    preparation.
-                </p>
+                {/* Key Features Band - Full Width */}
+                <KeyFeaturesBand />
             </section>
 
-            {/* Reviews Section */}
-            <section className="section-y">
-                <h2 className="h2 text-2xl">Reviews</h2>
-                <YotpoReviewWidget
-                    productId={mainProduct.productId}
-                    name={mainProduct.name}
-                    url={mainProduct.url}
-                    imageUrl={mainProduct.imageUrl}
-                    price={mainProduct.price}
-                    currency={mainProduct.currency}
-                    description={mainProduct.description}
-                />
-            </section>
-        </div>
+            <div className="site-container">
+                {/* Product Information */}
+                <section className="section-y">
+                    <h2 className="h2 text-2xl">Product Information</h2>
+                    <Separator className="bg-raisin my-4" />
+                    <h3 className="font-display mb-2 text-lg text-yellow-600">
+                        What is activated?
+                    </h3>
+                    <p className="text-lg">
+                        Activation is a traditional method that involves soaking nuts and seeds
+                        before drying them. This process is commonly used by those looking to
+                        replicate natural sprouting conditions, and is often associated with
+                        traditional food preparation techniques. At Nutrinana, we use this method as
+                        part of our careful ingredient preparation.
+                    </p>
+                </section>
+
+                {/* Reviews Section */}
+                <section className="section-y">
+                    <h2 className="h2 text-2xl">Reviews</h2>
+                    <YotpoReviewWidget
+                        productId={mainProduct.productId}
+                        name={mainProduct.name}
+                        url={mainProduct.url}
+                        imageUrl={mainProduct.imageUrl}
+                        price={mainProduct.price}
+                        currency={mainProduct.currency}
+                        description={mainProduct.description}
+                    />
+                </section>
+            </div>
+        </>
     );
 }
