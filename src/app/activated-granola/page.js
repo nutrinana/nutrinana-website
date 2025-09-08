@@ -127,10 +127,11 @@ export default function ActivatedGranolaPage() {
                         <br /> <br />
                         <em>Storage tip:</em> Keep your granola fresh and crunchy by storing it in
                         an airtight container in a cool, dry place. Our granola has a shelf life of
-                        6–12 months if stored properly — but let’s be honest, it’ll probably last
-                        less than that because it’s just that tasty! You’ll find the best-before
-                        date printed on the package, so you can enjoy every bite at its peak.
-                        Remember to reseal the packaging after each use to maintain its freshness.
+                        6-12 months if stored properly — but let&apos;s be honest, it&apos;ll
+                        probably last less than that because it&apos;s just that tasty! You&apos;ll
+                        find the best-before date printed on the package, so you can enjoy every
+                        bite at its peak. Remember to reseal the packaging after each use to
+                        maintain its freshness.
                     </p>
                 </section>
 
