@@ -72,6 +72,7 @@ const productData = [
         description:
             "Our activated granola is gluten-free, dairy-free, and contains no refined sugar. Made with traditionally activated nuts and seeds for better digestibility.",
         price: "£8.50",
+        size: "500g",
         shopLinks: [
             {
                 text: "Shop DELLI",

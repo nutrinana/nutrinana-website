@@ -27,6 +27,7 @@ import "@/styles/globals.css";
  * @param {string} props.subtitle - The subtitle or short description of the product.
  * @param {string} props.description - Product description text.
  * @param {string} props.price - The price of the product (formatted as a string).
+ * @param {string} [props.size] - The size/weight of the product (e.g., "500g").
  * @param {Object[]} props.shopLinks - Array of shop link objects for purchasing the product.
  * @param {string} props.shopLinks[].text - Display text for the shop button.
  * @param {string} props.shopLinks[].href - URL for the shop link.
@@ -41,6 +42,7 @@ export default function ProductShowcase({
     subtitle,
     description,
     price,
+    size,
     shopLinks = [],
     externalId = "",
     accordionData = [],
@@ -171,6 +173,13 @@ export default function ProductShowcase({
                                 </Link>
                             )}
                         </div>
+
+                        {/* Pack Size */}
+                        {size && (
+                            <div className="mb-4">
+                                <p className="text-sm text-gray-600">Pack size: {size}</p>
+                            </div>
+                        )}
 
                         {/* Shop buttons */}
                         <div className="mt-auto flex flex-col gap-4 pt-4 sm:flex-row">
