@@ -27,9 +27,9 @@ const DEFAULT_ITEMS = [
  */
 export default function KeyFeaturesBand({ items = DEFAULT_ITEMS, className = "" }) {
     return (
-        <div className={`w-full bg-gray-50 py-8 ${className}`}>
+        <div className={`bg-light-green/40 w-full ${className}`}>
             <div className="site-container">
-                <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 lg:gap-12">
+                <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 lg:gap-20">
                     {items.map((item) => {
                         const IconComponent = item.icon;
 
@@ -38,13 +38,13 @@ export default function KeyFeaturesBand({ items = DEFAULT_ITEMS, className = "" 
                                 key={item.id}
                                 className="flex flex-col items-center gap-2 text-center"
                             >
-                                <div className="flex h-16 w-16 items-center justify-center rounded-full border border-gray-100 bg-white shadow-sm">
+                                <div className="flex h-24 w-24 items-center justify-center rounded-full bg-white">
                                     <IconComponent
-                                        className="h-7 w-7 text-yellow-600"
+                                        className="text-green h-12 w-12"
                                         strokeWidth={1.5}
                                     />
                                 </div>
-                                <span className="text-xs font-medium tracking-wide text-gray-700">
+                                <span className="text-m font-medium tracking-wide text-gray-700">
                                     {item.label}
                                 </span>
                             </div>
