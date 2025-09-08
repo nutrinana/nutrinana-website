@@ -53,30 +53,28 @@ const accordionData = [
     },
 ];
 
-const productData = [
-    {
-        images: [
-            "/products/mixed-fruits/granola1.jpg",
-            "/products/mixed-fruits/granola2.jpg",
-            "/products/mixed-fruits/granola3.jpg",
-        ],
-        title: "Nutrinana's Activated Granola",
-        subtitle: "Mixed Fruits & Coconut",
-        description:
-            "Our activated granola is gluten-free, dairy-free, and contains no refined sugar. Made with traditionally activated nuts and seeds for better digestibility.",
-        price: "£8.50",
-        size: "500g",
-        shopLinks: [
-            {
-                text: "Shop DELLI",
-                href: "https://delli.market/products/nutrinanas-special-granola?_pos=1&_sid=1d1806f92&_ss=r",
-            },
-            { text: "Shop Black Farmer", href: "https://theblackfarmer.com" },
-        ],
-        externalId: "activated-granola-mfc",
-        accordionData: accordionData,
-    },
-];
+const productData = {
+    images: [
+        "/products/mixed-fruits/granola1.jpg",
+        "/products/mixed-fruits/granola2.jpg",
+        "/products/mixed-fruits/granola3.jpg",
+    ],
+    title: "Nutrinana's Activated Granola",
+    subtitle: "Mixed Fruits & Coconut",
+    description:
+        "Our activated granola is gluten-free, dairy-free, and contains no refined sugar. Made with traditionally activated nuts and seeds for better digestibility.",
+    price: "£8.50",
+    size: "500g",
+    shopLinks: [
+        {
+            text: "Shop DELLI",
+            href: "https://delli.market/products/nutrinanas-special-granola?_pos=1&_sid=1d1806f92&_ss=r",
+        },
+        { text: "Shop Black Farmer", href: "https://theblackfarmer.com" },
+    ],
+    externalId: "activated-granola-mfc",
+    accordionData: accordionData,
+};
 
 /**
  * ActivatedGranolaMFC component for displaying the Mixed Fruits & Coconut granola product.
