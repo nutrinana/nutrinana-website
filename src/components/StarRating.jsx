@@ -50,7 +50,7 @@ export default function StarRating({ value = 0, onChange, readonly = false, size
                         onClick={() => handleClick(star)}
                         onMouseEnter={() => handleHover(star)}
                         onMouseLeave={() => setHovered(null)}
-                        className={`cursor-pointer text-yellow-500 ${opacity} transition-all duration-200 ease-in-out hover:scale-110 hover:opacity-100`}
+                        className={`cursor-pointer text-yellow-400 ${opacity} transition-all duration-200 ease-in-out hover:scale-110 hover:opacity-100`}
                     >
                         <Star size={size} fill="currentColor" />
                     </span>
