@@ -322,3 +322,38 @@ a {
 .yotpo-head {
     display: none !important;
 }
+
+.yotpo-horizontal-pagination {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.5rem;
+}
+
+.yotpo-horizontal-pagination a {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 auto !important;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    border-radius: 0.375rem;
+    text-decoration: none;
+}
+
+.yotpo-horizontal-pagination .yotpo-pagination-number {
+    min-width: 2rem !important;
+    height: 2rem !important;
+}
+
+.yotpo-horizontal-pagination svg,
+.yotpo-horizontal-pagination .yotpo-pagination-icon {
+    display: block !important;
+}
+
+.yotpo-horizontal-pagination .yotpo-reviews-seo-pagination-item {
+    width: auto !important;
+}
