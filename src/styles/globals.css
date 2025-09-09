@@ -357,3 +357,20 @@ a {
 .yotpo-horizontal-pagination .yotpo-reviews-seo-pagination-item {
     width: auto !important;
 }
+
+.yotpo-read-more {
+    font-family: var(--font-montserrat), sans-serif !important;
+    font-weight: 700 !important;
+}
+
+.yotpo-review-title {
+    color: var(--color-raisin) !important;
+}
+
+.yotpo-review-content {
+    color: var(--color-gray-700) !important;
+}
+
+.yotpo-date-format {
+    color: var(--color-gray-600) !important;
+}
