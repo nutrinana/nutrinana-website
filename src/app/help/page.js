@@ -54,6 +54,7 @@ const accordionData = [
 export default function HelpPage() {
     return (
         <div className="site-container">
+            {/* Page Header */}
             <section className="section-y">
                 <div className="mx-auto max-w-4xl">
                     <h1 className="mb-6 text-center text-3xl">Help Centre</h1>
@@ -64,6 +65,7 @@ export default function HelpPage() {
                 </div>
             </section>
 
+            {/* FAQs */}
             <section className="section-y">
                 <div className="mx-auto max-w-4xl">
                     <h2 className="h2 text-2xl font-semibold">Frequently Asked Questions</h2>
@@ -71,8 +73,10 @@ export default function HelpPage() {
                 </div>
             </section>
 
+            {/* Divider */}
             <hr className="mx-auto my-6 max-w-4xl border-gray-300" />
 
+            {/* Contact Form */}
             <section className="section-y">
                 <div className="mx-auto max-w-4xl">
                     <h2 className="h2 text-2xl font-semibold">Contact Us</h2>
