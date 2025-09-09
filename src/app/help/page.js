@@ -55,11 +55,22 @@ export default function HelpPage() {
     return (
         <div className="site-container">
             <section className="section-y">
-                <h2 className="h2 text-3xl">Frequently Asked Questions</h2>
+                <h1 className="mb-6 text-center text-3xl">Help Centre</h1>
+                <p className="mt-2 text-center text-lg text-gray-700">
+                    Need a hand? You’ll find answers to common questions here, or reach out to us
+                    directly — we’re always happy to help!
+                </p>
+            </section>
+
+            <section className="section-y">
+                <h2 className="h2 text-2xl font-semibold">Frequently Asked Questions</h2>
                 <GlobalAccordion items={accordionData} />
             </section>
+
+            <hr className="my-6 border-gray-300" />
+
             <section className="section-y">
-                <h2 className="h2 text-3xl">Contact Us</h2>
+                <h2 className="h2 text-2xl font-semibold">Contact Us</h2>
                 <ContactForm />
             </section>
         </div>
