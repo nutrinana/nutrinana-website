@@ -315,7 +315,10 @@ a {
     margin-bottom: 0.75rem;
 }
 
-/* Remove bottom padding from last child of sections */
 .section-y > *:last-child {
     padding-bottom: 0 !important;
+}
+
+.yotpo-head {
+    display: none !important;
 }

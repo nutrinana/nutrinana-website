@@ -45,15 +45,27 @@ export default function YotpoReviewWidget({
     return (
         // Yotpo widget instance for displaying reviews
         <div
-            className="yotpo-widget-instance"
-            data-yotpo-instance-id="1092490"
-            data-yotpo-product-id={productId}
-            data-yotpo-name={name}
-            data-yotpo-url={url}
-            data-yotpo-image-url={imageUrl}
-            data-yotpo-price={price}
-            data-yotpo-currency={currency}
-            data-yotpo-description={description}
-        ></div>
+            className="not-prose"
+            style={{
+                width: "110vw",
+                marginLeft: "calc(-55vw + 50%)",
+                padding: "2rem",
+                paddingTop: "0",
+                paddingBottom: "0",
+                marginTop: "0",
+            }}
+        >
+            <div
+                className="yotpo-widget-instance"
+                data-yotpo-instance-id="1092490"
+                data-yotpo-product-id={productId}
+                data-yotpo-name={name}
+                data-yotpo-url={url}
+                data-yotpo-image-url={imageUrl}
+                data-yotpo-price={price}
+                data-yotpo-currency={currency}
+                data-yotpo-description={description}
+            ></div>
+        </div>
     );
 }
