@@ -55,6 +55,8 @@
     --font-heading: var(--font-playfair);
     --font-display: var(--font-tan-nimbus);
     --font-script: var(--font-feeling-passionate);
+
+    --yotpo-b2b-light-grey: #eaeaea;
 }
 
 .dark {
@@ -358,7 +360,8 @@ a {
     width: auto !important;
 }
 
-.yotpo-read-more {
+.yotpo-read-more,
+.yotpo-clear-filters {
     font-family: var(--font-montserrat), sans-serif !important;
     font-weight: 700 !important;
 }
@@ -373,4 +376,8 @@ a {
 
 .yotpo-date-format {
     color: var(--color-gray-600) !important;
+}
+
+.yotpo-icon-button {
+    background-color: var(--yotpo-b2b-light-grey) !important;
 }
