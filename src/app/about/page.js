@@ -64,6 +64,17 @@ const timelineData = [
     },
 ];
 
+const closingCTAData = {
+    header: "Ready to taste Nutrinana's Activated Granola?",
+    description:
+        "Handcrafted with love and honest ingredients, our granola is made to nourish your mornings and delight your taste buds.",
+    button: {
+        text: "Shop Activated Granola",
+        href: "/activated-granola",
+        variant: "green",
+    },
+};
+
 export default function AboutPage() {
     return (
         <div className="site-container section-y flow">
@@ -86,7 +97,7 @@ export default function AboutPage() {
             </section>
 
             <section className="section-y:last-child">
-                <ClosingCTA />
+                <ClosingCTA {...closingCTAData} />
             </section>
         </div>
     );
