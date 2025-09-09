@@ -43,7 +43,7 @@ export default function ReviewsPage() {
                 <LeaveReviewForm productId={mainProduct.productId} />
             </section>
 
-            <section className="section-y:last-child">
+            <section className="section-y:review-child">
                 <h2 id="more-reviews" className="h2 mb-6">
                     More Reviews
                 </h2>

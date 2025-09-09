@@ -317,7 +317,8 @@ a {
     margin-bottom: 0.75rem;
 }
 
-.section-y > *:last-child {
+.section-y > *:last-child,
+.section-y > *:review-child {
     padding-bottom: 0 !important;
 }
 
