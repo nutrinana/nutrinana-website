@@ -42,14 +42,6 @@ export default function ReviewsPage() {
                     <YotpoSEOProductWidget />
                 </div>
             </section>
-            <style jsx global>{`
-                /* Override Yotpo widget container styles */
-                .not-prose[style*="width: 100vw"] {
-                    width: 100% !important;
-                    margin-left: 0 !important;
-                    padding: 0 !important;
-                }
-            `}</style>
         </div>
     );
 }
