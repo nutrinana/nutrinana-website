@@ -55,6 +55,8 @@
     --font-heading: var(--font-playfair);
     --font-display: var(--font-tan-nimbus);
     --font-script: var(--font-feeling-passionate);
+
+    --yotpo-b2b-light-grey: #eaeaea;
 }
 
 .dark {
@@ -143,9 +145,6 @@
 body,
 .font-body {
     font-family: var(--font-body), sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #ffffff;
     color: var(--color-raisin);
 }
 
@@ -179,7 +178,7 @@ h4,
 }
 
 .font-display,
-logo,
+.logo,
 .brand {
     font-family: var(--font-display), serif;
 }
@@ -316,4 +315,70 @@ a {
 .h2 {
     font-size: clamp(1.25rem, 1.8vw, 1.5rem);
     margin-bottom: 0.75rem;
+}
+
+.section-y > *:last-child,
+.section-y > *:review-child {
+    padding-bottom: 0 !important;
+}
+
+.yotpo-head {
+    display: none !important;
+}
+
+.yotpo-horizontal-pagination {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.5rem;
+}
+
+.yotpo-horizontal-pagination a {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 auto !important;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    border-radius: 0.375rem;
+    text-decoration: none;
+}
+
+.yotpo-horizontal-pagination .yotpo-pagination-number {
+    min-width: 2rem !important;
+    height: 2rem !important;
+}
+
+.yotpo-horizontal-pagination svg,
+.yotpo-horizontal-pagination .yotpo-pagination-icon {
+    display: block !important;
+}
+
+.yotpo-horizontal-pagination .yotpo-reviews-seo-pagination-item {
+    width: auto !important;
+}
+
+.yotpo-read-more,
+.yotpo-clear-filters {
+    font-family: var(--font-montserrat), sans-serif !important;
+    font-weight: 700 !important;
+}
+
+.yotpo-review-title {
+    color: var(--color-raisin) !important;
+}
+
+.yotpo-review-content {
+    color: var(--color-gray-700) !important;
+}
+
+.yotpo-date-format {
+    color: var(--color-gray-600) !important;
+}
+
+.yotpo-icon-button {
+    background-color: var(--yotpo-b2b-light-grey) !important;
 }

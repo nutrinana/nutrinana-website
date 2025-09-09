@@ -29,6 +29,9 @@ export default function SideSlider({ slides = [], title, description }) {
             <div className="flex w-full items-center p-6 md:w-1/2 md:p-10">
                 <div>
                     <h2 className="mb-4 text-2xl md:text-3xl">{title}</h2>
+                    <p className="font-script text-green mb-4 text-xl md:text-2xl">
+                        a nutritional lifestyle the tasty way
+                    </p>
                     <p className="text-raisin text-base md:text-lg">{description}</p>
                 </div>
             </div>

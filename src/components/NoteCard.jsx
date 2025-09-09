@@ -1,6 +1,6 @@
 "use client";
 
-import { Pin, Sprout } from "lucide-react";
+import { Sprout } from "lucide-react";
 import Image from "next/image";
 
 import { Card, CardContent } from "@/components/ui/card";
@@ -16,27 +16,34 @@ import { Card, CardContent } from "@/components/ui/card";
  */
 export default function NoteCard() {
     return (
-        <Card className="border-raisin relative mx-auto max-w-4xl rounded-2xl border bg-[#fdf2cf] shadow">
+        <Card className="relative mx-auto max-w-4xl rounded-2xl bg-transparent">
             <CardContent className="px-6 py-8 text-center sm:px-12">
                 {/* Card title */}
-                <h2 className="mb-6 pt-6 text-2xl sm:text-3xl">
-                    A Note From Nana <em>(aka, Nutrinana)</em>
-                </h2>
+                <p className="text-raisin/70 mb-6 pt-6 text-2xl tracking-wide uppercase">
+                    A Note from Nana, <em>nutrinana</em>
+                </p>
 
                 {/* Card content */}
-                <p className="text-base leading-relaxed text-gray-900 sm:text-lg">
+                <p className="mx-auto max-w-prose text-left text-base leading-relaxed text-gray-900 sm:text-lg">
                     Hey there! I&apos;m Nana, but you can call me Nutrinana. What started as a way
                     to sneak some healthy granola into my kids&apos; breakfasts has blossomed into
                     this incredible journey of sharing my passion for wholesome, no-nonsense food
-                    with all of you. Every batch of granola I make is like a little love letter to
-                    your taste buds— packed with nutrition and free from anything artificial.
+                    with all of you.
+                    <br /> <br />
+                    Every batch of granola I make is like a little love letter to your taste buds,
+                    packed with nutrition and free from anything artificial.
+                    <br /> <br />
+                    I&apos;ve always believed that what we leave out is just as important as what we
+                    put in. That&apos;s why every batch of Nutrinana granola is made without
+                    shortcuts — only honest, wholesome ingredients you can actually recognise.
+                    <br /> <br />
                     Whether you&apos;re here for the flavour or the health benefits, I&apos;m
                     thrilled to have you join the Nutrinana family. Now, let&apos;s make breakfast
                     the best meal of the day!
                 </p>
 
                 {/* Signature image */}
-                <div className="mt-8">
+                <div className="mt-6">
                     <Image
                         src="/about/nana-signature.png"
                         alt="With love and a sprinkle of granola, Nana x"
