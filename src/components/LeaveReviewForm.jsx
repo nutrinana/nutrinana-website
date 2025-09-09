@@ -160,7 +160,7 @@ export default function LeaveReviewForm({ productId }) {
                     <Button
                         type="submit"
                         variant="greenOutlined"
-                        className="absolute top-0 right-0 mt-0 px-8"
+                        className="absolute top-0 right-0 mt-0 px-4 md:px-8"
                     >
                         Submit Review
                     </Button>

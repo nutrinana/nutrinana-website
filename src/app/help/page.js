@@ -54,13 +54,34 @@ const accordionData = [
 export default function HelpPage() {
     return (
         <div className="site-container">
+            {/* Page Header */}
             <section className="section-y">
-                <h2 className="h2 text-3xl">Frequently Asked Questions</h2>
-                <GlobalAccordion items={accordionData} />
+                <div className="mx-auto max-w-4xl">
+                    <h1 className="mb-6 text-center text-3xl">Help Centre</h1>
+                    <p className="mt-2 text-center text-lg text-gray-700">
+                        Need a hand? You&apos;ll find answers to common questions here, or reach out
+                        to us directly — we&apos;re always happy to help!
+                    </p>
+                </div>
             </section>
+
+            {/* FAQs */}
             <section className="section-y">
-                <h2 className="h2 text-3xl">Contact Us</h2>
-                <ContactForm />
+                <div className="mx-auto max-w-4xl">
+                    <h2 className="h2 text-2xl font-semibold">Frequently Asked Questions</h2>
+                    <GlobalAccordion items={accordionData} />
+                </div>
+            </section>
+
+            {/* Divider */}
+            <hr className="mx-auto my-6 max-w-4xl" />
+
+            {/* Contact Form */}
+            <section className="section-y">
+                <div className="mx-auto max-w-4xl">
+                    <h2 className="h2 text-2xl font-semibold">Contact Us</h2>
+                    <ContactForm />
+                </div>
             </section>
         </div>
     );

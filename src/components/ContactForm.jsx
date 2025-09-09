@@ -143,7 +143,8 @@ export function ContactForm() {
                     <Button
                         type="submit"
                         variant="grey"
-                        className="absolute top-0 right-0 mt-0 px-8"
+                        size="sm"
+                        className="md:size-default absolute top-0 right-0 mt-0 px-4 md:px-8"
                     >
                         Submit
                     </Button>
