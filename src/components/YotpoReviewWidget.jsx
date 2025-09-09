@@ -47,8 +47,8 @@ export default function YotpoReviewWidget({
         <div
             className="not-prose"
             style={{
-                width: "100vw",
-                marginLeft: "calc(-50vw + 50%)",
+                width: "110vw",
+                marginLeft: "calc(-55vw + 50%)",
                 padding: "2rem",
                 paddingTop: "0",
                 paddingBottom: "0",
