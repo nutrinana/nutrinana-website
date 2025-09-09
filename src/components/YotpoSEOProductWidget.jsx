@@ -26,8 +26,8 @@ export default function YotpoSEOProductWidget() {
         <div
             className="not-prose"
             style={{
-                width: "100vw",
-                marginLeft: "calc(-50vw + 50%)",
+                width: "90vw",
+                marginLeft: "calc(-45vw + 50%)",
                 padding: "0",
                 paddingTop: "0",
                 marginTop: "0",
