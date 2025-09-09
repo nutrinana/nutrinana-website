@@ -74,7 +74,7 @@ export default function HelpPage() {
             </section>
 
             {/* Divider */}
-            <hr className="mx-auto my-6 max-w-4xl border-gray-300" />
+            <hr className="mx-auto my-6 max-w-4xl" />
 
             {/* Contact Form */}
             <section className="section-y">
