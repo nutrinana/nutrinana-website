@@ -46,16 +46,20 @@ export default function ActivatedGranolaPage() {
 
                 {/* Product Information */}
                 <section className="section-y">
-                    <h3 className="font-display mb-2 text-lg text-yellow-600">
-                        What is activated?
-                    </h3>
-                    <p className="text-lg">
-                        Activation is a traditional method that involves soaking nuts and seeds
-                        before drying them. This process is commonly used by those looking to
-                        replicate natural sprouting conditions, and is often associated with
-                        traditional food preparation techniques. At Nutrinana, we use this method as
-                        part of our careful ingredient preparation.
-                    </p>
+                    <div className="bg-light-yellow/40 relative right-1/2 left-1/2 -mx-[50vw] w-screen px-12 py-8">
+                        <h3 className="font-display mb-2 text-lg text-yellow-600">
+                            What is activated?
+                        </h3>
+                        <p className="text-base text-gray-900 md:text-lg">
+                            Activation is a traditional method that involves soaking nuts and seeds
+                            before drying them. This process is commonly used by those looking to
+                            replicate natural sprouting conditions, and is often associated with
+                            traditional food preparation techniques. At Nutrinana, we use this
+                            method as part of our careful ingredient preparation.
+                        </p>
+                        <br />
+                        <br />
+                    </div>
                 </section>
 
                 {/* Reviews Section */}
