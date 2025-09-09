@@ -4,6 +4,7 @@
 import dynamic from "next/dynamic";
 
 import ActivatedGranolaMFC from "@/components/ActivatedGranolaMFC";
+import ClosingCTA from "@/components/ClosingCTA";
 import KeyFeaturesBand from "@/components/KeyFeaturesBand";
 
 const YotpoReviewWidget = dynamic(() => import("@/components/YotpoReviewWidget"), { ssr: false });
@@ -16,6 +17,17 @@ const mainProduct = {
     price: 8.5,
     currency: "GBP",
     description: "A delicious and nutritious base granola for all flavours.",
+};
+
+const closingCTAData = {
+    header: "Follow the Crunch!",
+    description:
+        "Fresh bakes, wholesome bowls, and plenty of granola love. Join us on Instagram @nutrinanaa for your daily dose of goodness.",
+    button: {
+        text: "Follow Us on Instagram",
+        href: "https://www.instagram.com/nutrinanaa/",
+        variant: "green",
+    },
 };
 
 export default function ActivatedGranolaPage() {
@@ -47,7 +59,7 @@ export default function ActivatedGranolaPage() {
                 </section>
 
                 {/* Reviews Section */}
-                <section className="section-y:last-child">
+                <section className="section-y">
                     <h2 className="h2 text-2xl">Reviews</h2>
                     <YotpoReviewWidget
                         productId={mainProduct.productId}
@@ -58,6 +70,11 @@ export default function ActivatedGranolaPage() {
                         currency={mainProduct.currency}
                         description={mainProduct.description}
                     />
+                </section>
+
+                {/* Closing CTA */}
+                <section className="section-y:last-child">
+                    <ClosingCTA {...closingCTAData} />
                 </section>
             </div>
         </>
