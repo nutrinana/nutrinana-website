@@ -1,13 +1,14 @@
+const isProduction = process.env.STAGE === "production";
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
 /**
- * Dynamic robots.txt generator for Nutrinana.
+ * Dynamic robots.txt generator.
+ *
  * This follows the Robots Exclusion Standard and includes a sitemap.
  * Blocks all crawlers in non-production environments.
  *
  * @returns {Object} - The robots.txt configuration object.
  */
-const isProduction = process.env.STAGE === "production";
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-
 export default function robots() {
     return isProduction
         ? {
