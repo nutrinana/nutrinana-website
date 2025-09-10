@@ -13,9 +13,15 @@ export default function robots() {
               rules: {
                   userAgent: "*",
                   allow: "/",
-                  disallow: "/private/",
+                  disallow: [
+                      "/api/",
+                      "/test/",
+                      "/legal/",
+                      "/legal/privacy-policy",
+                      "/legal/cookie-policy",
+                  ],
               },
-              //sitemap: 'https://nutrinana.co.uk/sitemap.xml',
+              sitemap: `${process.env.BASE_URL}/sitemap.xml`,
           }
         : {
               rules: {
