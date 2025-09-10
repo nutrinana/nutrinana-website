@@ -7,7 +7,13 @@ const YotpoSEOProductWidget = dynamic(() => import("@/components/YotpoSEOProduct
 });
 
 /**
- * Client-side wrapper for YotpoSEOProductWidget to enable ssr: false in server components.
+ * Client-side wrapper for @see {@link YotpoSEOProductWidget} to enable ssr: false in server components.
+ *
+ * @component
+ *
+ * @param {Object} props - The properties for the YotpoSEOClientWrapper component.
+ *
+ * @returns {JSX.Element} The rendered YotpoSEOClientWrapper component.
  */
 export default function YotpoSEOClientWrapper(props) {
     return <YotpoSEOProductWidget {...props} />;
