@@ -1,6 +1,4 @@
 // About Page for Nutrinana
-"use client";
-
 import ClosingCTA from "@/components/ClosingCTA";
 import NoteCard from "@/components/NoteCard";
 import SideSlider from "@/components/SideSlider";

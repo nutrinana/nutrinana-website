@@ -1,13 +1,8 @@
 // Activated Granola: Product page for Nutrinana website
-"use client";
-
-import dynamic from "next/dynamic";
-
 import ActivatedGranolaMFC from "@/components/ActivatedGranolaMFC";
 import ClosingCTA from "@/components/ClosingCTA";
 import KeyFeaturesBand from "@/components/KeyFeaturesBand";
-
-const YotpoReviewWidget = dynamic(() => import("@/components/YotpoReviewWidget"), { ssr: false });
+import YotpoClientWrapper from "@/components/YotpoClientWrapper";
 
 export const metadata = {
     title: "Activated Granola - Mixed Fruits & Coconut",
@@ -69,7 +64,7 @@ export default function ActivatedGranolaPage() {
                 {/* Reviews Section */}
                 <section className="section-y:review-child">
                     <h2 className="h2 text-2xl">Reviews</h2>
-                    <YotpoReviewWidget
+                    <YotpoClientWrapper
                         productId={mainProduct.productId}
                         name={mainProduct.name}
                         url={mainProduct.url}
