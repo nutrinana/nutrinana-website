@@ -1,15 +1,8 @@
 // Reviews page with Yotpo Reviews Widget
-"use client";
-
-import dynamic from "next/dynamic";
-
 import ClosingCTA from "@/components/ClosingCTA";
 import LeaveReviewForm from "@/components/LeaveReviewForm";
 import RecentReviewCards from "@/components/RecentReviewCards";
-
-const YotpoSEOProductWidget = dynamic(() => import("@/components/YotpoSEOProductWidget"), {
-    ssr: false,
-});
+import YotpoSEOClientWrapper from "@/components/YotpoSEOClientWrapper";
 
 export const metadata = {
     title: "Customer Reviews",
@@ -54,7 +47,7 @@ export default function ReviewsPage() {
                     More Reviews
                 </h2>
                 <div className="max-w-400">
-                    <YotpoSEOProductWidget />
+                    <YotpoSEOClientWrapper />
                 </div>
             </section>
 
