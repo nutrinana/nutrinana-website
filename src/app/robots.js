@@ -6,6 +6,7 @@
  * @returns {Object} - The robots.txt configuration object.
  */
 const isProduction = process.env.STAGE === "production";
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 export default function robots() {
     return isProduction
@@ -21,7 +22,7 @@ export default function robots() {
                       "/legal/cookie-policy",
                   ],
               },
-              sitemap: `${process.env.BASE_URL}/sitemap.xml`,
+              sitemap: `${baseUrl}/sitemap.xml`,
           }
         : {
               rules: {
