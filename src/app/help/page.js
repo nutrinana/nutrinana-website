@@ -2,6 +2,12 @@
 import { ContactForm } from "@/components/ContactForm";
 import GlobalAccordion from "@/components/GlobalAccordion";
 
+export const metadata = {
+    title: "Help Centre",
+    description:
+        "Find answers to frequently asked questions about Nutrinana's products, ordering, allergens, and storage. Contact us for additional support.",
+};
+
 const accordionData = [
     {
         title: "How to Buy",

@@ -11,6 +11,12 @@ const YotpoSEOProductWidget = dynamic(() => import("@/components/YotpoSEOProduct
     ssr: false,
 });
 
+export const metadata = {
+    title: "Customer Reviews",
+    description:
+        "Read genuine customer reviews of Nutrinana's Activated Granola and leave your own review. See what our customers love about our healthy granola.",
+};
+
 const mainProduct = {
     productId: "activated-granola",
     name: "Nutrinana's Activated Granola",
