@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 
 /**
  * Global error page component for handling unhandled exceptions.
+ *
  * Displayed when a rendering or data-fetching error occurs in the app.
  *
  * @param {Object} props - The component props.
@@ -16,7 +17,7 @@ import { Button } from "@/components/ui/button";
  *
  * @returns {JSX.Element} The error page component.
  */
-export default function Error({ error }) {
+export default function Error({ error, reset }) {
     useEffect(() => {
         console.error("Global error caught by error.js:", error);
     }, [error]);
@@ -29,9 +30,14 @@ export default function Error({ error }) {
                 <br />
                 Please try again or head back home.
             </p>
-            <Button variant="green" asChild>
-                <Link href="/">Go Back Home</Link>
-            </Button>
+            <div className="flex flex-col gap-4 sm:flex-row">
+                <Button variant="green" onClick={reset}>
+                    Try Again
+                </Button>
+                <Button variant="outline" asChild>
+                    <Link href="/">Go Back Home</Link>
+                </Button>
+            </div>
         </div>
     );
 }
