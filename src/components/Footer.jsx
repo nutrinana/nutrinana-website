@@ -67,7 +67,7 @@ export default function Footer() {
 
                     {/* Social Media Icons */}
                     <div className="order-last mt-6 flex justify-center space-x-4 md:order-last md:mt-28 md:justify-end">
-                        <div className="flex items-center gap-x-4">
+                        <div className="flex items-center gap-x-1 sm:gap-x-4">
                             {/* Instagram */}
                             <Link
                                 href="https://instagram.com/nutrinanaa"
