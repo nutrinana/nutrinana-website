@@ -22,6 +22,10 @@ export default function StarRating({ value = 0, onChange, readonly = false, size
     // State to manage hovered star for visual feedback
     const [hovered, setHovered] = useState(null);
 
+    // Determine star size based on responsive prop
+    const starSize = size === "responsive" ? undefined : size;
+    const responsiveClass = size === "responsive" ? "w-8 h-8 sm:w-12 sm:h-12" : "";
+
     // Handle click on a star
     const handleClick = (star) => {
         if (readonly || !onChange) {
@@ -52,7 +56,7 @@ export default function StarRating({ value = 0, onChange, readonly = false, size
                         onMouseLeave={() => setHovered(null)}
                         className={`cursor-pointer text-yellow-400 ${opacity} transition-all duration-200 ease-in-out hover:scale-110 hover:opacity-100`}
                     >
-                        <Star size={size} fill="currentColor" />
+                        <Star size={starSize} fill="currentColor" className={responsiveClass} />
                     </span>
                 );
             })}
