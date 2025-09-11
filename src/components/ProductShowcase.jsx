@@ -154,7 +154,7 @@ export default function ProductShowcase({
                 <div className="flex h-auto flex-col md:w-2/5">
                     <div className="flex-grow px-0 pt-4 pb-4 md:pb-0">
                         {/* Title and Subtitle */}
-                        <h2 className="font-display text-2xl">{title}</h2>
+                        <h2 className="font-display text-lg sm:text-xl md:text-2xl">{title}</h2>
                         <p className="text-lg text-gray-600">{subtitle}</p>
 
                         {/* Description */}
