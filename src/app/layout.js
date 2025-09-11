@@ -43,12 +43,13 @@ const feelingPassionate = localFont({
 export const metadata = {
     metadataBase: new URL("https://www.nutrinana.co.uk"),
     title: "Nutrinana's Activated Granola",
+    template: "%s | Nutrinana",
     description:
-        "Discover Nutrinana’s Activated Granola, made with activated nuts for better digestion. Shop online via DELLI or find us at the Black Farmer Farmshop in London.",
+        "Discover Nutrinana's Activated Granola, made with traditionally activated nuts and seeds. Shop online via DELLI or find us at the Black Farmer Farmshop in London.",
     openGraph: {
         title: "Nutrinana's Activated Granola",
         description:
-            "Discover Nutrinana’s Activated Granola, made with activated nuts for better digestion. Shop online via DELLI or find us at the Black Farmer Farmshop in London.",
+            "Discover Nutrinana's Activated Granola, made with traditionally activated nuts and seeds. Shop online via DELLI or find us at the Black Farmer Farmshop in London.",
         url: "https://www.nutrinana.co.uk",
         siteName: "Nutrinana",
         images: [
@@ -105,7 +106,7 @@ export default function RootLayout({ children }) {
                     ></script>
                 )}
             </head>
-            <body className="flex min-h-screen flex-col bg-white text-gray-900">
+            <body className="flex min-h-screen flex-col overflow-x-hidden bg-white text-gray-900">
                 {/* Cookie Banner */}
                 <CookieBotConsent />
 

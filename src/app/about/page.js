@@ -1,10 +1,14 @@
 // About Page for Nutrinana
-"use client";
-
 import ClosingCTA from "@/components/ClosingCTA";
 import NoteCard from "@/components/NoteCard";
 import SideSlider from "@/components/SideSlider";
 import Timeline from "@/components/Timeline";
+
+export const metadata = {
+    title: "About Us",
+    description:
+        "Learn about Nutrinana's journey from Nana's kitchen to your breakfast table. Discover our mission to create healthy, activated granola with honest ingredients.",
+};
 
 const sideSlides = [
     {
