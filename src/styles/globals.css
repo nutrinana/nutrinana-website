@@ -1,0 +1,407 @@
+@import "tailwindcss";
+
+:root {
+    /*color usage: bg-[var(--color-green)] etc.*/
+    --color-green: #507153;
+    --color-yellow: #e5bd68;
+    --color-pink: #fd7f84;
+    --color-raisin: #191923;
+    --color-light-yellow: #f5e9be;
+    --color-light-green: #daefdc;
+    --color-brown: #433226;
+    --color-grey: #d9d9d9;
+
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: oklch(0.205 0 0);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0.205 0 0);
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+    --accent: oklch(0.97 0 0);
+    --accent-foreground: oklch(0.205 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --destructive-foreground: oklch(0.577 0.245 27.325);
+    --border: oklch(0.922 0 0);
+    --input: oklch(0.922 0 0);
+    --ring: oklch(0.708 0 0);
+    --chart-1: oklch(0.646 0.222 41.116);
+    --chart-2: oklch(0.6 0.118 184.704);
+    --chart-3: oklch(0.398 0.07 227.392);
+    --chart-4: oklch(0.828 0.189 84.429);
+    --chart-5: oklch(0.769 0.188 70.08);
+    --radius: 0.625rem;
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar-primary: oklch(0.205 0 0);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.97 0 0);
+    --sidebar-accent-foreground: oklch(0.205 0 0);
+    --sidebar-border: oklch(0.922 0 0);
+    --sidebar-ring: oklch(0.708 0 0);
+    --dynamic-font-size: 1.25rem;
+
+    /*font usage: style={{ fontFamily: 'var(--font-montserrat)' }}*/
+    --font-body: var(--font-montserrat);
+    --font-heading: var(--font-playfair);
+    --font-display: var(--font-tan-nimbus);
+    --font-script: var(--font-feeling-passionate);
+
+    --yotpo-b2b-light-grey: #eaeaea;
+}
+
+.dark {
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.145 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.145 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.985 0 0);
+    --primary-foreground: oklch(0.205 0 0);
+    --secondary: oklch(0.269 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+    --accent: oklch(0.269 0 0);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.396 0.141 25.723);
+    --destructive-foreground: oklch(0.637 0.237 25.331);
+    --border: oklch(0.269 0 0);
+    --input: oklch(0.269 0 0);
+    --ring: oklch(0.439 0 0);
+    --chart-1: oklch(0.488 0.243 264.376);
+    --chart-2: oklch(0.696 0.17 162.48);
+    --chart-3: oklch(0.769 0.188 70.08);
+    --chart-4: oklch(0.627 0.265 303.9);
+    --chart-5: oklch(0.645 0.246 16.439);
+    --sidebar: oklch(0.205 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.269 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(0.269 0 0);
+    --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+    --radius-sm: calc(var(--radius) - 4px);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) + 4px);
+    --color-sidebar: var(--sidebar);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-ring: var(--sidebar-ring);
+    --color-black: var(--color-raisin);
+    --color-raisin: var(--color-raisin);
+    --color-green: var(--color-green);
+    --color-yellow: var(--color-yellow);
+    --color-pink: var(--color-pink);
+    --color-light-yellow: var(--color-light-yellow);
+    --color-light-green: var(--color-light-green);
+    --color-grey: var(--color-grey);
+    --color-brown: var(--color-brown);
+}
+
+body,
+.font-body {
+    font-family: var(--font-body), sans-serif;
+    color: var(--color-raisin);
+    overflow-x: hidden;
+}
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-heading,
+.font-display,
+.font-script,
+.font-handwritten,
+.logo,
+.brand {
+    font-synthesis-weight: none;
+    font-synthesis-style: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-heading {
+    font-family: var(--font-heading), serif;
+}
+
+.font-display,
+.logo,
+.brand {
+    font-family: var(--font-display), serif;
+}
+
+.font-script,
+.font-handwritten {
+    font-family: var(--font-script), cursive;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 50;
+}
+
+button,
+a {
+    cursor: pointer;
+}
+
+.banner {
+    margin-top: 50px;
+}
+
+@layer base {
+    * {
+        @apply border-border outline-ring/50;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+@media (max-width: 800px) {
+    :root {
+        --dynamic-font-size: 1.1rem;
+    }
+}
+@media (max-width: 700px) {
+    :root {
+        --dynamic-font-size: 0.9rem;
+    }
+}
+@media (max-width: 500px) {
+    :root {
+        --dynamic-font-size: 0.8rem;
+    }
+}
+@media (max-width: 375px) {
+    :root {
+        --dynamic-font-size: 0.7rem;
+    }
+}
+
+.AccordionContent {
+    overflow: hidden;
+}
+
+.AccordionContent[data-state="open"] {
+    animation: slideDown 300ms ease-out;
+}
+
+.AccordionContent[data-state="closed"] {
+    animation: slideUp 300ms ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        height: 0;
+    }
+    to {
+        height: var(--radix-accordion-content-height);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        height: var(--radix-accordion-content-height);
+    }
+    to {
+        height: 0;
+    }
+}
+
+.rating {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.875rem;
+    color: var(--color-yellow, #fbbf24);
+    font-weight: 500;
+    gap: 0.25rem;
+}
+
+@media (min-width: 640px) {
+    .rating {
+        font-size: 1.125rem;
+    }
+}
+
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 10px;
+    width: max-content;
+    height: 3rem;
+    border-radius: 0.375rem;
+    transition:
+        background-color 0.2s,
+        transform 0.2s;
+    cursor: pointer;
+}
+
+.social-icon:hover {
+    background-color: var(--accent-color, #f3f4f6);
+}
+
+.social-icon:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.site-container {
+    margin: 0 auto;
+    padding: 30px;
+    overflow-x: hidden;
+}
+
+@media (min-width: 640px) {
+    .site-container {
+        padding: 50px;
+    }
+}
+
+.site-container > .section-y:first-child {
+    padding-top: 0;
+}
+
+.site-container > .section-y + .section-y {
+    padding-top: 0;
+}
+
+.section-y {
+    padding-block: clamp(2rem, 5vw, 3rem);
+}
+
+.flow > * + * {
+    margin-top: clamp(1rem, 2.5vw, 2rem);
+}
+
+.h2 {
+    font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+    margin-bottom: 0.75rem;
+}
+
+.section-y > *:last-child,
+.section-y > *:review-child {
+    padding-bottom: 0 !important;
+}
+
+.yotpo-head {
+    display: none !important;
+}
+
+.yotpo-horizontal-pagination {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.5rem;
+}
+
+.yotpo-horizontal-pagination a {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 auto !important;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    border-radius: 0.375rem;
+    text-decoration: none;
+}
+
+.yotpo-horizontal-pagination .yotpo-pagination-number {
+    min-width: 2rem !important;
+    height: 2rem !important;
+}
+
+.yotpo-horizontal-pagination svg,
+.yotpo-horizontal-pagination .yotpo-pagination-icon {
+    display: block !important;
+}
+
+.yotpo-horizontal-pagination .yotpo-reviews-seo-pagination-item {
+    width: auto !important;
+}
+
+.yotpo-read-more,
+.yotpo-clear-filters {
+    font-family: var(--font-montserrat), sans-serif !important;
+    font-weight: 700 !important;
+}
+
+.yotpo-review-title {
+    color: var(--color-raisin) !important;
+}
+
+.yotpo-review-content {
+    color: var(--color-gray-700) !important;
+}
+
+.yotpo-date-format {
+    color: var(--color-gray-600) !important;
+}
+
+.yotpo-icon-button {
+    background-color: var(--yotpo-b2b-light-grey) !important;
+}
