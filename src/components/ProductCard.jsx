@@ -105,19 +105,23 @@ export default function ProductCard({
                 <div className="flex h-auto flex-col p-4 md:h-full md:w-1/2">
                     <div className="flex-grow px-0 pt-4 pb-4 md:pb-0">
                         {/* Title and Subtitle */}
-                        <h2 className="font-display text-center text-2xl">{title}</h2>
-                        <p className="p-2 text-center text-lg text-gray-600">{subtitle}</p>
+                        <h2 className="font-display text-center text-lg sm:text-xl xl:text-2xl">
+                            {title}
+                        </h2>
+                        <p className="p-2 text-center text-sm text-gray-600 sm:text-lg">
+                            {subtitle}
+                        </p>
 
                         {/* Features list with icons */}
                         <div className="hidden w-full justify-center sm:block">
-                            <ul className="mx-auto mt-4 flex w-full flex-col items-start space-y-2 text-center sm:ml-28 md:ml-28 md:text-left">
+                            <ul className="mx-auto mt-4 flex w-full flex-col items-start space-y-2 text-center sm:ml-8 md:ml-20 md:text-left lg:ml-16 xl:ml-28">
                                 {features.map((feature, index) => (
                                     <li
                                         key={index}
                                         className="flex w-full items-center gap-2 text-green-600"
                                     >
-                                        <CircleCheck className="h-6 w-6 text-green-600" />
-                                        <span className="text-lg whitespace-nowrap sm:text-xs md:text-base">
+                                        <CircleCheck className="h-4 w-4 text-green-600 lg:h-6 lg:w-6" />
+                                        <span className="text-sm whitespace-nowrap sm:text-xs lg:text-sm xl:text-base">
                                             {feature}
                                         </span>
                                     </li>
@@ -127,18 +131,22 @@ export default function ProductCard({
 
                         {/* Price and Rating */}
                         <div className="mt-6 flex items-center justify-between pb-3">
-                            <span className="text-6xl font-bold text-gray-800">{price}</span>
+                            <span className="text-2xl font-bold text-gray-800 sm:text-3xl lg:text-4xl xl:text-6xl">
+                                {price}
+                            </span>
                             {averageRating !== null && averageRating !== undefined && (
-                                <span className="rating">⭐ {averageRating}</span>
+                                <span className="rating text-sm sm:text-lg">
+                                    ⭐ {averageRating}
+                                </span>
                             )}
                         </div>
 
                         {/* Shop buttons */}
-                        <div className="mt-auto flex w-full flex-col gap-4 pt-4 sm:flex-row">
+                        <div className="mt-auto flex w-full flex-col gap-2 pt-4 sm:flex-row lg:gap-4">
                             <Button
                                 variant="yellow"
-                                size="default"
-                                className="w-full sm:w-1/2"
+                                size="sm"
+                                className="lg:size-default w-full text-xs sm:w-1/2 lg:text-xs xl:text-base"
                                 onClick={(event) => {
                                     event.stopPropagation(); // prevents the card's onClick from firing
                                     if (shopLinks[0]?.href) {
@@ -150,8 +158,8 @@ export default function ProductCard({
                             </Button>
                             <Button
                                 variant="greenOutlined"
-                                size="default"
-                                className="w-full sm:w-1/2"
+                                size="sm"
+                                className="lg:size-default w-full text-xs sm:w-1/2 lg:text-xs xl:text-base"
                                 onClick={(event) => {
                                     event.stopPropagation();
                                     if (shopLinks[1]?.href) {

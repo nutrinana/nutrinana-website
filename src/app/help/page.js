@@ -83,7 +83,7 @@ export default function HelpPage() {
             <hr className="mx-auto my-6 max-w-4xl" />
 
             {/* Contact Form */}
-            <section className="section-y">
+            <section className="section-y:last-child">
                 <div className="mx-auto max-w-4xl">
                     <h2 className="h2 text-2xl font-semibold">Contact Us</h2>
                     <ContactForm />

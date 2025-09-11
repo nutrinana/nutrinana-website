@@ -24,19 +24,19 @@ const TimelineItem = ({ item, index }) => (
     >
         {/* Timeline Year */}
         <div
-            className={`absolute top-[-40px] h-auto w-full ${index % 2 === 0 ? "text-right" : "text-left"} font-display px-5 text-3xl text-zinc-900`}
+            className={`absolute top-[-40px] h-auto w-full ${index % 2 === 0 ? "text-right" : "text-left"} font-display text-raisin px-5 text-lg sm:text-2xl md:text-3xl`}
         >
             {item.year}
         </div>
         <div
-            className={`bg-green absolute h-[6px] w-40 ${index % 2 === 0 ? "right-0" : "left-0"} top-full`}
+            className={`bg-green absolute h-[6px] w-24 sm:w-32 md:w-40 ${index % 2 === 0 ? "right-0" : "left-0"} top-full`}
         />
         <div
-            className={`bg-green absolute top-[-7px] h-5 w-5 rounded-full ${index % 2 === 0 ? "right-[142px]" : "left-[142px]"}`}
+            className={`bg-green absolute top-[-7px] h-5 w-5 rounded-full ${index % 2 === 0 ? "right-[86px] sm:right-[118px] md:right-[142px]" : "left-[86px] sm:left-[118px] md:left-[142px]"}`}
         ></div>
         {/* Timeline Text and Image */}
         <div
-            className={`text-raisin absolute h-auto w-full font-normal ${index % 2 === 0 ? "left-[-20px] text-right" : "left-[20px] text-left"} top-[20px]`}
+            className={`text-raisin absolute h-auto w-full font-normal ${index % 2 === 0 ? "left-[-10px] text-right sm:left-[-20px]" : "left-[10px] text-left sm:left-[20px]"} top-[20px]`}
             style={{ display: "block", fontSize: "var(--dynamic-font-size)" }}
         >
             {item.text}

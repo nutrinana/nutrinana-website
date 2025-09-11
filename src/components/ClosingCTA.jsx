@@ -24,9 +24,14 @@ import { Button } from "@/components/ui/button";
 export default function ClosingCTA({ header, description, button }) {
     return (
         <div className="bg-light-green/40 rounded-2xl px-6 py-12 text-center sm:px-12">
-            <h2 className="font-display mb-4 text-2xl sm:text-3xl">{header}</h2>
-            <p className="text-raisin/80 mb-8 text-base sm:text-lg">{description}</p>
-            <Button variant={button.variant || "green"} size="lg" asChild>
+            <h2 className="font-display mb-4 text-lg sm:text-2xl lg:text-3xl">{header}</h2>
+            <p className="text-raisin/80 mb-8 text-sm sm:text-base lg:text-lg">{description}</p>
+            <Button
+                variant={button.variant || "green"}
+                size="sm"
+                className="text-xs sm:h-10 sm:px-6 sm:text-sm"
+                asChild
+            >
                 <Link href={button.href}>{button.text}</Link>
             </Button>
         </div>

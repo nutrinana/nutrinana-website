@@ -120,10 +120,22 @@ export function ContactForm() {
                 />
 
                 {/* Submit Button and Additional Text */}
-                <div className="relative mt-4 mb-12">
+                <div className="relative mt-4 mb-16 sm:mb-12">
+                    {/* Submit button */}
+                    <div className="mb-4 flex justify-end sm:mb-0">
+                        <Button
+                            type="submit"
+                            variant="grey"
+                            size="sm"
+                            className="md:size-default px-4 sm:absolute sm:top-0 sm:right-0 md:px-8"
+                        >
+                            Submit
+                        </Button>
+                    </div>
+
                     {/* Additional text with email link */}
-                    <div className="text-raisin absolute top-0 left-0 text-left text-lg">
-                        <p>
+                    <div className="text-raisin text-left text-sm sm:absolute sm:top-0 sm:left-0 sm:text-lg">
+                        <p className="mb-2">
                             Or... <br />
                             email{" "}
                             <Link
@@ -133,21 +145,11 @@ export function ContactForm() {
                                 help@nutrinana.co.uk
                             </Link>
                         </p>
-                        <p className="text-xs text-gray-500">
+                        <p className="max-w-[280px] text-xs text-gray-500 sm:max-w-none">
                             Please start the subject line with &quot;Customer Enquiry&quot; to help
                             us respond as soon as possible!
                         </p>
                     </div>
-
-                    {/* Submit button */}
-                    <Button
-                        type="submit"
-                        variant="grey"
-                        size="sm"
-                        className="md:size-default absolute top-0 right-0 mt-0 px-4 md:px-8"
-                    >
-                        Submit
-                    </Button>
                 </div>
             </form>
         </Form>

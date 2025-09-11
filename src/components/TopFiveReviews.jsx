@@ -47,7 +47,7 @@ export default function TopFiveReviews({ autoRotateMs = 7000 }) {
             <h3 className="font-handwritten mb-4 text-center text-xl">Activated Thoughts!</h3>
             <div className="relative">
                 {/* Card */}
-                <div className="px-10">
+                <div>
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={review.id}
@@ -57,7 +57,7 @@ export default function TopFiveReviews({ autoRotateMs = 7000 }) {
                             transition={{ duration: 0.25 }}
                             className="rounded-xl bg-[var(--color-light-green,#eaf6ee)]/40 p-5"
                         >
-                            <header className="mb-2 flex items-center justify-between">
+                            <header className="mb-2 flex flex-col sm:flex-row sm:items-center sm:justify-between">
                                 {/* Stars */}
                                 <div className="flex">
                                     {Array.from({ length: review.score }).map((_, i) => (
@@ -67,12 +67,12 @@ export default function TopFiveReviews({ autoRotateMs = 7000 }) {
                                         />
                                     ))}
                                 </div>
-                                <span className="text-sm text-gray-600">
+                                <span className="mt-1 text-sm text-gray-600 sm:mt-0">
                                     {formatDate(review.created_at, "dd/mm/yyyy")}
                                 </span>
                             </header>
 
-                            <h4 className="font-display text-raisin mb-1 text-lg">
+                            <h4 className="font-display text-raisin mb-1 text-base sm:text-lg">
                                 {review.title}
                             </h4>
                             <p className="text-sm text-gray-700">

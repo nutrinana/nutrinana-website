@@ -55,7 +55,7 @@ export default function LeaveReviewForm({ productId }) {
                                         <StarRating
                                             value={field.value}
                                             onChange={field.onChange}
-                                            size={50}
+                                            size="responsive"
                                         />
                                     </FormControl>
                                     <FormMessage />
@@ -160,9 +160,11 @@ export default function LeaveReviewForm({ productId }) {
                     <Button
                         type="submit"
                         variant="greenOutlined"
-                        className="absolute top-0 right-0 mt-0 px-4 md:px-8"
+                        size="sm"
+                        className="md:size-default absolute top-0 right-0 mt-0 px-4 md:px-8"
                     >
-                        Submit Review
+                        <span className="sm:hidden">Submit</span>
+                        <span className="hidden sm:inline">Submit Review</span>
                     </Button>
                 </div>
             </form>
