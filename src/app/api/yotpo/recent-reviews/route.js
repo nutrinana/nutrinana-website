@@ -43,7 +43,7 @@ export async function GET() {
 
         // Step 2: Fetch reviews from Yotpo using POST filter endpoint
         const reviewRes = await fetch(
-            `https://api-cdn.yotpo.com/v1/reviews/${appKey}/filter.json?utoken=${utoken}`,
+            `https://api.yotpo.com/v1/reviews/${appKey}/filter.json?utoken=${utoken}`,
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
