@@ -146,6 +146,7 @@ body,
 .font-body {
     font-family: var(--font-body), sans-serif;
     color: var(--color-raisin);
+    overflow-x: hidden;
 }
 
 html,
@@ -167,6 +168,10 @@ h6,
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+}
+
+html {
+    overflow-x: hidden;
 }
 
 h1,
@@ -305,6 +310,7 @@ a {
 .site-container {
     margin: 0 auto;
     padding: 30px;
+    overflow-x: hidden;
 }
 
 @media (min-width: 640px) {
