@@ -228,6 +228,11 @@ a {
         --dynamic-font-size: 0.8rem;
     }
 }
+@media (max-width: 375px) {
+    :root {
+        --dynamic-font-size: 0.7rem;
+    }
+}
 
 .AccordionContent {
     overflow: hidden;

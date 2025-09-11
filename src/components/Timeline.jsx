@@ -53,7 +53,7 @@ export default function Timeline({ timelineData, collapsible = true }) {
                     style={{ left: "calc(50% - 12px)" }}
                 />
 
-                <div className="font-display text-green absolute bottom-[-60px] left-1/2 -translate-x-1/2 text-center text-lg sm:text-xl md:text-2xl lg:text-2xl">
+                <div className="font-display text-green absolute bottom-[-60px] left-1/2 -translate-x-1/2 text-center text-sm sm:text-lg md:text-xl lg:text-2xl">
                     This is only the beginning!
                 </div>
             </div>
@@ -99,7 +99,7 @@ export default function Timeline({ timelineData, collapsible = true }) {
                     ))}
                 </CollapsibleContent>
                 {isOpen && (
-                    <div className="font-display text-green absolute bottom-[-60px] left-1/2 -translate-x-1/2 text-center text-lg sm:text-xl md:text-2xl lg:text-2xl">
+                    <div className="font-display text-green absolute bottom-[-60px] left-1/2 -translate-x-1/2 text-center text-sm sm:text-lg md:text-xl lg:text-2xl">
                         This is only the beginning!
                     </div>
                 )}
