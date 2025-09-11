@@ -12,10 +12,15 @@ import { useBanner } from "@/hooks/useBanner";
  */
 const messages = [
     { text: "Our New Website is Live! Explore now!", link: "#", linkText: "", emoji: "🚀" },
-    { text: "Find out more about Nutrinana!", link: "#", linkText: "Learn More", emoji: "🤔👩🏾‍🍳" },
+    {
+        text: "Find out more about Nutrinana!",
+        link: "/about",
+        linkText: "Learn More",
+        emoji: "🤔👩🏾‍🍳",
+    },
     {
         text: "Shop now on DELLI or The Black Farmer!",
-        link: "#",
+        link: "/activated-granola",
         linkText: "Shop Now",
         emoji: "🥰🛍️",
     },
