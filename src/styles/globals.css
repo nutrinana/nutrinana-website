@@ -262,10 +262,16 @@ a {
 .rating {
     display: inline-flex;
     align-items: center;
-    font-size: 1.125rem;
+    font-size: 0.875rem;
     color: var(--color-yellow, #fbbf24);
     font-weight: 500;
     gap: 0.25rem;
+}
+
+@media (min-width: 640px) {
+    .rating {
+        font-size: 1.125rem;
+    }
 }
 
 .social-icon {
