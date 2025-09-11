@@ -299,7 +299,13 @@ a {
 
 .site-container {
     margin: 0 auto;
-    padding: 50px;
+    padding: 30px;
+}
+
+@media (min-width: 640px) {
+    .site-container {
+        padding: 50px;
+    }
 }
 
 .site-container > .section-y:first-child {
