@@ -189,7 +189,7 @@ export default function Navbar() {
                             alt="Nutrinana Logo"
                             width={120}
                             height={48}
-                            className="mt-6 h-12 w-auto"
+                            className="mt-6 h-8 w-auto sm:h-12"
                         />
                     </Link>
                 </div>
