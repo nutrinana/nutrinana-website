@@ -47,7 +47,7 @@ export default function ActivatedGranolaPage() {
 
                 {/* Product Information */}
                 <section className="section-y">
-                    <div className="bg-light-yellow/40 relative right-1/2 left-1/2 -mx-[50vw] w-screen px-12 py-8">
+                    <div className="bg-light-yellow/40 relative right-1/2 left-1/2 -mx-[50vw] w-screen px-6 py-8 sm:px-12">
                         <h3 className="font-display mb-2 text-lg text-yellow-600">
                             What is activated?
                         </h3>
