@@ -228,6 +228,11 @@ a {
         --dynamic-font-size: 0.8rem;
     }
 }
+@media (max-width: 375px) {
+    :root {
+        --dynamic-font-size: 0.7rem;
+    }
+}
 
 .AccordionContent {
     overflow: hidden;
@@ -262,10 +267,16 @@ a {
 .rating {
     display: inline-flex;
     align-items: center;
-    font-size: 1.125rem;
+    font-size: 0.875rem;
     color: var(--color-yellow, #fbbf24);
     font-weight: 500;
     gap: 0.25rem;
+}
+
+@media (min-width: 640px) {
+    .rating {
+        font-size: 1.125rem;
+    }
 }
 
 .social-icon {
@@ -293,7 +304,13 @@ a {
 
 .site-container {
     margin: 0 auto;
-    padding: 50px;
+    padding: 30px;
+}
+
+@media (min-width: 640px) {
+    .site-container {
+        padding: 50px;
+    }
 }
 
 .site-container > .section-y:first-child {

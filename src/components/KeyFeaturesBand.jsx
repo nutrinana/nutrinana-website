@@ -30,8 +30,8 @@ export default function KeyFeaturesBand({ items = DEFAULT_ITEMS, className = "" 
         <div
             className={`bg-light-green/40 relative right-1/2 left-1/2 -mx-[50vw] w-screen ${className}`}
         >
-            {/* Mobile */}
-            <div className="flex gap-8 overflow-x-auto px-8 py-12 md:hidden">
+            {/* Mobile and Small Laptop */}
+            <div className="flex justify-start gap-8 overflow-x-auto px-8 py-12 lg:justify-center lg:px-16 xl:hidden">
                 {items.map((item) => {
                     const IconComponent = item.icon;
 
@@ -52,7 +52,7 @@ export default function KeyFeaturesBand({ items = DEFAULT_ITEMS, className = "" 
             </div>
 
             {/* Desktop: Centered layout */}
-            <div className="hidden flex-wrap items-center justify-center gap-6 py-12 md:flex lg:gap-20">
+            <div className="hidden flex-wrap items-center justify-center gap-6 py-12 xl:flex xl:gap-20">
                 {items.map((item) => {
                     const IconComponent = item.icon;
 
