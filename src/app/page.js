@@ -8,6 +8,12 @@ import RotatingCard from "@/components/RotatingCard";
 import TipCard from "@/components/TipCard";
 import TopFiveReviews from "@/components/TopFiveReviews";
 
+export const metadata = {
+    title: "Nutrinana's Activated Granola",
+    description:
+        "Handcrafted activated granola made with love in Nana's kitchen. Gluten-free, dairy-free, and perfect for healthy breakfasts. Shop now on DELLI.",
+};
+
 const slides = [
     {
         image: "/home/slide1.jpg",

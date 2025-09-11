@@ -1,13 +1,14 @@
 // Activated Granola: Product page for Nutrinana website
-"use client";
-
-import dynamic from "next/dynamic";
-
 import ActivatedGranolaMFC from "@/components/ActivatedGranolaMFC";
 import ClosingCTA from "@/components/ClosingCTA";
 import KeyFeaturesBand from "@/components/KeyFeaturesBand";
+import YotpoClientWrapper from "@/components/YotpoClientWrapper";
 
-const YotpoReviewWidget = dynamic(() => import("@/components/YotpoReviewWidget"), { ssr: false });
+export const metadata = {
+    title: "Activated Granola - Mixed Fruits & Coconut",
+    description:
+        "Discover Nutrinana's Activated Granola with mixed fruits and coconut. Gluten-free, dairy-free, and made with traditionally activated nuts and seeds.",
+};
 
 const mainProduct = {
     productId: "activated-granola-mfc",
@@ -63,7 +64,7 @@ export default function ActivatedGranolaPage() {
                 {/* Reviews Section */}
                 <section className="section-y:review-child">
                     <h2 className="h2 text-2xl">Reviews</h2>
-                    <YotpoReviewWidget
+                    <YotpoClientWrapper
                         productId={mainProduct.productId}
                         name={mainProduct.name}
                         url={mainProduct.url}
