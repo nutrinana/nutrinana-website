@@ -33,7 +33,8 @@ const sideSliderDescription = (
         small, family-run operation quickly grew, fuelled by Nana&apos;s mission to prove that
         nutritious, tasty granola doesn&apos;t need a sprinkle of sugar or a dash of anything
         artificial. Our secret? “Activated” nuts and seeds that have gone through a special soaking
-        process to make them as easy on your digestion as they are on your taste buds.
+        process — a traditional method used to prepare ingredients with care and enhance their
+        natural flavour and texture.
         <br />
         <br />
         At Nutrinana, we&apos;re all about keeping it real — literally. We&apos;re a family-run
