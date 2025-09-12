@@ -11,7 +11,7 @@ import TopFiveReviews from "@/components/TopFiveReviews";
 export const metadata = {
     title: "Nutrinana's Activated Granola",
     description:
-        "Handcrafted activated granola made with love in Nana's kitchen. Gluten-free, dairy-free, and perfect for healthy breakfasts. Shop now on DELLI.",
+        "Discover Nutrinana's Activated Granola, made with traditionally activated nuts and seeds. Shop online via DELLI or find us at the Black Farmer Farmshop in London.",
 };
 
 const slides = [
