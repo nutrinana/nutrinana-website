@@ -33,7 +33,7 @@ const sideSliderDescription = (
         small, family-run operation quickly grew, fuelled by Nana&apos;s mission to prove that
         nutritious, tasty granola doesn&apos;t need a sprinkle of sugar or a dash of anything
         artificial. Our secret? “Activated” nuts and seeds that have gone through a special soaking
-        process - a traditional method used to prepare ingredients with care and enhance their
+        process — a traditional method used to prepare ingredients with care and enhance their
         natural flavour and texture.
         <br />
         <br />
