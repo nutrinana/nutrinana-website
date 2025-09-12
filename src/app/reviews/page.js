@@ -11,7 +11,7 @@ export const metadata = {
 };
 
 const mainProduct = {
-    productId: "activated-granola",
+    productId: "activated-granola-mfc",
     name: "Nutrinana's Activated Granola",
     url: "https://www.nutrinana.co.uk/activated-granola",
     imageUrl: "https://www.nutrinana.co.uk/products/mixed-fruits/granola1.jpg",
