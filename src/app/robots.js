@@ -21,6 +21,7 @@ export default function robots() {
                       "/legal/",
                       "/legal/privacy-policy",
                       "/legal/cookie-policy",
+                      "/sitemap.xml",
                   ],
               },
               sitemap: `${baseUrl}/sitemap.xml`,
