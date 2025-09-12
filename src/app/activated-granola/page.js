@@ -5,7 +5,7 @@ import KeyFeaturesBand from "@/components/KeyFeaturesBand";
 import YotpoClientWrapper from "@/components/YotpoClientWrapper";
 
 export const metadata = {
-    title: "Activated Granola - Mixed Fruits & Coconut",
+    title: "Activated Granola",
     description:
         "Discover Nutrinana's Activated Granola with mixed fruits and coconut. Gluten-free, dairy-free, and made with traditionally activated nuts and seeds.",
 };
