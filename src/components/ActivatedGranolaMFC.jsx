@@ -72,7 +72,7 @@ const productData = {
         },
         { text: "Shop Black Farmer", href: "https://theblackfarmer.com" },
     ],
-    externalId: "activated-granola",
+    externalId: "activated-granola-mfc",
     accordionData: accordionData,
 };
 
