@@ -62,7 +62,7 @@ const products = [
                 href: "https://theblackfarmer.com",
             },
         ],
-        externalId: "activated-granola-mfc",
+        externalId: "activated-granola",
     },
 ];
 
@@ -103,7 +103,7 @@ export default function HomePage() {
                         </div>
                         <div className="lg:col-span-2">
                             <h2 className="h2">Leave a Review</h2>
-                            <LeaveReviewForm productId="activated-granola-mfc" />
+                            <LeaveReviewForm productId="activated-granola" />
                         </div>
                     </div>
                 </section>
