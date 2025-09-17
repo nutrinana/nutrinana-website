@@ -73,7 +73,7 @@ export default function TopFiveReviews({ autoRotateMs = 7000 }) {
                             </header>
 
                             <h4 className="font-display text-raisin mb-1 text-base sm:text-lg">
-                                {review.title}
+                                {decode(review.title)}
                             </h4>
                             <p className="text-sm text-gray-700">
                                 {decode(review.content).length > 100
