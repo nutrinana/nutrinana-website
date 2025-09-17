@@ -86,7 +86,7 @@ export default function RecentReviewCards() {
                             </div>
                             {/* Review title and content */}
                             <h3 className="font-display text-raisin mb-1 text-lg">
-                                {review.title}
+                                {decode(review.title)}
                             </h3>
                             <p className="mb-2 text-sm text-gray-700">
                                 {decode(review.content).length > 180 ? (
