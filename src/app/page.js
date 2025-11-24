@@ -59,7 +59,7 @@ const products = [
             },
             {
                 text: "Shop Black Farmer",
-                href: "https://theblackfarmer.com",
+                href: "https://theblackfarmer.com/products/nutrinanaa-special-granola-500g_141594?_pos=1&_psq=nutrina&_ss=e&_v=1.0/products/nutrinanaa-special-granola-500g_141594?_pos=1&_psq=nutrina&_ss=e&_v=1.0/products/nutrinanaa-special-granola-500g_141594?_pos=1&_psq=nutrina&_ss=e&_v=1.0",
             },
         ],
         externalId: "activated-granola",
