@@ -39,6 +39,15 @@ const slides = [
         buttonText: "Our Story",
         buttonLink: "/about",
     },
+    {
+        image: "/home/slide4.jpg",
+        title: "Activate Your Christmas",
+        subtitle:
+            "Celebrate the season with a wholesome crunch — crafted with love for festive mornings.",
+        buttonText: "Explore",
+        buttonLink: "/activated-granola",
+        objectPosition: "left 30%",
+    },
 ];
 
 const products = [
@@ -59,7 +68,7 @@ const products = [
             },
             {
                 text: "Shop Black Farmer",
-                href: "https://theblackfarmer.com",
+                href: "https://theblackfarmer.com/products/nutrinanaa-special-granola-500g_141594?_pos=1&_psq=nutrina&_ss=e&_v=1.0",
             },
         ],
         externalId: "activated-granola",

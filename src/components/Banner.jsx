@@ -11,7 +11,7 @@ import { useBanner } from "@/hooks/useBanner";
  * Each message can include text, a link, link text, and emojis.
  */
 const messages = [
-    { text: "Our New Website is Live! Explore now!", link: "#", linkText: "", emoji: "🚀" },
+    { text: "Celebrate Christmas the activated way", link: "#", linkText: "", emoji: "🎄✨" },
     { text: "Find out more about Nutrinana!", link: "#", linkText: "Learn More", emoji: "🤔👩🏾‍🍳" },
     {
         text: "Shop now on DELLI or The Black Farmer!",
