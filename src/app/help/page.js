@@ -24,7 +24,7 @@ const accordionData = [
                 </a>{" "}
                 to place an order. We also offer our products at{" "}
                 <a
-                    href="https://theblackfarmer.com/"
+                    href="https://theblackfarmer.com/products/nutrinanaa-special-granola-500g_141594?_pos=1&_psq=nutrina&_ss=e&_v=1.0"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="underline"
