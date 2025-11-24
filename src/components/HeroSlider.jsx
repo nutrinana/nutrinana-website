@@ -20,6 +20,7 @@ import { useSlider } from "@/hooks/useSlider";
  * @param {string} slides[].subtitle - Subtitle text shown on the slide.
  * @param {string} slides[].buttonText - Text to display in the call-to-action button.
  * @param {string} [slides[].buttonLink] - Optional URL or page the button should link to.
+ * @param {string} [slides[].objectPosition] - Optional CSS object-position value for image alignment.
  *
  * @returns {JSX.Element} A full-width, animated image slider component.
  */
