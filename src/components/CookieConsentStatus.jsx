@@ -26,7 +26,7 @@ export default function CookieConsentStatus() {
                 <p>
                     <span className="font-semibold">Current state:</span> {stateLabel}
                 </p>
-                <p>
+                <p className="break-words">
                     <span className="font-semibold">Consent ID:</span>{" "}
                     {consent?.stamp ?? "Not available"}
                 </p>
