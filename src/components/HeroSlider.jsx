@@ -52,6 +52,7 @@ export default function HeroSlider({ slides = [] }) {
                         fill
                         className="object-cover"
                         priority={index === 0}
+                        style={{ objectPosition: slide.objectPosition || "center" }}
                     />
                     {/* Overlay for darkening the image*/}
                     <div className="bg-raisin/40 absolute inset-0 z-10" />
