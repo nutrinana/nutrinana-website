@@ -12,18 +12,25 @@ const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 export default function robots() {
     return isProduction
         ? {
-              rules: {
-                  userAgent: "*",
-                  allow: "/",
-                  disallow: [
-                      "/api/",
-                      "/test/",
-                      "/legal/",
-                      "/legal/privacy-policy",
-                      "/legal/cookie-policy",
-                      "/sitemap.xml",
-                  ],
-              },
+              rules: [
+                  {
+                      userAgent: "*",
+                      allow: "/",
+                      disallow: [
+                          "/api/",
+                          "/test/",
+                          "/legal/",
+                          "/legal/privacy-policy",
+                          "/legal/cookie-policy",
+                          "/sitemap.xml",
+                      ],
+                  },
+                  {
+                      userAgent: "Cookiebot",
+                      allow: "/",
+                      disallow: ["/reviews"],
+                  },
+              ],
               sitemap: `${baseUrl}/sitemap.xml`,
           }
         : {
