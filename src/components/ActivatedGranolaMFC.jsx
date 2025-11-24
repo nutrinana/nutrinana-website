@@ -70,7 +70,10 @@ const productData = {
             text: "Shop DELLI",
             href: "https://delli.market/products/nutrinanas-special-granola?_pos=1&_sid=1d1806f92&_ss=r",
         },
-        { text: "Shop Black Farmer", href: "https://theblackfarmer.com" },
+        {
+            text: "Shop Black Farmer",
+            href: "https://theblackfarmer.com/products/nutrinanaa-special-granola-500g_141594?_pos=1&_psq=nutrina&_ss=e&_v=1.0",
+        },
     ],
     externalId: "activated-granola",
     accordionData: accordionData,
