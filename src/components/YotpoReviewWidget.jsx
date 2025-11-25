@@ -2,6 +2,9 @@
 
 import { useEffect } from "react";
 
+import { Button } from "@/components/ui/button";
+import { useCookieConsentStatus } from "@/hooks/useCookieConsentStatus";
+
 /**
  * YotpoReviewWidget component for displaying Yotpo reviews.
  *
@@ -29,6 +32,9 @@ export default function YotpoReviewWidget({
     currency = "GBP",
     description,
 }) {
+    const { consent, reopenBanner } = useCookieConsentStatus();
+
+    const hasConsent = consent?.statistics === true || consent?.marketing === true;
     // Check if the Yotpo script is already loaded
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -40,7 +46,38 @@ export default function YotpoReviewWidget({
 
         // Cleanup function to clear the timeout if the component unmounts before the timer completes
         return () => clearTimeout(timer);
-    }, [productId]);
+    }, [hasConsent, productId]);
+
+    // If no consent for stats/marketing: show placeholder instead of widget
+    if (!hasConsent) {
+        return (
+            <div
+                className="not-prose w-full rounded-xl bg-gray-50 px-4 py-6 text-center text-gray-800"
+                style={{
+                    width: "110vw",
+                    marginLeft: "calc(-55vw + 50%)",
+                    marginTop: 0,
+                    marginBottom: "2rem",
+                }}
+            >
+                <p className="font-semibold">Reviews are currently unavailable</p>
+                <p className="mt-1 text-sm text-gray-700">
+                    To view customer reviews, please enable{" "}
+                    <span className="font-medium">statistics</span> or{" "}
+                    <span className="font-medium">marketing</span> cookies in your cookie settings.
+                </p>
+
+                <Button
+                    type="button"
+                    variant="unstyled"
+                    onClick={reopenBanner}
+                    className="mt-3 rounded-lg border px-3 py-2 text-sm hover:bg-gray-100"
+                >
+                    Update cookie settings
+                </Button>
+            </div>
+        );
+    }
 
     return (
         // Yotpo widget instance for displaying reviews
