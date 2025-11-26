@@ -9,6 +9,8 @@ import { useCookieConsentStatus } from "@/hooks/useCookieConsentStatus";
  * Yotpo SEO Product Widget component for displaying Yotpo reviews.
  *
  * It initializes the Yotpo widgets after the component mounts.
+ * If the user has not given consent for statistics or marketing cookies,
+ * it displays a placeholder message instead of the review widget.
  *
  * @component
  *
