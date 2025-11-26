@@ -26,7 +26,7 @@ export default function robots() {
                       ],
                   },
                   {
-                      userAgent: "Cookiebot",
+                      userAgent: "Cookiebot/1.0",
                       allow: "/",
                       disallow: ["/reviews"],
                   },
