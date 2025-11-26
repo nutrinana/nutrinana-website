@@ -101,9 +101,12 @@ export default function RootLayout({ children }) {
                 {/* Yotpo Reviews Loader Script */}
                 {yotpoStoreId && (
                     <script
+                        id="yotpo-loader"
                         src={`https://cdn-widgetsrepository.yotpo.com/v1/loader/${yotpoStoreId}`}
+                        type="text/plain"
+                        data-cookieconsent="statistics, marketing"
                         async
-                    ></script>
+                    />
                 )}
             </head>
             <body className="flex min-h-screen flex-col overflow-x-hidden bg-white text-gray-900">
