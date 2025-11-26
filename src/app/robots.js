@@ -14,6 +14,11 @@ export default function robots() {
         ? {
               rules: [
                   {
+                      userAgent: "Cookiebot",
+                      allow: "/",
+                      disallow: ["/reviews"],
+                  },
+                  {
                       userAgent: "*",
                       allow: "/",
                       disallow: [
@@ -24,11 +29,6 @@ export default function robots() {
                           "/legal/cookie-policy",
                           "/sitemap.xml",
                       ],
-                  },
-                  {
-                      userAgent: "Cookiebot",
-                      allow: "/",
-                      disallow: ["/reviews"],
                   },
               ],
               sitemap: `${baseUrl}/sitemap.xml`,
