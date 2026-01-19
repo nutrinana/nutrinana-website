@@ -12,6 +12,8 @@ import { useCart } from "@/hooks/useCart";
  *
  * @component
  *
+ * @param {Function} props.onClick - Click handler for the button.
+ *
  * @returns {JSX.Element} The rendered CartButton component.
  */
 export default function CartButton({ onClick }) {
