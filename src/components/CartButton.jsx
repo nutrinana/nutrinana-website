@@ -20,13 +20,8 @@ export default function CartButton({ onClick }) {
     const { itemCount } = useCart();
 
     return (
-        <Link
-            href="/basket"
-            onClick={onClick}
-            className="relative inline-flex items-center"
-            aria-label="Open basket"
-        >
-            <ShoppingBasket size={22} />
+        <Link href="/basket" onClick={onClick} className="social-icon" aria-label="Open basket">
+            <ShoppingBasket size={24} />
             {itemCount > 0 && (
                 <span className="absolute -top-2 -right-2 rounded-full bg-black px-1.5 py-0.5 text-[10px] font-semibold text-white">
                     {itemCount}

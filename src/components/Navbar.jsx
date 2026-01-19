@@ -7,7 +7,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SiInstagram, SiTiktok } from "react-icons/si";
 
-import { CartButton } from "@/components/CartButton";
+import CartButton from "@/components/CartButton";
 import { Button } from "@/components/ui/button";
 import styles from "@/styles/Navbar.module.css";
 
@@ -50,10 +50,14 @@ export default function Navbar() {
     ];
 
     return (
-        <nav className="sticky top-0 z-50 w-full border-b border-gray-300 bg-white py-4">
+        <nav className="relative sticky top-0 z-50 w-full border-b border-gray-300 bg-white py-4">
+            {/* Desktop cart button */}
+            <div className="absolute top-1/2 right-6 hidden -translate-y-1/2 md:block lg:right-12">
+                <CartButton />
+            </div>
             {/* Header wrapper */}
             <div className="flex w-full items-center justify-between px-4 sm:px-6 lg:px-8">
-                {/* Mobile layout: Hamburger left, logo center */}
+                {/* Mobile layout: Hamburger left, logo center, cart right */}
                 <div className="flex w-full items-center justify-between md:hidden">
                     <Button variant="ghost" onClick={() => setIsOpen(!isOpen)}>
                         {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -67,19 +71,25 @@ export default function Navbar() {
                             className="mb-2 h-12 w-auto"
                         />
                     </Link>
+
+                    <div className="ml-auto flex items-center">
+                        <CartButton onClick={() => setIsOpen(false)} />
+                    </div>
                 </div>
 
                 {/* Desktop layout: logo top center, links underneath */}
                 <div className="hidden w-full flex-col items-center md:flex">
-                    <Link href="/">
-                        <Image
-                            src="/nutrinana-logo.svg"
-                            alt="Nutrinana Logo"
-                            width={160}
-                            height={64}
-                            className="my-0 h-16 w-auto"
-                        />
-                    </Link>
+                    <div className="relative flex w-full items-center justify-center">
+                        <Link href="/">
+                            <Image
+                                src="/nutrinana-logo.svg"
+                                alt="Nutrinana Logo"
+                                width={160}
+                                height={64}
+                                className="my-0 h-16 w-auto"
+                            />
+                        </Link>
+                    </div>
 
                     <div
                         className={`mt-5 ${styles.navbarLinks} ${
