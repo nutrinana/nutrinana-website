@@ -15,7 +15,7 @@
  * @returns {Object} The product definitions and utility functions.
  */
 export const PRODUCTS = {
-    "activated-granol-mfc": {
+    "activated-granola-mfc": {
         productId: "NUTR-GRAN-MFC-500G",
         sku: "NUTR-GRAN-MFC-500G",
         name: "Nutrinana's Activated Granola - Mixed Fruits & Coconut",
