@@ -42,15 +42,18 @@ function safeParse(json, fallback) {
 export function useCart() {
     const [items, setItems] = useState([]); // [{ productId: string, qty: number }]
 
+    // Load cart from localStorage on mount
     useEffect(() => {
         const raw = localStorage.getItem(STORAGE_KEY);
         setItems(safeParse(raw, []));
     }, []);
 
+    // Save cart to localStorage on items change
     useEffect(() => {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
     }, [items]);
 
+    // Add an item to the cart
     const addItem = (productId, qty = 1) => {
         if (!productId) {
             return;
@@ -73,6 +76,7 @@ export function useCart() {
         });
     };
 
+    // Set the quantity of a specific item
     const setQty = (productId, qty) => {
         if (!productId) {
             return;
@@ -89,6 +93,7 @@ export function useCart() {
         );
     };
 
+    // Remove an item from the cart
     const removeItem = (productId) => {
         if (!productId) {
             return;
@@ -96,11 +101,13 @@ export function useCart() {
         setItems((prev) => prev.filter((x) => x.productId !== productId));
     };
 
+    // Clear the cart
     const clear = () => setItems([]);
 
+    // Total item count
     const itemCount = useMemo(() => items.reduce((sum, x) => sum + x.qty, 0), [items]);
 
-    // Useful later for checkout payloads
+    // Convert cart items to checkout payload format
     const toCheckoutPayload = () =>
         items.map((x) => ({
             productId: x.productId,
