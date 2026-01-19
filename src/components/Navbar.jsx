@@ -7,6 +7,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SiInstagram, SiTiktok } from "react-icons/si";
 
+import { CartButton } from "@/components/CartButton";
 import { Button } from "@/components/ui/button";
 import styles from "@/styles/Navbar.module.css";
 

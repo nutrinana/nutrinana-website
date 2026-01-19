@@ -14,14 +14,19 @@ import { useCart } from "@/hooks/useCart";
  *
  * @returns {JSX.Element} The rendered CartButton component.
  */
-export default function CartButton() {
+export default function CartButton({ onClick }) {
     const { itemCount } = useCart();
 
     return (
-        <Link href="/basket" className="relative inline-flex items-center">
-            <ShoppingBasket className="h-5 w-5" />
+        <Link
+            href="/basket"
+            onClick={onClick}
+            className="relative inline-flex items-center"
+            aria-label="Open basket"
+        >
+            <ShoppingBasket size={22} />
             {itemCount > 0 && (
-                <span className="absolute -top-2 -right-2 rounded-full bg-black px-1.5 py-0.5 text-xs text-white">
+                <span className="absolute -top-2 -right-2 rounded-full bg-black px-1.5 py-0.5 text-[10px] font-semibold text-white">
                     {itemCount}
                 </span>
             )}
