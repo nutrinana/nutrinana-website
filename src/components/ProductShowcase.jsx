@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { CircleCheck, Maximize2 } from "lucide-react";
+import { Maximize2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -15,7 +15,7 @@ import "@/styles/globals.css";
 /**
  * ProductShowcase component for displaying product information in a card layout.
  *
- * It includes a grid of images, title, subtitle, description, price, size, shop links, and optional accordions.
+ * It includes a grid of images, title, subtitle, description, price, size, add to bag button, and optional accordions.
  * Clicking an image opens a Lightbox view with a larger image and selectable thumbnails.
  *
  * @component

@@ -11,7 +11,7 @@ import "@/styles/globals.css";
 /**
  * ProductCard component for displaying product information.
  *
- * It includes images, title, subtitle, feature list, price, rating, and shop links.
+ * It includes images, title, subtitle, feature list, price, rating, and add to bag button.
  * Clicking on the card navigates to a specific product page.
  *
  * @component
