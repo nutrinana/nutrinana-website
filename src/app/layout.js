@@ -7,6 +7,7 @@ import Banner from "@/components/Banner";
 import CookieBotConsent from "@/components/CookieBotConsent";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import { CartProvider } from "@/hooks/useCart";
 
 const montserrat = Montserrat({
     subsets: ["latin"],
@@ -110,25 +111,27 @@ export default function RootLayout({ children }) {
                 )}
             </head>
             <body className="flex min-h-screen flex-col overflow-x-hidden bg-white text-gray-900">
-                {/* Cookie Banner */}
-                <CookieBotConsent />
+                <CartProvider>
+                    {/* Cookie Banner */}
+                    <CookieBotConsent />
 
-                {/* Banner Announcement */}
-                <Banner />
+                    {/* Banner Announcement */}
+                    <Banner />
 
-                {/* Sticky Navbar */}
-                <Navbar />
+                    {/* Sticky Navbar */}
+                    <Navbar />
 
-                {/* Main Page Content */}
-                <main id="main-content" className="flex-1">
-                    {children}
-                </main>
+                    {/* Main Page Content */}
+                    <main id="main-content" className="flex-1">
+                        {children}
+                    </main>
 
-                {/* Footer */}
-                <Footer />
+                    {/* Footer */}
+                    <Footer />
 
-                {/* Toaster for notifications */}
-                <Toaster position="bottom-right" richColors />
+                    {/* Toaster for notifications */}
+                    <Toaster position="bottom-right" richColors />
+                </CartProvider>
             </body>
         </html>
     );

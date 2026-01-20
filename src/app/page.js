@@ -62,7 +62,7 @@ const products = [
         features: ["Gluten Free", "Dairy Free", "No Refined Sugar"],
         price: "£8.50",
         externalId: "activated-granola",
-        productId: "activated-granola-mfc",
+        productId: "NUTR-GRAN-MFC-500G",
     },
 ];
 

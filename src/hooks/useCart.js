@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState, useCallback } from "react";
 
 const STORAGE_KEY = "nutrinana_cart_v1";
 
@@ -22,24 +22,22 @@ function safeParse(json, fallback) {
     }
 }
 
+const CartContext = createContext(null);
+
 /**
- * Custom hook to manage a shopping cart.
+ * CartProvider
  *
- * It provides methods to add, update, and remove items,
- * as well as to clear the cart and get the total item count.
+ * Provides a shared cart store across the app so all components
+ * see live updates (Navbar badge updates immediately).
  *
- * @hook
+ * @component
  *
- * @returns {Object} The cart state and methods.
- * @returns {Array} items - The current items in the cart.
- * @returns {Function} addItem - Function to add an item to the cart.
- * @returns {Function} setQty - Function to set the quantity of an item.
- * @returns {Function} removeItem - Function to remove an item from the cart.
- * @returns {Function} clear - Function to clear the cart.
- * @returns {number} itemCount - The total count of items in the cart.
- * @returns {Function} toCheckoutPayload - Function to get the cart items in a checkout-friendly format.
+ * @param {Object} props - Component props.
+ * @param {React.ReactNode} props.children - The child components.
+ *
+ * @returns {JSX.Element} The CartProvider component.
  */
-export function useCart() {
+export function CartProvider({ children }) {
     const [items, setItems] = useState([]); // [{ productId: string, qty: number }]
 
     // Load cart from localStorage on mount
@@ -108,19 +106,43 @@ export function useCart() {
     const itemCount = useMemo(() => items.reduce((sum, x) => sum + x.qty, 0), [items]);
 
     // Convert cart items to checkout payload format
-    const toCheckoutPayload = () =>
-        items.map((x) => ({
-            productId: x.productId,
-            qty: x.qty,
-        }));
+    const toCheckoutPayload = useCallback(
+        () =>
+            items.map((x) => ({
+                productId: x.productId,
+                qty: x.qty,
+            })),
+        [items]
+    );
 
-    return {
-        items,
-        addItem,
-        setQty,
-        removeItem,
-        clear,
-        itemCount,
-        toCheckoutPayload,
-    };
+    const value = useMemo(
+        () => ({
+            items,
+            addItem,
+            setQty,
+            removeItem,
+            clear,
+            itemCount,
+            toCheckoutPayload,
+        }),
+        [items, itemCount, toCheckoutPayload]
+    );
+
+    return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
+}
+
+/**
+ * Custom hook to access the cart context.
+ *
+ * @hook useCart
+ *
+ * @returns {object} The cart context value.
+ */
+export function useCart() {
+    const ctx = useContext(CartContext);
+    if (!ctx) {
+        throw new Error("useCart must be used within a CartProvider");
+    }
+
+    return ctx;
 }

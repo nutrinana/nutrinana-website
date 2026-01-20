@@ -77,7 +77,7 @@ const productData = {
     ],
     externalId: "activated-granola",
     accordionData: accordionData,
-    productId: "activated-granola-mfc",
+    productId: "NUTR-GRAN-MFC-500G",
 };
 
 /**
