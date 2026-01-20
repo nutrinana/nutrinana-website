@@ -141,11 +141,7 @@ export default function ProductCard({
                         {/* Add to bag */}
                         {productId && (
                             <div className="mt-auto pt-4">
-                                <AddToBagButton
-                                    productId={productId}
-                                    variant="greenOutlined"
-                                    size="default"
-                                />
+                                <AddToBagButton productId={productId} />
                             </div>
                         )}
                     </div>
