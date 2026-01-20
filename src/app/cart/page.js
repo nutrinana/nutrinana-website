@@ -14,11 +14,25 @@ export default function CartPage() {
 
     if (items.length === 0) {
         return (
-            <div className="site-container py-16 text-center">
-                <h1 className="mb-4 text-2xl font-semibold">Your bag is empty</h1>
-                <Link href="/activated-granola">
-                    <Button variant="green">Shop granola</Button>
-                </Link>
+            <div className="site-container">
+                <h1 className="mb-8 text-3xl">Your Shopping Bag</h1>
+
+                <div className="flex flex-col items-center px-6 pt-16 text-center">
+                    <h1 className="mb-4 text-4xl font-bold">No crunch here... yet 👀</h1>
+                    <p className="mb-6 text-gray-600">
+                        Your shopping bag is empty, and that just won&apos;t do.
+                        <br />
+                        Let&apos;s fix that with some activated goodness.
+                    </p>
+                    <div className="flex flex-col gap-4 sm:flex-row">
+                        <Button variant="green" asChild>
+                            <Link href="/activated-granola">Shop Activated Granola</Link>
+                        </Button>
+                        <Button variant="outline" asChild>
+                            <Link href="/">Go Back Home</Link>
+                        </Button>
+                    </div>
+                </div>
             </div>
         );
     }
