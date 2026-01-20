@@ -50,7 +50,7 @@ export default function Navbar() {
     ];
 
     return (
-        <nav className="relative sticky top-0 z-50 w-full border-b border-gray-300 bg-white py-4">
+        <nav className="sticky top-0 z-50 w-full border-b border-gray-300 bg-white py-4">
             {/* Desktop cart button */}
             <div className="pointer-events-auto absolute top-1/2 right-6 z-50 hidden -translate-y-1/2 md:block lg:right-12">
                 <CartButton />
