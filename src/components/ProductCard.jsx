@@ -4,9 +4,8 @@ import { CircleCheck } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-import { Button } from "@/components/ui/button";
+import AddToBagButton from "@/components/AddToBagButton";
 import useProductRating from "@/hooks/useProductRating";
-import { openInNewTab } from "@/lib/utils";
 import "@/styles/globals.css";
 
 /**
@@ -23,10 +22,8 @@ import "@/styles/globals.css";
  * @param {string} props.subtitle - The subtitle of the product.
  * @param {string[]} props.features - Array of features for the product.
  * @param {string} props.price - The price of the product.
- * @param {Object[]} props.shopLinks - Array of shop links for the product.
- * @param {string} props.shopLinks[].text - The text for the shop link.
- * @param {string} props.shopLinks[].href - The URL for the shop link.
  * @param {string} props.externalId - The external identifier from Yotpo for the product (used for fetching ratings).
+ * @param {string} props.productId - The product ID used for adding to the bag.
  *
  * @returns {JSX.Element} The rendered ProductCard component.
  */
@@ -36,8 +33,8 @@ export default function ProductCard({
     subtitle,
     features = [],
     price,
-    shopLinks = [],
     externalId = "",
+    productId = "",
 }) {
     const router = useRouter();
     const averageRating = useProductRating(externalId || "");
@@ -141,35 +138,16 @@ export default function ProductCard({
                             )}
                         </div>
 
-                        {/* Shop buttons */}
-                        <div className="mt-auto flex w-full flex-col gap-2 pt-4 sm:flex-row lg:gap-4">
-                            <Button
-                                variant="yellow"
-                                size="sm"
-                                className="lg:size-default w-full text-xs sm:w-1/2 lg:text-xs xl:text-base"
-                                onClick={(event) => {
-                                    event.stopPropagation(); // prevents the card's onClick from firing
-                                    if (shopLinks[0]?.href) {
-                                        openInNewTab(shopLinks[0].href);
-                                    }
-                                }}
-                            >
-                                {shopLinks[0]?.text}
-                            </Button>
-                            <Button
-                                variant="greenOutlined"
-                                size="sm"
-                                className="lg:size-default w-full text-xs sm:w-1/2 lg:text-xs xl:text-base"
-                                onClick={(event) => {
-                                    event.stopPropagation();
-                                    if (shopLinks[1]?.href) {
-                                        openInNewTab(shopLinks[1].href);
-                                    }
-                                }}
-                            >
-                                {shopLinks[1]?.text}
-                            </Button>
-                        </div>
+                        {/* Add to bag */}
+                        {productId && (
+                            <div className="mt-auto pt-4">
+                                <AddToBagButton
+                                    productId={productId}
+                                    variant="greenOutlined"
+                                    size="default"
+                                />
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

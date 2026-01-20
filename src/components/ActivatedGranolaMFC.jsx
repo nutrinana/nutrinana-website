@@ -77,6 +77,7 @@ const productData = {
     ],
     externalId: "activated-granola",
     accordionData: accordionData,
+    productId: "activated-granola-mfc",
 };
 
 /**

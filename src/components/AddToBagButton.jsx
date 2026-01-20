@@ -6,12 +6,12 @@ import { useCart } from "@/hooks/useCart";
 /**
  * AddToBagButton
  *
- * Adds a product to the cart using productId.
+ * Adds a product to the bag using productId.
  *
  * @component
  *
  * @param {Object} props - Component props.
- * @param {string} props.productId - The ID of the product to add to the cart.
+ * @param {string} props.productId - The ID of the product to add to the bag.
  * @param {number} [props.quantity=1] - The quantity of the product to add.
  * @param {string} [props.variant="green"] - The button variant.
  * @param {string} [props.size="default"] - The button size.
@@ -28,7 +28,7 @@ export default function AddToBagButton({
 
     return (
         <Button variant={variant} size={size} onClick={() => addItem(productId, quantity)}>
-            Add to basket
+            Add To Bag
         </Button>
     );
 }

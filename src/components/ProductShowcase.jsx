@@ -6,11 +6,10 @@ import { CircleCheck, Maximize2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+import AddToBagButton from "@/components/AddToBagButton";
 import GlobalAccordion from "@/components/GlobalAccordion";
 import Lightbox from "@/components/Lightbox";
-import { Button } from "@/components/ui/button";
 import useProductRating from "@/hooks/useProductRating";
-import { openInNewTab } from "@/lib/utils";
 import "@/styles/globals.css";
 
 /**
@@ -28,11 +27,9 @@ import "@/styles/globals.css";
  * @param {string} props.description - Product description text.
  * @param {string} props.price - The price of the product (formatted as a string).
  * @param {string} [props.size] - The size/weight of the product (e.g., "500g").
- * @param {Object[]} props.shopLinks - Array of shop link objects for purchasing the product.
- * @param {string} props.shopLinks[].text - Display text for the shop button.
- * @param {string} props.shopLinks[].href - URL for the shop link.
  * @param {string} props.externalId - The external identifier from Yotpo for the product (used for fetching ratings).
  * @param {Object[]} [props.accordionData] - Optional array of accordion items to display below shop buttons.
+ * @param {string} props.productId - The product ID used for adding to the bag.
  *
  * @returns {JSX.Element} The rendered ProductShowcase component.
  */
@@ -43,9 +40,9 @@ export default function ProductShowcase({
     description,
     price,
     size,
-    shopLinks = [],
     externalId = "",
     accordionData = [],
+    productId = "",
 }) {
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
     const averageRating = useProductRating(externalId || "");
@@ -181,33 +178,16 @@ export default function ProductShowcase({
                             </div>
                         )}
 
-                        {/* Shop buttons */}
-                        <div className="mt-auto flex flex-col gap-4 pt-4 sm:flex-row">
-                            <Button
-                                variant="yellow"
-                                size="default"
-                                onClick={(event) => {
-                                    event.stopPropagation();
-                                    if (shopLinks[0]?.href) {
-                                        openInNewTab(shopLinks[0].href);
-                                    }
-                                }}
-                            >
-                                {shopLinks[0]?.text}
-                            </Button>
-                            <Button
-                                variant="greenOutlined"
-                                size="default"
-                                onClick={(event) => {
-                                    event.stopPropagation();
-                                    if (shopLinks[1]?.href) {
-                                        openInNewTab(shopLinks[1].href);
-                                    }
-                                }}
-                            >
-                                {shopLinks[1]?.text}
-                            </Button>
-                        </div>
+                        {/* Add to bag */}
+                        {productId && (
+                            <div className="mt-auto pt-4">
+                                <AddToBagButton
+                                    productId={productId}
+                                    variant="greenOutlined"
+                                    size="default"
+                                />
+                            </div>
+                        )}
 
                         {/* Accordions */}
                         {accordionData.length > 0 && (
