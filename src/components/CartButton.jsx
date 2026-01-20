@@ -8,7 +8,7 @@ import { useCart } from "@/hooks/useCart";
 /**
  * CartButton component.
  *
- * Displays a shopping cart icon with the number of items in the cart.
+ * Displays a shopping bag icon with the number of items in the bag.
  *
  * @component
  *
@@ -20,7 +20,7 @@ export default function CartButton({ onClick }) {
     const { itemCount } = useCart();
 
     return (
-        <Link href="/basket" onClick={onClick} aria-label="Open basket" className="bag-icon">
+        <Link href="/cart" onClick={onClick} aria-label="Open bag" className="bag-icon">
             <ShoppingBag size={24} strokeWidth={1.5} />
             {itemCount > 0 && <span className="bag-icon-badge">{itemCount}</span>}
         </Link>
