@@ -27,7 +27,14 @@ export default function AddToBagButton({
     const { addItem } = useCart();
 
     return (
-        <Button variant={variant} size={size} onClick={() => addItem(productId, quantity)}>
+        <Button
+            variant={variant}
+            size={size}
+            onClick={(event) => {
+                event.stopPropagation();
+                addItem(productId, quantity);
+            }}
+        >
             Add To Bag
         </Button>
     );
