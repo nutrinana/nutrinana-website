@@ -19,6 +19,7 @@ export const PRODUCTS = {
         productId: "NUTR-GRAN-MFC-500G",
         sku: "NUTR-GRAN-MFC-500G",
         name: "Nutrinana's Activated Granola - Mixed Fruits & Coconut",
+        size: "500g",
         stripePriceIdOneOff: process.env.STRIPE_PRICE_ID_ONE_OFF || "",
         stripePriceIdSubscription: process.env.STRIPE_PRICE_ID_SUBSCRIPTION || "",
         displayPriceGBP: 8.5,
@@ -28,6 +29,7 @@ export const PRODUCTS = {
         productId: "NUTR-GRAN-CHH-500G",
         sku: "NUTR-GRAN-CHH-500G",
         name: "Nutrinana's Activated Granola - Chocolate & Hazelnut",
+        size: "500g",
         stripePriceIdOneOff: process.env.STRIPE_PRICE_ID_ONE_OFF || "",
         stripePriceIdSubscription: process.env.STRIPE_PRICE_ID_SUBSCRIPTION || "",
         displayPriceGBP: 8.5,
@@ -36,15 +38,31 @@ export const PRODUCTS = {
 };
 
 /**
- * Get a product by its ID.
+ * Get a product by its ID or key.
  *
  * @util getProduct
  *
- * @param {string} productId - The ID of the product to retrieve.
+ * @param {string} idOrKey - The product ID or key to look up.
  *
  * @returns {Object|null} The product object if found, otherwise null.
  */
-export const getProduct = (productId) => PRODUCTS[productId];
+export const getProduct = (idOrKey) => {
+    if (!idOrKey) {
+        return undefined;
+    }
+
+    const key = String(idOrKey);
+
+    // Direct lookup by PRODUCTS key (e.g. "activated-granola-mfc")
+    if (Object.prototype.hasOwnProperty.call(PRODUCTS, key)) {
+        return PRODUCTS[key];
+    }
+
+    // Lookup by productId or sku inside product objects
+    return Object.values(PRODUCTS).find((product) => {
+        return product.productId === key || product.sku === key;
+    });
+};
 
 /**
  * List all products.
