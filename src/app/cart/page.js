@@ -8,11 +8,13 @@ import ClosingCTA from "@/components/ClosingCTA";
 import OrderSummary from "@/components/OrderSummary";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/hooks/useCart";
-import { calcSubtotalGBP } from "@/lib/cartTotals";
+import { calcSubtotalGBP, calcItemCount } from "@/lib/cartTotals";
 import { getProduct } from "@/lib/products";
 
 export default function CartPage() {
-    const { items, itemCount, setQty, removeItem, clear } = useCart();
+    const { items, setQty, removeItem, clear } = useCart();
+
+    const itemCount = calcItemCount(items);
 
     const subtotal = calcSubtotalGBP(items, getProduct);
 

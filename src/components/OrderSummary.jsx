@@ -20,7 +20,7 @@ import { Button } from "@/components/ui/button";
 export default function OrderSummary({ itemCount, subtotal, onCheckout, onClear }) {
     return (
         <aside className="rounded-xl border p-6">
-            <h2 className="mb-4 text-lg font-medium">Order summary</h2>
+            <h2 className="mb-4 text-lg font-semibold">Order summary</h2>
 
             <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
@@ -33,18 +33,18 @@ export default function OrderSummary({ itemCount, subtotal, onCheckout, onClear 
                     <span>£{subtotal.toFixed(2)}</span>
                 </div>
 
-                <div className="flex justify-between text-gray-500">
+                <div className="flex justify-between text-gray-600">
                     <span>Shipping</span>
                     <span>Calculated at checkout</span>
                 </div>
 
-                <div className="mt-4 flex justify-between text-base font-semibold">
+                <div className="font-heading mt-4 flex justify-between text-base font-semibold">
                     <span>Estimated total</span>
-                    <span>£{subtotal.toFixed(2)}</span>
+                    <span className="font-body">£{subtotal.toFixed(2)}</span>
                 </div>
             </div>
 
-            <p className="mt-3 text-xs text-gray-500">
+            <p className="mt-3 text-xs text-gray-600">
                 Taxes, discounts, and shipping calculated at checkout.
             </p>
 
@@ -57,7 +57,7 @@ export default function OrderSummary({ itemCount, subtotal, onCheckout, onClear 
                 className="mt-4 w-full text-sm font-medium text-gray-500 hover:underline"
                 onClick={onClear}
             >
-                Clear basket
+                Clear bag
             </Button>
         </aside>
     );
