@@ -8,9 +8,13 @@ import ClosingCTA from "@/components/ClosingCTA";
 import OrderSummary from "@/components/OrderSummary";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/hooks/useCart";
+import { calcSubtotalGBP } from "@/lib/cartTotals";
+import { getProduct } from "@/lib/products";
 
 export default function CartPage() {
     const { items, itemCount, setQty, removeItem, clear } = useCart();
+
+    const subtotal = calcSubtotalGBP(items, getProduct);
 
     if (items.length === 0) {
         return (
@@ -58,7 +62,12 @@ export default function CartPage() {
                         })}
                     </div>
 
-                    <OrderSummary itemCount={itemCount} onCheckout={() => {}} onClear={clear} />
+                    <OrderSummary
+                        itemCount={itemCount}
+                        subtotal={subtotal}
+                        onCheckout={() => {}}
+                        onClear={clear}
+                    />
                 </div>
             </section>
 

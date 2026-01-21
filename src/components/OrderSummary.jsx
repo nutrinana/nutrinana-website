@@ -11,22 +11,44 @@ import { Button } from "@/components/ui/button";
  *
  * @param {Object} props - Component props.
  * @param {number} props.itemCount - The total number of items in the order.
+ * @param {number} props.subtotal - The subtotal amount of the order.
  * @param {Function} props.onCheckout - Handler for the checkout action.
  * @param {Function} props.onClear - Handler for clearing the order.
  *
  * @returns {JSX.Element} The rendered OrderSummary component.
  */
-export default function OrderSummary({ itemCount, onCheckout, onClear }) {
+export default function OrderSummary({ itemCount, subtotal, onCheckout, onClear }) {
     return (
         <aside className="rounded-xl border p-6">
             <h2 className="mb-4 text-lg font-medium">Order summary</h2>
 
-            <div className="mb-6 flex justify-between text-sm">
-                <span>Items</span>
-                <span>{itemCount}</span>
+            <div className="space-y-3 text-sm">
+                <div className="flex justify-between">
+                    <span>Items</span>
+                    <span>{itemCount}</span>
+                </div>
+
+                <div className="flex justify-between">
+                    <span>Subtotal</span>
+                    <span>£{subtotal.toFixed(2)}</span>
+                </div>
+
+                <div className="flex justify-between text-gray-500">
+                    <span>Shipping</span>
+                    <span>Calculated at checkout</span>
+                </div>
+
+                <div className="mt-4 flex justify-between text-base font-semibold">
+                    <span>Estimated total</span>
+                    <span>£{subtotal.toFixed(2)}</span>
+                </div>
             </div>
 
-            <Button variant="green" size="lg" className="w-full" onClick={onCheckout}>
+            <p className="mt-3 text-xs text-gray-500">
+                Taxes, discounts, and shipping calculated at checkout.
+            </p>
+
+            <Button variant="green" size="lg" className="mt-6 w-full" onClick={onCheckout}>
                 Proceed to checkout
             </Button>
 

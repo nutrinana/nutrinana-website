@@ -102,9 +102,6 @@ export function CartProvider({ children }) {
     // Clear the cart
     const clear = () => setItems([]);
 
-    // Total item count
-    const itemCount = useMemo(() => items.reduce((sum, x) => sum + x.qty, 0), [items]);
-
     // Convert cart items to checkout payload format
     const toCheckoutPayload = useCallback(
         () =>
@@ -122,10 +119,9 @@ export function CartProvider({ children }) {
             setQty,
             removeItem,
             clear,
-            itemCount,
             toCheckoutPayload,
         }),
-        [items, itemCount, toCheckoutPayload]
+        [items, toCheckoutPayload]
     );
 
     return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
