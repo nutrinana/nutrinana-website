@@ -27,7 +27,7 @@ import "@/styles/globals.css";
  * @param {string} props.description - Product description text.
  * @param {string} props.price - The price of the product (formatted as a string).
  * @param {string} [props.size] - The size/weight of the product (e.g., "500g").
- * @param {string} props.externalId - The external identifier from Yotpo for the product (used for fetching ratings).
+ * @param {string} props.reviewId - The external identifier from Yotpo for the product (used for fetching ratings).
  * @param {Object[]} [props.accordionData] - Optional array of accordion items to display below shop buttons.
  * @param {string} props.productId - The product ID used for adding to the bag.
  *
@@ -40,12 +40,12 @@ export default function ProductShowcase({
     description,
     price,
     size,
-    externalId = "",
+    reviewId = "",
     accordionData = [],
     productId = "",
 }) {
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
-    const averageRating = useProductRating(externalId || "");
+    const averageRating = useProductRating(reviewId || "");
 
     return (
         <div>

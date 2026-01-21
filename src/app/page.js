@@ -61,7 +61,7 @@ const products = [
         subtitle: "mixed fruits & coconuts",
         features: ["Gluten Free", "Dairy Free", "No Refined Sugar"],
         price: "£8.50",
-        externalId: "activated-granola",
+        reviewId: "activated-granola",
         productId: "NUTR-GRAN-MFC-500G",
     },
 ];

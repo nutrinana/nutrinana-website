@@ -75,7 +75,7 @@ const productData = {
             href: "https://theblackfarmer.com/products/nutrinanaa-special-granola-500g_141594?_pos=1&_psq=nutrina&_ss=e&_v=1.0",
         },
     ],
-    externalId: "activated-granola",
+    reviewId: "activated-granola",
     accordionData: accordionData,
     productId: "NUTR-GRAN-MFC-500G",
 };

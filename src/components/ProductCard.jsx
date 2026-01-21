@@ -22,7 +22,7 @@ import "@/styles/globals.css";
  * @param {string} props.subtitle - The subtitle of the product.
  * @param {string[]} props.features - Array of features for the product.
  * @param {string} props.price - The price of the product.
- * @param {string} props.externalId - The external identifier from Yotpo for the product (used for fetching ratings).
+ * @param {string} props.reviewId - The external identifier from Yotpo for the product (used for fetching ratings).
  * @param {string} props.productId - The product ID used for adding to the bag.
  *
  * @returns {JSX.Element} The rendered ProductCard component.
@@ -33,11 +33,11 @@ export default function ProductCard({
     subtitle,
     features = [],
     price,
-    externalId = "",
+    reviewId = "",
     productId = "",
 }) {
     const router = useRouter();
-    const averageRating = useProductRating(externalId || "");
+    const averageRating = useProductRating(reviewId || "");
 
     return (
         // Wrapper that allows navigation on click or Enter key
