@@ -30,9 +30,9 @@ export default function CartLineItem({ productId, qty, onDecrease, onIncrease, o
     }
 
     return (
-        <div className="flex items-center justify-between gap-4 rounded-xl border p-4">
-            <div className="flex items-center gap-4">
-                <div className="relative h-16 w-16 overflow-hidden rounded-md bg-white">
+        <div className="flex flex-col gap-4 rounded-xl border p-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex min-w-0 items-center gap-4">
+                <div className="relative aspect-square w-16 flex-none overflow-hidden rounded-md bg-white">
                     <Image
                         src={
                             product.imageUrl ||
@@ -56,8 +56,8 @@ export default function CartLineItem({ productId, qty, onDecrease, onIncrease, o
                 </div>
             </div>
 
-            <div className="flex items-center gap-4">
-                <div className="flex items-center overflow-hidden rounded-md border">
+            <div className="flex items-center justify-between gap-4 sm:justify-start">
+                <div className="flex items-center overflow-hidden rounded-md border sm:ml-auto">
                     <Button
                         variant="unstyled"
                         size="icon"
