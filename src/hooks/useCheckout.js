@@ -20,6 +20,9 @@ export function useCheckout() {
     const [isCheckingOut, setIsCheckingOut] = useState(false);
     const [checkoutError, setCheckoutError] = useState("");
 
+    const GENERIC_CHECKOUT_ERROR =
+        "Something went wrong while starting checkout. Please try again or contact us if the issue persists.";
+
     const checkout = async ({ items, purchaseType }) => {
         try {
             setCheckoutError("");
@@ -39,16 +42,19 @@ export function useCheckout() {
             const data = await response.json().catch(() => ({}));
 
             if (!response.ok) {
-                throw new Error(data?.error || "Checkout failed. Please try again.");
+                console.error("Checkout API error:", data);
+                throw new Error(GENERIC_CHECKOUT_ERROR);
             }
 
             if (!data?.url) {
-                throw new Error("Stripe Checkout URL was not returned.");
+                console.error("Missing Stripe Checkout URL:", data);
+                throw new Error(GENERIC_CHECKOUT_ERROR);
             }
 
             window.location.href = data.url;
         } catch (error) {
-            setCheckoutError(error?.message || "Checkout failed. Please try again.");
+            console.error("Checkout failed:", error);
+            setCheckoutError(GENERIC_CHECKOUT_ERROR);
             setIsCheckingOut(false);
         }
     };
