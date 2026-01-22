@@ -5,8 +5,8 @@
  * - productId: Unique identifier for the product
  * - sku: Stock Keeping Unit
  * - name: Product name
- * - stripePriceIdOneOff: Stripe price ID for one-time purchases
- * - stripePriceIdSubscription: Stripe price ID for subscriptions
+ * - stripeLookupKeyBase: Base for Stripe lookup keys (used server-side)
+ *   e.g. `${stripeLookupKeyBase}_one_off`, `${stripeLookupKeyBase}_monthly`
  * - displayPriceGBP: Display price in GBP
  * - vatRate: VAT rate applicable to the product
  *
@@ -20,8 +20,7 @@ export const PRODUCTS = {
         sku: "NUTR-GRAN-MFC-500G",
         name: "Nutrinana's Activated Granola - Mixed Fruits & Coconut",
         size: "500g",
-        stripePriceIdOneOff: process.env.STRIPE_PRICE_ID_ONE_OFF || "",
-        stripePriceIdSubscription: process.env.STRIPE_PRICE_ID_SUBSCRIPTION || "",
+        stripeLookupKeyBase: "granola_mfc_500g",
         displayPriceGBP: 8.5,
         vatRate: 0.2,
     },
@@ -30,8 +29,7 @@ export const PRODUCTS = {
         sku: "NUTR-GRAN-CHH-500G",
         name: "Nutrinana's Activated Granola - Chocolate & Hazelnut",
         size: "500g",
-        stripePriceIdOneOff: process.env.STRIPE_PRICE_ID_ONE_OFF || "",
-        stripePriceIdSubscription: process.env.STRIPE_PRICE_ID_SUBSCRIPTION || "",
+        stripeLookupKeyBase: "granola_chh_500g",
         displayPriceGBP: 8.5,
         vatRate: 0.2,
     },
