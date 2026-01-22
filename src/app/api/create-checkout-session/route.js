@@ -109,7 +109,7 @@ export async function POST(req) {
                 allowed_countries: ["GB"],
             },
             billing_address_collection: "auto",
-            // automatic_tax: { enabled: true },
+            automatic_tax: { enabled: true },
 
             metadata: {
                 purchaseType,
