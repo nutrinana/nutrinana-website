@@ -1,0 +1,83 @@
+import { Pool } from "pg";
+
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+});
+
+/**
+ * Function to claim a session for processing.
+ *
+ * Attempts to insert a new record into the stripe_fulfillments table
+ * with the given sessionId and eventId. If a record with the same sessionId
+ * already exists, the insertion is ignored.
+ *
+ * @util stripe
+ *
+ * @param {string} sessionId - The ID of the Stripe Checkout Session to claim.
+ * @param {string} eventId - The ID of the Stripe webhook event.
+ *
+ * @returns {object} - The result of the claim operation.
+ */
+export async function claimSession(sessionId, eventId) {
+    const res = await pool.query(
+        `
+    INSERT INTO stripe_fulfillments (session_id, status, last_event_id)
+    VALUES ($1, 'processing', $2)
+    ON CONFLICT (session_id) DO NOTHING
+    RETURNING session_id
+    `,
+        [sessionId, eventId || null]
+    );
+
+    return { claimed: res.rowCount === 1 };
+}
+
+/**
+ * Function to mark a session as fulfilled.
+ *
+ * Updates the stripe_fulfillments table to set the status to 'fulfilled',
+ * update the updated_at timestamp, and store the fulfillment payload.
+ *
+ * @util stripe
+ *
+ * @param {string} sessionId - The ID of the Stripe Checkout Session.
+ * @param {object} payload - The fulfillment payload to store.
+ *
+ * @returns {void}
+ */
+export async function markFulfilled(sessionId, payload) {
+    await pool.query(
+        `
+    UPDATE stripe_fulfillments
+    SET status = 'fulfilled',
+        updated_at = now(),
+        payload_json = $2
+    WHERE session_id = $1
+    `,
+        [sessionId, payload]
+    );
+}
+
+/**
+ * Function to mark a session as failed.
+ *
+ * Updates the stripe_fulfillments table to set the status to 'failed'
+ * and update the updated_at timestamp.
+ *
+ * @util stripe
+ *
+ * @param {string} sessionId - The ID of the Stripe Checkout Session.
+ *
+ * @returns {void}
+ */
+export async function markFailed(sessionId) {
+    await pool.query(
+        `
+    UPDATE stripe_fulfillments
+    SET status = 'failed',
+        updated_at = now()
+    WHERE session_id = $1
+    `,
+        [sessionId]
+    );
+}
