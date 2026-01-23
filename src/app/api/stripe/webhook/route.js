@@ -1,5 +1,7 @@
 import Stripe from "stripe";
 
+import { claimSession, markFulfilled, markFailed } from "@/lib/stripeWebhookStore";
+
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2025-12-15.clover" });
 
 function safeLog(...args) {
@@ -97,35 +99,49 @@ function buildOrderPayloadFromSession(session) {
  *
  * @returns {object} - Result of the fulfillment process.
  */
-async function fulfillCheckoutSession(sessionId) {
-    const session = await stripe.checkout.sessions.retrieve(sessionId, {
-        expand: [
-            "line_items.data.price",
-            "line_items.data.price.product",
-            "payment_intent",
-            "subscription",
-        ],
-    });
+async function fulfillCheckoutSession(sessionId, eventId) {
+    const { claimed } = await claimSession(sessionId, eventId);
+    if (!claimed) {
+        safeLog(`[stripe] Session ${sessionId} already claimed — skipping`);
 
-    if (session.payment_status === "unpaid") {
-        safeLog(`[stripe] Session ${sessionId} unpaid — skipping fulfillment`);
-
-        return { fulfilled: false, reason: "unpaid" };
+        return { fulfilled: false, reason: "already_processed" };
     }
 
-    const payload = buildOrderPayloadFromSession(session);
+    try {
+        const session = await stripe.checkout.sessions.retrieve(sessionId, {
+            expand: [
+                "line_items.data.price",
+                "line_items.data.price.product",
+                "payment_intent",
+                "subscription",
+            ],
+        });
 
-    // TODO (later): idempotency guard:
-    // - store payload keyed by sessionId
-    // - if sessionId already fulfilled, exit early
+        if (session.payment_status === "unpaid") {
+            safeLog(`[stripe] Session ${sessionId} unpaid — skipping fulfillment`);
 
-    safeLog("[stripe] Order payload:");
-    safeLog(JSON.stringify(payload, null, 2));
+            return { fulfilled: false, reason: "unpaid" };
+        }
 
-    // TODO (later): send payload to Hutch
-    // await sendToHutch(payload);
+        const payload = buildOrderPayloadFromSession(session);
 
-    return { fulfilled: true, payload };
+        // TODO (later): idempotency guard:
+        // - store payload keyed by sessionId
+        // - if sessionId already fulfilled, exit early
+
+        safeLog("[stripe] Order payload:");
+        safeLog(JSON.stringify(payload, null, 2));
+
+        // TODO (later): send payload to Hutch
+        // await sendToHutch(payload);
+
+        await markFulfilled(sessionId, payload);
+
+        return { fulfilled: true, payload };
+    } catch (err) {
+        await markFailed(sessionId);
+        throw err;
+    }
 }
 
 /**
@@ -167,7 +183,7 @@ export async function POST(req) {
             event.type === "checkout.session.async_payment_succeeded"
         ) {
             const session = event.data.object;
-            await fulfillCheckoutSession(session.id);
+            await fulfillCheckoutSession(session.id, event.id);
         }
 
         if (event.type === "checkout.session.async_payment_failed") {
