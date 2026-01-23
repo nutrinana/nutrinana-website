@@ -15,9 +15,10 @@ export default function CheckoutSuccessPage() {
     const { clear } = useCart();
 
     useEffect(() => {
-        if (sessionId) {
-            clear();
+        if (!sessionId) {
+            return;
         }
+        clear();
     }, [sessionId, clear]);
 
     return (

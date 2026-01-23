@@ -1,6 +1,14 @@
 "use client";
 
-import { createContext, useContext, useEffect, useMemo, useState, useCallback } from "react";
+import {
+    createContext,
+    useContext,
+    useEffect,
+    useMemo,
+    useState,
+    useCallback,
+    useRef,
+} from "react";
 
 const STORAGE_KEY = "nutrinana_cart_v1";
 
@@ -38,21 +46,39 @@ const CartContext = createContext(null);
  * @returns {JSX.Element} The CartProvider component.
  */
 export function CartProvider({ children }) {
-    const [items, setItems] = useState([]); // [{ productId: string, qty: number }]
+    const [items, setItems] = useState([]);
+    const [hydrated, setHydrated] = useState(false);
+    const clearedBeforeHydrateRef = useRef(false);
 
-    // Load cart from localStorage on mount
     useEffect(() => {
+        if (typeof window === "undefined") {
+            return;
+        }
+
+        if (clearedBeforeHydrateRef.current) {
+            setHydrated(true);
+
+            return;
+        }
+
         const raw = localStorage.getItem(STORAGE_KEY);
-        setItems(safeParse(raw, []));
+        const parsed = safeParse(raw, []);
+        setItems(parsed);
+        setHydrated(true);
     }, []);
 
-    // Save cart to localStorage on items change
     useEffect(() => {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-    }, [items]);
+        if (typeof window === "undefined") {
+            return;
+        }
+        if (!hydrated) {
+            return;
+        }
 
-    // Add an item to the cart
-    const addItem = (productId, qty = 1) => {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+    }, [items, hydrated]);
+
+    const addItem = useCallback((productId, qty = 1) => {
         if (!productId) {
             return;
         }
@@ -72,10 +98,9 @@ export function CartProvider({ children }) {
 
             return copy;
         });
-    };
+    }, []);
 
-    // Set the quantity of a specific item
-    const setQty = (productId, qty) => {
+    const setQty = useCallback((productId, qty) => {
         if (!productId) {
             return;
         }
@@ -89,20 +114,27 @@ export function CartProvider({ children }) {
                 .map((x) => (x.productId === productId ? { ...x, qty: n } : x))
                 .filter((x) => x.qty > 0)
         );
-    };
+    }, []);
 
-    // Remove an item from the cart
-    const removeItem = (productId) => {
+    const removeItem = useCallback((productId) => {
         if (!productId) {
             return;
         }
         setItems((prev) => prev.filter((x) => x.productId !== productId));
-    };
+    }, []);
 
-    // Clear the cart
-    const clear = () => setItems([]);
+    const clear = useCallback(() => {
+        clearedBeforeHydrateRef.current = true;
 
-    // Convert cart items to checkout payload format
+        setItems([]);
+
+        if (typeof window !== "undefined") {
+            localStorage.removeItem(STORAGE_KEY);
+        }
+
+        setHydrated(true);
+    }, []);
+
     const toCheckoutPayload = useCallback(
         () =>
             items.map((x) => ({
@@ -121,7 +153,7 @@ export function CartProvider({ children }) {
             clear,
             toCheckoutPayload,
         }),
-        [items, toCheckoutPayload]
+        [items, addItem, setQty, removeItem, clear, toCheckoutPayload]
     );
 
     return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

@@ -3,7 +3,6 @@ import Stripe from "stripe";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2025-12-15.clover" });
 
 function safeLog(...args) {
-    // optional: central place to silence logs later
     console.log(...args);
 }
 
@@ -22,23 +21,16 @@ function buildOrderPayloadFromSession(session) {
     const lineItems = session.line_items?.data || [];
     const items = lineItems.map((li) => {
         const price = li.price || {};
-        const product = price.product || {}; // if expanded
+        const product = price.product || {};
         const productMetadata = product?.metadata || {};
         const priceMetadata = price?.metadata || {};
 
-        // Prefer metadata you control in Stripe:
-        // - product.metadata.sku
-        // - product.metadata.productId
-        // Fallback to descriptions if needed.
         const sku =
             productMetadata.sku || priceMetadata.sku || productMetadata.productId || undefined;
 
         return {
-            // Hutch will likely want sku + qty
             sku,
             quantity: li.quantity ?? 1,
-
-            // Helpful extras (usually harmless even if Hutch ignores them)
             name: li.description || product?.name || undefined,
             stripe: {
                 lineItemId: li.id,
@@ -115,7 +107,6 @@ async function fulfillCheckoutSession(sessionId) {
         ],
     });
 
-    // Stripe uses "unpaid" when not paid; you only fulfill when paid.
     if (session.payment_status === "unpaid") {
         safeLog(`[stripe] Session ${sessionId} unpaid — skipping fulfillment`);
 
@@ -128,7 +119,7 @@ async function fulfillCheckoutSession(sessionId) {
     // - store payload keyed by sessionId
     // - if sessionId already fulfilled, exit early
 
-    safeLog("[stripe] Hutch-ready order payload:");
+    safeLog("[stripe] Order payload:");
     safeLog(JSON.stringify(payload, null, 2));
 
     // TODO (later): send payload to Hutch
