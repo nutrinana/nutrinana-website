@@ -125,10 +125,6 @@ async function fulfillCheckoutSession(sessionId, eventId) {
 
         const payload = buildOrderPayloadFromSession(session);
 
-        // TODO (later): idempotency guard:
-        // - store payload keyed by sessionId
-        // - if sessionId already fulfilled, exit early
-
         safeLog("[stripe] Order payload:");
         safeLog(JSON.stringify(payload, null, 2));
 
