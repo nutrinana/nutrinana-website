@@ -76,11 +76,11 @@ function buildOrderPayloadFromSession(session) {
 
         totals: {
             currency: session.currency || null,
-            amountTotal: session.amount_total ?? null,
-            amountSubtotal: session.amount_subtotal ?? null,
-            amountShipping: session.shipping_cost?.amount_total ?? null,
-            amountTax: session.total_details?.amount_tax ?? null,
-            amountDiscount: session.total_details?.amount_discount ?? null,
+            amountTotal: session.amount_total ?? 0,
+            amountSubtotal: session.amount_subtotal ?? 0,
+            amountShipping: session.shipping_cost?.amount_total ?? 0,
+            amountTax: session.total_details?.amount_tax ?? 0,
+            amountDiscount: session.total_details?.amount_discount ?? 0,
         },
 
         items,
