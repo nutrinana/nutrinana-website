@@ -9,7 +9,9 @@ const pool = new Pool({
  *
  * Attempts to insert a new record into the stripe_fulfillments table
  * with the given sessionId and eventId. If a record with the same sessionId
- * already exists, the insertion is ignored.
+ * already exists, the insertion is ignored. If an existing record is found
+ * with status 'processing' that hasn't been updated in over 30 minutes,
+ * it is reclaimed for processing.
  *
  * @util stripe
  *
@@ -21,10 +23,26 @@ const pool = new Pool({
 export async function claimSession(sessionId, eventId) {
     const res = await pool.query(
         `
-        INSERT INTO stripe_fulfillments (session_id, status, last_event_id)
-        VALUES ($1, 'processing', $2)
-        ON CONFLICT (session_id) DO NOTHING
-        RETURNING session_id
+        WITH inserted AS (
+            INSERT INTO stripe_fulfillments (session_id, status, last_event_id)
+            VALUES ($1, 'processing', $2)
+            ON CONFLICT (session_id) DO NOTHING
+            RETURNING session_id
+        ),
+        reclaimed AS (
+            UPDATE stripe_fulfillments
+            SET status = 'processing',
+                last_event_id = COALESCE($2, last_event_id),
+                updated_at = now()
+            WHERE session_id = $1
+              AND status = 'processing'
+              AND updated_at < (now() - INTERVAL '30 minutes')
+              AND NOT EXISTS (SELECT 1 FROM inserted)
+            RETURNING session_id
+        )
+        SELECT session_id FROM inserted
+        UNION ALL
+        SELECT session_id FROM reclaimed;
         `,
         [sessionId, eventId || null]
     );
