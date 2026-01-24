@@ -12,6 +12,7 @@ import { useCart } from "@/hooks/useCart";
 export default function CheckoutSuccessPage() {
     const searchParams = useSearchParams();
     const sessionId = searchParams.get("session_id");
+    // TODO: Change this to Hutch reference/order number later
     const { clear } = useCart();
 
     useEffect(() => {
@@ -31,6 +32,25 @@ export default function CheckoutSuccessPage() {
                         <br />
                         You&apos;ll receive an email confirmation shortly.
                     </p>
+
+                    <div className="mt-6 rounded-lg border bg-white p-4 text-left">
+                        {sessionId ? (
+                            <>
+                                <p className="text-xs font-medium text-gray-500">Order reference</p>
+                                <code className="mt-1 block rounded bg-gray-50 px-2 py-1 font-mono text-xs break-all text-gray-900">
+                                    {sessionId}
+                                </code>
+                                <p className="mt-2 text-xs text-gray-500">
+                                    Keep this for your records.
+                                </p>
+                            </>
+                        ) : (
+                            <p className="text-xs text-gray-500">
+                                Order reference is unavailable. Please check your email
+                                confirmation.
+                            </p>
+                        )}
+                    </div>
 
                     <p className="mt-4 text-xs text-gray-500 sm:text-sm">
                         If you chose a subscription, you can manage it later via your Stripe
