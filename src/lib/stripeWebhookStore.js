@@ -81,3 +81,30 @@ export async function markFailed(sessionId) {
         [sessionId]
     );
 }
+
+/**
+ * Function to record a failed session if it was never claimed or processed.
+ *
+ * This is used for async payment failures or expired sessions
+ * where no prior fulfillment record exists.
+ *
+ * @util stripe
+ *
+ * @param {string} sessionId - The ID of the Stripe Checkout Session.
+ * @param {string} eventId - The Stripe webhook event ID.
+ *
+ * @returns {object} - Whether the failure was newly recorded.
+ */
+export async function recordFailureIfMissing(sessionId, eventId) {
+    const res = await pool.query(
+        `
+        INSERT INTO stripe_fulfillments (session_id, status, last_event_id)
+        VALUES ($1, 'failed', $2)
+        ON CONFLICT (session_id) DO NOTHING
+        RETURNING session_id
+        `,
+        [sessionId, eventId || null]
+    );
+
+    return { recorded: res.rowCount === 1 };
+}

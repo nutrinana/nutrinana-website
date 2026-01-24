@@ -1,6 +1,11 @@
 import Stripe from "stripe";
 
-import { claimSession, markFulfilled, markFailed } from "@/lib/stripeWebhookStore";
+import {
+    claimSession,
+    markFulfilled,
+    markFailed,
+    recordFailureIfMissing,
+} from "@/lib/stripeWebhookStore";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2025-12-15.clover" });
 
@@ -182,9 +187,14 @@ export async function POST(req) {
             await fulfillCheckoutSession(session.id, event.id);
         }
 
-        if (event.type === "checkout.session.async_payment_failed") {
+        if (
+            event.type === "checkout.session.async_payment_failed" ||
+            event.type === "checkout.session.expired"
+        ) {
             const session = event.data.object;
-            console.warn("[stripe] Async payment failed for session:", session.id);
+            console.warn("[stripe] Payment failed or session expired:", session.id);
+
+            await recordFailureIfMissing(session.id, event.id);
         }
 
         return new Response("ok", { status: 200 });
