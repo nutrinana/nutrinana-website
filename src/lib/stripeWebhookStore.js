@@ -21,11 +21,11 @@ const pool = new Pool({
 export async function claimSession(sessionId, eventId) {
     const res = await pool.query(
         `
-    INSERT INTO stripe_fulfillments (session_id, status, last_event_id)
-    VALUES ($1, 'processing', $2)
-    ON CONFLICT (session_id) DO NOTHING
-    RETURNING session_id
-    `,
+        INSERT INTO stripe_fulfillments (session_id, status, last_event_id)
+        VALUES ($1, 'processing', $2)
+        ON CONFLICT (session_id) DO NOTHING
+        RETURNING session_id
+        `,
         [sessionId, eventId || null]
     );
 
@@ -48,12 +48,12 @@ export async function claimSession(sessionId, eventId) {
 export async function markFulfilled(sessionId, payload) {
     await pool.query(
         `
-    UPDATE stripe_fulfillments
-    SET status = 'fulfilled',
-        updated_at = now(),
-        payload_json = $2
-    WHERE session_id = $1
-    `,
+        UPDATE stripe_fulfillments
+        SET status = 'fulfilled',
+            updated_at = now(),
+            payload_json = $2
+        WHERE session_id = $1
+        `,
         [sessionId, payload]
     );
 }
@@ -73,11 +73,11 @@ export async function markFulfilled(sessionId, payload) {
 export async function markFailed(sessionId) {
     await pool.query(
         `
-    UPDATE stripe_fulfillments
-    SET status = 'failed',
-        updated_at = now()
-    WHERE session_id = $1
-    `,
+        UPDATE stripe_fulfillments
+        SET status = 'failed',
+            updated_at = now()
+        WHERE session_id = $1
+        `,
         [sessionId]
     );
 }
