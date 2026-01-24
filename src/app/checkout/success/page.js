@@ -12,7 +12,7 @@ import { useCart } from "@/hooks/useCart";
 export default function CheckoutSuccessPage() {
     const searchParams = useSearchParams();
     const sessionId = searchParams.get("session_id");
-    // TODO: Change this to Hutch reference/order number later
+    // TODO: Change this to Hutch reference/order number later add copy button too
     const { clear } = useCart();
 
     useEffect(() => {
