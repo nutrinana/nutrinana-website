@@ -13,6 +13,10 @@ function safeLog(...args) {
     console.log(...args);
 }
 
+function generateOrderReference(session) {
+    return `NUTR-${session.id.slice(-8).toUpperCase()}`;
+}
+
 /**
  * Builds an order playload from a Stripe Checkout Session object.
  *
@@ -56,8 +60,10 @@ function buildOrderPayloadFromSession(session) {
     const subscriptionId =
         typeof session.subscription === "string" ? session.subscription : session.subscription?.id;
 
+    const orderReference = generateOrderReference(session);
+
     return {
-        orderReference: checkoutSessionId,
+        orderReference,
         stripeCheckoutSessionId: checkoutSessionId,
         stripePaymentIntentId: paymentIntentId || null,
         stripeSubscriptionId: subscriptionId || null,

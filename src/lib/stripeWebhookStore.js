@@ -55,24 +55,34 @@ export async function claimSession(sessionId, eventId) {
  *
  * Updates the stripe_fulfillments table to set the status to 'fulfilled',
  * update the updated_at timestamp, and store the fulfillment payload.
+ * Also stores an internal order reference + fulfilment status.
  *
  * @util stripe
  *
  * @param {string} sessionId - The ID of the Stripe Checkout Session.
  * @param {object} payload - The fulfillment payload to store.
+ * @param {object} [opts] - Optional parameters.
+ * @param {string|null} [opts.orderReference] - Your internal order reference.
+ * @param {string} [opts.fulfillmentStatus='fulfilled'] - Internal fulfilment status.
  *
  * @returns {void}
  */
-export async function markFulfilled(sessionId, payload) {
+export async function markFulfilled(
+    sessionId,
+    payload,
+    { orderReference = null, fulfillmentStatus = "fulfilled" } = {}
+) {
     await pool.query(
         `
         UPDATE stripe_fulfillments
         SET status = 'fulfilled',
+            fulfillment_status = $4,
+            order_reference = COALESCE($3, order_reference),
             updated_at = now(),
             payload_json = $2
         WHERE session_id = $1
         `,
-        [sessionId, payload]
+        [sessionId, payload, orderReference, fulfillmentStatus]
     );
 }
 
@@ -93,6 +103,7 @@ export async function markFailed(sessionId) {
         `
         UPDATE stripe_fulfillments
         SET status = 'failed',
+            fulfillment_status = 'failed',
             updated_at = now()
         WHERE session_id = $1
         `,

@@ -12,6 +12,7 @@ import { useCart } from "@/hooks/useCart";
 export default function CheckoutSuccessPage() {
     const searchParams = useSearchParams();
     const sessionId = searchParams.get("session_id");
+    const orderReference = searchParams.get("order_reference") || sessionId;
     // TODO: Change this to Hutch reference/order number later add copy button too
     const { clear } = useCart();
 
@@ -34,11 +35,11 @@ export default function CheckoutSuccessPage() {
                     </p>
 
                     <div className="mt-6 rounded-lg border bg-white p-4 text-left">
-                        {sessionId ? (
+                        {orderReference ? (
                             <>
                                 <p className="text-xs font-medium text-gray-500">Order reference</p>
                                 <code className="mt-1 block rounded bg-gray-50 px-2 py-1 font-mono text-xs break-all text-gray-900">
-                                    {sessionId}
+                                    {orderReference}
                                 </code>
                                 <p className="mt-2 text-xs text-gray-500">
                                     Keep this for your records.
