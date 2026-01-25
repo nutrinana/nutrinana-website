@@ -1,20 +1,66 @@
 import Stripe from "stripe";
 
 import {
+    recordSubscriptionEvent,
+    upsertSubscriptionState,
+} from "@/lib/stripe/stripeSubscriptionStore";
+import {
     claimSession,
     markFulfilled,
     markFailed,
     recordFailureIfMissing,
-} from "@/lib/stripeWebhookStore";
+} from "@/lib/stripe/stripeWebhookStore";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2025-12-15.clover" });
 
+/**
+ * Safe logging function.
+ *
+ * @param {...any} args - Arguments to log.
+ *
+ * @returns {void}
+ */
 function safeLog(...args) {
     console.log(...args);
 }
 
+/**
+ * Generates an order reference from a Stripe Checkout Session.
+ *
+ * @param {object} session - The Stripe Checkout Session object.
+ *
+ * @returns {string} - The generated order reference.
+ */
 function generateOrderReference(session) {
     return `NUTR-${session.id.slice(-8).toUpperCase()}`;
+}
+
+/**
+ * Convert unix seconds to ISO string.
+ *
+ * @param {number} unixSeconds - The unix timestamp in seconds.
+ *
+ * @returns {string|null} - The ISO string representation of the date, or null if input is invalid.
+ */
+function unixSecondsToIso(unixSeconds) {
+    if (!unixSeconds || typeof unixSeconds !== "number") {
+        return null;
+    }
+
+    return new Date(unixSeconds * 1000).toISOString();
+}
+
+/**
+ * Extracts the renewal date ISO string from a Stripe invoice object.
+ *
+ * @param {object} invoice - The Stripe invoice object.
+ *
+ * @returns {string|null} - The ISO string of the renewal date, or null if unavailable.
+ */
+function invoiceRenewalDateIso(invoice) {
+    const periodEnd = invoice?.lines?.data?.[0]?.period?.end;
+
+    return unixSecondsToIso(periodEnd);
 }
 
 /**
@@ -185,6 +231,7 @@ export async function POST(req) {
     }
 
     try {
+        // Checkout fulfillment (one-off + subscription signups via Checkout)
         if (
             event.type === "checkout.session.completed" ||
             event.type === "checkout.session.async_payment_succeeded"
@@ -193,6 +240,7 @@ export async function POST(req) {
             await fulfillCheckoutSession(session.id, event.id);
         }
 
+        // Checkout failures / expirations
         if (
             event.type === "checkout.session.async_payment_failed" ||
             event.type === "checkout.session.expired"
@@ -201,6 +249,78 @@ export async function POST(req) {
             console.warn("[stripe] Payment failed or session expired:", session.id);
 
             await recordFailureIfMissing(session.id, event.id);
+        }
+
+        // Subscription invoice payments
+        if (event.type === "invoice.payment_succeeded" || event.type === "invoice.payment_failed") {
+            const invoice = event.data.object;
+
+            await recordSubscriptionEvent(event);
+
+            const subscriptionId =
+                typeof invoice.subscription === "string"
+                    ? invoice.subscription
+                    : invoice.subscription?.id;
+
+            if (subscriptionId) {
+                const renewalDateIso = invoiceRenewalDateIso(invoice);
+
+                await upsertSubscriptionState(subscriptionId, {
+                    stripeEventId: event.id,
+                    customerId:
+                        typeof invoice.customer === "string"
+                            ? invoice.customer
+                            : invoice.customer?.id,
+                    latestInvoiceId: invoice.id,
+                    latestInvoiceStatus: invoice.status || null,
+                    latestPaymentStatus:
+                        event.type === "invoice.payment_succeeded" ? "succeeded" : "failed",
+                    renewalDate: renewalDateIso,
+                    cancellationState: null, // handled via subscription.* events
+                });
+
+                safeLog(`[stripe] Recorded ${event.type} for subscription ${subscriptionId}`);
+            } else {
+                safeLog(
+                    `[stripe] ${event.type} received but invoice had no subscription id (invoice=${invoice.id})`
+                );
+            }
+        }
+
+        // Subscription updates and cancellations
+        if (
+            event.type === "customer.subscription.updated" ||
+            event.type === "customer.subscription.deleted"
+        ) {
+            const subscription = event.data.object;
+
+            await recordSubscriptionEvent(event);
+
+            const subscriptionId = subscription.id;
+            const currentPeriodEndIso = unixSecondsToIso(subscription.current_period_end);
+
+            const cancellationState = {
+                status: subscription.status || null,
+                cancelAtPeriodEnd: !!subscription.cancel_at_period_end,
+                canceledAt: unixSecondsToIso(subscription.canceled_at),
+                cancelAt: unixSecondsToIso(subscription.cancel_at),
+                endedAt: unixSecondsToIso(subscription.ended_at),
+            };
+
+            await upsertSubscriptionState(subscriptionId, {
+                stripeEventId: event.id,
+                customerId:
+                    typeof subscription.customer === "string"
+                        ? subscription.customer
+                        : subscription.customer?.id,
+                latestInvoiceId: null,
+                latestInvoiceStatus: null,
+                latestPaymentStatus: null,
+                renewalDate: currentPeriodEndIso,
+                cancellationState,
+            });
+
+            safeLog(`[stripe] Recorded ${event.type} for subscription ${subscriptionId}`);
         }
 
         return new Response("ok", { status: 200 });
