@@ -255,7 +255,11 @@ export async function POST(req) {
         if (event.type === "invoice.payment_succeeded" || event.type === "invoice.payment_failed") {
             const invoice = event.data.object;
 
-            await recordSubscriptionEvent(event);
+            await recordSubscriptionEvent({
+                stripeEventId: event.id,
+                eventType: event.type,
+                payload: event,
+            });
 
             const subscriptionId =
                 typeof invoice.subscription === "string"
@@ -294,7 +298,11 @@ export async function POST(req) {
         ) {
             const subscription = event.data.object;
 
-            await recordSubscriptionEvent(event);
+            await recordSubscriptionEvent({
+                stripeEventId: event.id,
+                eventType: event.type,
+                payload: event,
+            });
 
             const subscriptionId = subscription.id;
             const currentPeriodEndIso = unixSecondsToIso(subscription.current_period_end);
