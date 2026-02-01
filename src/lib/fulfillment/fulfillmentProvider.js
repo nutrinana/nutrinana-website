@@ -1,5 +1,5 @@
-import { pool } from "@/src/lib/db/pool";
-import { pimentoClient } from "@/src/lib/pimento/pimentoClient";
+import { pool } from "@/lib/db/pool";
+import { pimentoClient } from "@/lib/pimento/pimentoClient";
 
 /**
  * Send an order to Pimento using the internal order_reference.

@@ -1,4 +1,4 @@
-import { pool } from "@/src/lib/db/pool";
+import { pool } from "@/lib/db/pool";
 
 /**
  * Function to record a Stripe subscription-related event.
