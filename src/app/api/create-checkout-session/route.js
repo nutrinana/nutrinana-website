@@ -109,6 +109,7 @@ export async function POST(req) {
                 allowed_countries: ["GB"],
             },
             billing_address_collection: "auto",
+            phone_number_collection: { enabled: true },
             automatic_tax: { enabled: true },
 
             metadata: {

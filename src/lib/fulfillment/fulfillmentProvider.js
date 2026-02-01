@@ -19,7 +19,7 @@ export async function sendOrder(orderReference) {
         `
         SELECT
             order_reference,
-            fulfilment_status,
+            fulfillment_status,
             payload_json,
             pimento_order_id,
             sent_to_pimento_at,
@@ -64,14 +64,13 @@ export async function sendOrder(orderReference) {
     try {
         const created = await pimentoClient.createOrder(pimentoOrderRequest);
 
-        // 4) Persist Pimento linkage + status
         await pool.query(
             `
             UPDATE stripe_fulfillments
             SET
                 pimento_order_id = $2,
                 sent_to_pimento_at = NOW(),
-                fulfilment_status = 'sent',
+                fulfillment_status = 'sent',
                 pimento_error = NULL,
                 pimento_payload = $3
             WHERE order_reference = $1
@@ -86,7 +85,7 @@ export async function sendOrder(orderReference) {
             `
             UPDATE stripe_fulfillments
             SET
-                fulfilment_status = 'failed',
+                fulfillment_status = 'failed',
                 pimento_error = $2,
                 pimento_payload = $3
             WHERE order_reference = $1
@@ -108,7 +107,11 @@ export async function sendOrder(orderReference) {
  */
 function buildPimentoCreateOrderRequest({ orderReference, stripePayload }) {
     const session = stripePayload.session || stripePayload.checkoutSession || stripePayload;
-    const lineItems = stripePayload.lineItems || stripePayload.line_items || session?.line_items;
+    const lineItems =
+        stripePayload.items ||
+        stripePayload.lineItems ||
+        stripePayload.line_items ||
+        session?.line_items;
 
     const customerName =
         session?.customer_details?.name ||
@@ -124,22 +127,28 @@ function buildPimentoCreateOrderRequest({ orderReference, stripePayload }) {
         undefined;
 
     const customerPhone =
-        session?.customer_details?.phone || session?.shipping_details?.phone || undefined;
+        session?.customer_details?.phone ||
+        session?.shipping_details?.phone ||
+        session?.customer?.phone ||
+        session?.shipping?.phone ||
+        undefined;
 
     const addr =
+        stripePayload?.shipping?.address ||
+        stripePayload?.customer?.address ||
         session?.shipping_details?.address ||
         session?.customer_details?.address ||
         session?.shipping?.address ||
         undefined;
 
     const customer_address = addr
-        ? {
-              address_line_1: addr.line1 || addr.address_line_1 || "",
-              address_line_2: addr.line2 || addr.address_line_2 || "",
-              city: addr.city || "",
-              postcode: addr.postal_code || addr.postcode || "",
+        ? stripUndefined({
+              address_line_1: addr.line1 || addr.address_line_1 || undefined,
+              address_line_2: addr.line2 || addr.address_line_2 || undefined,
+              city: addr.city || undefined,
+              postcode: addr.postalCode || addr.postal_code || addr.postcode || undefined,
               country_code: (addr.country || addr.country_code || "GB").toUpperCase(),
-          }
+          })
         : undefined;
 
     const currency = (session?.currency || "GBP").toUpperCase();
@@ -161,12 +170,11 @@ function buildPimentoCreateOrderRequest({ orderReference, stripePayload }) {
         channel_reference: String(orderReference),
         currency,
         total_price: String(total_price || "0"),
-        // optional but helpful
         shipping_price: shipping_price ? String(shipping_price) : undefined,
         customer_details: {
             name: String(customerName),
-            email: customerEmail,
-            phone: customerPhone,
+            email: String(customerEmail),
+            phone: String(customerPhone),
         },
         customer_address,
         items,

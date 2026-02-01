@@ -90,6 +90,7 @@ function buildOrderPayloadFromSession(session) {
             sku,
             quantity: li.quantity ?? 1,
             name: li.description || product?.name || undefined,
+            unit_price: price?.unit_amount ?? undefined,
             stripe: {
                 lineItemId: li.id,
                 priceId: price.id,
@@ -186,7 +187,7 @@ async function fulfillCheckoutSession(sessionId, eventId) {
         safeLog("[stripe] Order payload:");
         safeLog(JSON.stringify(payload, null, 2));
 
-        await markFulfilled(sessionId, payload);
+        await markFulfilled(sessionId, payload, eventId);
 
         try {
             const sendResult = await sendOrder(payload.orderReference);

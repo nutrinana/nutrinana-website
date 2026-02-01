@@ -246,3 +246,13 @@ export async function uploadOrderAttachment(orderId, fileDataBase64) {
         }),
     });
 }
+
+export const pimentoClient = {
+    createOrder,
+    createProduct,
+    readOrder,
+    readProduct,
+    listOrders,
+    listProducts,
+    uploadOrderAttachment,
+};
