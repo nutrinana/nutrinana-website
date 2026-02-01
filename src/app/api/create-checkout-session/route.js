@@ -10,6 +10,43 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 const priceIdCache = new Map();
 
 /**
+ * Helper function to get shipping options in GBP.
+ *
+ * @returns {Array} Array of shipping option objects.
+ */
+function getShippingOptionsGBP() {
+    const standard = Number(process.env.STRIPE_SHIPPING_STANDARD_GBP ?? 399);
+    const express = Number(process.env.STRIPE_SHIPPING_EXPRESS_GBP ?? 599);
+
+    const toInt = (n) => (Number.isFinite(n) ? Math.max(0, Math.trunc(n)) : 0);
+
+    return [
+        {
+            shipping_rate_data: {
+                type: "fixed_amount",
+                fixed_amount: { amount: toInt(standard), currency: "gbp" },
+                display_name: "Standard shipping",
+                delivery_estimate: {
+                    minimum: { unit: "business_day", value: 2 },
+                    maximum: { unit: "business_day", value: 4 },
+                },
+            },
+        },
+        {
+            shipping_rate_data: {
+                type: "fixed_amount",
+                fixed_amount: { amount: toInt(express), currency: "gbp" },
+                display_name: "Express shipping",
+                delivery_estimate: {
+                    minimum: { unit: "business_day", value: 1 },
+                    maximum: { unit: "business_day", value: 2 },
+                },
+            },
+        },
+    ];
+}
+
+/**
  * Fetches the Stripe Price ID for a given lookup key.
  *
  * @param {string} lookupKey - The Stripe lookup key to search for.
@@ -108,6 +145,7 @@ export async function POST(req) {
             shipping_address_collection: {
                 allowed_countries: ["GB"],
             },
+            shipping_options: getShippingOptionsGBP(),
             billing_address_collection: "auto",
             phone_number_collection: { enabled: true },
             automatic_tax: { enabled: true },
