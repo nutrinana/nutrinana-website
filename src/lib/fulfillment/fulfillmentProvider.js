@@ -8,7 +8,7 @@ import { pimentoClient } from "@/src/lib/pimento/pimentoClient";
  *
  * @param {string} orderReference
  *
- * @returns {Promise<{ ok: boolean, orderReference: string, pimentoOrderId?: string }>}
+ * @returns {Promise<{ ok: boolean, orderReference: string, pimentoOrderId?: string, error?: string }>}
  */
 export async function sendOrder(orderReference) {
     if (!orderReference || typeof orderReference !== "string") {
@@ -21,7 +21,9 @@ export async function sendOrder(orderReference) {
             order_reference,
             fulfilment_status,
             payload_json,
-            pimento_order_id
+            pimento_order_id,
+            sent_to_pimento_at,
+            pimento_error
         FROM stripe_fulfillments
         WHERE order_reference = $1
         LIMIT 1
@@ -37,6 +39,14 @@ export async function sendOrder(orderReference) {
 
     if (record.pimento_order_id) {
         return { ok: true, orderReference, pimentoOrderId: record.pimento_order_id };
+    }
+
+    if (record.sent_to_pimento_at) {
+        return {
+            ok: false,
+            orderReference,
+            error: record.pimento_error || "Order already sent/attempted to Pimento",
+        };
     }
 
     const payload = safeJsonParse(record.payload_json);
@@ -76,6 +86,7 @@ export async function sendOrder(orderReference) {
             `
             UPDATE stripe_fulfillments
             SET
+                fulfilment_status = 'failed',
                 pimento_error = $2,
                 pimento_payload = $3
             WHERE order_reference = $1
