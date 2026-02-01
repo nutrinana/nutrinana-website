@@ -1,5 +1,6 @@
 import Stripe from "stripe";
 
+import { sendOrder } from "@/lib/fulfillment/fulfillmentProvider";
 import {
     recordSubscriptionEvent,
     upsertSubscriptionState,
@@ -185,14 +186,28 @@ async function fulfillCheckoutSession(sessionId, eventId) {
         safeLog("[stripe] Order payload:");
         safeLog(JSON.stringify(payload, null, 2));
 
-        // TODO (later): send payload to Hutch
-        // await sendToHutch(payload);
-
         await markFulfilled(sessionId, payload);
 
-        return { fulfilled: true, payload };
+        try {
+            const sendResult = await sendOrder(payload.orderReference);
+            safeLog(
+                `[fulfilment] sendOrder(${payload.orderReference}) result: ${JSON.stringify(
+                    sendResult,
+                    null,
+                    2
+                )}`
+            );
+        } catch (sendErr) {
+            console.error(`[fulfilment] sendOrder(${payload.orderReference}) failed:`, sendErr);
+        }
+
+        return { fulfilled: true, payload, fulfilmentDispatchAttempted: true };
     } catch (err) {
         await markFailed(sessionId);
+        console.error(
+            `[stripe] fulfillCheckoutSession failed before completion for ${sessionId}:`,
+            err
+        );
         throw err;
     }
 }
