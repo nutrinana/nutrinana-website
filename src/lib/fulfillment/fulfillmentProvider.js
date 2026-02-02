@@ -153,11 +153,23 @@ function buildPimentoCreateOrderRequest({ orderReference, stripePayload }) {
 
     const currency = (session?.currency || "GBP").toUpperCase();
 
+    // Support both raw Stripe Checkout Session fields and our stored/normalized webhook payload fields.
     const total_price =
-        toMinorUnitsString(session?.amount_total ?? stripePayload?.amount_total ?? undefined) ||
-        computeTotalFromLineItems(lineItems);
+        toMinorUnitsString(
+            session?.amount_total ??
+                stripePayload?.amount_total ??
+                stripePayload?.totals?.amountTotal ??
+                stripePayload?.totals?.amount_total ??
+                undefined
+        ) || computeTotalFromLineItems(lineItems);
 
-    const shipping_price = toMinorUnitsString(session?.shipping_cost?.amount_total);
+    const shipping_price = toMinorUnitsString(
+        session?.shipping_cost?.amount_total ??
+            stripePayload?.shipping_cost?.amount_total ??
+            stripePayload?.totals?.amountShipping ??
+            stripePayload?.totals?.amount_shipping ??
+            undefined
+    );
 
     const items = mapLineItemsToPimentoItems(lineItems);
 
@@ -205,16 +217,19 @@ function mapLineItemsToPimentoItems(lineItems) {
 
     return data
         .map((li) => {
-            const quantity = li.quantity ?? li?.qty ?? 1;
+            const quantity = Math.max(1, Number(li.quantity ?? li?.qty ?? 1));
 
             const sku =
                 li?.price?.metadata?.sku ||
-                li?.price?.product ||
                 li?.sku ||
-                li?.description ||
+                // Avoid using Stripe product id as SKU; if metadata.sku is missing, prefer explicit sku
                 null;
 
-            const unitAmount = li?.price?.unit_amount ?? li?.amount_subtotal / quantity;
+            // Prefer explicit unit_price from our stored payload; otherwise use Stripe unit_amount.
+            const unitAmount =
+                li?.unit_price ??
+                li?.price?.unit_amount ??
+                (li?.amount_subtotal != null ? li.amount_subtotal / quantity : undefined);
             const unit_price = toMinorUnitsString(unitAmount) || undefined;
 
             if (!sku) {
@@ -267,12 +282,26 @@ function computeTotalFromLineItems(lineItems) {
 
     let sum = 0;
     for (const li of data) {
-        const qty = Number(li.quantity ?? 1);
-        const unit = Number(li?.price?.unit_amount ?? 0);
+        const qty = Number(li.quantity ?? li.qty ?? 1);
+
+        // Stripe shape: li.price.unit_amount (minor units)
+        // Stored payload shape: li.unit_price (minor units)
+        // Fallback: amount_subtotal (minor units)
+        const unit = Number(
+            li?.price?.unit_amount ??
+                li?.unit_price ??
+                (li?.amount_subtotal != null ? Number(li.amount_subtotal) / qty : 0) ??
+                0
+        );
+
+        if (!Number.isFinite(qty) || !Number.isFinite(unit)) {
+            continue;
+        }
+
         sum += qty * unit;
     }
 
-    return String(sum);
+    return String(Math.trunc(sum));
 }
 
 /**
