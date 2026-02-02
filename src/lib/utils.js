@@ -117,3 +117,20 @@ export function openInNewTab(url) {
     }
     window.open(url, "_blank", "noopener,noreferrer");
 }
+
+/**
+ * Generates an order reference from a Stripe session ID.
+ *
+ * @util
+ *
+ * @param {string} sessionId - The Stripe session ID.
+ *
+ * @returns {string|null} The generated order reference or null if sessionId is invalid.
+ */
+export function generateOrderReferenceFromSessionId(sessionId) {
+    if (!sessionId || typeof sessionId !== "string") {
+        return null;
+    }
+
+    return `NUTR-${sessionId.slice(-8).toUpperCase()}`;
+}

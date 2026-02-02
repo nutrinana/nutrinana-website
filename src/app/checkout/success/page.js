@@ -8,20 +8,21 @@ import { useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/hooks/useCart";
+import { generateOrderReferenceFromSessionId } from "@/lib/utils";
 
 export default function CheckoutSuccessPage() {
     const searchParams = useSearchParams();
-    const sessionId = searchParams.get("session_id");
-    const orderReference = searchParams.get("order_reference") || sessionId;
-    // TODO: Change this to Hutch reference/order number later add copy button too
+    const stripeSessionId = searchParams.get("session_id");
+    const orderReference = generateOrderReferenceFromSessionId(stripeSessionId);
+
     const { clear } = useCart();
 
     useEffect(() => {
-        if (!sessionId) {
+        if (!stripeSessionId) {
             return;
         }
         clear();
-    }, [sessionId, clear]);
+    }, [stripeSessionId, clear]);
 
     return (
         <div className="site-container">
@@ -44,6 +45,19 @@ export default function CheckoutSuccessPage() {
                                 <p className="mt-2 text-xs text-gray-500">
                                     Keep this for your records.
                                 </p>
+                            </>
+                        ) : stripeSessionId ? (
+                            <>
+                                <p className="text-xs font-medium text-gray-500">Order reference</p>
+                                <p className="mt-1 text-xs text-gray-600">
+                                    We couldn&apos;t display your order reference on this page.
+                                </p>
+                                <p className="mt-2 text-xs text-gray-500">
+                                    For support, you can share this checkout session id:
+                                </p>
+                                <code className="mt-1 block rounded bg-gray-50 px-2 py-1 font-mono text-xs break-all text-gray-900">
+                                    {stripeSessionId}
+                                </code>
                             </>
                         ) : (
                             <p className="text-xs text-gray-500">

@@ -11,6 +11,7 @@ import {
     markFailed,
     recordFailureIfMissing,
 } from "@/lib/stripe/stripeWebhookStore";
+import { generateOrderReferenceFromSessionId } from "@/lib/utils";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2025-12-15.clover" });
 
@@ -23,17 +24,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2025-12-
  */
 function safeLog(...args) {
     console.log(...args);
-}
-
-/**
- * Generates an order reference from a Stripe Checkout Session.
- *
- * @param {object} session - The Stripe Checkout Session object.
- *
- * @returns {string} - The generated order reference.
- */
-function generateOrderReference(session) {
-    return `NUTR-${session.id.slice(-8).toUpperCase()}`;
 }
 
 /**
@@ -108,7 +98,7 @@ function buildOrderPayloadFromSession(session) {
     const subscriptionId =
         typeof session.subscription === "string" ? session.subscription : session.subscription?.id;
 
-    const orderReference = generateOrderReference(session);
+    const orderReference = generateOrderReferenceFromSessionId(checkoutSessionId);
 
     return {
         orderReference,
