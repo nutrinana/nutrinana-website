@@ -229,7 +229,7 @@ function mapLineItemsToPimentoItems(lineItems) {
             const unitAmount =
                 li?.unit_price ??
                 li?.price?.unit_amount ??
-                (li?.amount_subtotal != null ? li.amount_subtotal / quantity : undefined);
+                (li?.amount_subtotal ? li.amount_subtotal / quantity : undefined);
             const unit_price = toMinorUnitsString(unitAmount) || undefined;
 
             if (!sku) {
@@ -284,13 +284,10 @@ function computeTotalFromLineItems(lineItems) {
     for (const li of data) {
         const qty = Number(li.quantity ?? li.qty ?? 1);
 
-        // Stripe shape: li.price.unit_amount (minor units)
-        // Stored payload shape: li.unit_price (minor units)
-        // Fallback: amount_subtotal (minor units)
         const unit = Number(
             li?.price?.unit_amount ??
                 li?.unit_price ??
-                (li?.amount_subtotal != null ? Number(li.amount_subtotal) / qty : 0) ??
+                (li?.amount_subtotal ? Number(li.amount_subtotal) / qty : 0) ??
                 0
         );
 
