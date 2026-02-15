@@ -13,46 +13,23 @@ import {
     markFailed,
     recordFailureIfMissing,
 } from "@/lib/stripe/stripeWebhookStore";
-import { generateOrderReferenceFromSessionId } from "@/lib/utils";
+import {
+    generateOrderReferenceFromSessionId,
+    formatMoneyFromMinor,
+    formatShippingAddress,
+} from "@/lib/utils";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2025-12-15.clover" });
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
-function formatMoneyFromMinor(minor, currency) {
-    // Stripe gives minor units (pence). For now we only format GBP nicely.
-    const n = Number(minor);
-    if (!Number.isFinite(n)) {
-        return "";
-    }
-
-    const cur = (currency || "gbp").toLowerCase();
-    if (cur === "gbp") {
-        return new Intl.NumberFormat("en-GB", {
-            style: "currency",
-            currency: "GBP",
-        }).format(n / 100);
-    }
-
-    // Fallback: show minor units as a plain number if not GBP.
-    return String(n);
-}
-
-function formatShippingAddress(shipping) {
-    const addr = shipping?.address || {};
-    const parts = [
-        shipping?.name,
-        addr?.line1,
-        addr?.line2,
-        addr?.city,
-        addr?.state,
-        addr?.postalCode,
-        addr?.country,
-    ].filter((v) => typeof v === "string" && v.trim().length);
-
-    return parts.join("\n");
-}
-
+/**
+ * Sends an order confirmation email to the customer using Resend.
+ *
+ * @param {object} payload - The order payload containing customer and order details.
+ *
+ * @returns {Promise<{ sent: boolean, reason?: string, resendId?: string }>} - Result of the email sending attempt.
+ */
 async function sendOrderConfirmationEmail(payload) {
     if (!resend) {
         console.warn("[email] RESEND_API_KEY not set — skipping order confirmation email");
