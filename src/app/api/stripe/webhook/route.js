@@ -1,5 +1,7 @@
+import { Resend } from "resend";
 import Stripe from "stripe";
 
+import OrderConfirmationEmail from "@/emails/OrderConfirmationEmail";
 import { sendOrder } from "@/lib/fulfillment/fulfillmentProvider";
 import {
     recordSubscriptionEvent,
@@ -14,6 +16,116 @@ import {
 import { generateOrderReferenceFromSessionId } from "@/lib/utils";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2025-12-15.clover" });
+
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+
+function formatMoneyFromMinor(minor, currency) {
+    // Stripe gives minor units (pence). For now we only format GBP nicely.
+    const n = Number(minor);
+    if (!Number.isFinite(n)) {
+        return "";
+    }
+
+    const cur = (currency || "gbp").toLowerCase();
+    if (cur === "gbp") {
+        return new Intl.NumberFormat("en-GB", {
+            style: "currency",
+            currency: "GBP",
+        }).format(n / 100);
+    }
+
+    // Fallback: show minor units as a plain number if not GBP.
+    return String(n);
+}
+
+function formatShippingAddress(shipping) {
+    const addr = shipping?.address || {};
+    const parts = [
+        shipping?.name,
+        addr?.line1,
+        addr?.line2,
+        addr?.city,
+        addr?.state,
+        addr?.postalCode,
+        addr?.country,
+    ].filter((v) => typeof v === "string" && v.trim().length);
+
+    return parts.join("\n");
+}
+
+async function sendOrderConfirmationEmail(payload) {
+    if (!resend) {
+        console.warn("[email] RESEND_API_KEY not set — skipping order confirmation email");
+
+        return { sent: false, reason: "missing_resend_key" };
+    }
+
+    const to = payload?.customer?.email || null;
+    if (!to) {
+        console.warn("[email] No customer email found — skipping order confirmation email");
+
+        return { sent: false, reason: "missing_customer_email" };
+    }
+
+    const name = payload?.customer?.name || "there";
+    const orderReference = payload?.orderReference || "";
+
+    const rawItems = Array.isArray(payload?.items) ? payload.items : [];
+
+    const totals = payload?.totals || {};
+    const currency = (totals?.currency || payload?.currency || "gbp").toLowerCase();
+
+    const total = formatMoneyFromMinor(totals?.amountTotal, currency);
+    const subtotal = formatMoneyFromMinor(totals?.amountSubtotal, currency);
+    const shippingCost = formatMoneyFromMinor(totals?.amountShipping, currency);
+
+    const address = formatShippingAddress(payload?.shipping);
+
+    const items = rawItems.map((it) => ({
+        name: it?.name || it?.sku || "Item",
+        quantity: Number(it?.quantity ?? 1),
+        unitPrice: formatMoneyFromMinor(it?.unit_price ?? it?.unitPrice, currency),
+    }));
+
+    try {
+        const subject = orderReference
+            ? `Nutrinana order confirmed — ${orderReference}`
+            : "Nutrinana order confirmed";
+
+        const res = await resend.emails.send({
+            from: "Nutrinana Orders <orders@nutrinana.co.uk>",
+            to,
+            replyTo: "info@nutrinana.co.uk",
+            subject,
+            react: (
+                <OrderConfirmationEmail
+                    name={name}
+                    orderReference={orderReference}
+                    items={items}
+                    total={total}
+                    subtotal={subtotal}
+                    shipping={shippingCost}
+                    address={address}
+                />
+            ),
+        });
+
+        console.log(
+            `[email] Sent order confirmation to ${to} (${orderReference || "no-ref"})`,
+            res?.id ? `resend_id=${res.id}` : ""
+        );
+
+        return { sent: true, resendId: res?.id || null };
+    } catch (err) {
+        const msg = err instanceof Error ? err.message : String(err);
+        console.error(
+            `[email] Failed to send order confirmation to ${to} (${orderReference || "no-ref"}):`,
+            msg
+        );
+
+        return { sent: false, reason: msg };
+    }
+}
 
 /**
  * Safe logging function.
@@ -178,6 +290,16 @@ async function fulfillCheckoutSession(sessionId, eventId) {
         safeLog(JSON.stringify(payload, null, 2));
 
         await markFulfilled(sessionId, payload, eventId);
+
+        // Best-effort customer confirmation email (do not fail the Stripe webhook if email fails)
+        try {
+            await sendOrderConfirmationEmail(payload);
+        } catch (emailErr) {
+            console.error(
+                `[email] sendOrderConfirmationEmail(${payload?.orderReference || sessionId}) failed:`,
+                emailErr
+            );
+        }
 
         try {
             const sendResult = await sendOrder(payload.orderReference);
