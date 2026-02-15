@@ -15,6 +15,7 @@ import {
 } from "@/lib/stripe/stripeWebhookStore";
 import {
     generateOrderReferenceFromSessionId,
+    formatDate,
     formatMoneyFromMinor,
     formatShippingAddress,
 } from "@/lib/utils";
@@ -46,6 +47,14 @@ async function sendOrderConfirmationEmail(payload) {
 
     const name = payload?.customer?.name || "there";
     const orderReference = payload?.orderReference || "";
+    const orderDate = payload?.createdAt
+        ? `${formatDate(payload.createdAt, "dd/mm/yyyy")}, ${new Date(
+              payload.createdAt
+          ).toLocaleTimeString("en-GB", {
+              hour: "2-digit",
+              minute: "2-digit",
+          })}`
+        : null;
 
     const rawItems = Array.isArray(payload?.items) ? payload.items : [];
 
@@ -66,7 +75,7 @@ async function sendOrderConfirmationEmail(payload) {
 
     try {
         const subject = orderReference
-            ? `Nutrinana order confirmed — ${orderReference}`
+            ? `Nutrinana order confirmed | Order ${orderReference}`
             : "Nutrinana order confirmed";
 
         const res = await resend.emails.send({
@@ -78,6 +87,7 @@ async function sendOrderConfirmationEmail(payload) {
                 <OrderConfirmationEmail
                     name={name}
                     orderReference={orderReference}
+                    orderDate={orderDate}
                     items={items}
                     total={total}
                     subtotal={subtotal}
