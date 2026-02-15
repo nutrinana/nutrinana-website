@@ -33,7 +33,7 @@ export default function QueryEmail({ name, title, comments, requestId, dateTime 
                     {/* Logo Section */}
                     <div style={logoContainer}>
                         <img
-                            src={`https://${process.env.STAGE === "production" ? "" : "staging."}nutrinana.co.uk/nutrinana-logo.svg`}
+                            src="https://nutrinana.co.uk/nutrinana-logo.svg"
                             alt="Nutrinana Logo"
                             style={logoStyle}
                         />
