@@ -137,7 +137,14 @@ export default function OrderConfirmationEmail({
                             <Hr style={divider} />
                             <Section>
                                 <Heading style={sectionTitle}>Delivery address</Heading>
-                                <Text style={addressText}>{address}</Text>
+                                <Text style={addressText}>
+                                    {address.split("\n").map((line, idx, arr) => (
+                                        <span key={idx}>
+                                            {line}
+                                            {idx < arr.length - 1 && <br />}
+                                        </span>
+                                    ))}
+                                </Text>
                             </Section>
                         </>
                     ) : null}
@@ -167,7 +174,7 @@ export default function OrderConfirmationEmail({
                             </Link>
                         </Text>
                         <Text style={footerTiny}>
-                            Nutrinana · Please don’t reply to this email.
+                            Nutrinana · Please don't reply to this email.
                         </Text>
                     </Section>
                 </Container>
