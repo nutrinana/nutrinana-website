@@ -3,6 +3,7 @@ import Stripe from "stripe";
 
 import OrderConfirmationEmail from "@/emails/OrderConfirmationEmail";
 import { sendOrder } from "@/lib/fulfillment/fulfillmentProvider";
+import { PRODUCTS } from "@/lib/products";
 import {
     recordSubscriptionEvent,
     upsertSubscriptionState,
@@ -241,6 +242,234 @@ function buildOrderPayloadFromSession(session) {
 }
 
 /**
+ * Builds an order payload from a Stripe Invoice (subscription renewal).
+ *
+ * @param {object} invoice - The Stripe invoice object.
+ * @param {object|null} subscription - The Stripe subscription object (expanded when available).
+ *
+ * @returns {object} Payload compatible with our fulfilment + email flow.
+ */
+function buildOrderPayloadFromInvoice(invoice, subscription) {
+    const orderReference = generateOrderReferenceFromSessionId(invoice?.id);
+
+    // Prefer expanded subscription.customer when available (more reliable than invoice fields)
+    const customerObj = typeof subscription?.customer === "object" ? subscription.customer : null;
+
+    const customerName =
+        customerObj?.name ||
+        invoice?.customer_name ||
+        invoice?.customer_shipping?.name ||
+        invoice?.customer_details?.name ||
+        "Customer";
+
+    const customerEmail =
+        customerObj?.email || invoice?.customer_email || invoice?.customer_details?.email || null;
+
+    const customerPhone = customerObj?.phone || invoice?.customer_phone || null;
+
+    const ship = invoice?.customer_shipping || null;
+    const addr = ship?.address || null;
+
+    // Build lookup maps from the expanded subscription so we can map invoice lines -> SKU
+    const invoiceLines = invoice?.lines?.data || [];
+
+    const subscriptionItems = subscription?.items?.data || [];
+    const metaByPriceId = new Map();
+    const metaByProductId = new Map();
+
+    for (const si of subscriptionItems) {
+        const priceObj = typeof si?.price === "object" ? si.price : null;
+        const productObj = typeof priceObj?.product === "object" ? priceObj.product : null;
+
+        const productMetadata = productObj?.metadata || {};
+        const priceMetadata = priceObj?.metadata || {};
+
+        const lookupKey = priceObj?.lookup_key || null;
+        const lookupKeyBase = lookupKey
+            ? String(lookupKey).replace(/_(monthly|one_off|yearly|weekly|daily)$/i, "")
+            : null;
+
+        const sku = productMetadata.sku || priceMetadata.sku || productMetadata.productId || null;
+
+        const meta = {
+            sku,
+            lookupKey,
+            lookupKeyBase,
+            productId:
+                productObj?.id || (typeof priceObj?.product === "string" ? priceObj.product : null),
+            productName: productObj?.name || null,
+            unitAmount: typeof priceObj?.unit_amount === "number" ? priceObj.unit_amount : null,
+        };
+
+        if (priceObj?.id) {
+            metaByPriceId.set(priceObj.id, meta);
+        }
+        if (meta.productId) {
+            metaByProductId.set(meta.productId, meta);
+        }
+    }
+
+    // Helper to robustly extract ids from invoice line shapes (Stripe may expand/not expand)
+    const getLinePriceId = (line) => {
+        const p = line?.pricing?.price_details?.price;
+        if (typeof p === "string") {
+            return p;
+        }
+        if (p && typeof p === "object" && typeof p.id === "string") {
+            return p.id;
+        }
+        const fallback = line?.price;
+        if (typeof fallback === "string") {
+            return fallback;
+        }
+        if (fallback && typeof fallback === "object" && typeof fallback.id === "string") {
+            return fallback.id;
+        }
+
+        return null;
+    };
+
+    const getLineProductId = (line) => {
+        const prod = line?.pricing?.price_details?.product;
+        if (typeof prod === "string") {
+            return prod;
+        }
+        if (prod && typeof prod === "object" && typeof prod.id === "string") {
+            return prod.id;
+        }
+        const p = line?.price?.product;
+        if (typeof p === "string") {
+            return p;
+        }
+        if (p && typeof p === "object" && typeof p.id === "string") {
+            return p.id;
+        }
+
+        return null;
+    };
+
+    let calculatedShipping = 0;
+
+    const items = invoiceLines
+        .map((line) => {
+            const priceId = getLinePriceId(line);
+            const productId = getLineProductId(line);
+
+            const meta =
+                (priceId && metaByPriceId.get(priceId)) ||
+                (productId && metaByProductId.get(productId)) ||
+                null;
+
+            // Detect our subscription shipping line item reliably via lookup key (fallback to description)
+            const isShippingLine =
+                (meta?.lookupKey && meta.lookupKey === "subscription_shipping") ||
+                (line?.description || "").toLowerCase().includes("shipping");
+
+            if (isShippingLine) {
+                calculatedShipping += line?.amount ?? 0;
+
+                return null;
+            }
+
+            const quantity = Number(line?.quantity ?? 1) || 1;
+            const lineAmount = typeof line?.amount === "number" ? line.amount : null;
+
+            // Prefer unit amount from Stripe Price; otherwise derive from invoice line amount
+            const unitPrice =
+                typeof meta?.unitAmount === "number"
+                    ? meta.unitAmount
+                    : typeof lineAmount === "number"
+                      ? Math.round(lineAmount / quantity)
+                      : null;
+
+            // Resolve SKU
+            let resolvedSku = meta?.sku;
+
+            // 1) Lookup key base -> our PRODUCTS mapping
+            if (!resolvedSku && meta?.lookupKeyBase) {
+                const match = Object.values(PRODUCTS).find(
+                    (p) => p?.stripeLookupKeyBase === meta.lookupKeyBase
+                );
+                resolvedSku = match?.sku || match?.productId || null;
+            }
+
+            // 2) Fallback: match by product name contained in line description
+            if (!resolvedSku) {
+                const desc = String(line?.description || "").toLowerCase();
+                const match = Object.values(PRODUCTS).find(
+                    (p) =>
+                        String(p?.name || "").toLowerCase() &&
+                        desc.includes(String(p.name).toLowerCase())
+                );
+                resolvedSku = match?.sku || match?.productId || null;
+            }
+
+            return {
+                // NOTE: keep sku as null if unresolved so we can see it in logs (undefined gets omitted)
+                sku: resolvedSku,
+                quantity,
+                name: meta?.productName || line?.description || null,
+                unit_price: unitPrice,
+                stripe: {
+                    priceId: priceId || null,
+                    productId: productId || meta?.productId || null,
+                },
+            };
+        })
+        .filter(Boolean);
+
+    return {
+        orderReference,
+        stripeCheckoutSessionId: null,
+        stripePaymentIntentId:
+            typeof invoice?.payment_intent === "string"
+                ? invoice.payment_intent
+                : invoice?.payment_intent?.id || null,
+        stripeSubscriptionId:
+            typeof invoice?.subscription === "string"
+                ? invoice.subscription
+                : invoice?.subscription?.id || null,
+
+        customer: {
+            email: customerEmail,
+            phone: customerPhone,
+            name: customerName,
+        },
+
+        shipping: {
+            name: ship?.name || customerName || null,
+            phone: customerPhone,
+            address: {
+                line1: addr?.line1 || null,
+                line2: addr?.line2 || null,
+                city: addr?.city || null,
+                state: addr?.state || null,
+                postalCode: addr?.postal_code || null,
+                country: addr?.country || null,
+            },
+        },
+
+        totals: {
+            currency: invoice?.currency || null,
+            amountTotal: invoice?.total ?? invoice?.amount_paid ?? 0,
+            amountSubtotal:
+                (invoice?.subtotal ?? 0) - (calculatedShipping > 0 ? calculatedShipping : 0),
+            amountShipping:
+                calculatedShipping > 0
+                    ? calculatedShipping
+                    : (invoice?.shipping_cost?.amount_total ?? 0),
+            amountTax: invoice?.tax ?? 0,
+            amountDiscount: invoice?.total_discount_amounts?.[0]?.amount ?? 0,
+        },
+
+        items,
+
+        purchaseType: "subscription_renewal",
+        createdAt: invoice?.created ? new Date(invoice.created * 1000).toISOString() : null,
+    };
+}
+
+/**
  * Fulfillment handler for completed Stripe Checkout Sessions.
  *
  * @param {string} sessionId - The ID of the completed Checkout Session.
@@ -313,6 +542,83 @@ async function fulfillCheckoutSession(sessionId, eventId) {
 }
 
 /**
+ * Fulfillment handler for subscription renewals.
+ * Creates an internal fulfilment record (idempotent via claimSession on invoice.id),
+ * sends the confirmation email, and dispatches the order to Pimento.
+ *
+ * @param {object} invoice - Stripe invoice object
+ * @param {string} eventId - Stripe event id
+ */
+async function fulfillSubscriptionRenewal(invoice, eventId) {
+    const invoiceId = invoice?.id;
+    if (!invoiceId) {
+        safeLog(
+            "[stripe] invoice.payment_succeeded missing invoice.id — skipping renewal fulfilment"
+        );
+
+        return { fulfilled: false, reason: "missing_invoice_id" };
+    }
+
+    const { claimed } = await claimSession(invoiceId, eventId);
+    if (!claimed) {
+        safeLog(`[stripe] Invoice ${invoiceId} already claimed — skipping renewal fulfilment`);
+
+        return { fulfilled: false, reason: "already_processed" };
+    }
+
+    try {
+        // Expand subscription so we can build line items with product metadata (sku)
+        const subscriptionId =
+            typeof invoice?.subscription === "string"
+                ? invoice.subscription
+                : invoice?.subscription?.id || null;
+
+        const subscription = subscriptionId
+            ? await stripe.subscriptions.retrieve(subscriptionId, {
+                  expand: ["items.data.price", "items.data.price.product", "customer"],
+              })
+            : null;
+
+        const payload = buildOrderPayloadFromInvoice(invoice, subscription);
+
+        safeLog("[stripe] Renewal order payload:");
+        safeLog(JSON.stringify(payload, null, 2));
+
+        await markFulfilled(invoiceId, payload, eventId);
+
+        // Best-effort customer confirmation email (do not fail the Stripe webhook if email fails)
+        try {
+            await sendOrderConfirmationEmail(payload);
+        } catch (emailErr) {
+            console.error(
+                `[email] sendOrderConfirmationEmail(${payload?.orderReference || invoiceId}) failed:`,
+                emailErr
+            );
+        }
+
+        // Best-effort dispatch to fulfilment provider
+        try {
+            const sendResult = await sendOrder(payload.orderReference);
+            safeLog(
+                `[fulfilment] sendOrder(${payload.orderReference}) result: ${JSON.stringify(
+                    sendResult,
+                    null,
+                    2
+                )}`
+            );
+        } catch (sendErr) {
+            console.error(`[fulfilment] sendOrder(${payload.orderReference}) failed:`, sendErr);
+        }
+
+        return { fulfilled: true, payload, fulfilmentDispatchAttempted: true };
+    } catch (err) {
+        await markFailed(invoiceId);
+        console.error(`[stripe] fulfillSubscriptionRenewal failed for ${invoiceId}:`, err);
+        throw err;
+    }
+}
+
+/**
  * Stripe webhook handler.
  *
  * @route POST /api/stripe/webhook
@@ -379,7 +685,9 @@ export async function POST(req) {
             const subscriptionId =
                 typeof invoice.subscription === "string"
                     ? invoice.subscription
-                    : invoice.subscription?.id;
+                    : invoice.subscription?.id ||
+                      invoice?.parent?.subscription_details?.subscription ||
+                      null;
 
             if (subscriptionId) {
                 const renewalDateIso = invoiceRenewalDateIso(invoice);
@@ -399,6 +707,21 @@ export async function POST(req) {
                 });
 
                 safeLog(`[stripe] Recorded ${event.type} for subscription ${subscriptionId}`);
+
+                // For successful renewals, create a fulfilment order (idempotent) and send to Pimento.
+                // Guard with billing_reason to avoid trying to fulfil initial subscription creation invoices.
+                if (
+                    event.type === "invoice.payment_succeeded" &&
+                    (invoice?.billing_reason === "subscription_cycle" ||
+                        invoice?.billing_reason === "upcoming")
+                ) {
+                    await fulfillSubscriptionRenewal(invoice, event.id);
+                }
+
+                // If a payment failed, record a failure row (idempotent) so we have observability.
+                if (event.type === "invoice.payment_failed") {
+                    await recordFailureIfMissing(invoice.id, event.id);
+                }
             } else {
                 safeLog(
                     `[stripe] ${event.type} received but invoice had no subscription id (invoice=${invoice.id})`

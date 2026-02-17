@@ -111,6 +111,7 @@ function buildPimentoCreateOrderRequest({ orderReference, stripePayload }) {
         stripePayload.items ||
         stripePayload.lineItems ||
         stripePayload.line_items ||
+        stripePayload.invoice?.lines?.data ||
         session?.line_items;
 
     const customerName =
@@ -220,9 +221,13 @@ function mapLineItemsToPimentoItems(lineItems) {
             const quantity = Math.max(1, Number(li.quantity ?? li?.qty ?? 1));
 
             const sku =
+                // Prefer explicit SKU metadata on the Price first.
                 li?.price?.metadata?.sku ||
+                // If metadata is stored on the Product (common), use it (requires price.product to be expanded when storing payload).
+                li?.price?.product?.metadata?.sku ||
+                // Finally fall back to an explicit sku field on the stored payload line item.
                 li?.sku ||
-                // Avoid using Stripe product id as SKU; if metadata.sku is missing, prefer explicit sku
+                // Avoid using Stripe product/price ids as SKU; if sku is missing, skip the item.
                 null;
 
             // Prefer explicit unit_price from our stored payload; otherwise use Stripe unit_amount.

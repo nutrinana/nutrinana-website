@@ -137,6 +137,21 @@ export async function POST(req) {
 
         const mode = purchaseType === "monthly" ? "subscription" : "payment";
 
+        if (mode === "subscription") {
+            const shippingPriceId = await getPriceIdByLookupKey("subscription_shipping");
+
+            if (!shippingPriceId) {
+                throw new Error(
+                    "Missing Stripe price for subscription shipping (lookup key: subscription_shipping)"
+                );
+            }
+
+            line_items.push({
+                price: shippingPriceId,
+                quantity: 1,
+            });
+        }
+
         const session = await stripe.checkout.sessions.create({
             mode,
             line_items,
@@ -145,7 +160,7 @@ export async function POST(req) {
             shipping_address_collection: {
                 allowed_countries: ["GB"],
             },
-            shipping_options: getShippingOptionsGBP(),
+            ...(mode === "payment" ? { shipping_options: getShippingOptionsGBP() } : {}),
             billing_address_collection: "auto",
             phone_number_collection: { enabled: true },
             automatic_tax: { enabled: true },
