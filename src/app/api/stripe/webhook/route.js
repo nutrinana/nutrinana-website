@@ -1,6 +1,7 @@
 import { Resend } from "resend";
 import Stripe from "stripe";
 
+import InternalOrderNotificationEmail from "@/emails/InternalOrderNotificationEmail";
 import OrderConfirmationEmail from "@/emails/OrderConfirmationEmail";
 import { sendOrder } from "@/lib/fulfillment/fulfillmentProvider";
 import { PRODUCTS } from "@/lib/products";
@@ -29,30 +30,31 @@ const SHIPPING_LOOKUP_KEY = "subscription_shipping";
 const BILLING_REASON_RENEWAL = "subscription_cycle";
 const BILLING_REASON_UPCOMING = "upcoming";
 const BILLING_REASON_SUBSCRIPTION_CREATE = "subscription_create";
+const INTERNAL_NOTIFICATION_EMAIL = "orders@nutrinana.co.uk";
 
 /**
- * Sends an order confirmation email to the customer using Resend.
+ * Sends order confirmation email to customer and internal notification to team.
  *
  * @param {object} payload - The order payload containing customer and order details.
  *
- * @returns {Promise<{ sent: boolean, reason?: string, resendId?: string }>} - Result of the email sending attempt.
+ * @returns {Promise<{ customerSent: boolean, internalSent: boolean }>} - Result of both email sending attempts.
  */
-async function sendOrderConfirmationEmail(payload) {
+async function sendOrderEmails(payload) {
+    const results = {
+        customerSent: false,
+        internalSent: false,
+    };
+
     if (!resend) {
-        console.warn("[email] RESEND_API_KEY not set — skipping order confirmation email");
+        console.warn("[email] RESEND_API_KEY not set — skipping order emails");
 
-        return { sent: false, reason: "missing_resend_key" };
+        return results;
     }
 
-    const to = payload?.customer?.email || null;
-    if (!to) {
-        console.warn("[email] No customer email found — skipping order confirmation email");
-
-        return { sent: false, reason: "missing_customer_email" };
-    }
-
-    const name = payload?.customer?.name || "there";
     const orderReference = payload?.orderReference || "";
+    const customerEmail = payload?.customer?.email || null;
+    const customerName = payload?.customer?.name || "there";
+
     const orderDate = payload?.createdAt
         ? `${formatDate(payload.createdAt, "dd/mm/yyyy")}, ${new Date(
               payload.createdAt
@@ -63,61 +65,108 @@ async function sendOrderConfirmationEmail(payload) {
         : null;
 
     const rawItems = Array.isArray(payload?.items) ? payload.items : [];
-
     const totals = payload?.totals || {};
     const currency = (totals?.currency || payload?.currency || "gbp").toLowerCase();
 
     const total = formatMoneyFromMinor(totals?.amountTotal, currency);
     const subtotal = formatMoneyFromMinor(totals?.amountSubtotal, currency);
     const shippingCost = formatMoneyFromMinor(totals?.amountShipping, currency);
-
     const address = formatShippingAddress(payload?.shipping);
 
-    const items = rawItems.map((it) => ({
-        name: it?.name || it?.sku || "Item",
-        quantity: Number(it?.quantity || 1),
-        unitPrice: formatMoneyFromMinor(it?.unit_price ?? it?.unitPrice, currency),
-    }));
+    // Customer email
+    if (customerEmail) {
+        try {
+            const customerItems = rawItems.map((it) => ({
+                name: it?.name || it?.sku || "Item",
+                quantity: Number(it?.quantity || 1),
+                unitPrice: formatMoneyFromMinor(it?.unit_price ?? it?.unitPrice, currency),
+            }));
 
+            const subject = orderReference
+                ? `Nutrinana order confirmed | Order ${orderReference}`
+                : "Nutrinana order confirmed";
+
+            const res = await resend.emails.send({
+                from: "Nutrinana Orders <orders@nutrinana.co.uk>",
+                to: customerEmail,
+                replyTo: "info@nutrinana.co.uk",
+                subject,
+                react: (
+                    <OrderConfirmationEmail
+                        name={customerName}
+                        orderReference={orderReference}
+                        orderDate={orderDate}
+                        items={customerItems}
+                        total={total}
+                        subtotal={subtotal}
+                        shipping={shippingCost}
+                        address={address}
+                    />
+                ),
+            });
+
+            console.log(
+                `[email] Sent customer confirmation to ${customerEmail} (${orderReference})`,
+                res?.id ? `resend_id=${res.id}` : ""
+            );
+
+            results.customerSent = true;
+        } catch (err) {
+            console.error(
+                `[email] Failed to send customer confirmation to ${customerEmail} (${orderReference}):`,
+                err instanceof Error ? err.message : String(err)
+            );
+        }
+    } else {
+        console.warn(`[email] No customer email found for order ${orderReference}`);
+    }
+
+    // Internal team notification
     try {
-        const subject = orderReference
-            ? `Nutrinana order confirmed | Order ${orderReference}`
-            : "Nutrinana order confirmed";
+        const internalItems = rawItems.map((it) => ({
+            name: it?.name || "Item",
+            quantity: Number(it?.quantity || 1),
+            sku: it?.sku || null,
+        }));
+
+        const purchaseType = payload?.purchaseType || null;
+        const subscriptionId = payload?.stripeSubscriptionId || null;
+
+        const subject = `[New Order] ${orderReference}`;
 
         const res = await resend.emails.send({
             from: "Nutrinana Orders <orders@nutrinana.co.uk>",
-            to,
-            replyTo: "info@nutrinana.co.uk",
+            to: INTERNAL_NOTIFICATION_EMAIL,
+            replyTo: customerEmail || "info@nutrinana.co.uk",
             subject,
             react: (
-                <OrderConfirmationEmail
-                    name={name}
+                <InternalOrderNotificationEmail
                     orderReference={orderReference}
                     orderDate={orderDate}
-                    items={items}
+                    customerName={customerName}
+                    customerEmail={customerEmail || "No email"}
+                    items={internalItems}
                     total={total}
-                    subtotal={subtotal}
-                    shipping={shippingCost}
-                    address={address}
+                    purchaseType={purchaseType}
+                    subscriptionId={subscriptionId}
                 />
             ),
         });
 
         console.log(
-            `[email] Sent order confirmation to ${to} (${orderReference || "no-ref"})`,
+            `[email] Sent internal notification for order ${orderReference}`,
             res?.id ? `resend_id=${res.id}` : ""
         );
 
-        return { sent: true, resendId: res?.id || null };
+        results.internalSent = true;
     } catch (err) {
-        const msg = err instanceof Error ? err.message : String(err);
         console.error(
-            `[email] Failed to send order confirmation to ${to} (${orderReference || "no-ref"}):`,
-            msg
+            `[email] Failed to send internal notification for order ${orderReference}:`,
+            err instanceof Error ? err.message : String(err)
         );
-
-        return { sent: false, reason: msg };
     }
+
+    return results;
 }
 
 /**
@@ -654,15 +703,6 @@ async function fulfillCheckoutSession(sessionId, eventId) {
         await markFulfilled(sessionId, payload, eventId);
 
         try {
-            await sendOrderConfirmationEmail(payload);
-        } catch (emailErr) {
-            console.error(
-                `[email] sendOrderConfirmationEmail(${payload?.orderReference || sessionId}) failed:`,
-                emailErr
-            );
-        }
-
-        try {
             const sendResult = await sendOrder(payload.orderReference);
             safeLog(
                 `[fulfilment] sendOrder(${payload.orderReference}) result: ${JSON.stringify(
@@ -673,6 +713,15 @@ async function fulfillCheckoutSession(sessionId, eventId) {
             );
         } catch (sendErr) {
             console.error(`[fulfilment] sendOrder(${payload.orderReference}) failed:`, sendErr);
+        }
+
+        try {
+            await sendOrderEmails(payload);
+        } catch (emailErr) {
+            console.error(
+                `[email] sendOrderEmails(${payload?.orderReference || sessionId}) failed:`,
+                emailErr
+            );
         }
 
         return { fulfilled: true, payload, fulfilmentDispatchAttempted: true };
@@ -733,15 +782,6 @@ async function fulfillSubscriptionRenewal(invoice, eventId) {
         await markFulfilled(invoiceId, payload, eventId);
 
         try {
-            await sendOrderConfirmationEmail(payload);
-        } catch (emailErr) {
-            console.error(
-                `[email] sendOrderConfirmationEmail(${payload?.orderReference || invoiceId}) failed:`,
-                emailErr
-            );
-        }
-
-        try {
             const sendResult = await sendOrder(payload.orderReference);
             safeLog(
                 `[fulfilment] sendOrder(${payload.orderReference}) result: ${JSON.stringify(
@@ -752,6 +792,15 @@ async function fulfillSubscriptionRenewal(invoice, eventId) {
             );
         } catch (sendErr) {
             console.error(`[fulfilment] sendOrder(${payload.orderReference}) failed:`, sendErr);
+        }
+
+        try {
+            await sendOrderEmails(payload);
+        } catch (emailErr) {
+            console.error(
+                `[email] sendOrderEmails(${payload?.orderReference || invoiceId}) failed:`,
+                emailErr
+            );
         }
 
         return { fulfilled: true, payload, fulfilmentDispatchAttempted: true };
@@ -796,6 +845,7 @@ export async function POST(req) {
     }
 
     try {
+        // Checkout fulfillment (one-off + subscription signups via Checkout)
         if (
             event.type === "checkout.session.completed" ||
             event.type === "checkout.session.async_payment_succeeded"
@@ -804,6 +854,7 @@ export async function POST(req) {
             await fulfillCheckoutSession(session.id, event.id);
         }
 
+        // Checkout failures / expirations
         if (
             event.type === "checkout.session.async_payment_failed" ||
             event.type === "checkout.session.expired"
@@ -813,6 +864,7 @@ export async function POST(req) {
             await recordFailureIfMissing(session.id, event.id);
         }
 
+        // Subscription invoice payments
         if (event.type === "invoice.payment_succeeded" || event.type === "invoice.payment_failed") {
             const invoice = event.data.object;
 
@@ -865,6 +917,7 @@ export async function POST(req) {
             }
         }
 
+        // Subscription updates and cancellations
         if (
             event.type === "customer.subscription.updated" ||
             event.type === "customer.subscription.deleted"
@@ -879,14 +932,6 @@ export async function POST(req) {
 
             const subscriptionId = subscription.id;
             const currentPeriodEndIso = unixSecondsToIso(subscription.current_period_end);
-
-            const cancellationState = {
-                status: subscription.status || null,
-                cancelAtPeriodEnd: !!subscription.cancel_at_period_end,
-                canceledAt: unixSecondsToIso(subscription.canceled_at),
-                cancelAt: unixSecondsToIso(subscription.cancel_at),
-                endedAt: unixSecondsToIso(subscription.ended_at),
-            };
 
             await upsertSubscriptionState({
                 subscriptionId,
