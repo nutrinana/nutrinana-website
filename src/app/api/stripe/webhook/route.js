@@ -832,18 +832,17 @@ export async function POST(req) {
             if (subscriptionId) {
                 const renewalDateIso = invoiceRenewalDateIso(invoice);
 
-                await upsertSubscriptionState(subscriptionId, {
-                    stripeEventId: event.id,
+                await upsertSubscriptionState({
+                    subscriptionId,
                     customerId:
                         typeof invoice.customer === "string"
                             ? invoice.customer
                             : invoice.customer?.id,
-                    latestInvoiceId: invoice.id,
-                    latestInvoiceStatus: invoice.status || null,
-                    latestPaymentStatus:
+                    lastInvoiceId: invoice.id,
+                    lastPaymentStatus:
                         event.type === "invoice.payment_succeeded" ? "succeeded" : "failed",
-                    renewalDate: renewalDateIso,
-                    cancellationState: null,
+                    currentPeriodEnd: renewalDateIso,
+                    lastEventId: event.id,
                 });
 
                 safeLog(`[stripe] Recorded ${event.type} for subscription ${subscriptionId}`);
@@ -889,17 +888,17 @@ export async function POST(req) {
                 endedAt: unixSecondsToIso(subscription.ended_at),
             };
 
-            await upsertSubscriptionState(subscriptionId, {
-                stripeEventId: event.id,
+            await upsertSubscriptionState({
+                subscriptionId,
                 customerId:
                     typeof subscription.customer === "string"
                         ? subscription.customer
                         : subscription.customer?.id,
-                latestInvoiceId: null,
-                latestInvoiceStatus: null,
-                latestPaymentStatus: null,
-                renewalDate: currentPeriodEndIso,
-                cancellationState,
+                status: subscription.status || null,
+                currentPeriodEnd: currentPeriodEndIso,
+                cancelAtPeriodEnd: !!subscription.cancel_at_period_end,
+                canceledAt: unixSecondsToIso(subscription.canceled_at),
+                lastEventId: event.id,
             });
 
             safeLog(`[stripe] Recorded ${event.type} for subscription ${subscriptionId}`);
