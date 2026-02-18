@@ -16,9 +16,12 @@
         "register-webhook": "node scripts/registerPimentoWebhook.js"
     },
     "lint-staged": {
-        "*.{js,jsx,ts,tsx,css,md,json,mjs}": [
+        "*.{js,jsx,ts,tsx}": [
             "prettier --write",
-            "next lint --fix --file"
+            "eslint --fix"
+        ],
+        "*.{css,md,json,mjs}": [
+            "prettier --write"
         ]
     },
     "dependencies": {
