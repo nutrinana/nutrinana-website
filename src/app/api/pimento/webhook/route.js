@@ -245,6 +245,7 @@ export async function POST(req) {
         );
     } catch (err) {
         console.error("[pimento] Webhook processing failed:", err);
+
         return new Response(JSON.stringify({ ok: false, error: "DB update failed" }), {
             status: 500,
             headers: { "content-type": "application/json" },

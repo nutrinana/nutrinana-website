@@ -1,26 +1,26 @@
 /**
  * Register Pimento Webhooks
- * 
+ *
  * This script registers webhooks with the Pimento API to receive real-time
  * notifications about order and delivery events.
- * 
+ *
  * Usage:
  *   npm run register-webhook
- * 
+ *
  * Or directly:
  *   node scripts/registerPimentoWebhook.js
- * 
+ *
  * Required Environment Variables:
  *   PIMENTO_CLIENT_ID     - Your Pimento API client ID
  *   PIMENTO_CLIENT_SECRET - Your Pimento API client secret
  *   PIMENTO_WEBHOOK_URL   - Your webhook endpoint URL (e.g., https://yourdomain.com/api/pimento/webhook)
  *   PIMENTO_BASE_URL      - Optional, defaults to https://api.getpimento.com/v1
- * 
+ *
  * After running, add the printed PIMENTO_WEBHOOK_SECRET to your .env.local file.
  */
 
 // Load environment variables from .env.local
-require('dotenv').config({ path: require('path').join(__dirname, '..', '.env.local') });
+require("dotenv").config({ path: require("path").join(__dirname, "..", ".env.local") });
 
 const PIMENTO_BASE_URL = process.env.PIMENTO_BASE_URL || "https://api.getpimento.com/v1";
 const PIMENTO_CLIENT_ID = process.env.PIMENTO_CLIENT_ID;
@@ -48,6 +48,7 @@ async function getAuthToken() {
     }
 
     const data = await response.json();
+
     return data.access_token;
 }
 
@@ -59,7 +60,7 @@ async function registerWebhook(token, eventType) {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
             name: `Nutrinana ${eventType}`,
@@ -84,7 +85,7 @@ async function listWebhooks(token) {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
             pagination: {
@@ -137,7 +138,7 @@ async function main() {
     console.log("📋 Checking existing webhooks...");
     const existing = await listWebhooks(token);
     const existingCount = existing.webhooks?.length || 0;
-    console.log(`   Found ${existingCount} existing webhook${existingCount !== 1 ? 's' : ''}\n`);
+    console.log(`   Found ${existingCount} existing webhook${existingCount !== 1 ? "s" : ""}\n`);
 
     // Event types to register
     const eventTypes = [
@@ -153,7 +154,7 @@ async function main() {
     for (const eventType of eventTypes) {
         // Check if webhook already exists
         const existingWebhook = existing.webhooks?.find(
-            w => w.url === WEBHOOK_URL && w.event_type === eventType
+            (w) => w.url === WEBHOOK_URL && w.event_type === eventType
         );
 
         if (existingWebhook) {
@@ -186,7 +187,7 @@ async function main() {
 
     console.log("=".repeat(80) + "\n");
     console.log("🎯 Registered webhooks:\n");
-    webhooks.forEach(w => {
+    webhooks.forEach((w) => {
         console.log(`   • ${w.event_type}`);
         console.log(`     ID: ${w.id}`);
         console.log(`     URL: ${w.url}\n`);

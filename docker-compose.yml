@@ -1,16 +1,16 @@
 services:
-  postgres:
-    image: postgres:17
-    container_name: nutrinana-postgres
-    restart: unless-stopped
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_DB: nutrinana
-      POSTGRES_USER: nutrinana
-      POSTGRES_PASSWORD: nutrinana_dev_password
-    volumes:
-      - nutrinana_pgdata:/var/lib/postgresql/data
+    postgres:
+        image: postgres:17
+        container_name: nutrinana-postgres
+        restart: unless-stopped
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_DB: nutrinana
+            POSTGRES_USER: nutrinana
+            POSTGRES_PASSWORD: nutrinana_dev_password
+        volumes:
+            - nutrinana_pgdata:/var/lib/postgresql/data
 
 volumes:
-  nutrinana_pgdata:
+    nutrinana_pgdata:
