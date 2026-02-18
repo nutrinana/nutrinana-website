@@ -12,7 +12,8 @@
         "format": "prettier --write .",
         "format:check": "prettier --check .",
         "prepare": "husky",
-        "email": "email dev --dir src/emails --port 3001"
+        "email": "email dev --dir src/emails --port 3001",
+        "register-webhook": "node scripts/registerPimentoWebhook.js"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx,css,md,json,mjs}": [
@@ -65,11 +66,12 @@
         "@react-email/preview-server": "^5.2.8",
         "@tailwindcss/postcss": "^4",
         "autoprefixer": "^10.4.20",
-        "eslint": "^9",
-        "eslint-config-next": "15.2.1",
-        "eslint-config-prettier": "^10.1.8",
-        "eslint-plugin-jsdoc": "^54.1.0",
-        "eslint-plugin-prettier": "^5.5.4",
+        "dotenv": "^17.3.1",
+        "eslint": "^10.0.0",
+        "eslint-config-next": "^0.2.4",
+        "eslint-config-prettier": "^6.15.0",
+        "eslint-plugin-jsdoc": "^3.7.1",
+        "eslint-plugin-prettier": "^2.7.0",
         "husky": "^9.1.7",
         "lint-staged": "^16.1.5",
         "postcss": "^8.5.3",
