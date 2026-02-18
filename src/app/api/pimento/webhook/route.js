@@ -1,6 +1,9 @@
 import crypto from "crypto";
 
-import { pool } from "@/lib/db/pool";
+import {
+    updateFulfillmentTracking,
+    mapDeliveryStatusToFulfillmentStatus,
+} from "@/lib/pimento/pimentoWebhookStore";
 
 /**
  * Timing-safe hex string comparison.
@@ -100,6 +103,28 @@ function extractPimentoStatus(payload) {
 }
 
 /**
+ * Extract tracking information from Pimento delivery event.
+ *
+ * @param {object} payload - The webhook payload.
+ *
+ * @returns {object|null} Tracking info or null.
+ */
+function extractTrackingInfo(payload) {
+    const delivery = payload?.delivery_event?.delivery;
+    if (!delivery) {
+        return null;
+    }
+
+    return {
+        deliveryId: delivery.id || null,
+        trackingNumber: delivery.trackingNumber || null,
+        carrier: delivery.carrier || null,
+        trackingLink: delivery.trackingLink || null,
+        status: delivery.status || null,
+    };
+}
+
+/**
  * Handle Pimento webhook POST requests.
  * This endpoint verifies the webhook signature and updates the internal order record.
  *
@@ -166,6 +191,7 @@ export async function POST(req) {
     const eventType = payload?.event_type;
     const orderReference = extractOrderReference(payload);
     const pimentoStatus = extractPimentoStatus(payload);
+    const trackingInfo = extractTrackingInfo(payload);
 
     const supported = new Set([
         "EVENT_TYPE_ORDER_UPDATED",
@@ -189,23 +215,36 @@ export async function POST(req) {
             });
         }
 
-        await pool.query(
-            `
-            UPDATE stripe_fulfillments
-            SET
-              pimento_status = COALESCE($2, pimento_status),
-              pimento_payload = $3::jsonb,
-              updated_at = NOW()
-            WHERE order_reference = $1
-            `,
-            [orderReference, pimentoStatus, JSON.stringify(payload)]
+        // Determine if we should update fulfillment status based on delivery status
+        const newFulfillmentStatus = trackingInfo?.status
+            ? mapDeliveryStatusToFulfillmentStatus(trackingInfo.status)
+            : null;
+
+        // Update database with tracking info and status
+        await updateFulfillmentTracking(orderReference, {
+            pimentoStatus,
+            payload,
+            trackingInfo,
+            fulfillmentStatus: newFulfillmentStatus,
+        });
+
+        console.log(
+            `[pimento] Updated order ${orderReference}: status=${pimentoStatus}, delivery=${trackingInfo?.status}, tracking=${trackingInfo?.trackingNumber}`
         );
 
         return new Response(
-            JSON.stringify({ ok: true, eventType, orderReference, pimentoStatus }),
+            JSON.stringify({
+                ok: true,
+                eventType,
+                orderReference,
+                pimentoStatus,
+                trackingInfo,
+                fulfillmentStatus: newFulfillmentStatus,
+            }),
             { status: 200, headers: { "content-type": "application/json" } }
         );
     } catch (err) {
+        console.error("[pimento] Webhook processing failed:", err);
         return new Response(JSON.stringify({ ok: false, error: "DB update failed" }), {
             status: 500,
             headers: { "content-type": "application/json" },
