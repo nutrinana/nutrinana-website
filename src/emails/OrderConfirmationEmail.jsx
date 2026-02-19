@@ -1,4 +1,4 @@
-import { Html, Section, Container, Text, Heading, Hr, Link } from "@react-email/components";
+import { Html, Section, Container, Text, Heading, Hr, Link, Font } from "@react-email/components";
 
 /**
  * OrderConfirmationEmail Component
@@ -48,10 +48,32 @@ export default function OrderConfirmationEmail({
         <Html>
             <head>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <style>{`
-          body { font-family: Verdana, sans-serif; }
-          a { color: inherit; }
-        `}</style>
+                <Font
+                    fontFamily="Montserrat"
+                    fallbackFontFamily="Verdana"
+                    webFont={{
+                        url: "https://fonts.gstatic.com/s/montserrat/v26/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2",
+                        format: "woff2",
+                    }}
+                    fontWeight={400}
+                    fontStyle="normal"
+                />
+                <Font
+                    fontFamily="Montserrat"
+                    fallbackFontFamily="Verdana"
+                    webFont={{
+                        url: "https://fonts.gstatic.com/s/montserrat/v26/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2",
+                        format: "woff2",
+                    }}
+                    fontWeight={700}
+                    fontStyle="normal"
+                />
+                <style>
+                    {`
+                    body { font-family: Montserrat, Verdana, sans-serif; }
+                    a { color: inherit; }
+                `}
+                </style>
             </head>
 
             <Section style={main}>
@@ -315,6 +337,7 @@ export default function OrderConfirmationEmail({
 const main = {
     backgroundColor: "#F7FDF2",
     padding: "36px 12px",
+    fontFamily: "Montserrat, Verdana, sans-serif",
 };
 
 const card = {
