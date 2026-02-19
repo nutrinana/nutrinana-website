@@ -3,23 +3,19 @@ import { Html, Section, Container, Text, Heading, Hr, Link } from "@react-email/
 /**
  * OrderConfirmationEmail Component
  *
- * This component generates the order confirmation email sent after
- * a successful checkout.
- *
- * @component
- *
- * @param {object} props - The properties for the email.
- * @param {string} props.name - Customer name.
- * @param {string} props.orderReference - Internal order reference.
- * @param {string} props.orderDate - The order date.
- * @param {Array} props.items - Array of order items [{ name, quantity, unitPrice }].
- * @param {string} props.total - Formatted total (e.g. £17.00).
- * @param {string} props.subtotal - Formatted subtotal.
- * @param {string} props.shipping - Formatted shipping cost.
- * @param {string} props.address - Multi-line formatted address string.
- * @param {string} [props.subscriptionId] - Stripe subscription ID (if subscription order).
- *
- * @returns {JSX.Element} The order confirmation email component.
+ * @param {object} props
+ * @param {string} props.name
+ * @param {string} props.orderReference
+ * @param {string} props.orderDate
+ * @param {Array}  props.items
+ * @param {string} props.total
+ * @param {string} props.subtotal
+ * @param {string} props.shipping
+ * @param {string} props.address
+ * @param {string} [props.subscriptionId]
+ * @param {string} [props.purchaseType]
+ * @param {string} [props.renewalDate]     - ISO date string of next renewal
+ * @param {string} [props.renewalFrequency] - e.g. "monthly", "every 2 months"
  */
 export default function OrderConfirmationEmail({
     name,
@@ -31,8 +27,22 @@ export default function OrderConfirmationEmail({
     shipping,
     address,
     subscriptionId,
+    purchaseType,
+    renewalDate,
+    renewalFrequency,
 }) {
     const safeName = name?.trim() ? name.trim() : "there";
+
+    const isSubscription = !!subscriptionId;
+    const isRenewal = purchaseType === "subscription_renewal";
+
+    const formattedRenewalDate = renewalDate
+        ? new Date(renewalDate).toLocaleDateString("en-GB", {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+          })
+        : null;
 
     return (
         <Html>
@@ -54,11 +64,18 @@ export default function OrderConfirmationEmail({
                             style={logo}
                         />
 
-                        <Heading style={title}>Hi {safeName}! 🎉</Heading>
+                        <Heading style={title}>
+                            {isRenewal
+                                ? `Your subscription has renewed, ${safeName}! 🔄`
+                                : `Hi ${safeName}! 🎉`}
+                        </Heading>
+
                         <Text style={subtitle}>
-                            Thanks for your order! This is your confirmation email. We'll be in
-                            touch soon to let you know when your order has been shipped. Below is
-                            your order information.
+                            {isRenewal
+                                ? `Thanks for staying with us! Your ${renewalFrequency ? renewalFrequency + " " : ""}subscription has renewed and we're getting your next order ready. We'll email you as soon as it's on its way. Here's a quick reminder of what's included below.`
+                                : isSubscription
+                                  ? "Your subscription is confirmed! Your first order is being prepared and we'll be in touch when it's shipped."
+                                  : "Thanks for your order! This is your confirmation email. We'll be in touch soon to let you know when your order has been shipped. Below is your order information."}
                         </Text>
 
                         {orderReference ? (
@@ -71,9 +88,47 @@ export default function OrderConfirmationEmail({
                         {orderDate ? <Text style={muted}>Order date: {orderDate}</Text> : null}
                     </Section>
 
+                    {/* Subscription info box */}
+                    {isSubscription && (
+                        <>
+                            <Hr style={divider} />
+                            <Section>
+                                <Heading style={sectionTitle}>Your subscription</Heading>
+                                <Section style={subscriptionBox}>
+                                    {renewalFrequency && (
+                                        <Section style={subscriptionRow}>
+                                            <Text style={subscriptionKey}>Frequency</Text>
+                                            <Text style={subscriptionVal}>
+                                                Renews {renewalFrequency}
+                                            </Text>
+                                        </Section>
+                                    )}
+                                    {formattedRenewalDate && (
+                                        <Section style={subscriptionRow}>
+                                            <Text style={subscriptionKey}>
+                                                {isRenewal ? "Next renewal" : "First renewal"}
+                                            </Text>
+                                            <Text style={subscriptionVal}>
+                                                {formattedRenewalDate}
+                                            </Text>
+                                        </Section>
+                                    )}
+                                    <Section style={subscriptionRow}>
+                                        <Text style={subscriptionKey}>What happens next</Text>
+                                        <Text style={subscriptionVal}>
+                                            {renewalFrequency
+                                                ? `A new order will be created ${renewalFrequency} and scheduled for dispatch. We'll send tracking details once it leaves the warehouse.`
+                                                : "A new order will be created on your renewal date and scheduled for dispatch. We'll send tracking details once it leaves the warehouse."}
+                                        </Text>
+                                    </Section>
+                                </Section>
+                            </Section>
+                        </>
+                    )}
+
                     <Hr style={divider} />
 
-                    {/* Summary */}
+                    {/* Order summary */}
                     <Section>
                         <Heading style={sectionTitle}>Order summary</Heading>
 
@@ -154,7 +209,7 @@ export default function OrderConfirmationEmail({
                         </>
                     ) : null}
 
-                    {/* Aftercare CTA */}
+                    {/* Manage Order CTA */}
                     <Hr style={divider} />
                     <Section style={ctaWrap}>
                         <Link href="https://aftercare.getpimento.com/nutrinana" style={button}>
@@ -165,7 +220,7 @@ export default function OrderConfirmationEmail({
                         </Text>
                     </Section>
 
-                    {/* Customer Portal for Subscriptions */}
+                    {/* Manage Subscription CTA */}
                     {subscriptionId && (
                         <>
                             <Hr style={divider} />
@@ -226,7 +281,7 @@ export default function OrderConfirmationEmail({
 
                         <Hr style={footerDivider} />
 
-                        {/* Legal Links - Side by Side */}
+                        {/* Legal Links */}
                         <Text style={legalText}>
                             <Link
                                 href="https://nutrinana.co.uk/legal/privacy-policy"
@@ -240,7 +295,7 @@ export default function OrderConfirmationEmail({
                             </Link>
                         </Text>
 
-                        {/* Copyright & Address - Side by Side */}
+                        {/* Copyright & Address */}
                         <Text style={footerBottom}>
                             &copy; {new Date().getFullYear()} Nutrinana. All rights reserved.
                             <br />
@@ -311,6 +366,33 @@ const sectionTitle = {
     margin: "0 0 12px",
     color: "#191923",
     fontWeight: "700",
+};
+
+const subscriptionBox = {
+    backgroundColor: "#EFF7EC",
+    border: "1px solid #C8DFC2",
+    borderRadius: "12px",
+    padding: "12px 14px",
+};
+
+const subscriptionRow = {
+    marginBottom: "10px",
+};
+
+const subscriptionKey = {
+    margin: "0 0 2px",
+    fontSize: "11px",
+    fontWeight: "700",
+    color: "#507153",
+    textTransform: "uppercase",
+    letterSpacing: "0.05em",
+};
+
+const subscriptionVal = {
+    margin: "0",
+    fontSize: "14px",
+    color: "#191923",
+    lineHeight: "1.4",
 };
 
 const itemsBox = {
@@ -484,18 +566,6 @@ const footerBottom = {
 };
 
 const unsubscribe = {
-    margin: "0",
-    fontSize: "11px",
-    color: "#8A8A96",
-};
-
-const footerText = {
-    margin: "0 0 6px",
-    fontSize: "12px",
-    color: "#5A5A67",
-};
-
-const footerTiny = {
     margin: "0",
     fontSize: "11px",
     color: "#8A8A96",

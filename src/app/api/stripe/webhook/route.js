@@ -29,7 +29,6 @@ const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KE
 const SHIPPING_LOOKUP_KEY = "subscription_shipping";
 const BILLING_REASON_RENEWAL = "subscription_cycle";
 const BILLING_REASON_UPCOMING = "upcoming";
-const BILLING_REASON_SUBSCRIPTION_CREATE = "subscription_create";
 const INTERNAL_NOTIFICATION_EMAIL = "orders@nutrinana.co.uk";
 
 /**
@@ -101,6 +100,10 @@ async function sendOrderEmails(payload) {
                         subtotal={subtotal}
                         shipping={shippingCost}
                         address={address}
+                        subscriptionId={payload?.stripeSubscriptionId || null}
+                        purchaseType={payload?.purchaseType || null}
+                        renewalDate={payload?.renewalDate || null}
+                        renewalFrequency={payload?.renewalFrequency || null}
                     />
                 ),
             });
@@ -206,6 +209,62 @@ function invoiceRenewalDateIso(invoice) {
     const periodEnd = invoice?.lines?.data?.[0]?.period?.end;
 
     return unixSecondsToIso(periodEnd);
+}
+
+/**
+ * Derives a human-readable renewal frequency from a Stripe subscription's interval.
+ *
+ * @param {object|null} subscription - Stripe subscription object
+ *
+ * @returns {string|null} e.g. "monthly", "every 2 months", "weekly", "annually"
+ */
+function deriveRenewalFrequency(subscription) {
+    const interval = subscription?.items?.data?.[0]?.plan?.interval;
+    const intervalCount = subscription?.items?.data?.[0]?.plan?.interval_count || 1;
+
+    if (!interval) {
+        return null;
+    }
+
+    if (interval === "month") {
+        if (intervalCount === 1) {
+            return "monthly";
+        }
+        if (intervalCount === 2) {
+            return "every 2 months";
+        }
+        if (intervalCount === 3) {
+            return "every 3 months";
+        }
+
+        return `every ${intervalCount} months`;
+    }
+
+    if (interval === "week") {
+        if (intervalCount === 1) {
+            return "weekly";
+        }
+
+        return `every ${intervalCount} weeks`;
+    }
+
+    if (interval === "year") {
+        if (intervalCount === 1) {
+            return "annually";
+        }
+
+        return `every ${intervalCount} years`;
+    }
+
+    if (interval === "day") {
+        if (intervalCount === 1) {
+            return "daily";
+        }
+
+        return `every ${intervalCount} days`;
+    }
+
+    return null;
 }
 
 /**
@@ -466,7 +525,7 @@ function mapInvoiceLinesToItems(invoiceLines, metaByPriceId, metaByProductId) {
 
         if (isShippingLine(line, meta)) {
             calculatedShipping += line?.amount || 0;
-            continue; // Don't add to items array
+            continue;
         }
 
         const quantity = line?.quantity || 1;
@@ -557,6 +616,13 @@ function buildOrderPayloadFromSession(session) {
 
     const orderReference = generateOrderReferenceFromSessionId(checkoutSessionId);
 
+    const subscription = typeof session.subscription === "object" ? session.subscription : null;
+    const renewalFrequency = deriveRenewalFrequency(subscription);
+
+    const renewalDate = subscription?.current_period_end
+        ? unixSecondsToIso(subscription.current_period_end)
+        : null;
+
     return {
         orderReference,
         stripeCheckoutSessionId: checkoutSessionId,
@@ -597,6 +663,8 @@ function buildOrderPayloadFromSession(session) {
         items,
 
         purchaseType: session.metadata?.purchaseType || null,
+        renewalFrequency,
+        renewalDate,
         createdAt: session.created ? new Date(session.created * 1000).toISOString() : null,
     };
 }
@@ -632,6 +700,9 @@ function buildOrderPayloadFromInvoice(invoice, subscription) {
         invoice?.parent?.subscription_details?.subscription ||
         null;
 
+    const renewalFrequency = deriveRenewalFrequency(subscription);
+    const renewalDate = invoiceRenewalDateIso(invoice);
+
     return {
         orderReference,
         stripeCheckoutSessionId: null,
@@ -659,6 +730,8 @@ function buildOrderPayloadFromInvoice(invoice, subscription) {
         items,
 
         purchaseType: "subscription_renewal",
+        renewalFrequency,
+        renewalDate,
         createdAt: invoice?.created ? new Date(invoice.created * 1000).toISOString() : null,
     };
 }
@@ -686,6 +759,8 @@ async function fulfillCheckoutSession(sessionId, eventId) {
                 "line_items.data.price.product",
                 "payment_intent",
                 "subscription",
+                "subscription.items.data.price",
+                "subscription.items.data.plan",
             ],
         });
 
@@ -770,7 +845,12 @@ async function fulfillSubscriptionRenewal(invoice, eventId) {
 
         const subscription = subscriptionId
             ? await stripe.subscriptions.retrieve(subscriptionId, {
-                  expand: ["items.data.price", "items.data.price.product", "customer"],
+                  expand: [
+                      "items.data.price",
+                      "items.data.price.product",
+                      "items.data.plan",
+                      "customer",
+                  ],
               })
             : null;
 
