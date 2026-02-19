@@ -3,7 +3,9 @@ import crypto from "crypto";
 import {
     updateFulfillmentTracking,
     mapDeliveryStatusToFulfillmentStatus,
+    sendShippingNotification,
 } from "@/lib/pimento/pimentoWebhookStore";
+import { formatMoneyFromMinor, formatShippingAddress, formatDate } from "@/lib/utils";
 
 /**
  * Timing-safe hex string comparison.
@@ -103,7 +105,7 @@ function extractPimentoStatus(payload) {
 }
 
 /**
- * Extract tracking information from Pimento delivery event.
+ * Extract tracking information from Pimento delivery event or order.
  *
  * @param {object} payload - The webhook payload.
  *
@@ -111,16 +113,95 @@ function extractPimentoStatus(payload) {
  */
 function extractTrackingInfo(payload) {
     const delivery = payload?.delivery_event?.delivery;
-    if (!delivery) {
-        return null;
+    if (delivery) {
+        return {
+            deliveryId: delivery.id || null,
+            trackingNumber: delivery.trackingNumber || null,
+            carrier: delivery.carrier || null,
+            trackingLink: delivery.trackingLink || null,
+            status: delivery.status || null,
+        };
+    }
+
+    const orderTracking = payload?.order_event?.order?.tracking;
+    if (orderTracking) {
+        return {
+            deliveryId: null,
+            trackingNumber: orderTracking.tracking_number || null,
+            carrier: orderTracking.carrier || null,
+            trackingLink: orderTracking.tracking_link || null,
+            status: null,
+        };
+    }
+
+    return null;
+}
+
+/**
+ * Extract customer info from payload_json stored in database.
+ *
+ * @param {object} existingRecord - Database record with payload_json.
+ *
+ * @returns {object} Customer info with email, name, address, items, orderDate, and pricing.
+ */
+function extractCustomerInfo(existingRecord) {
+    const payloadJson = existingRecord?.payload_json;
+
+    if (!payloadJson) {
+        return {
+            email: null,
+            name: null,
+            address: null,
+            items: [],
+            orderDate: null,
+            total: null,
+            subtotal: null,
+            shipping: null,
+        };
+    }
+
+    const customerEmail = payloadJson?.customer?.email || null;
+    const customerName = payloadJson?.customer?.name || payloadJson?.shipping?.name || null;
+
+    const address = formatShippingAddress(payloadJson?.shipping);
+
+    const currency = (
+        payloadJson?.totals?.currency ||
+        payloadJson?.currency ||
+        "gbp"
+    ).toLowerCase();
+
+    const items = (payloadJson?.items || []).map((item) => ({
+        name: item?.name || "Item",
+        quantity: item?.quantity || 1,
+        unitPrice: formatMoneyFromMinor(item?.unit_price, currency),
+    }));
+
+    const totals = payloadJson?.totals || {};
+    const total = formatMoneyFromMinor(totals?.amountTotal, currency);
+    const subtotal = formatMoneyFromMinor(totals?.amountSubtotal, currency);
+    const shippingCost = formatMoneyFromMinor(totals?.amountShipping, currency);
+
+    const createdAt = payloadJson?.createdAt;
+    let orderDate = null;
+
+    if (createdAt) {
+        const date = new Date(createdAt);
+        orderDate = `${formatDate(createdAt, "dd/mm/yyyy")}, ${date.toLocaleTimeString("en-GB", {
+            hour: "2-digit",
+            minute: "2-digit",
+        })}`;
     }
 
     return {
-        deliveryId: delivery.id || null,
-        trackingNumber: delivery.trackingNumber || null,
-        carrier: delivery.carrier || null,
-        trackingLink: delivery.trackingLink || null,
-        status: delivery.status || null,
+        email: customerEmail,
+        name: customerName,
+        address,
+        items,
+        orderDate,
+        total,
+        subtotal,
+        shipping: shippingCost,
     };
 }
 
@@ -215,22 +296,57 @@ export async function POST(req) {
             });
         }
 
-        // Determine if we should update fulfillment status based on delivery status
-        const newFulfillmentStatus = trackingInfo?.status
-            ? mapDeliveryStatusToFulfillmentStatus(trackingInfo.status)
+        const newFulfillmentStatus = pimentoStatus
+            ? mapDeliveryStatusToFulfillmentStatus(pimentoStatus)
             : null;
 
-        // Update database with tracking info and status
-        await updateFulfillmentTracking(orderReference, {
-            pimentoStatus,
-            payload,
-            trackingInfo,
-            fulfillmentStatus: newFulfillmentStatus,
-        });
+        const { wasFirstShipped, existingRecord } = await updateFulfillmentTracking(
+            orderReference,
+            {
+                pimentoStatus,
+                payload,
+                trackingInfo,
+                fulfillmentStatus: newFulfillmentStatus,
+            }
+        );
 
         console.log(
             `[pimento] Updated order ${orderReference}: status=${pimentoStatus}, delivery=${trackingInfo?.status}, tracking=${trackingInfo?.trackingNumber}`
         );
+
+        if (pimentoStatus === "ORDER_STATUS_SHIPPED" && wasFirstShipped) {
+            const customerInfo = extractCustomerInfo(existingRecord);
+
+            if (customerInfo.email) {
+                try {
+                    await sendShippingNotification({
+                        orderReference,
+                        customerEmail: customerInfo.email,
+                        customerName: customerInfo.name,
+                        orderDate: customerInfo.orderDate,
+                        carrier: trackingInfo?.carrier,
+                        address: customerInfo.address,
+                        items: customerInfo.items,
+                        total: customerInfo.total,
+                        subtotal: customerInfo.subtotal,
+                        shipping: customerInfo.shipping,
+                    });
+
+                    console.log(
+                        `[pimento] Sent shipping notification for ${orderReference} to ${customerInfo.email}`
+                    );
+                } catch (emailErr) {
+                    console.error(
+                        `[pimento] Failed to send shipping notification for ${orderReference}:`,
+                        emailErr
+                    );
+                }
+            } else {
+                console.warn(
+                    `[pimento] No customer email found for ${orderReference}, skipping shipping notification`
+                );
+            }
+        }
 
         return new Response(
             JSON.stringify({
