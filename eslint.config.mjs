@@ -1,9 +1,9 @@
+import js from "@eslint/js";
+import eslintPluginImport from "eslint-plugin-import";
 import eslintPluginJsdoc from "eslint-plugin-jsdoc";
 import eslintPluginPrettier from "eslint-plugin-prettier";
 import eslintPluginReact from "eslint-plugin-react";
 import eslintPluginReactHooks from "eslint-plugin-react-hooks";
-import eslintPluginImport from "eslint-plugin-import";
-import js from "@eslint/js";
 import globals from "globals";
 
 const eslintConfig = [
@@ -155,6 +155,14 @@ const eslintConfig = [
                     reportIntraTagGroupSpacing: true,
                 },
             ],
+        },
+    },
+
+    // React Email component overrides
+    {
+        files: ["src/emails/**/*.{js,jsx}", "src/emails/**/*.preview.{js,jsx}"],
+        rules: {
+            "no-unused-vars": "off",
         },
     },
 ];
