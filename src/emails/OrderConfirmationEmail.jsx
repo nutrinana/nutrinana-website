@@ -17,6 +17,7 @@ import { Html, Section, Container, Text, Heading, Hr, Link } from "@react-email/
  * @param {string} props.subtotal - Formatted subtotal.
  * @param {string} props.shipping - Formatted shipping cost.
  * @param {string} props.address - Multi-line formatted address string.
+ * @param {string} [props.subscriptionId] - Stripe subscription ID (if subscription order).
  *
  * @returns {JSX.Element} The order confirmation email component.
  */
@@ -29,6 +30,7 @@ export default function OrderConfirmationEmail({
     subtotal,
     shipping,
     address,
+    subscriptionId,
 }) {
     const safeName = name?.trim() ? name.trim() : "there";
 
@@ -162,6 +164,24 @@ export default function OrderConfirmationEmail({
                             Use this to update your address or manage your order.
                         </Text>
                     </Section>
+
+                    {/* Customer Portal for Subscriptions */}
+                    {subscriptionId && (
+                        <>
+                            <Hr style={divider} />
+                            <Section style={ctaWrap}>
+                                <Link
+                                    href="https://billing.stripe.com/p/login/8x23cvbfRcZd2O01TCgIo00"
+                                    style={buttonSecondary}
+                                >
+                                    Manage Subscription
+                                </Link>
+                                <Text style={ctaHelp}>
+                                    Update payment method, pause, or cancel your subscription.
+                                </Text>
+                            </Section>
+                        </>
+                    )}
 
                     {/* Footer */}
                     <Hr style={divider} />
@@ -378,6 +398,17 @@ const button = {
     display: "inline-block",
     backgroundColor: "#507153",
     color: "#ffffff",
+    textDecoration: "none",
+    padding: "12px 18px",
+    borderRadius: "10px",
+    fontSize: "14px",
+    fontWeight: "700",
+};
+
+const buttonSecondary = {
+    display: "inline-block",
+    backgroundColor: "#e5bd68",
+    color: "#FFFFFF",
     textDecoration: "none",
     padding: "12px 18px",
     borderRadius: "10px",

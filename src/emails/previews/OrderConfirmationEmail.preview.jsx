@@ -43,5 +43,26 @@ export function SingleItem() {
     );
 }
 
+// Preview with subscription
+export function WithSubscription() {
+    return (
+        <OrderConfirmationEmail
+            name="Emma Wilson"
+            orderReference="NUTR-SUB12345"
+            orderDate="18/06/2024, 15:45"
+            items={[{ name: "Activated Granola - Original", quantity: 2, unitPrice: "£8.99" }]}
+            subtotal="£17.98"
+            shipping="£3.00"
+            total="£20.98"
+            address="Emma Wilson
+89 Victoria Street
+Edinburgh
+EH1 2JW
+GB"
+            subscriptionId="sub_1234567890"
+        />
+    );
+}
+
 // Default export for the preview server
-export default WithAllDetails;
+export default WithSubscription;
