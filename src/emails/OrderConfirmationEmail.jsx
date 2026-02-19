@@ -12,7 +12,7 @@ import { Html, Section, Container, Text, Heading, Hr, Link } from "@react-email/
  * @param {string} props.name - Customer name.
  * @param {string} props.orderReference - Internal order reference.
  * @param {string} props.orderDate - The order date.
- * @param {Array} props.items - Array of order items [{ name, quantity }].
+ * @param {Array} props.items - Array of order items [{ name, quantity, unitPrice }].
  * @param {string} props.total - Formatted total (e.g. £17.00).
  * @param {string} props.subtotal - Formatted subtotal.
  * @param {string} props.shipping - Formatted shipping cost.
@@ -52,11 +52,11 @@ export default function OrderConfirmationEmail({
                             style={logo}
                         />
 
-                        <Heading style={title}>Hi {safeName}!</Heading>
+                        <Heading style={title}>Hi {safeName}! 🎉</Heading>
                         <Text style={subtitle}>
                             Thanks for your order! This is your confirmation email. We'll be in
-                            touch soon via text to let you know when your order has been shipped.
-                            Below is your order information.
+                            touch soon to let you know when your order has been shipped. Below is
+                            your order information.
                         </Text>
 
                         {orderReference ? (
@@ -86,6 +86,9 @@ export default function OrderConfirmationEmail({
                                             <span style={itemName}>
                                                 {it.name || "Item"} x {Number(it.quantity || 1)}
                                             </span>
+                                            {it.unitPrice && (
+                                                <span style={itemPrice}> - {it.unitPrice}</span>
+                                            )}
                                         </Text>
                                     </Section>
                                 ))}
@@ -153,7 +156,7 @@ export default function OrderConfirmationEmail({
                     <Hr style={divider} />
                     <Section style={ctaWrap}>
                         <Link href="https://aftercare.getpimento.com/nutrinana" style={button}>
-                            Manage your order
+                            Manage Your Order
                         </Link>
                         <Text style={ctaHelp}>
                             Use this to update your address or manage your order.
@@ -163,19 +166,69 @@ export default function OrderConfirmationEmail({
                     {/* Footer */}
                     <Hr style={divider} />
                     <Section style={footer}>
-                        <Text style={footerText}>
-                            Questions? Visit{" "}
+                        {/* Help Section */}
+                        <Text style={footerHelp}>
+                            Questions?{" "}
                             <Link href="https://nutrinana.co.uk/help" style={footerLink}>
-                                nutrinana.co.uk/help
+                                Visit our Help Center
                             </Link>{" "}
                             or email{" "}
                             <Link href="mailto:info@nutrinana.co.uk" style={footerLink}>
                                 info@nutrinana.co.uk
                             </Link>
                         </Text>
-                        <Text style={footerTiny}>
-                            Nutrinana · Please don't reply to this email.
+
+                        {/* Social Links with Icons */}
+                        <Section style={socialSection}>
+                            <Link
+                                href="https://instagram.com/nutrinanaa"
+                                style={socialLinkWithIcon}
+                                target="_blank"
+                            >
+                                <img
+                                    src="https://cdn.simpleicons.org/instagram/507153"
+                                    alt="Instagram"
+                                    style={socialIcon}
+                                />
+                            </Link>
+                            <Link
+                                href="https://www.tiktok.com/@nutrinanaa"
+                                style={socialLinkWithIcon}
+                                target="_blank"
+                            >
+                                <img
+                                    src="https://cdn.simpleicons.org/tiktok/507153"
+                                    alt="TikTok"
+                                    style={socialIcon}
+                                />
+                            </Link>
+                        </Section>
+
+                        <Hr style={footerDivider} />
+
+                        {/* Legal Links - Side by Side */}
+                        <Text style={legalText}>
+                            <Link
+                                href="https://nutrinana.co.uk/legal/privacy-policy"
+                                style={legalLink}
+                            >
+                                Privacy Policy
+                            </Link>
+                            {" | "}
+                            <Link href="https://nutrinana.co.uk/legal" style={legalLink}>
+                                Terms & Conditions
+                            </Link>
                         </Text>
+
+                        {/* Copyright & Address - Side by Side */}
+                        <Text style={footerBottom}>
+                            &copy; {new Date().getFullYear()} Nutrinana. All rights reserved.
+                            <br />
+                            Nutrinana, Unit 143551, PO Box 7169, Poole, BH15 9EL
+                        </Text>
+
+                        {/* Unsubscribe Notice */}
+                        <Text style={unsubscribe}>Please don't reply to this email.</Text>
                     </Section>
                 </Container>
             </Section>
@@ -258,6 +311,11 @@ const itemName = {
     fontWeight: "600",
 };
 
+const itemPrice = {
+    color: "#5A5A67",
+    fontWeight: "400",
+};
+
 const totalsBox = {
     backgroundColor: "#FFFFFF",
     border: "1px solid #E9EFE6",
@@ -309,7 +367,6 @@ const addressText = {
     fontSize: "14px",
     lineHeight: "1.5",
     color: "#2E2E36",
-    whiteSpace: "pre-line",
 };
 
 const ctaWrap = {
@@ -337,17 +394,74 @@ const ctaHelp = {
 
 const footer = {
     textAlign: "center",
+    paddingTop: "8px",
+};
+
+const footerHelp = {
+    margin: "0 0 16px",
+    fontSize: "12px",
+    color: "#5A5A67",
+    lineHeight: "1.5",
+};
+
+const footerLink = {
+    color: "#507153",
+    textDecoration: "underline",
+};
+
+const socialSection = {
+    margin: "12px 0",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "12px",
+};
+
+const socialLinkWithIcon = {
+    display: "inline-block",
+    margin: "0 6px",
+};
+
+const socialIcon = {
+    width: "24px",
+    height: "24px",
+    display: "block",
+};
+
+const footerDivider = {
+    margin: "16px 0",
+    borderColor: "#E9EFE6",
+};
+
+const legalText = {
+    margin: "0 0 8px",
+    fontSize: "12px",
+    color: "#8A8A96",
+    textAlign: "center",
+};
+
+const legalLink = {
+    color: "#8A8A96",
+    textDecoration: "underline",
+};
+
+const footerBottom = {
+    margin: "0 0 8px",
+    fontSize: "12px",
+    color: "#8A8A96",
+    lineHeight: "1.5",
+};
+
+const unsubscribe = {
+    margin: "0",
+    fontSize: "11px",
+    color: "#8A8A96",
 };
 
 const footerText = {
     margin: "0 0 6px",
     fontSize: "12px",
     color: "#5A5A67",
-};
-
-const footerLink = {
-    color: "#507153",
-    textDecoration: "underline",
 };
 
 const footerTiny = {
