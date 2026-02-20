@@ -180,6 +180,7 @@ function buildPimentoCreateOrderRequest({ orderReference, stripePayload }) {
         channel: "nutrinana",
         channel_id: String(channelId),
         channel_reference: String(orderReference),
+        channel_tags: stripePayload?.tags || null,
         currency,
         total_price: String(total_price || "0"),
         shipping_price: shipping_price ? String(shipping_price) : undefined,

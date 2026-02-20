@@ -623,11 +623,26 @@ function buildOrderPayloadFromSession(session) {
         ? unixSecondsToIso(subscription.current_period_end)
         : null;
 
+    const tags = [];
+    if (subscriptionId) {
+        tags.push("subscription");
+    } else {
+        tags.push("one-time");
+    }
+
+    const purchaseType = session.metadata?.purchaseType;
+    if (purchaseType === "subscription_renewal") {
+        tags.push("renewal");
+    } else if (purchaseType === "subscription_create") {
+        tags.push("initial");
+    }
+
     return {
         orderReference,
         stripeCheckoutSessionId: checkoutSessionId,
         stripePaymentIntentId: paymentIntentId || null,
         stripeSubscriptionId: subscriptionId || null,
+        tags,
 
         customer: {
             email: session.customer_details?.email || session.customer_email || null,
@@ -662,7 +677,7 @@ function buildOrderPayloadFromSession(session) {
 
         items,
 
-        purchaseType: session.metadata?.purchaseType || null,
+        purchaseType: purchaseType || null,
         renewalFrequency,
         renewalDate,
         createdAt: session.created ? new Date(session.created * 1000).toISOString() : null,
@@ -700,6 +715,8 @@ function buildOrderPayloadFromInvoice(invoice, subscription) {
         invoice?.parent?.subscription_details?.subscription ||
         null;
 
+    const tags = ["subscription", "renewal"];
+
     const renewalFrequency = deriveRenewalFrequency(subscription);
     const renewalDate = invoiceRenewalDateIso(invoice);
 
@@ -711,6 +728,7 @@ function buildOrderPayloadFromInvoice(invoice, subscription) {
                 ? invoice.payment_intent
                 : invoice?.payment_intent?.id || null,
         stripeSubscriptionId: subscriptionId,
+        tags,
 
         customer: customerData,
         shipping: shippingData,
