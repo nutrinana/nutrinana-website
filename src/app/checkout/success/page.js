@@ -32,7 +32,6 @@ export default function CheckoutSuccessPage() {
 
         clear();
 
-        // Fetch order details from Stripe
         async function fetchOrderDetails() {
             try {
                 const response = await fetch(`/api/checkout/session?session_id=${stripeSessionId}`);
@@ -57,22 +56,16 @@ export default function CheckoutSuccessPage() {
         fetchOrderDetails();
     }, [stripeSessionId, clear]);
 
-    // Get product image based on item name
     const getProductImage = (itemName) => {
         const name = itemName?.toLowerCase() || "";
 
-        // Map product names to images
         if (name.includes("mixed fruits") || name.includes("coconut")) {
             return "/products/mixed-fruits/granola1.jpg";
         }
         if (name.includes("chocolate") || name.includes("hazelnut")) {
             return "/products/chocolate-hazelnut/granola1.jpg";
         }
-        if (name.includes("original") || name.includes("maple")) {
-            return "/products/original-maple/granola1.jpg";
-        }
 
-        // Default fallback image
         return "/products/mixed-fruits/granola1.jpg";
     };
 
@@ -80,7 +73,7 @@ export default function CheckoutSuccessPage() {
         <>
             <div className="site-container">
                 <section className="section-y:first-child">
-                    {/* Success Header - Centered */}
+                    {/* Success Header */}
                     <div className="mx-auto mb-8 max-w-3xl text-center sm:mb-12">
                         <h1 className="font-heading mb-3 text-4xl font-bold sm:mb-4 sm:text-4xl lg:text-4xl">
                             Order Confirmed 🎉
@@ -91,9 +84,8 @@ export default function CheckoutSuccessPage() {
                         </p>
                     </div>
 
-                    {/* Two Column Layout */}
                     <div className="grid gap-6 lg:grid-cols-3 lg:gap-8">
-                        {/* Left Column - Main Content (2/3) */}
+                        {/* Left Column - Main Content */}
                         <div className="space-y-6 lg:col-span-2">
                             {/* Order Details Card */}
                             <div className="overflow-hidden rounded-xl border bg-white">
@@ -294,7 +286,7 @@ export default function CheckoutSuccessPage() {
                             </div>
                         </div>
 
-                        {/* Right Column - Sidebar (1/3) */}
+                        {/* Right Column - Sidebar */}
                         <div className="space-y-6">
                             {/* Action Buttons */}
                             <div className="rounded-xl border bg-white p-5 sm:p-6">
