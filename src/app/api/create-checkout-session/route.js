@@ -96,7 +96,7 @@ export async function POST(req) {
 
         const body = await req.json().catch(() => ({}));
         const items = Array.isArray(body?.items) ? body.items : [];
-        const purchaseType = body?.purchaseType === "monthly" ? "monthly" : "one_off";
+        const requestedType = body?.purchaseType;
 
         if (items.length === 0) {
             return NextResponse.json({ error: "Cart is empty" }, { status: 400 });
@@ -115,6 +115,10 @@ export async function POST(req) {
 
         const line_items = [];
 
+        const isSubscription = requestedType === "monthly";
+        const lookupKeySuffix = isSubscription ? "monthly" : "one_off";
+        const mode = isSubscription ? "subscription" : "payment";
+
         for (const { productId, qty } of sanitizedItems) {
             const product = getProduct(productId);
 
@@ -126,7 +130,7 @@ export async function POST(req) {
                 throw new Error(`Missing stripeLookupKeyBase for productId: ${productId}`);
             }
 
-            const lookupKey = `${product.stripeLookupKeyBase}_${purchaseType}`;
+            const lookupKey = `${product.stripeLookupKeyBase}_${lookupKeySuffix}`;
             const priceId = await getPriceIdByLookupKey(lookupKey);
 
             line_items.push({
@@ -135,9 +139,7 @@ export async function POST(req) {
             });
         }
 
-        const mode = purchaseType === "monthly" ? "subscription" : "payment";
-
-        if (mode === "subscription") {
+        if (isSubscription) {
             const shippingPriceId = await getPriceIdByLookupKey("subscription_shipping");
 
             if (!shippingPriceId) {
@@ -166,7 +168,7 @@ export async function POST(req) {
             automatic_tax: { enabled: true },
 
             metadata: {
-                purchaseType,
+                purchaseType: isSubscription ? "subscription_create" : "one_off",
                 cart: JSON.stringify(
                     sanitizedItems.map(({ productId, qty }) => ({ productId, qty }))
                 ),
