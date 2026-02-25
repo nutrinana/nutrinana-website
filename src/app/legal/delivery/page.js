@@ -142,8 +142,8 @@ export default function DeliveryPage() {
                 <p className="mb-4">
                     If your order arrives damaged or incorrect, you must notify us within 48 hours
                     of delivery at{" "}
-                    <a href="mailto:info@nutrinana.co.uk" className="text-blue-600 underline">
-                        info@nutrinana.co.uk
+                    <a href="mailto:help@nutrinana.co.uk" className="text-blue-600 underline">
+                        help@nutrinana.co.uk
                     </a>
                     , including your order reference and photographic evidence where possible.
                 </p>
