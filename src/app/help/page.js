@@ -55,6 +55,36 @@ const accordionData = [
         content:
             "To keep your granola fresh and crunchy, store it in an airtight container in a cool, dry place. Our granola has a shelf life of 6-12 months if stored properly—but let’s be honest, it’ll probably last less than that because it’s just that tasty! You’ll find the best-before date printed on the package, so you can enjoy every bite at its peak. Remember to reseal the packaging after each use to maintain its freshness!",
     },
+    {
+        title: "Delivery",
+        subtitle: "How long does delivery take?",
+        content:
+            "We aim to process all orders within 1-2 working days. Standard UK delivery typically takes 2-4 working days from dispatch. Once your order has shipped, you will receive a confirmation email with tracking details so you can follow your parcel every step of the way.",
+    },
+    {
+        title: "Shipping Locations",
+        subtitle: "Do you ship outside the UK?",
+        content:
+            "At the moment, we deliver within the United Kingdom only. We do not offer international shipping just yet — but we hope to expand in the future!",
+    },
+    {
+        title: "Returns",
+        subtitle: "Can I return my order?",
+        content:
+            "Due to the nature of our products (food items), we’re unable to accept returns once goods have been delivered, unless the item is faulty, damaged, or incorrect. This does not affect your statutory rights under UK consumer law.",
+    },
+    {
+        title: "Damaged or Incorrect Orders",
+        subtitle: "What should I do if something isn’t right?",
+        content:
+            "If your order arrives damaged or incorrect, please contact us within 48 hours of delivery at help@nutrinana.co.uk, including your order reference and a photo where possible. We’ll review the issue and arrange a replacement or refund where appropriate.",
+    },
+    {
+        title: "Subscriptions",
+        subtitle: "How do I manage my subscription?",
+        content:
+            "Yes! You can manage, update payment details, or cancel your subscription at any time via the customer portal link included in your confirmation email. To avoid your next renewal, please make changes before your scheduled renewal date.",
+    },
 ];
 
 export default function HelpPage() {
