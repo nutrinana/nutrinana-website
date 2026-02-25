@@ -19,6 +19,8 @@ export default function LegalLayout({ children }) {
         heading = "Privacy Policy";
     } else if (pathname.includes("cookie-policy")) {
         heading = "Cookie Policy";
+    } else if (pathname.includes("delivery-policy")) {
+        heading = "Delivery & Returns";
     }
 
     return (
@@ -33,6 +35,9 @@ export default function LegalLayout({ children }) {
                 </a>
                 <a href="/legal/cookie-policy" className="hover:text-raisin transition-colors">
                     Cookie Policy
+                </a>
+                <a href="/legal/delivery" className="hover:text-raisin transition-colors">
+                    Delivery &amp; Returns
                 </a>
             </div>
             {children}
