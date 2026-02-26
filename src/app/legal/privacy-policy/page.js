@@ -8,7 +8,7 @@ export default function PrivacyPolicyPage() {
         <>
             <section className="mb-8">
                 <p className="mb-2 text-sm text-gray-500">
-                    <strong>Last updated August 17th, 2025</strong>
+                    <strong>Last updated February 26th, 2026</strong>
                 </p>
 
                 <p className="mb-4">
@@ -105,9 +105,9 @@ export default function PrivacyPolicyPage() {
                         (e.g., when you use our contact form).
                     </li>
                     <li>
-                        <strong>Order information</strong> (if purchasing directly in the future)
-                        such as your name, billing address, shipping address, payment confirmation,
-                        email address, and phone number.
+                        <strong>Order information</strong> such as your name, billing address,
+                        shipping address, payment confirmation, email address, and phone number when
+                        you make a purchase through our website.
                     </li>
                     <li>
                         <strong>Customer support information</strong> including any details you
@@ -159,8 +159,8 @@ export default function PrivacyPolicyPage() {
                 </p>
                 <ul className="mb-4 list-disc pl-6">
                     <li>
-                        <strong>Payment providers</strong> (e.g., Stripe, in the future) to process
-                        transactions securely.
+                        <strong>Payment providers</strong> (e.g., Stripe) to process transactions
+                        securely.
                     </li>
                     <li>
                         <strong>Review platforms</strong> (e.g., Yotpo) that manage customer
@@ -196,9 +196,10 @@ export default function PrivacyPolicyPage() {
                     <li>
                         <strong>Providing Products and Services.</strong> We use your personal
                         information to provide our Services, such as responding to your enquiries,
-                        displaying product reviews, and showing embedded content. If we introduce
-                        direct ordering in the future, we will also use your information to process
-                        payments, fulfil orders, and communicate about purchases or returns.
+                        displaying product reviews, and showing embedded content. If you place an
+                        order through our website, we use your information to process payments,
+                        fulfil orders, arrange delivery, and communicate with you about your
+                        purchase, subscription, returns, or refunds.
                     </li>
                     <li>
                         <strong>Marketing and Updates.</strong> With your consent, we may use your
@@ -452,6 +453,32 @@ export default function PrivacyPolicyPage() {
             <hr className="my-6" />
 
             <section className="mb-8">
+                <h2 className="mb-4 text-2xl font-semibold">International Data Transfers</h2>
+
+                <p className="mb-4">
+                    Some of our service providers may process personal information outside the
+                    United Kingdom.
+                </p>
+
+                <p className="mb-3">
+                    Where personal data is transferred internationally, we ensure appropriate
+                    safeguards are in place, such as:
+                </p>
+
+                <ul className="mb-4 list-disc pl-10">
+                    <li>Transfers to countries deemed adequate by the UK government, or</li>
+                    <li>The use of standard contractual clauses or equivalent safeguards.</li>
+                </ul>
+
+                <p>
+                    We take reasonable steps to ensure your data remains protected in accordance
+                    with this Privacy Policy.
+                </p>
+            </section>
+
+            <hr className="my-6" />
+
+            <section className="mb-8">
                 <h2 className="mb-2 text-2xl font-semibold">User-Generated Content</h2>
 
                 <p className="mb-4">
@@ -542,6 +569,73 @@ export default function PrivacyPolicyPage() {
                     is required or permitted by law (such as for tax, accounting, or legal
                     compliance). When we no longer need your personal information, we will securely
                     delete or anonymise it.
+                </p>
+            </section>
+
+            <hr className="my-6" />
+
+            <section className="mb-8">
+                <h2 className="mb-4 text-2xl font-semibold">Your Data Protection Rights</h2>
+
+                <p className="mb-4">Under the UK GDPR, you have the following rights:</p>
+
+                <ul className="mb-6 list-disc pl-10">
+                    <li className="mb-2">
+                        <strong>Right of access</strong> – You can request a copy of the personal
+                        information we hold about you.
+                    </li>
+                    <li className="mb-2">
+                        <strong>Right to rectification</strong> – You can ask us to correct
+                        inaccurate or incomplete information.
+                    </li>
+                    <li className="mb-2">
+                        <strong>Right to erasure</strong> – You can request that we delete your
+                        personal information, subject to legal obligations.
+                    </li>
+                    <li className="mb-2">
+                        <strong>Right to restrict processing</strong> – You can request that we
+                        limit how we use your information.
+                    </li>
+                    <li className="mb-2">
+                        <strong>Right to data portability</strong> – You can request that we
+                        transfer your data to you or another provider where technically feasible.
+                    </li>
+                    <li className="mb-2">
+                        <strong>Right to object</strong> – You can object to certain types of
+                        processing, including direct marketing.
+                    </li>
+                    <li>
+                        <strong>Right to withdraw consent</strong> – Where we rely on consent (e.g.,
+                        marketing emails or non-essential cookies), you may withdraw this at any
+                        time.
+                    </li>
+                </ul>
+
+                <p className="mb-4">
+                    To exercise any of these rights, please contact us at{" "}
+                    <a href="mailto:privacy@nutrinana.co.uk" className="text-blue-600 underline">
+                        privacy@nutrinana.co.uk
+                    </a>
+                    .
+                </p>
+
+                <p className="mb-2">
+                    If you are not satisfied with how we handle your personal data, you have the
+                    right to lodge a complaint with the Information Commissioner’s Office (ICO):
+                </p>
+
+                <p>
+                    <strong>ICO Website:</strong>{" "}
+                    <a
+                        href="https://ico.org.uk"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 underline"
+                    >
+                        https://ico.org.uk
+                    </a>
+                    <br />
+                    <strong>Helpline:</strong> 0303 123 1113
                 </p>
             </section>
 
