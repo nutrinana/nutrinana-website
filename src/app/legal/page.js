@@ -8,7 +8,7 @@ export default function LegalPage() {
         <>
             <section className="mb-8">
                 <p className="mb-2 text-sm text-gray-500">
-                    <strong>Last updated February 26th 2026</strong>
+                    <strong>Last updated February 26th, 2026</strong>
                 </p>
 
                 <h2 className="mb-4 text-2xl font-semibold">Overview</h2>
