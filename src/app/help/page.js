@@ -82,8 +82,23 @@ const accordionData = [
     {
         title: "Subscriptions",
         subtitle: "How do I manage my subscription?",
-        content:
-            "Yes! You can manage, update payment details, or cancel your subscription at any time via the customer portal link included in your confirmation email. To avoid your next renewal, please make changes before your scheduled renewal date.",
+        content: (
+            <>
+                You can manage, update payment details, or cancel your subscription at any time via
+                our Stripe Customer Portal. To avoid your next renewal, please make changes before
+                your scheduled renewal date.
+                <br />
+                <a
+                    href="https://billing.stripe.com/p/login/8x23cvbfRcZd2O01TCgIo00"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium underline"
+                >
+                    Manage your subscription here
+                </a>
+                .
+            </>
+        ),
     },
 ];
 
