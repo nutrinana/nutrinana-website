@@ -8,7 +8,7 @@ export default function LegalPage() {
         <>
             <section className="mb-8">
                 <p className="mb-2 text-sm text-gray-500">
-                    <strong>Last updated August 17th 2025</strong>
+                    <strong>Last updated February 26th 2026</strong>
                 </p>
 
                 <h2 className="mb-4 text-2xl font-semibold">Overview</h2>
@@ -23,7 +23,12 @@ export default function LegalPage() {
 
                 <p className="mb-4">
                     If you have any questions about these Terms of Use, our products, or our
-                    Services, please contact us by email at info@nutrinana.co.uk.
+                    Services, please contact us by email at{" "}
+                    <a href="mailto:info@nutrinana.co.uk" className="text-blue-600 underline">
+                        {" "}
+                        info@nutrinana.co.uk
+                    </a>
+                    .
                 </p>
 
                 <p className="mb-4">
@@ -54,9 +59,9 @@ export default function LegalPage() {
                 </p>
 
                 <blockquote className="my-4 border-l-4 border-gray-300 pl-4 text-gray-700">
-                    Note: At present, purchases of Nutrinana products are made through third-party
-                    platforms (e.g., DELLI). In the future, if direct online purchasing is enabled
-                    on this site, additional terms relating to online transactions will apply.
+                    Note: Nutrinana products are available for purchase through our website and may
+                    also be available through authorised third-party retail platforms. Availability
+                    and pricing may vary between platforms.
                 </blockquote>
             </section>
 
@@ -168,9 +173,11 @@ export default function LegalPage() {
                 <h2 className="mb-2 text-2xl font-semibold">Section 5 - Products or Services</h2>
 
                 <p className="mb-4">
-                    At present, Nutrinana products may only be purchased through third-party
-                    platforms (such as DELLI). Product availability, pricing, and sales terms on
-                    those platforms are subject to the policies of the relevant third party.
+                    Nutrinana products are available for purchase through our website and may also
+                    be available through authorised third-party retail platforms. Availability and
+                    pricing may vary between platforms. Product availability, pricing, and sales
+                    terms on those platforms are subject to the policies of the relevant third
+                    party.
                 </p>
 
                 <p className="mb-4">
@@ -195,21 +202,148 @@ export default function LegalPage() {
             <hr className="my-6" />
 
             <section className="mb-8">
-                <h2 className="mb-2 text-2xl font-semibold">
-                    Section 6 - Accuracy of Account or Order Information
+                <h2 className="mb-4 text-2xl font-semibold">
+                    Section 6 - Online Orders and Account Information
                 </h2>
 
                 <p className="mb-4">
-                    Since purchases are currently processed via third-party platforms, any billing,
-                    shipping, or account information you provide will be handled in accordance with
-                    those platforms&apos; terms and policies.
+                    When you place an order through our website, you agree to provide accurate,
+                    current, and complete information, including billing, delivery, and contact
+                    details.
                 </p>
 
                 <p className="mb-4">
-                    If Nutrinana introduces direct ordering through this website in the future, you
-                    agree to provide accurate, current, and complete information for any purchases
-                    or account registrations. You will also be responsible for keeping your
-                    information up to date (e.g., contact details and payment information).
+                    You are responsible for ensuring that all information provided at checkout is
+                    correct. We will not be liable for delays or failed deliveries resulting from
+                    inaccurate or incomplete information.
+                </p>
+
+                <p className="mb-3">
+                    A legally binding contract is formed when we send you an order confirmation
+                    email. We reserve the right to refuse or cancel any order prior to dispatch,
+                    including where:
+                </p>
+
+                <ul className="mb-4 list-disc pl-10">
+                    <li>A product is unavailable</li>
+                    <li>There is an error in pricing or description</li>
+                    <li>We suspect fraudulent or unauthorised activity</li>
+                </ul>
+
+                <p className="mb-4">
+                    If we cancel an order after payment has been taken, we will issue a full refund.
+                </p>
+
+                <p className="mb-4">
+                    All prices are shown in GBP and include VAT where applicable.
+                </p>
+
+                <p>
+                    Payments are securely processed by our third-party payment provider. We do not
+                    store full payment card details on our servers.
+                </p>
+            </section>
+
+            <hr className="my-6" />
+
+            <section className="mb-8">
+                <h2 className="mb-4 text-2xl font-semibold">Section 7 - Subscriptions</h2>
+
+                <p className="mb-4">We offer subscription options for selected products.</p>
+
+                <p className="mb-3">By purchasing a subscription, you agree that:</p>
+
+                <ul className="mb-4 list-disc pl-10">
+                    <li>
+                        Your subscription will automatically renew at the selected frequency (e.g.,
+                        monthly or every two months).
+                    </li>
+                    <li>
+                        Payment will be automatically charged to your chosen payment method on each
+                        renewal date.
+                    </li>
+                    <li>Each renewal constitutes a separate contract for the supply of goods.</li>
+                </ul>
+
+                <p className="mb-4">
+                    You may manage or cancel your subscription at any time via the customer portal
+                    link provided in your confirmation email.
+                </p>
+
+                <p className="mb-4">
+                    To avoid your next renewal charge, you must cancel or make changes before your
+                    scheduled renewal date.
+                </p>
+
+                <p className="mb-4">
+                    If a subscription product becomes temporarily unavailable, we may delay shipment
+                    or contact you to offer a suitable alternative.
+                </p>
+
+                <p>
+                    We reserve the right to cancel a subscription at any time, including where
+                    payment fails or products are discontinued.
+                </p>
+            </section>
+
+            <hr className="my-6" />
+
+            <section className="mb-8">
+                <h2 className="mb-4 text-2xl font-semibold">Section 8 - Delivery</h2>
+
+                <p className="mb-4">We aim to dispatch orders within 1-2 working days.</p>
+
+                <p className="mb-4">Delivery times are estimates and not guaranteed.</p>
+
+                <p className="mb-4">We currently deliver within the United Kingdom only.</p>
+
+                <p className="mb-4">
+                    Risk in the goods passes to you upon delivery to the address provided at
+                    checkout.
+                </p>
+
+                <p className="mb-4">
+                    If delivery is unsuccessful and the parcel is returned to us, we reserve the
+                    right to charge an additional delivery fee to resend the order.
+                </p>
+
+                <p>
+                    Further details are available on our{" "}
+                    <a href="/legal/delivery-and-returns" className="text-blue-600 underline">
+                        Delivery &amp; Returns page
+                    </a>
+                    .
+                </p>
+            </section>
+
+            <hr className="my-6" />
+
+            <section className="mb-8">
+                <h2 className="mb-4 text-2xl font-semibold">Section 9 - Returns and Refunds</h2>
+
+                <p className="mb-4">
+                    Due to the nature of our products (food items), we cannot accept returns once
+                    goods have been delivered, unless they are faulty, damaged, or incorrect. Under
+                    the Consumer Contracts Regulations 2013, the right to cancel within 14 days does
+                    not apply to the supply of perishable goods such as food items.
+                </p>
+
+                <p className="mb-4">
+                    This does not affect your statutory rights under the Consumer Rights Act 2015.
+                </p>
+
+                <p className="mb-4">
+                    If your order arrives damaged or incorrect, you must notify us within 48 hours
+                    of delivery at{" "}
+                    <a href="mailto:help@nutrinana.co.uk" className="text-blue-600 underline">
+                        help@nutrinana.co.uk
+                    </a>
+                    .
+                </p>
+
+                <p>
+                    Approved refunds will be processed within 5-10 working days to the original
+                    payment method.
                 </p>
             </section>
 
@@ -217,7 +351,7 @@ export default function LegalPage() {
 
             <section className="mb-8">
                 <h2 className="mb-2 text-2xl font-semibold">
-                    Section 7 - Third-Party Tools and Integrations
+                    Section 10 - Third-Party Tools and Integrations
                 </h2>
 
                 <p className="mb-4">
@@ -248,7 +382,7 @@ export default function LegalPage() {
             <hr className="my-6" />
 
             <section className="mb-8">
-                <h2 className="mb-2 text-2xl font-semibold">Section 8 - Third-Party Links</h2>
+                <h2 className="mb-2 text-2xl font-semibold">Section 11 - Third-Party Links</h2>
 
                 <p className="mb-4">
                     Certain content, products and Services available via our Service may include
@@ -277,7 +411,7 @@ export default function LegalPage() {
 
             <section className="mb-8">
                 <h2 className="mb-2 text-2xl font-semibold">
-                    Section 9 - User Reviews, Feedback, and Other Submissions
+                    Section 12 - User Reviews, Feedback, and Other Submissions
                 </h2>
 
                 <p className="mb-4">
@@ -318,7 +452,7 @@ export default function LegalPage() {
             <hr className="my-6" />
 
             <section className="mb-8">
-                <h2 className="mb-2 text-2xl font-semibold">Section 10 - Personal Information</h2>
+                <h2 className="mb-2 text-2xl font-semibold">Section 13 - Personal Information</h2>
 
                 <p className="mb-4">
                     Your submission of personal information through the website (including when
@@ -335,7 +469,7 @@ export default function LegalPage() {
 
             <section className="mb-8">
                 <h2 className="mb-2 text-2xl font-semibold">
-                    Section 11 - Errors, Inaccuracies, and Omissions
+                    Section 14 - Errors, Inaccuracies, and Omissions
                 </h2>
 
                 <p className="mb-4">
@@ -365,7 +499,7 @@ export default function LegalPage() {
             <hr className="my-6" />
 
             <section className="mb-8">
-                <h2 className="mb-2 text-2xl font-semibold">Section 12 - Prohibited Uses</h2>
+                <h2 className="mb-2 text-2xl font-semibold">Section 15 - Prohibited Uses</h2>
 
                 <p className="mb-4">
                     In addition to other prohibitions outlined in these Terms of Service, you are
@@ -413,7 +547,7 @@ export default function LegalPage() {
 
             <section className="mb-8">
                 <h2 className="mb-2 text-2xl font-semibold">
-                    Section 13 - Disclaimer of Warranties; Limitation of Liability
+                    Section 16 - Disclaimer of Warranties; Limitation of Liability
                 </h2>
 
                 <p className="mb-4">
@@ -466,7 +600,7 @@ export default function LegalPage() {
             <hr className="my-6" />
 
             <section className="mb-8">
-                <h2 className="mb-2 text-2xl font-semibold">Section 14 - Indemnification</h2>
+                <h2 className="mb-2 text-2xl font-semibold">Section 17 - Indemnification</h2>
 
                 <p className="mb-4">
                     You agree to indemnify, defend and hold harmless Nutrinana and our parent,
@@ -482,7 +616,7 @@ export default function LegalPage() {
             <hr className="my-6" />
 
             <section className="mb-8">
-                <h2 className="mb-2 text-2xl font-semibold">Section 15 - Severability</h2>
+                <h2 className="mb-2 text-2xl font-semibold">Section 18 - Severability</h2>
 
                 <p className="mb-4">
                     In the event that any provision of these Terms of Service is determined to be
@@ -497,7 +631,7 @@ export default function LegalPage() {
             <hr className="my-6" />
 
             <section>
-                <h2 className="mb-2 text-2xl font-semibold">Section 16 - Termination</h2>
+                <h2 className="mb-2 text-2xl font-semibold">Section 19 - Termination</h2>
 
                 <p className="mb-4">
                     These Terms of Service are effective unless and until terminated by either you
@@ -510,6 +644,41 @@ export default function LegalPage() {
                     judgment, you fail to comply with any term or provision of these Terms of
                     Service. In such cases, you will remain liable for all amounts due up to and
                     including the date of termination.
+                </p>
+            </section>
+
+            <hr className="my-6" />
+
+            <section className="mb-8">
+                <h2 className="mb-4 text-2xl font-semibold">
+                    Section 20 - Events Outside Our Control
+                </h2>
+
+                <p className="mb-3">
+                    We shall not be liable for any delay or failure to perform our obligations where
+                    such delay or failure results from events beyond our reasonable control,
+                    including but not limited to:
+                </p>
+
+                <ul className="mb-4 list-disc pl-10">
+                    <li>Courier delays</li>
+                    <li>Industrial action</li>
+                    <li>Supply chain disruption</li>
+                    <li>Natural disasters</li>
+                    <li>Government restrictions</li>
+                </ul>
+            </section>
+
+            <hr className="my-6" />
+
+            <section className="mb-8">
+                <h2 className="mb-4 text-2xl font-semibold">Section 21 - Governing Law</h2>
+
+                <p className="mb-4">These Terms are governed by the laws of England and Wales.</p>
+
+                <p>
+                    Any disputes arising in connection with these Terms shall be subject to the
+                    exclusive jurisdiction of the courts of England and Wales.
                 </p>
             </section>
         </>
