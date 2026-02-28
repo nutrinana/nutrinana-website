@@ -12,22 +12,23 @@ import Link from "next/link";
  */
 export default function AuthLayout({ children }) {
     return (
-        <div className="flex min-h-screen flex-col bg-white">
-            {/* Logo at top */}
-            <div className="p-6 md:p-8">
+        <div className="bg-light-green/30 relative flex min-h-screen items-center justify-center px-4 py-12">
+            {/* Content */}
+            <div className="relative z-10 flex flex-col items-center gap-6">
+                {/* Logo */}
                 <Link href="/">
                     <Image
                         src="/nutrinana-logo.svg"
                         alt="Nutrinana"
-                        width={140}
-                        height={56}
-                        className="h-14 w-auto"
+                        width={120}
+                        height={48}
+                        className="h-12 w-auto"
                     />
                 </Link>
-            </div>
 
-            {/* Auth content */}
-            <div className="flex flex-1 items-center justify-center px-4 py-8">{children}</div>
+                {/* Auth Card */}
+                {children}
+            </div>
         </div>
     );
 }
