@@ -35,6 +35,22 @@ const feelingPassionate = localFont({
     display: "swap",
 });
 
+const clerkLocalization = {
+    signIn: {
+        start: {
+            title: "Welcome back",
+            subtitle:
+                "Sign in to view your orders, manage your subscription, and keep your pantry activated.",
+        },
+    },
+    signUp: {
+        start: {
+            title: "Join Nutrinana",
+            subtitle: "Set up your account to track orders and manage your subscription with ease.",
+        },
+    },
+};
+
 /**
  * Metadata for the page layout.
  * This includes the title, description, and Open Graph data for SEO and social sharing.
@@ -117,6 +133,7 @@ export default function RootLayout({ children }) {
                             colorPrimary: "var(--color-green)",
                         },
                     }}
+                    localization={clerkLocalization}
                 >
                     <CartProvider>
                         {/* Cookie Banner */}
