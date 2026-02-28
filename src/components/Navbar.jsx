@@ -37,10 +37,17 @@ export default function Navbar() {
 
         window.addEventListener("resize", handleResize);
 
+        if (isOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+        }
+
         return () => {
             window.removeEventListener("resize", handleResize);
+            document.body.style.overflow = "unset";
         };
-    }, []);
+    }, [isOpen]);
 
     // Navigation link definitions
     const navLinks = [
@@ -53,7 +60,7 @@ export default function Navbar() {
     return (
         <nav className="sticky top-0 z-50 w-full border-b border-gray-300 bg-white py-4">
             {/* Desktop auth & cart buttons */}
-            <div className="md:gap- pointer-events-auto absolute top-1/2 right-6 z-50 hidden -translate-y-1/2 md:flex md:items-center lg:right-12">
+            <div className="pointer-events-auto absolute top-1/2 right-6 z-50 hidden -translate-y-1/2 md:flex md:items-center md:gap-2 lg:right-12">
                 {/* Auth Buttons - Desktop */}
                 <SignedOut>
                     <SignInButton mode="redirect">
@@ -64,19 +71,13 @@ export default function Navbar() {
                 </SignedOut>
 
                 <SignedIn>
-                    {/* Account Link */}
-                    <Link
-                        href="/account"
-                        className="hover:text-green text-sm font-medium transition-colors"
-                    >
-                        Account
-                    </Link>
-
                     {/* User Button (avatar/menu) */}
                     <UserButton
+                        userProfileMode="navigation"
+                        userProfileUrl="/account"
                         appearance={{
                             elements: {
-                                avatarBox: "h-9 w-9",
+                                avatarBox: "h-8 w-8",
                             },
                         }}
                     />
@@ -213,7 +214,7 @@ export default function Navbar() {
 
             {/* Mobile menu overlay with slide-in effect */}
             <div
-                className={`fixed inset-0 z-50 flex h-screen w-full transform flex-col border-r border-gray-300 bg-white transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
+                className={`fixed inset-0 z-50 flex h-dvh w-full transform flex-col border-r border-gray-300 bg-white transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
             >
                 {/* Close button and logo in mobile menu */}
                 <div className="flex items-center px-4 py-4">
@@ -284,20 +285,39 @@ export default function Navbar() {
                 <SignedOut>
                     <div className="mt-auto px-8 py-6">
                         <SignInButton mode="redirect">
-                            <Button variant="green" size="lg" className="w-full">
-                                Sign In
+                            <Button
+                                variant="ghost"
+                                className="font-body text-md h-auto gap-3 text-black"
+                            >
+                                <User size={24} strokeWidth={1.5} />
+                                <span>Sign In</span>
                             </Button>
                         </SignInButton>
                     </div>
+
+                    <hr className="ml-8 w-[80%] border-gray-300" />
                 </SignedOut>
 
                 <SignedIn>
+                    <div className="mt-auto flex items-center gap-3 px-8 py-6">
+                        <UserButton
+                            userProfileMode="navigation"
+                            userProfileUrl="/account"
+                            appearance={{
+                                elements: {
+                                    avatarBox: "h-10 w-10",
+                                },
+                            }}
+                        />
+                        <span className="font-body text-lg text-black">Account</span>
+                    </div>
+
                     {/* Divider line */}
-                    <hr className="my-8 mt-auto ml-8 w-[80%] border-gray-300" />
+                    <hr className="ml-8 w-[80%] border-gray-300" />
                 </SignedIn>
 
                 {/* Social media buttons in mobile menu */}
-                <div className="flex w-full justify-start space-x-4 px-6 pb-6">
+                <div className="flex w-full justify-start space-x-4 px-6 py-6">
                     {/* Instagram */}
                     <Link
                         href="https://instagram.com/nutrinanaa"
@@ -336,21 +356,6 @@ export default function Navbar() {
                         />
                     </Link>
                 </div>
-
-                {/* User Button in mobile menu - moved to bottom */}
-                <SignedIn>
-                    <div className="flex items-center justify-between px-8 pb-6">
-                        <span className="text-sm text-gray-600">Signed in</span>
-                        <UserButton
-                            afterSignOutUrl="/"
-                            appearance={{
-                                elements: {
-                                    avatarBox: "h-10 w-10",
-                                },
-                            }}
-                        />
-                    </div>
-                </SignedIn>
             </div>
         </nav>
     );
