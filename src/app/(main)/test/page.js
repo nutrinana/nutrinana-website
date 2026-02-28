@@ -8,7 +8,6 @@ import LeaveReviewForm from "@/components/LeaveReviewForm";
 import Navbar from "@/components/Navbar";
 import NoteCard from "@/components/NoteCard";
 import NutritionTable from "@/components/NutritionTable";
-import ProductCard from "@/components/ProductCard";
 import ProductCarousel from "@/components/ProductCarousel";
 import RecentReviewCards from "@/components/RecentReviewCards";
 import SideSlider from "@/components/SideSlider";
