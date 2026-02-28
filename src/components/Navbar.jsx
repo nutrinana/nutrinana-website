@@ -56,7 +56,7 @@ export default function Navbar() {
             <div className="md:gap- pointer-events-auto absolute top-1/2 right-6 z-50 hidden -translate-y-1/2 md:flex md:items-center lg:right-12">
                 {/* Auth Buttons - Desktop */}
                 <SignedOut>
-                    <SignInButton mode="modal">
+                    <SignInButton mode="redirect">
                         <div className="bag-icon">
                             <User size={24} strokeWidth={1.5} />
                         </div>
@@ -283,7 +283,7 @@ export default function Navbar() {
                 {/* Auth section in mobile menu */}
                 <SignedOut>
                     <div className="mt-auto px-8 py-6">
-                        <SignInButton mode="modal">
+                        <SignInButton mode="redirect">
                             <Button variant="green" size="lg" className="w-full">
                                 Sign In
                             </Button>
