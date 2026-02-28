@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Montserrat, Playfair_Display } from "next/font/google";
 import localFont from "next/font/local";
 import { Toaster } from "sonner";
@@ -94,45 +95,47 @@ export default function RootLayout({ children }) {
     const yotpoStoreId = process.env.NEXT_PUBLIC_YOTPO_STORE_ID;
 
     return (
-        <html
-            lang="en"
-            className={`${montserrat.variable} ${playfairDisplay.variable} ${tanNimbus.variable} ${feelingPassionate.variable}`}
-        >
-            <head>
-                {/* Yotpo Reviews Loader Script */}
-                {yotpoStoreId && (
-                    <script
-                        id="yotpo-loader"
-                        src={`https://cdn-widgetsrepository.yotpo.com/v1/loader/${yotpoStoreId}`}
-                        type="text/plain"
-                        data-cookieconsent="statistics, marketing"
-                        async
-                    />
-                )}
-            </head>
-            <body className="flex min-h-screen flex-col overflow-x-hidden bg-white text-gray-900">
-                <CartProvider>
-                    {/* Cookie Banner */}
-                    <CookieBotConsent />
+        <ClerkProvider>
+            <html
+                lang="en"
+                className={`${montserrat.variable} ${playfairDisplay.variable} ${tanNimbus.variable} ${feelingPassionate.variable}`}
+            >
+                <head>
+                    {/* Yotpo Reviews Loader Script */}
+                    {yotpoStoreId && (
+                        <script
+                            id="yotpo-loader"
+                            src={`https://cdn-widgetsrepository.yotpo.com/v1/loader/${yotpoStoreId}`}
+                            type="text/plain"
+                            data-cookieconsent="statistics, marketing"
+                            async
+                        />
+                    )}
+                </head>
+                <body className="flex min-h-screen flex-col overflow-x-hidden bg-white text-gray-900">
+                    <CartProvider>
+                        {/* Cookie Banner */}
+                        <CookieBotConsent />
 
-                    {/* Banner Announcement */}
-                    <Banner />
+                        {/* Banner Announcement */}
+                        <Banner />
 
-                    {/* Sticky Navbar */}
-                    <Navbar />
+                        {/* Sticky Navbar */}
+                        <Navbar />
 
-                    {/* Main Page Content */}
-                    <main id="main-content" className="flex-1">
-                        {children}
-                    </main>
+                        {/* Main Page Content */}
+                        <main id="main-content" className="flex-1">
+                            {children}
+                        </main>
 
-                    {/* Footer */}
-                    <Footer />
+                        {/* Footer */}
+                        <Footer />
 
-                    {/* Toaster for notifications */}
-                    <Toaster position="bottom-right" richColors />
-                </CartProvider>
-            </body>
-        </html>
+                        {/* Toaster for notifications */}
+                        <Toaster position="bottom-right" richColors />
+                    </CartProvider>
+                </body>
+            </html>
+        </ClerkProvider>
     );
 }
