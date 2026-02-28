@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -53,13 +53,13 @@ export default function Navbar() {
     return (
         <nav className="sticky top-0 z-50 w-full border-b border-gray-300 bg-white py-4">
             {/* Desktop auth & cart buttons */}
-            <div className="pointer-events-auto absolute top-1/2 right-6 z-50 hidden -translate-y-1/2 md:flex md:items-center md:gap-3 lg:right-12">
+            <div className="md:gap- pointer-events-auto absolute top-1/2 right-6 z-50 hidden -translate-y-1/2 md:flex md:items-center lg:right-12">
                 {/* Auth Buttons - Desktop */}
                 <SignedOut>
                     <SignInButton mode="modal">
-                        <Button variant="outline" size="sm">
-                            Sign In
-                        </Button>
+                        <div className="bag-icon">
+                            <User size={24} strokeWidth={1.5} />
+                        </div>
                     </SignInButton>
                 </SignedOut>
 
@@ -74,7 +74,6 @@ export default function Navbar() {
 
                     {/* User Button (avatar/menu) */}
                     <UserButton
-                        afterSignOutUrl="/"
                         appearance={{
                             elements: {
                                 avatarBox: "h-9 w-9",
