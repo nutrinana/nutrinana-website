@@ -5,10 +5,7 @@ import { Montserrat, Playfair_Display } from "next/font/google";
 import localFont from "next/font/local";
 import { Toaster } from "sonner";
 
-import Banner from "@/components/Banner";
 import CookieBotConsent from "@/components/CookieBotConsent";
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
 import { CartProvider } from "@/hooks/useCart";
 
 const montserrat = Montserrat({
@@ -84,8 +81,8 @@ export const metadata = {
 
 /**
  * The root layout for the Nutrinana website.
- * Applies global styles, wraps all pages with the Navbar, Footer, and Banner components.
- * It also includes a Toaster for notifications.
+ * Applies global styles, wraps all pages with providers (Clerk and CartProvider).
+ * It also includes global components like the CookieBotConsent and Toaster.
  *
  * @param {object} props - The properties passed to the component.
  * @param {React.ReactNode} props.children - The child components to be rendered within the layout.
@@ -125,19 +122,8 @@ export default function RootLayout({ children }) {
                         {/* Cookie Banner */}
                         <CookieBotConsent />
 
-                        {/* Banner Announcement */}
-                        <Banner />
-
-                        {/* Sticky Navbar */}
-                        <Navbar />
-
-                        {/* Main Page Content */}
-                        <main id="main-content" className="flex-1">
-                            {children}
-                        </main>
-
-                        {/* Footer */}
-                        <Footer />
+                        {/* Children, (main) or (auth) */}
+                        {children}
 
                         {/* Toaster for notifications */}
                         <Toaster position="bottom-right" richColors />
