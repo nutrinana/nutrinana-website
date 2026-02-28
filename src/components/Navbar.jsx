@@ -264,21 +264,6 @@ export default function Navbar() {
                             </Link>
                         );
                     })}
-
-                    {/* Account link in mobile menu */}
-                    <SignedIn>
-                        <Link
-                            href="/account"
-                            className={`block w-full px-8 py-4 text-left text-2xl transition-all ${
-                                pathname === "/account"
-                                    ? "text-green font-bold"
-                                    : "hover:bg-muted hover:text-raisin text-gray-900"
-                            }`}
-                            onClick={() => setIsOpen(false)}
-                        >
-                            Account
-                        </Link>
-                    </SignedIn>
                 </div>
 
                 {/* Auth section in mobile menu */}
