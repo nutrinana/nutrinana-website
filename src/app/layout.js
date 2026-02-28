@@ -1,5 +1,6 @@
 import "@/styles/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import { shadcn } from "@clerk/themes";
 import { Montserrat, Playfair_Display } from "next/font/google";
 import localFont from "next/font/local";
 import { Toaster } from "sonner";
@@ -112,7 +113,14 @@ export default function RootLayout({ children }) {
                 )}
             </head>
             <body className="flex min-h-screen flex-col overflow-x-hidden bg-white text-gray-900">
-                <ClerkProvider>
+                <ClerkProvider
+                    appearance={{
+                        baseTheme: shadcn,
+                        variables: {
+                            colorPrimary: "var(--color-green)",
+                        },
+                    }}
+                >
                     <CartProvider>
                         {/* Cookie Banner */}
                         <CookieBotConsent />
