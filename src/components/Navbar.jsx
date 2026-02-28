@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -51,10 +52,40 @@ export default function Navbar() {
 
     return (
         <nav className="sticky top-0 z-50 w-full border-b border-gray-300 bg-white py-4">
-            {/* Desktop cart button */}
-            <div className="pointer-events-auto absolute top-1/2 right-6 z-50 hidden -translate-y-1/2 md:block lg:right-12">
+            {/* Desktop auth & cart buttons */}
+            <div className="pointer-events-auto absolute top-1/2 right-6 z-50 hidden -translate-y-1/2 md:flex md:items-center md:gap-3 lg:right-12">
+                {/* Auth Buttons - Desktop */}
+                <SignedOut>
+                    <SignInButton mode="modal">
+                        <Button variant="outline" size="sm">
+                            Sign In
+                        </Button>
+                    </SignInButton>
+                </SignedOut>
+
+                <SignedIn>
+                    {/* Account Link */}
+                    <Link
+                        href="/account"
+                        className="hover:text-green text-sm font-medium transition-colors"
+                    >
+                        Account
+                    </Link>
+
+                    {/* User Button (avatar/menu) */}
+                    <UserButton
+                        afterSignOutUrl="/"
+                        appearance={{
+                            elements: {
+                                avatarBox: "h-9 w-9",
+                            },
+                        }}
+                    />
+                </SignedIn>
+
                 <CartButton />
             </div>
+
             {/* Header wrapper */}
             <div className="flex w-full items-center justify-between px-4 sm:px-6 lg:px-8">
                 {/* Mobile layout: Hamburger left, logo center, cart right */}
@@ -233,10 +264,38 @@ export default function Navbar() {
                             </Link>
                         );
                     })}
+
+                    {/* Account link in mobile menu */}
+                    <SignedIn>
+                        <Link
+                            href="/account"
+                            className={`block w-full px-8 py-4 text-left text-2xl transition-all ${
+                                pathname === "/account"
+                                    ? "text-green font-bold"
+                                    : "hover:bg-muted hover:text-raisin text-gray-900"
+                            }`}
+                            onClick={() => setIsOpen(false)}
+                        >
+                            Account
+                        </Link>
+                    </SignedIn>
                 </div>
 
-                {/* Divider line */}
-                <hr className="my-8 mt-auto ml-8 w-[80%] border-gray-300" />
+                {/* Auth section in mobile menu */}
+                <SignedOut>
+                    <div className="mt-auto px-8 py-6">
+                        <SignInButton mode="modal">
+                            <Button variant="green" size="lg" className="w-full">
+                                Sign In
+                            </Button>
+                        </SignInButton>
+                    </div>
+                </SignedOut>
+
+                <SignedIn>
+                    {/* Divider line */}
+                    <hr className="my-8 mt-auto ml-8 w-[80%] border-gray-300" />
+                </SignedIn>
 
                 {/* Social media buttons in mobile menu */}
                 <div className="flex w-full justify-start space-x-4 px-6 pb-6">
@@ -278,6 +337,21 @@ export default function Navbar() {
                         />
                     </Link>
                 </div>
+
+                {/* User Button in mobile menu - moved to bottom */}
+                <SignedIn>
+                    <div className="flex items-center justify-between px-8 pb-6">
+                        <span className="text-sm text-gray-600">Signed in</span>
+                        <UserButton
+                            afterSignOutUrl="/"
+                            appearance={{
+                                elements: {
+                                    avatarBox: "h-10 w-10",
+                                },
+                            }}
+                        />
+                    </div>
+                </SignedIn>
             </div>
         </nav>
     );
