@@ -27,6 +27,11 @@ export default function Navbar() {
     const [granolaHovered, setGranolaHovered] = useState(false);
     const pathname = usePathname(); // Hook to get the current path
 
+    // Close mobile menu on route change
+    useEffect(() => {
+        setIsOpen(false);
+    }, [pathname]);
+
     // Close the mobile menu if screen is resized above mobile breakpoint
     useEffect(() => {
         const handleResize = () => {
