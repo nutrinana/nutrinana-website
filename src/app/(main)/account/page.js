@@ -170,7 +170,7 @@ export default async function AccountPage() {
                 reference: row.order_reference,
                 date: formatDate(row.created_at, "dd/mm/yyyy"),
                 total: formatMoneyFromMinor(payload.totals?.total || 0, "gbp"),
-                items: payload.items?.map((item) => `${item.name} × ${item.qty || 1}`) || [],
+                items: payload.items?.map((item) => `${item.name} x ${item.qty || 1}`) || [],
             };
         });
     } catch (error) {

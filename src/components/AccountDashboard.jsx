@@ -23,11 +23,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
  *
  * @returns {JSX.Element} Account dashboard UI with tabs for overview, profile, and orders.
  */
-export default function AccountDashboard({ user, orders }) {
+export default function AccountDashboard({ user = {}, orders = [] }) {
     const [activeTab, setActiveTab] = useState("overview");
 
-    const userEmail = user.email;
-    const userName = user.firstName || user.username || "Nutrinana Customer";
+    const userEmail = user?.email || "";
+    const userName = user?.firstName || user?.username || "Nutrinana Customer";
 
     return (
         <div className="site-container">
@@ -93,8 +93,14 @@ export default function AccountDashboard({ user, orders }) {
                                 <Button variant="green" asChild>
                                     <Link href="/activated-granola">Shop Granola</Link>
                                 </Button>
-                                <Button variant="outline" onClick={() => setActiveTab("orders")}>
-                                    Track Order
+                                <Button variant="outline" asChild>
+                                    <Link
+                                        href="https://aftercare.getpimento.com/nutrinana"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Track Order
+                                    </Link>
                                 </Button>
                                 <Button variant="outline" asChild>
                                     <Link href="/help">Get Help</Link>
@@ -105,16 +111,68 @@ export default function AccountDashboard({ user, orders }) {
 
                     {/* Profile Tab */}
                     <TabsContent value="profile">
-                        <div className="max-w-4xl">
-                            <UserProfile
-                                routing="hash"
-                                appearance={{
-                                    elements: {
-                                        card: "shadow-none border-0",
-                                        rootBox: "w-full",
-                                    },
-                                }}
-                            />
+                        <div className="grid gap-6 lg:grid-cols-3">
+                            {/* UserProfile - Takes 2 columns */}
+                            <div className="lg:col-span-2">
+                                <UserProfile
+                                    routing="hash"
+                                    appearance={{
+                                        elements: {
+                                            card: "shadow-none border-0",
+                                            rootBox: "w-full",
+                                        },
+                                    }}
+                                />
+                            </div>
+
+                            {/* Quick Actions Sidebar - Takes 1 column */}
+                            <div className="space-y-6">
+                                <div className="bg-light-green/20 rounded-xl p-6">
+                                    <h3 className="font-heading mb-4 text-xl font-bold">
+                                        Quick Actions
+                                    </h3>
+                                    <div className="flex flex-col gap-3">
+                                        <Button variant="green" asChild className="w-full">
+                                            <Link href="/activated-granola">Shop Granola</Link>
+                                        </Button>
+                                        <Button variant="outline" asChild className="w-full">
+                                            <Link
+                                                href="https://aftercare.getpimento.com/nutrinana"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                Track Order
+                                            </Link>
+                                        </Button>
+                                        <Button variant="outline" asChild className="w-full">
+                                            <Link
+                                                href={
+                                                    process.env
+                                                        .NEXT_PUBLIC_STRIPE_BILLING_PORTAL_URL ||
+                                                    "#"
+                                                }
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                Manage Subscriptions
+                                            </Link>
+                                        </Button>
+                                    </div>
+                                </div>
+
+                                {/* Help Card */}
+                                <div className="rounded-xl border bg-white p-6">
+                                    <h3 className="font-heading mb-2 text-lg font-bold">
+                                        Need Help?
+                                    </h3>
+                                    <p className="mb-4 text-sm text-gray-600">
+                                        Have questions about your account or orders?
+                                    </p>
+                                    <Button variant="outline" asChild className="w-full">
+                                        <Link href="/help">Contact Support</Link>
+                                    </Button>
+                                </div>
+                            </div>
                         </div>
                     </TabsContent>
 

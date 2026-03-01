@@ -437,3 +437,56 @@ a {
 .yotpo-icon-button {
     background-color: var(--yotpo-b2b-light-grey) !important;
 }
+
+/* Clerk User Profile Custom Styles */
+.user-profile-container {
+    container-type: inline-size;
+}
+
+.cl-userProfile-root {
+    width: 100%;
+}
+
+.cl-userProfile-root .cl-cardBox {
+    width: 100%;
+    box-shadow: none !important;
+}
+.cl-card {
+    box-shadow: none !important;
+}
+
+/* sm */
+@container (max-width: 30em) {
+    .cl-userProfile-root .cl-profileSection {
+        flex-direction: column-reverse;
+        gap: 0.5rem;
+    }
+}
+
+/* md */
+@contianer (max-width: 48em) {
+    .cl-userProfile-root .cl-navbar {
+        display: none;
+    }
+    .cl-userProfile-root .cl-navbarMobileMenuRow {
+        display: flex;
+    }
+    .cl-userProfile-root .cl-cardBox {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+/* lg */
+@container (max-width: 62em) {
+    .cl-userProfile-root .cl-profileSection {
+        flex-direction: column-reverse;
+        gap: 0.5rem;
+    }
+    .cl-userProfile-root .cl-profileSectionHeader {
+        align-self: self-start;
+        margin-top: unset;
+        transform: none;
+        padding: 0px;
+    }
+}
