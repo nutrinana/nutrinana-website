@@ -1,6 +1,6 @@
 // Account Dashboard Page
 import { currentUser } from "@clerk/nextjs/server";
-import { Package, Settings, CreditCard, User as UserIcon } from "lucide-react";
+import { Package, Settings, CreditCard, User as UserIcon, MoveRight } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -15,6 +15,10 @@ export default async function AccountPage() {
 
     const userEmail = user.emailAddresses[0]?.emailAddress;
     const userName = user.firstName || user.username || "Nutrinana Customer";
+
+    const billingPortalUrl =
+        process.env.STRIPE_BILLING_PORTAL_URL ||
+        "https://billing.stripe.com/p/login/8x23cvbfRcZd2O01TCgIo00";
 
     return (
         <div className="site-container">
@@ -43,14 +47,16 @@ export default async function AccountPage() {
                         <p className="mb-4 text-sm text-gray-600">
                             View your order history and track deliveries
                         </p>
-                        <span className="text-green text-sm font-medium group-hover:underline">
-                            View orders →
+                        <span className="text-green inline-flex items-center gap-1 text-sm font-medium group-hover:underline">
+                            View orders <MoveRight className="h-4 w-4" />
                         </span>
                     </Link>
 
                     {/* Subscriptions Card */}
                     <Link
-                        href="/account/subscriptions"
+                        href={billingPortalUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="group hover:border-green rounded-xl border border-gray-200 bg-white p-6 transition-all hover:shadow-lg"
                     >
                         <div className="mb-4 flex items-start justify-between">
@@ -62,8 +68,8 @@ export default async function AccountPage() {
                         <p className="mb-4 text-sm text-gray-600">
                             Manage your granola subscriptions
                         </p>
-                        <span className="text-green text-sm font-medium group-hover:underline">
-                            Manage subscriptions →
+                        <span className="text-green inline-flex items-center gap-1 text-sm font-medium group-hover:underline">
+                            Manage subscriptions <MoveRight className="h-4 w-4" />
                         </span>
                     </Link>
 
@@ -81,8 +87,8 @@ export default async function AccountPage() {
                         <p className="mb-4 text-sm text-gray-600">
                             Update your personal information
                         </p>
-                        <span className="text-green text-sm font-medium group-hover:underline">
-                            Edit profile →
+                        <span className="text-green inline-flex items-center gap-1 text-sm font-medium group-hover:underline">
+                            Edit profile <MoveRight className="h-4 w-4" />
                         </span>
                     </Link>
 
@@ -100,8 +106,8 @@ export default async function AccountPage() {
                         <p className="mb-4 text-sm text-gray-600">
                             Manage preferences and notifications
                         </p>
-                        <span className="text-green text-sm font-medium group-hover:underline">
-                            View settings →
+                        <span className="text-green inline-flex items-center gap-1 text-sm font-medium group-hover:underline">
+                            View settings <MoveRight className="h-4 w-4" />
                         </span>
                     </Link>
                 </div>
