@@ -23,24 +23,25 @@ export default async function AccountPage() {
                 created_at,
                 payload_json
              FROM stripe_fulfillments 
-             WHERE payload_json->>'customerEmail' = $1 
+             WHERE payload_json->'customer'->>'email' = $1 
              ORDER BY created_at DESC
              LIMIT 10`,
             [email]
         );
 
         orders = rows.map((row) => {
-            const payload = JSON.parse(row.payload_json);
+            const payload = row.payload_json;
 
             return {
                 reference: row.order_reference,
                 date: formatDate(row.created_at, "dd/mm/yyyy"),
-                total: formatMoneyFromMinor(payload.totals?.total || 0, "gbp"),
-                items: payload.items?.map((item) => `${item.name} x ${item.qty || 1}`) || [],
+                total: formatMoneyFromMinor(payload.totals?.amountTotal || 0, "gbp"),
+                items: payload.items?.map((item) => `${item.name} x ${item.quantity || 1}`) || [],
             };
         });
     } catch (error) {
         console.error("Error fetching orders:", error);
+        orders = [];
     }
 
     const userData = {
