@@ -112,7 +112,7 @@ export default function AccountDashboard({ user = {}, orders = [] }) {
                     {/* Profile Tab */}
                     <TabsContent value="profile">
                         <div className="grid gap-6 lg:grid-cols-3">
-                            {/* UserProfile - Takes 2 columns */}
+                            {/* UserProfile */}
                             <div className="lg:col-span-2">
                                 <UserProfile
                                     routing="hash"
@@ -125,7 +125,7 @@ export default function AccountDashboard({ user = {}, orders = [] }) {
                                 />
                             </div>
 
-                            {/* Quick Actions Sidebar - Takes 1 column */}
+                            {/* Quick Actions Sidebar */}
                             <div className="space-y-6">
                                 <div className="bg-light-green/20 rounded-xl p-6">
                                     <h3 className="font-heading mb-4 text-xl font-bold">
