@@ -1,0 +1,127 @@
+// Account Dashboard Page
+import { currentUser } from "@clerk/nextjs/server";
+import { Package, Settings, CreditCard, User as UserIcon } from "lucide-react";
+import Link from "next/link";
+import { redirect } from "next/navigation";
+
+import { Button } from "@/components/ui/button";
+
+export default async function AccountPage() {
+    const user = await currentUser();
+
+    if (!user) {
+        redirect("/sign-in");
+    }
+
+    const userEmail = user.emailAddresses[0]?.emailAddress;
+    const userName = user.firstName || user.username || "Nutrinana Customer";
+
+    return (
+        <div className="site-container">
+            <section className="section-y:first-child">
+                {/* Welcome Header */}
+                <div className="mb-8">
+                    <h1 className="font-heading text-raisin mb-2 text-4xl font-bold">
+                        Welcome back, {userName}!
+                    </h1>
+                    <p className="text-gray-600">{userEmail}</p>
+                </div>
+
+                {/* Dashboard Grid */}
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    {/* Orders Card */}
+                    <Link
+                        href="/account/orders"
+                        className="group hover:border-green rounded-xl border border-gray-200 bg-white p-6 transition-all hover:shadow-lg"
+                    >
+                        <div className="mb-4 flex items-start justify-between">
+                            <div className="bg-green/10 rounded-full p-3">
+                                <Package className="text-green h-6 w-6" />
+                            </div>
+                        </div>
+                        <h3 className="font-heading mb-2 text-xl font-bold">Orders</h3>
+                        <p className="mb-4 text-sm text-gray-600">
+                            View your order history and track deliveries
+                        </p>
+                        <span className="text-green text-sm font-medium group-hover:underline">
+                            View orders →
+                        </span>
+                    </Link>
+
+                    {/* Subscriptions Card */}
+                    <Link
+                        href="/account/subscriptions"
+                        className="group hover:border-green rounded-xl border border-gray-200 bg-white p-6 transition-all hover:shadow-lg"
+                    >
+                        <div className="mb-4 flex items-start justify-between">
+                            <div className="bg-yellow/20 rounded-full p-3">
+                                <CreditCard className="h-6 w-6 text-yellow-600" />
+                            </div>
+                        </div>
+                        <h3 className="font-heading mb-2 text-xl font-bold">Subscriptions</h3>
+                        <p className="mb-4 text-sm text-gray-600">
+                            Manage your granola subscriptions
+                        </p>
+                        <span className="text-green text-sm font-medium group-hover:underline">
+                            Manage subscriptions →
+                        </span>
+                    </Link>
+
+                    {/* Profile Card */}
+                    <Link
+                        href="/account/profile"
+                        className="group hover:border-green rounded-xl border border-gray-200 bg-white p-6 transition-all hover:shadow-lg"
+                    >
+                        <div className="mb-4 flex items-start justify-between">
+                            <div className="rounded-full bg-blue-100 p-3">
+                                <UserIcon className="h-6 w-6 text-blue-600" />
+                            </div>
+                        </div>
+                        <h3 className="font-heading mb-2 text-xl font-bold">Profile</h3>
+                        <p className="mb-4 text-sm text-gray-600">
+                            Update your personal information
+                        </p>
+                        <span className="text-green text-sm font-medium group-hover:underline">
+                            Edit profile →
+                        </span>
+                    </Link>
+
+                    {/* Settings Card */}
+                    <Link
+                        href="/account/settings"
+                        className="group hover:border-green rounded-xl border border-gray-200 bg-white p-6 transition-all hover:shadow-lg"
+                    >
+                        <div className="mb-4 flex items-start justify-between">
+                            <div className="rounded-full bg-gray-100 p-3">
+                                <Settings className="h-6 w-6 text-gray-600" />
+                            </div>
+                        </div>
+                        <h3 className="font-heading mb-2 text-xl font-bold">Settings</h3>
+                        <p className="mb-4 text-sm text-gray-600">
+                            Manage preferences and notifications
+                        </p>
+                        <span className="text-green text-sm font-medium group-hover:underline">
+                            View settings →
+                        </span>
+                    </Link>
+                </div>
+
+                {/* Quick Actions */}
+                <div className="bg-light-green/20 mt-12 rounded-xl p-6 md:p-8">
+                    <h2 className="font-heading mb-4 text-2xl font-bold">Quick Actions</h2>
+                    <div className="flex flex-wrap gap-3">
+                        <Button variant="green" asChild>
+                            <Link href="/activated-granola">Shop Granola</Link>
+                        </Button>
+                        <Button variant="outline" asChild>
+                            <Link href="/account/orders">Track Order</Link>
+                        </Button>
+                        <Button variant="outline" asChild>
+                            <Link href="/help">Get Help</Link>
+                        </Button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    );
+}
