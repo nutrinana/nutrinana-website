@@ -289,10 +289,8 @@ export default function Navbar() {
                 </SignedOut>
 
                 <SignedIn>
-                    <div className="mt-auto flex items-center gap-3 px-8 py-6">
+                    <Link href="/account" className="mt-auto flex items-center gap-3 px-8 py-6">
                         <UserButton
-                            userProfileMode="navigation"
-                            userProfileUrl="/account"
                             appearance={{
                                 elements: {
                                     avatarBox: "h-10 w-10",
@@ -300,7 +298,7 @@ export default function Navbar() {
                             }}
                         />
                         <span className="font-body text-lg text-black">Account</span>
-                    </div>
+                    </Link>
 
                     {/* Divider line */}
                     <hr className="ml-8 w-[80%] border-gray-300" />
