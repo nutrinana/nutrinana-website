@@ -289,7 +289,7 @@ export default function Navbar() {
                 </SignedOut>
 
                 <SignedIn>
-                    <Link href="/account" className="mt-auto flex items-center gap-3 px-8 py-6">
+                    <div className="mt-auto flex items-center gap-3 px-8 py-6">
                         <UserButton
                             appearance={{
                                 elements: {
@@ -297,10 +297,13 @@ export default function Navbar() {
                                 },
                             }}
                         />
-                        <span className="font-body text-lg text-black">Account</span>
-                    </Link>
+                        <Link href="/account" onClick={() => setIsOpen(false)}>
+                            <span className="font-body hover:text-green cursor-pointer text-lg text-black transition-colors">
+                                Account
+                            </span>
+                        </Link>
+                    </div>
 
-                    {/* Divider line */}
                     <hr className="ml-8 w-[80%] border-gray-300" />
                 </SignedIn>
 
