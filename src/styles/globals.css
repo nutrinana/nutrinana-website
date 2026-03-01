@@ -464,7 +464,7 @@ a {
 }
 
 /* md */
-@contianer (max-width: 48em) {
+@container (max-width: 48em) {
     .cl-userProfile-root .cl-navbar {
         display: none;
     }
