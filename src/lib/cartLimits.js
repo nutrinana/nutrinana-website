@@ -1,7 +1,7 @@
 import { toast } from "sonner";
 
-export const MAX_QTY = 20;
-export const BULK_THRESHOLD = 10;
+export const MAX_QTY = 10;
+export const BULK_THRESHOLD = 6;
 
 /**
  * Shows a bulk pricing toast notification if the quantity meets or exceeds the bulk threshold.
@@ -12,7 +12,7 @@ export const BULK_THRESHOLD = 10;
  */
 export function showBulkToast(qty) {
     if (qty >= BULK_THRESHOLD) {
-        toast.info("Need more than 20 bags? Contact us for bulk pricing.", {
+        toast.info("Need more than 10 bags? Contact us for bulk pricing.", {
             action: {
                 label: "Contact Us",
                 onClick: () => (window.location.href = "/help"),
@@ -30,7 +30,7 @@ export function showBulkToast(qty) {
  */
 export function showMaxQtyToast() {
     toast.warning(
-        "You've reached the maximum of 20 bags. Need more? Contact us for bulk pricing.",
+        "You've reached the maximum of 10 bags. Need more? Contact us for bulk pricing.",
         {
             action: {
                 label: "Contact Us",

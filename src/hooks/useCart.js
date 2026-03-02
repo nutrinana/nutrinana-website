@@ -49,7 +49,7 @@ export function CartProvider({ children }) {
     const [items, setItems] = useState([]);
     const [hydrated, setHydrated] = useState(false);
     const clearedBeforeHydrateRef = useRef(false);
-    const MAX_QTY = 20;
+    const MAX_QTY = 10;
 
     useEffect(() => {
         if (typeof window === "undefined") {
