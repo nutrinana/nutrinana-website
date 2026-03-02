@@ -78,6 +78,7 @@ const productData = {
     reviewId: "activated-granola",
     accordionData: accordionData,
     productId: "NUTR-GRAN-MFC-500G",
+    pimentoProductId: process.env.NEXT_PUBLIC_PIMENTO_PRODUCT_ID_MFC,
 };
 
 /**

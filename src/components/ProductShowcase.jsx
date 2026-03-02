@@ -30,6 +30,7 @@ import "@/styles/globals.css";
  * @param {string} props.reviewId - The external identifier from Yotpo for the product (used for fetching ratings).
  * @param {Object[]} [props.accordionData] - Optional array of accordion items to display below shop buttons.
  * @param {string} props.productId - The product ID used for adding to the bag.
+ * @param {string} props.pimentoProductId - The product ID used for checking availability via Pimento API.
  *
  * @returns {JSX.Element} The rendered ProductShowcase component.
  */
@@ -43,6 +44,7 @@ export default function ProductShowcase({
     reviewId = "",
     accordionData = [],
     productId = "",
+    pimentoProductId,
 }) {
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
     const averageRating = useProductRating(reviewId || "");
@@ -181,7 +183,10 @@ export default function ProductShowcase({
                         {/* Add to bag */}
                         {productId && (
                             <div className="mt-auto pt-4">
-                                <AddToBagButton productId={productId} />
+                                <AddToBagButton
+                                    productId={productId}
+                                    pimentoProductId={pimentoProductId}
+                                />
                             </div>
                         )}
 

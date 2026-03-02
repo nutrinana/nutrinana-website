@@ -63,6 +63,7 @@ const products = [
         price: "£8.50",
         reviewId: "activated-granola",
         productId: "NUTR-GRAN-MFC-500G",
+        pimentoProductId: process.env.NEXT_PUBLIC_PIMENTO_PRODUCT_ID_MFC,
     },
 ];
 

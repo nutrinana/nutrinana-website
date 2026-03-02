@@ -24,6 +24,7 @@ import "@/styles/globals.css";
  * @param {string} props.price - The price of the product.
  * @param {string} props.reviewId - The external identifier from Yotpo for the product (used for fetching ratings).
  * @param {string} props.productId - The product ID used for adding to the bag.
+ * @param {string} props.pimentoProductId - The product ID used for checking availability via Pimento API.
  *
  * @returns {JSX.Element} The rendered ProductCard component.
  */
@@ -35,6 +36,7 @@ export default function ProductCard({
     price,
     reviewId = "",
     productId = "",
+    pimentoProductId,
 }) {
     const router = useRouter();
     const averageRating = useProductRating(reviewId || "");
@@ -141,7 +143,10 @@ export default function ProductCard({
                         {/* Add to bag */}
                         {productId && (
                             <div className="mt-auto pt-4">
-                                <AddToBagButton productId={productId} />
+                                <AddToBagButton
+                                    productId={productId}
+                                    pimentoProductId={pimentoProductId}
+                                />
                             </div>
                         )}
                     </div>
