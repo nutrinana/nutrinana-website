@@ -1,4 +1,4 @@
-// Shopping cart page for Nutrinana
+// Shopping Cart page for Nutrinana
 "use client";
 
 import { useState } from "react";
@@ -12,6 +12,7 @@ import PurchaseTypeSelector from "@/components/PurchaseTypeSelector";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/hooks/useCart";
 import { useCheckout } from "@/hooks/useCheckout";
+import { MAX_QTY, showBulkToast } from "@/lib/cartLimits";
 import { calcSubtotalGBP, calcItemCount } from "@/lib/cartTotals";
 import { getProduct } from "@/lib/products";
 
@@ -19,10 +20,19 @@ export default function CartPage() {
     const { items, setQty, removeItem, clear } = useCart();
     const { checkout, isCheckingOut, checkoutError } = useCheckout();
 
-    const [purchaseType, setPurchaseType] = useState("one_off"); // "one_off" | "monthly"
+    const [purchaseType, setPurchaseType] = useState("one_off");
 
     const itemCount = calcItemCount(items);
     const subtotal = calcSubtotalGBP(items, getProduct);
+
+    const handleIncrease = (productId, currentQty) => {
+        const newQty = currentQty + 1;
+        if (newQty > MAX_QTY) {
+            return;
+        }
+        setQty(productId, newQty);
+        showBulkToast(newQty);
+    };
 
     if (items.length === 0) {
         return (
@@ -56,18 +66,17 @@ export default function CartPage() {
             <section className="section-y:first-child">
                 <div className="grid gap-8 lg:grid-cols-3">
                     <div className="space-y-6 lg:col-span-2">
-                        {items.map(({ productId, qty }) => {
-                            return (
-                                <CartLineItem
-                                    key={productId}
-                                    productId={productId}
-                                    qty={qty}
-                                    onDecrease={() => setQty(productId, Math.max(1, qty - 1))}
-                                    onIncrease={() => setQty(productId, qty + 1)}
-                                    onRemove={() => removeItem(productId)}
-                                />
-                            );
-                        })}
+                        {items.map(({ productId, qty }) => (
+                            <CartLineItem
+                                key={productId}
+                                productId={productId}
+                                qty={qty}
+                                onDecrease={() => setQty(productId, Math.max(1, qty - 1))}
+                                onIncrease={() => handleIncrease(productId, qty)}
+                                onRemove={() => removeItem(productId)}
+                                atMax={qty >= MAX_QTY}
+                            />
+                        ))}
                     </div>
 
                     <div className="lg:col-span-1">

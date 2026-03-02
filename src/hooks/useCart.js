@@ -49,6 +49,7 @@ export function CartProvider({ children }) {
     const [items, setItems] = useState([]);
     const [hydrated, setHydrated] = useState(false);
     const clearedBeforeHydrateRef = useRef(false);
+    const MAX_QTY = 20;
 
     useEffect(() => {
         if (typeof window === "undefined") {
@@ -90,11 +91,10 @@ export function CartProvider({ children }) {
         setItems((prev) => {
             const idx = prev.findIndex((x) => x.productId === productId);
             if (idx === -1) {
-                return [...prev, { productId, qty: n }];
+                return [...prev, { productId, qty: Math.min(n, MAX_QTY) }];
             }
-
             const copy = [...prev];
-            copy[idx] = { ...copy[idx], qty: copy[idx].qty + n };
+            copy[idx] = { ...copy[idx], qty: Math.min(copy[idx].qty + n, MAX_QTY) };
 
             return copy;
         });
@@ -111,7 +111,7 @@ export function CartProvider({ children }) {
 
         setItems((prev) =>
             prev
-                .map((x) => (x.productId === productId ? { ...x, qty: n } : x))
+                .map((x) => (x.productId === productId ? { ...x, qty: Math.min(n, MAX_QTY) } : x))
                 .filter((x) => x.qty > 0)
         );
     }, []);
@@ -144,6 +144,13 @@ export function CartProvider({ children }) {
         [items]
     );
 
+    const getItemQty = useCallback(
+        (productId) => {
+            return items.find((x) => x.productId === productId)?.qty ?? 0;
+        },
+        [items]
+    );
+
     const value = useMemo(
         () => ({
             items,
@@ -152,8 +159,9 @@ export function CartProvider({ children }) {
             removeItem,
             clear,
             toCheckoutPayload,
+            getItemQty,
         }),
-        [items, addItem, setQty, removeItem, clear, toCheckoutPayload]
+        [items, addItem, setQty, removeItem, clear, toCheckoutPayload, getItemQty]
     );
 
     return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

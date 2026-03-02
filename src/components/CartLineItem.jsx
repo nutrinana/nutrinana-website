@@ -19,12 +19,12 @@ import { getProduct } from "@/lib/products";
  * @param {Function} props.onDecrease - Handler to decrease the quantity.
  * @param {Function} props.onIncrease - Handler to increase the quantity.
  * @param {Function} props.onRemove - Handler to remove the item from the cart.
+ * @param {boolean} props.atMax - Whether the item is at the maximum quantity.
  *
  * @returns {JSX.Element} The rendered CartLineItem component.
  */
-export default function CartLineItem({ productId, qty, onDecrease, onIncrease, onRemove }) {
+export default function CartLineItem({ productId, qty, onDecrease, onIncrease, onRemove, atMax }) {
     const product = getProduct(productId);
-
     if (!product) {
         return null;
     }
@@ -46,7 +46,6 @@ export default function CartLineItem({ productId, qty, onDecrease, onIncrease, o
                         sizes="64px"
                     />
                 </div>
-
                 <div>
                     <h2 className="font-medium">{product.name}</h2>
                     <p className="text-sm text-gray-600">
@@ -62,7 +61,9 @@ export default function CartLineItem({ productId, qty, onDecrease, onIncrease, o
                         variant="unstyled"
                         size="icon"
                         onClick={onDecrease}
+                        disabled={qty === 1}
                         aria-label="Decrease quantity"
+                        className="disabled:opacity-40"
                     >
                         <Minus size={14} />
                     </Button>
@@ -75,7 +76,9 @@ export default function CartLineItem({ productId, qty, onDecrease, onIncrease, o
                         variant="unstyled"
                         size="icon"
                         onClick={onIncrease}
+                        disabled={atMax}
                         aria-label="Increase quantity"
+                        className="disabled:opacity-40"
                     >
                         <Plus size={14} />
                     </Button>
