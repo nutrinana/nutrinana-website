@@ -491,14 +491,12 @@ a {
     }
 }
 
-/* Info toast action button - blue */
 [data-sonner-toaster] [data-type="info"] [data-button] {
     background-color: var(--info-text) !important;
     color: white !important;
     border: none !important;
 }
 
-/* Warning toast action button - orange */
 [data-sonner-toaster] [data-type="warning"] [data-button] {
     background-color: var(--warning-text) !important;
     color: white !important;
