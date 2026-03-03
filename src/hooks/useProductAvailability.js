@@ -16,6 +16,8 @@ const fetcher = (url) => fetch(url).then((r) => r.json());
  *  - isLoading: A boolean indicating whether the availability check is still loading.
  */
 export function useProductAvailability(pimentoProductId) {
+    const checkAvailability = process.env.NEXT_PUBLIC_CHECK_AVAILABILITY !== "false";
+
     const { data, isLoading } = useSWR(
         pimentoProductId
             ? `/api/pimento/products/availability?pimentoProductId=${pimentoProductId}`
@@ -23,6 +25,10 @@ export function useProductAvailability(pimentoProductId) {
         fetcher,
         { refreshInterval: 300_000 }
     );
+
+    if (!checkAvailability) {
+        return { available: true, isLoading: false };
+    }
 
     return {
         available: data?.available ?? true,
