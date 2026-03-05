@@ -138,7 +138,7 @@ export default function CheckoutSuccessPage() {
                                                     className="flex items-start gap-3 border-b pb-3 last:border-0 last:pb-0 sm:gap-4 sm:pb-4"
                                                 >
                                                     {/* Product Image */}
-                                                    <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg bg-white sm:h-20 sm:w-20">
+                                                    <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-white sm:h-20 sm:w-20">
                                                         <Image
                                                             src={getProductImage(item.name)}
                                                             alt={item.name}
@@ -241,7 +241,7 @@ export default function CheckoutSuccessPage() {
                                 </h2>
                                 <div className="space-y-4 sm:space-y-5">
                                     <div className="flex items-start gap-3 sm:gap-4">
-                                        <div className="bg-green flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white sm:h-8 sm:w-8 sm:text-sm">
+                                        <div className="bg-green flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white sm:h-8 sm:w-8 sm:text-sm">
                                             1
                                         </div>
                                         <div className="flex-1">
@@ -255,7 +255,7 @@ export default function CheckoutSuccessPage() {
                                         </div>
                                     </div>
                                     <div className="flex items-start gap-3 sm:gap-4">
-                                        <div className="bg-green flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white sm:h-8 sm:w-8 sm:text-sm">
+                                        <div className="bg-green flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white sm:h-8 sm:w-8 sm:text-sm">
                                             2
                                         </div>
                                         <div className="flex-1">
@@ -269,7 +269,7 @@ export default function CheckoutSuccessPage() {
                                         </div>
                                     </div>
                                     <div className="flex items-start gap-3 sm:gap-4">
-                                        <div className="bg-green flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white sm:h-8 sm:w-8 sm:text-sm">
+                                        <div className="bg-green flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white sm:h-8 sm:w-8 sm:text-sm">
                                             3
                                         </div>
                                         <div className="flex-1">

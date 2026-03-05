@@ -9,11 +9,10 @@ import { toast } from "sonner";
  * @hook
  *
  * @param {Object} form - The form object containing methods for handling form state and submission.
- * @param {string} productId - The unique identifier for the product being reviewed.
  *
  * @returns {Object} An object containing the handleSubmit function to be used in the form submission.
  */
-export function useSubmitReviewForm(form, productId) {
+export function useSubmitReviewForm(form) {
     const onSubmit = async (data) => {
         try {
             // Validate the form data

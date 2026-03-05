@@ -37,7 +37,7 @@ export async function POST(req) {
             })
         );
 
-        const response = await resend.emails.send({
+        await resend.emails.send({
             from: "Nutrinana Help <noreply@nutrinana.co.uk>",
             to: email,
             bcc: "nana@nutrinana.co.uk",
