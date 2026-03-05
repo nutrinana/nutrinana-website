@@ -175,8 +175,6 @@ function buildPimentoCreateOrderRequest({ orderReference, stripePayload }) {
 
     const channelId = session?.id || session?.payment_intent || orderReference;
 
-    const totalQty = items.reduce((sum, i) => sum + (i.quantity || 1), 0);
-
     const request = {
         b2b: false,
         channel: "nutrinana",
@@ -194,7 +192,7 @@ function buildPimentoCreateOrderRequest({ orderReference, stripePayload }) {
         customer_address,
         items,
         note: buildNoteFromStripe(session),
-        shipping_method: resolveShippingMethod(session, totalQty),
+        shipping_method: stripePayload?.shippingMethod,
     };
 
     return stripUndefined(request);
@@ -263,36 +261,6 @@ function buildNoteFromStripe(session) {
     }
 
     return parts.length ? parts.join(" | ") : undefined;
-}
-
-/**
- * Helper to resolve shipping method from Stripe session data.
- *
- * @param {object} session - Stripe checkout session.
- *
- * @returns {string} "Standard" or "Express"
- */
-function resolveShippingMethod(session, totalQty) {
-    const displayName = (
-        session?.shipping_cost?.shipping_rate?.display_name ||
-        session?.shipping_details?.shipping_rate?.display_name ||
-        session?.shipping_method ||
-        ""
-    ).toLowerCase();
-
-    const isExpress = displayName.includes("express");
-    const isHeavy = totalQty >= 4;
-    const isFreeStandard = totalQty >= 3;
-
-    if (isExpress) {
-        return isHeavy ? "Express Heavy Rate (4+ bags)" : "Express Shipping (under 2kg)";
-    }
-
-    if (isFreeStandard) {
-        return "Free Standard Shipping (3+ bags)";
-    }
-
-    return "Standard Shipping";
 }
 
 /**

@@ -44,8 +44,8 @@ function getShippingOptions(totalQty) {
     const expressAmount = isHeavyExpress ? toInt(expressHvyAmount) : toInt(expressStdAmount);
 
     const standardLabel = isFreeStandard
-        ? "Free Standard Delivery - Royal Mail Tracked 48"
-        : "Standard Delivery - Royal Mail Tracked 48";
+        ? "Free Standard Shipping - Royal Mail Tracked 48"
+        : "Standard Shipping - Royal Mail Tracked 48";
 
     return [
         {
@@ -63,7 +63,7 @@ function getShippingOptions(totalQty) {
             shipping_rate_data: {
                 type: "fixed_amount",
                 fixed_amount: { amount: expressAmount, currency: "gbp" },
-                display_name: "Express Delivery - Royal Mail Tracked 24",
+                display_name: "Express Shipping - Royal Mail Tracked 24",
                 delivery_estimate: {
                     minimum: { unit: "business_day", value: 1 },
                     maximum: { unit: "business_day", value: 3 },

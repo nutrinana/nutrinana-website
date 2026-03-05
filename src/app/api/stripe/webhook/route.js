@@ -268,6 +268,35 @@ function deriveRenewalFrequency(subscription) {
 }
 
 /**
+ * Helper to resolve shipping method from Stripe session data.
+ *
+ * @param {object} session - Stripe checkout session.
+ *
+ * @returns {string} "Standard" or "Express"
+ */
+function resolveShippingMethod(session, totalQty) {
+    const displayName = (
+        session?.shipping_cost?.shipping_rate?.display_name ||
+        session?.shipping_details?.shipping_rate?.display_name ||
+        session?.shipping_method ||
+        ""
+    ).toLowerCase();
+
+    const isExpress = displayName.includes("express");
+    const isFreeStandard = totalQty >= 3;
+
+    if (isExpress) {
+        return "Express Shipping - Royal Mail Tracked 24";
+    }
+
+    if (isFreeStandard) {
+        return "Free Standard Shipping - Royal Mail Tracked 48";
+    }
+
+    return "Standard Shipping - Royal Mail Tracked 48";
+}
+
+/**
  * Extract customer data from invoice and subscription objects.
  *
  * @param {object} invoice - Stripe invoice object
@@ -605,6 +634,9 @@ function buildOrderPayloadFromSession(session) {
         });
     }
 
+    const totalQty = items.reduce((sum, i) => sum + (i.quantity || 1), 0);
+    const shippingMethod = resolveShippingMethod(session, totalQty);
+
     const checkoutSessionId = session.id;
     const paymentIntentId =
         typeof session.payment_intent === "string"
@@ -676,7 +708,7 @@ function buildOrderPayloadFromSession(session) {
         },
 
         items,
-
+        shippingMethod: shippingMethod,
         purchaseType: purchaseType || null,
         renewalFrequency,
         renewalDate,
