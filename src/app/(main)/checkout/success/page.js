@@ -277,8 +277,12 @@ export default function CheckoutSuccessPage() {
                                                 Delivery
                                             </p>
                                             <p className="text-xs text-black/80 sm:text-sm">
-                                                Your order will arrive within 3-5 business days.
-                                                Track your delivery via the link in your email.
+                                                We&apos;ll send you tracking details as soon as your
+                                                order is dispatched. You can follow your delivery
+                                                using the link in your email, or read more on our{" "}
+                                                <Link href="/legal/delivery" className="underline">
+                                                    Delivery &amp; Returns
+                                                </Link>{" "}
                                             </p>
                                         </div>
                                     </div>
