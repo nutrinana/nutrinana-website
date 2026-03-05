@@ -22,7 +22,7 @@ export const PRODUCTS = {
         pimentoProductId: process.env.NEXT_PUBLIC_PIMENTO_PRODUCT_ID_MFC,
         size: "500g",
         stripeLookupKeyBase: "granola_mfc_500g",
-        displayPriceGBP: 8.5,
+        displayPriceGBP: Number(process.env.NEXT_PUBLIC_PRODUCT_PRICE_GBP ?? 10.99),
         vatRate: 0.2,
     },
     "activated-granola-chh": {
@@ -32,7 +32,7 @@ export const PRODUCTS = {
         pimentoProductId: process.env.NEXT_PUBLIC_PIMENTO_PRODUCT_ID_CHH,
         size: "500g",
         stripeLookupKeyBase: "granola_chh_500g",
-        displayPriceGBP: 8.5,
+        displayPriceGBP: Number(process.env.NEXT_PUBLIC_PRODUCT_PRICE_GBP ?? 10.99),
         vatRate: 0.2,
     },
 };

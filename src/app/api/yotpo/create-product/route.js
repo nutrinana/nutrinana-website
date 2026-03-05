@@ -45,7 +45,7 @@ export async function GET() {
             "Nutrinana's Activated Granola is a premium, hand-crafted blend of activated nuts and seeds, with natural ingredients designed to nourish your mornings.",
         url: "https://www.nutrinana.co.uk/activated-granola",
         image_url: "https://www.nutrinana.co.uk/products/mixed-fruits/granola1.jpg",
-        price: 8.5,
+        price: 10.99,
         currency: "GBP",
         sku: "NUTR-GRAN",
     };
@@ -142,7 +142,7 @@ export async function GET() {
             if (updateText.trim()) {
                 try {
                     productResponse = JSON.parse(updateText);
-                } catch (e) {
+                } catch {
                     return new Response(
                         JSON.stringify({
                             message: "Product update response not valid JSON",

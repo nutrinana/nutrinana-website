@@ -15,7 +15,7 @@ const mainProduct = {
     name: "Nutrinana's Activated Granola",
     url: "https://www.nutrinana.co.uk/activated-granola",
     imageUrl: "https://www.nutrinana.co.uk/products/mixed-fruits/granola1.jpg",
-    price: 8.5,
+    price: Number(process.env.NEXT_PUBLIC_PRODUCT_PRICE_GBP ?? 10.99),
     currency: "GBP",
     description: "A delicious and nutritious base granola for all flavours.",
 };

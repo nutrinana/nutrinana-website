@@ -60,7 +60,7 @@ const products = [
         title: "Nutrinana's Activated Granola",
         subtitle: "mixed fruits & coconuts",
         features: ["Gluten Free", "Dairy Free", "No Refined Sugar"],
-        price: "£8.50",
+        price: `£${process.env.NEXT_PUBLIC_PRODUCT_PRICE_GBP ?? "10.99"}`,
         reviewId: "activated-granola",
         productId: "NUTR-GRAN-MFC-500G",
         pimentoProductId: process.env.NEXT_PUBLIC_PIMENTO_PRODUCT_ID_MFC,

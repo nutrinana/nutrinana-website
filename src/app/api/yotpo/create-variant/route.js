@@ -41,7 +41,7 @@ export async function GET() {
         description: "A delicious and nutritious blend of mixed fruits and coconut.",
         url: "https://www.nutrinana.co.uk/activated-granola",
         image_url: "https://www.nutrinana.co.uk/products/mixed-fruits/granola1.jpg",
-        price: 8.5,
+        price: 10.99,
         currency: "GBP",
         sku: "NUTR-GRAN-MFC-500G",
         options: [{ name: "flavour", value: "mixed fruits & coconut" }],
@@ -63,7 +63,7 @@ export async function GET() {
             let raw;
             try {
                 raw = await res.text();
-            } catch (e) {
+            } catch {
                 raw = "Could not parse error response";
             }
             console.error("Variant creation failed:", raw);
