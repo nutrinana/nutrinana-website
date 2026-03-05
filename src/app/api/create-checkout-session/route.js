@@ -10,36 +10,63 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 const priceIdCache = new Map();
 
 /**
- * Helper function to get shipping options in GBP.
+ * Calculate total quantity across all cart items.
  *
- * @returns {Array} Array of shipping option objects.
+ * @param {Array} items - Sanitized cart items.
+ *
+ * @returns {number} Total quantity.
  */
-function getShippingOptionsGBP() {
-    const standard = Number(process.env.STRIPE_SHIPPING_STANDARD_GBP ?? 399);
-    const express = Number(process.env.STRIPE_SHIPPING_EXPRESS_GBP ?? 599);
+function calcTotalQty(items) {
+    return items.reduce((sum, i) => sum + i.qty, 0);
+}
+
+/**
+ * Get shipping options based on total quantity in the cart.
+ * Applies free standard shipping for orders above a certain quantity and heavier express shipping for larger orders.
+ *
+ * @param {*} totalQty - Total quantity of items in the cart.
+ *
+ * @returns {Array} Array of shipping options for Stripe Checkout session.
+ */
+function getShippingOptions(totalQty) {
+    const stdFreeFromQty = Number(process.env.STRIPE_SHIPPING_STANDARD_FREE_FROM_QTY ?? 3);
+    const heavyFromQty = Number(process.env.STRIPE_SHIPPING_EXPRESS_HEAVY_FROM_QTY ?? 4);
+    const stdAmount = Number(process.env.STRIPE_SHIPPING_STANDARD_PENCE ?? 395);
+    const expressStdAmount = Number(process.env.STRIPE_SHIPPING_EXPRESS_STANDARD_PENCE ?? 595);
+    const expressHvyAmount = Number(process.env.STRIPE_SHIPPING_EXPRESS_HEAVY_PENCE ?? 715);
 
     const toInt = (n) => (Number.isFinite(n) ? Math.max(0, Math.trunc(n)) : 0);
+
+    const isFreeStandard = totalQty >= stdFreeFromQty;
+    const isHeavyExpress = totalQty >= heavyFromQty;
+
+    const standardAmount = isFreeStandard ? 0 : toInt(stdAmount);
+    const expressAmount = isHeavyExpress ? toInt(expressHvyAmount) : toInt(expressStdAmount);
+
+    const standardLabel = isFreeStandard
+        ? "Free Standard Delivery - Royal Mail Tracked 48"
+        : "Standard Delivery - Royal Mail Tracked 48";
 
     return [
         {
             shipping_rate_data: {
                 type: "fixed_amount",
-                fixed_amount: { amount: toInt(standard), currency: "gbp" },
-                display_name: "Standard shipping",
+                fixed_amount: { amount: standardAmount, currency: "gbp" },
+                display_name: standardLabel,
                 delivery_estimate: {
                     minimum: { unit: "business_day", value: 2 },
-                    maximum: { unit: "business_day", value: 4 },
+                    maximum: { unit: "business_day", value: 5 },
                 },
             },
         },
         {
             shipping_rate_data: {
                 type: "fixed_amount",
-                fixed_amount: { amount: toInt(express), currency: "gbp" },
-                display_name: "Express shipping",
+                fixed_amount: { amount: expressAmount, currency: "gbp" },
+                display_name: "Express Delivery - Royal Mail Tracked 24",
                 delivery_estimate: {
                     minimum: { unit: "business_day", value: 1 },
-                    maximum: { unit: "business_day", value: 2 },
+                    maximum: { unit: "business_day", value: 3 },
                 },
             },
         },
@@ -79,7 +106,7 @@ async function getPriceIdByLookupKey(lookupKey) {
 }
 
 /**
- * API Route to create a Stripe Checkout Session
+ * API Route to create a Stripe Checkout Session.
  *
  * Handles POST requests to create a Stripe Checkout session
  * based on the cart items and purchase type sent in the request body.
@@ -114,6 +141,7 @@ export async function POST(req) {
         }
 
         const line_items = [];
+        const totalQty = calcTotalQty(sanitizedItems);
 
         const isSubscription = requestedType === "monthly";
         const lookupKeySuffix = isSubscription ? "monthly" : "one_off";
@@ -162,7 +190,7 @@ export async function POST(req) {
             shipping_address_collection: {
                 allowed_countries: ["GB"],
             },
-            ...(mode === "payment" ? { shipping_options: getShippingOptionsGBP() } : {}),
+            ...(mode === "payment" ? { shipping_options: getShippingOptions(totalQty) } : {}),
             billing_address_collection: "auto",
             phone_number_collection: { enabled: true },
             automatic_tax: { enabled: true },
