@@ -283,6 +283,7 @@ export default function CheckoutSuccessPage() {
                                                 <Link href="/legal/delivery" className="underline">
                                                     Delivery &amp; Returns
                                                 </Link>{" "}
+                                                page.
                                             </p>
                                         </div>
                                     </div>
