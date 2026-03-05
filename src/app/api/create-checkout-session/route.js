@@ -124,6 +124,7 @@ export async function POST(req) {
         const body = await req.json().catch(() => ({}));
         const items = Array.isArray(body?.items) ? body.items : [];
         const requestedType = body?.purchaseType;
+        const customerEmail = typeof body?.customerEmail === "string" ? body.customerEmail : null;
 
         if (items.length === 0) {
             return NextResponse.json({ error: "Cart is empty" }, { status: 400 });
@@ -188,6 +189,7 @@ export async function POST(req) {
         const session = await stripe.checkout.sessions.create({
             mode,
             line_items,
+            ...(customerEmail ? { customer_email: customerEmail } : {}),
             success_url: `${domain}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${domain}/cart`,
             shipping_address_collection: {

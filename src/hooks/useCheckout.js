@@ -23,7 +23,7 @@ export function useCheckout() {
     const GENERIC_CHECKOUT_ERROR =
         "Something went wrong while starting checkout. Please try again or contact us if the issue persists.";
 
-    const checkout = async ({ items, purchaseType }) => {
+    const checkout = async ({ items, purchaseType, customerEmail = null }) => {
         try {
             setCheckoutError("");
             setIsCheckingOut(true);
@@ -36,6 +36,7 @@ export function useCheckout() {
                 body: JSON.stringify({
                     items,
                     purchaseType,
+                    customerEmail,
                 }),
             });
 

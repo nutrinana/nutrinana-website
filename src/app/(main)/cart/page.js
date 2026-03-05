@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 
+import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 
 import CartLineItem from "@/components/CartLineItem";
@@ -17,6 +18,7 @@ import { calcSubtotalGBP, calcItemCount } from "@/lib/cartTotals";
 import { getProduct } from "@/lib/products";
 
 export default function CartPage() {
+    const { user } = useUser();
     const { items, setQty, removeItem, clear } = useCart();
     const { checkout, isCheckingOut, checkoutError } = useCheckout();
 
@@ -98,6 +100,7 @@ export default function CartPage() {
                                 checkout({
                                     items: items.map(({ productId, qty }) => ({ productId, qty })),
                                     purchaseType,
+                                    customerEmail: user?.primaryEmailAddress?.emailAddress || null,
                                 })
                             }
                             onClear={clear}
