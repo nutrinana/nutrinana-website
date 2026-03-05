@@ -168,11 +168,14 @@ export async function POST(req) {
         }
 
         if (isSubscription) {
-            const shippingPriceId = await getPriceIdByLookupKey("subscription_shipping");
+            const shippingLookupKey =
+                totalQty >= 3 ? "subscription_shipping_free" : "subscription_shipping_standard";
+
+            const shippingPriceId = await getPriceIdByLookupKey(shippingLookupKey);
 
             if (!shippingPriceId) {
                 throw new Error(
-                    "Missing Stripe price for subscription shipping (lookup key: subscription_shipping)"
+                    `Missing Stripe price for subscription shipping (lookup key: ${shippingLookupKey})`
                 );
             }
 

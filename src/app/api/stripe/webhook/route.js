@@ -26,7 +26,10 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2025-12-
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
-const SHIPPING_LOOKUP_KEY = "subscription_shipping";
+const SHIPPING_LOOKUP_KEYS = new Set([
+    "subscription_shipping_standard",
+    "subscription_shipping_free",
+]);
 const BILLING_REASON_RENEWAL = "subscription_cycle";
 const BILLING_REASON_UPCOMING = "upcoming";
 const INTERNAL_NOTIFICATION_EMAIL = "orders@nutrinana.co.uk";
@@ -461,7 +464,7 @@ function getLineProductId(line) {
  */
 function isShippingLine(line, meta) {
     return (
-        (meta?.lookupKey && meta.lookupKey === SHIPPING_LOOKUP_KEY) ||
+        (meta?.lookupKey && SHIPPING_LOOKUP_KEYS.has(meta.lookupKey)) ||
         (line?.description || "").toLowerCase().includes("shipping")
     );
 }
@@ -609,7 +612,7 @@ function buildOrderPayloadFromSession(session) {
 
         const lookupKey = price?.lookup_key || null;
         const isShipping =
-            lookupKey === SHIPPING_LOOKUP_KEY ||
+            (lookupKey && SHIPPING_LOOKUP_KEYS.has(lookupKey)) ||
             (li.description || "").toLowerCase().includes("shipping") ||
             (product?.name || "").toLowerCase().includes("shipping");
 
@@ -751,6 +754,7 @@ function buildOrderPayloadFromInvoice(invoice, subscription) {
 
     const renewalFrequency = deriveRenewalFrequency(subscription);
     const renewalDate = invoiceRenewalDateIso(invoice);
+    const totalQty = items.reduce((sum, i) => sum + (i.quantity || 1), 0);
 
     return {
         orderReference,
@@ -778,7 +782,10 @@ function buildOrderPayloadFromInvoice(invoice, subscription) {
         },
 
         items,
-
+        shippingMethod:
+            totalQty >= 3
+                ? "Free Standard Shipping - Royal Mail Tracked 48"
+                : "Standard Shipping - Royal Mail Tracked 48",
         purchaseType: "subscription_renewal",
         renewalFrequency,
         renewalDate,

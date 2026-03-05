@@ -5,6 +5,18 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
     apiVersion: "2025-12-15.clover",
 });
 
+const SHIPPING_LOOKUP_KEYS = new Set([
+    "subscription_shipping_standard",
+    "subscription_shipping_free",
+]);
+
+function isShippingLineItem(item) {
+    const lookupKey = item.price?.lookup_key;
+    const name = (item.price?.product?.name || item.description || "").toLowerCase();
+
+    return (lookupKey && SHIPPING_LOOKUP_KEYS.has(lookupKey)) || name.includes("shipping");
+}
+
 /**
  * API route to fetch details of a Stripe checkout session.
  *
@@ -24,21 +36,39 @@ export async function GET(req) {
         }
 
         const session = await stripe.checkout.sessions.retrieve(sessionId, {
-            expand: ["line_items", "line_items.data.price.product"],
+            expand: [
+                "line_items",
+                "line_items.data.price",
+                "line_items.data.price.product",
+                "shipping_cost.shipping_rate",
+            ],
         });
+
+        const allLineItems = session.line_items?.data || [];
+        const productLineItems = allLineItems.filter((item) => !isShippingLineItem(item));
+
+        const subscriptionShipping = allLineItems
+            .filter((item) => isShippingLineItem(item))
+            .reduce((sum, item) => sum + (item.amount_total || 0), 0);
+
+        const amountShipping =
+            session.shipping_cost?.amount_total ||
+            subscriptionShipping ||
+            session.total_details?.amount_shipping ||
+            0;
 
         const orderData = {
             id: session.id,
             amountTotal: session.amount_total,
             amountSubtotal: session.amount_subtotal,
-            amountShipping: session.total_details?.amount_shipping || 0,
+            amountShipping,
             amountTax: session.total_details?.amount_tax || 0,
             currency: session.currency,
             customerEmail: session.customer_details?.email,
             customerName: session.customer_details?.name,
             paymentStatus: session.payment_status,
             items:
-                session.line_items?.data.map((item) => ({
+                productLineItems.map((item) => ({
                     id: item.id,
                     name: item.description || item.price?.product?.name || "Product",
                     quantity: item.quantity,
