@@ -779,6 +779,7 @@ async function fulfillCheckoutSession(sessionId, eventId) {
                 "subscription",
                 "subscription.items.data.price",
                 "subscription.items.data.plan",
+                "shipping_cost.shipping_rate",
             ],
         });
 
