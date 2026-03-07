@@ -1,3 +1,5 @@
+import crypto from "crypto";
+
 import { instagramCache as cache } from "@/lib/instagramCache";
 
 /**
@@ -39,10 +41,22 @@ export async function GET(req) {
  * @returns {Response} - The response confirming receipt of the event.
  */
 export async function POST(req) {
-    const body = await req.json();
-    console.log("Received Instagram webhook event:", body);
+    const secret = process.env.INSTAGRAM_APP_SECRET;
+    const signature = req.headers.get("x-hub-signature-256");
 
-    // Invalidate the cache to ensure fresh data
+    if (!secret || !signature) {
+        return new Response("Forbidden", { status: 403 });
+    }
+
+    const rawBody = Buffer.from(await req.arrayBuffer());
+    const expected = "sha256=" + crypto.createHmac("sha256", secret).update(rawBody).digest("hex");
+
+    if (signature !== expected) {
+        return new Response("Forbidden", { status: 403 });
+    }
+
+    const body = JSON.parse(rawBody.toString());
+    console.log("Received Instagram webhook event:", body);
     cache.data = null;
     cache.timestamp = null;
 
