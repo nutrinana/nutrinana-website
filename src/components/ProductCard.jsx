@@ -4,15 +4,14 @@ import { CircleCheck } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-import { Button } from "@/components/ui/button";
+import AddToBagButton from "@/components/AddToBagButton";
 import useProductRating from "@/hooks/useProductRating";
-import { openInNewTab } from "@/lib/utils";
 import "@/styles/globals.css";
 
 /**
  * ProductCard component for displaying product information.
  *
- * It includes images, title, subtitle, feature list, price, rating, and shop links.
+ * It includes images, title, subtitle, feature list, price, rating, and add to bag button.
  * Clicking on the card navigates to a specific product page.
  *
  * @component
@@ -23,10 +22,9 @@ import "@/styles/globals.css";
  * @param {string} props.subtitle - The subtitle of the product.
  * @param {string[]} props.features - Array of features for the product.
  * @param {string} props.price - The price of the product.
- * @param {Object[]} props.shopLinks - Array of shop links for the product.
- * @param {string} props.shopLinks[].text - The text for the shop link.
- * @param {string} props.shopLinks[].href - The URL for the shop link.
- * @param {string} props.externalId - The external identifier from Yotpo for the product (used for fetching ratings).
+ * @param {string} props.reviewId - The external identifier from Yotpo for the product (used for fetching ratings).
+ * @param {string} props.productId - The product ID used for adding to the bag.
+ * @param {string} props.pimentoProductId - The product ID used for checking availability via Pimento API.
  *
  * @returns {JSX.Element} The rendered ProductCard component.
  */
@@ -36,11 +34,12 @@ export default function ProductCard({
     subtitle,
     features = [],
     price,
-    shopLinks = [],
-    externalId = "",
+    reviewId = "",
+    productId = "",
+    pimentoProductId,
 }) {
     const router = useRouter();
-    const averageRating = useProductRating(externalId || "");
+    const averageRating = useProductRating(reviewId || "");
 
     return (
         // Wrapper that allows navigation on click or Enter key
@@ -55,7 +54,7 @@ export default function ProductCard({
                         router.push("/activated-granola");
                     }
                 }}
-                className="border-grey relative mx-auto flex h-auto max-w-4xl cursor-pointer flex-col items-center overflow-visible rounded-xl border bg-white p-4 transition-shadow duration-300 ease-in-out hover:shadow-xl md:h-[436px] md:flex-row md:items-start"
+                className="border-grey relative mx-auto flex h-auto max-w-4xl cursor-pointer flex-col items-center overflow-visible rounded-xl border bg-white p-4 transition-shadow duration-300 ease-in-out hover:shadow-xl md:h-109 md:flex-row md:items-start"
             >
                 {/* Images Section */}
                 <div className="h-full flex-1">
@@ -70,7 +69,7 @@ export default function ProductCard({
                         />
                     </div>
                     {/* Desktop view - 3 image grid */}
-                    <div className="hidden h-[400px] grid-cols-2 grid-rows-2 items-end gap-2 md:grid">
+                    <div className="hidden h-100 grid-cols-2 grid-rows-2 items-end gap-2 md:grid">
                         <div className="row-span-2 h-full">
                             <Image
                                 src={images[0]}
@@ -103,7 +102,7 @@ export default function ProductCard({
 
                 {/* Content Section */}
                 <div className="flex h-auto flex-col p-4 md:h-full md:w-1/2">
-                    <div className="flex-grow px-0 pt-4 pb-4 md:pb-0">
+                    <div className="grow px-0 pt-4 pb-4 md:pb-0">
                         {/* Title and Subtitle */}
                         <h2 className="font-display text-center text-lg sm:text-xl xl:text-2xl">
                             {title}
@@ -141,35 +140,15 @@ export default function ProductCard({
                             )}
                         </div>
 
-                        {/* Shop buttons */}
-                        <div className="mt-auto flex w-full flex-col gap-2 pt-4 sm:flex-row lg:gap-4">
-                            <Button
-                                variant="yellow"
-                                size="sm"
-                                className="lg:size-default w-full text-xs sm:w-1/2 lg:text-xs xl:text-base"
-                                onClick={(event) => {
-                                    event.stopPropagation(); // prevents the card's onClick from firing
-                                    if (shopLinks[0]?.href) {
-                                        openInNewTab(shopLinks[0].href);
-                                    }
-                                }}
-                            >
-                                {shopLinks[0]?.text}
-                            </Button>
-                            <Button
-                                variant="greenOutlined"
-                                size="sm"
-                                className="lg:size-default w-full text-xs sm:w-1/2 lg:text-xs xl:text-base"
-                                onClick={(event) => {
-                                    event.stopPropagation();
-                                    if (shopLinks[1]?.href) {
-                                        openInNewTab(shopLinks[1].href);
-                                    }
-                                }}
-                            >
-                                {shopLinks[1]?.text}
-                            </Button>
-                        </div>
+                        {/* Add to bag */}
+                        {productId && (
+                            <div className="mt-auto pt-4">
+                                <AddToBagButton
+                                    productId={productId}
+                                    pimentoProductId={pimentoProductId}
+                                />
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

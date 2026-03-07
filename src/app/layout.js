@@ -1,12 +1,12 @@
 import "@/styles/globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
+import { shadcn } from "@clerk/themes";
 import { Montserrat, Playfair_Display } from "next/font/google";
 import localFont from "next/font/local";
 import { Toaster } from "sonner";
 
-import Banner from "@/components/Banner";
 import CookieBotConsent from "@/components/CookieBotConsent";
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
+import { CartProvider } from "@/hooks/useCart";
 
 const montserrat = Montserrat({
     subsets: ["latin"],
@@ -34,6 +34,22 @@ const feelingPassionate = localFont({
     variable: "--font-feeling-passionate",
     display: "swap",
 });
+
+const clerkLocalization = {
+    signIn: {
+        start: {
+            title: "Welcome back",
+            subtitle:
+                "Sign in to view your orders, manage your subscription, and keep your pantry activated.",
+        },
+    },
+    signUp: {
+        start: {
+            title: "Join Nutrinana",
+            subtitle: "Set up your account to track orders and manage your subscription with ease.",
+        },
+    },
+};
 
 /**
  * Metadata for the page layout.
@@ -81,8 +97,8 @@ export const metadata = {
 
 /**
  * The root layout for the Nutrinana website.
- * Applies global styles, wraps all pages with the Navbar, Footer, and Banner components.
- * It also includes a Toaster for notifications.
+ * Applies global styles, wraps all pages with providers (Clerk and CartProvider).
+ * It also includes global components like the CookieBotConsent and Toaster.
  *
  * @param {object} props - The properties passed to the component.
  * @param {React.ReactNode} props.children - The child components to be rendered within the layout.
@@ -110,25 +126,26 @@ export default function RootLayout({ children }) {
                 )}
             </head>
             <body className="flex min-h-screen flex-col overflow-x-hidden bg-white text-gray-900">
-                {/* Cookie Banner */}
-                <CookieBotConsent />
+                <ClerkProvider
+                    appearance={{
+                        baseTheme: shadcn,
+                        variables: {
+                            colorPrimary: "var(--color-green)",
+                        },
+                    }}
+                    localization={clerkLocalization}
+                >
+                    <CartProvider>
+                        {/* Cookie Banner */}
+                        <CookieBotConsent />
 
-                {/* Banner Announcement */}
-                <Banner />
+                        {/* Children, (main) or (auth) */}
+                        {children}
 
-                {/* Sticky Navbar */}
-                <Navbar />
-
-                {/* Main Page Content */}
-                <main id="main-content" className="flex-1">
-                    {children}
-                </main>
-
-                {/* Footer */}
-                <Footer />
-
-                {/* Toaster for notifications */}
-                <Toaster position="bottom-right" richColors />
+                        {/* Toaster for notifications */}
+                        <Toaster position="bottom-right" richColors />
+                    </CartProvider>
+                </ClerkProvider>
             </body>
         </html>
     );

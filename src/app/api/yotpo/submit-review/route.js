@@ -1,3 +1,5 @@
+import { reviewRateLimit, getClientIp } from "@/lib/rateLimit";
+
 /**
  * API route to submit a product review to Yotpo.
  *
@@ -10,6 +12,16 @@
  * @returns {Response} - A JSON response containing the result of the review submission or an error message.
  */
 export async function POST(req) {
+    const ip = getClientIp(req);
+    const { success } = await reviewRateLimit.limit(ip);
+
+    if (!success) {
+        return Response.json(
+            { error: "Too many requests. Please try again later." },
+            { status: 429 }
+        );
+    }
+
     // Ensure the Yotpo app key is configured in environment variables
     const APP_KEY = process.env.YOTPO_STORE_ID;
 
