@@ -1,7 +1,7 @@
 // Checkout success page for Nutrinana
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 import { MoveRight, Info } from "lucide-react";
 import Image from "next/image";
@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { useCart } from "@/hooks/useCart";
 import { generateOrderReferenceFromSessionId, formatDate, formatMoneyFromMinor } from "@/lib/utils";
 
-export default function CheckoutSuccessPage() {
+function CheckoutSuccessContent() {
     const searchParams = useSearchParams();
     const stripeSessionId = searchParams.get("session_id");
     const orderReference = generateOrderReferenceFromSessionId(stripeSessionId);
@@ -378,5 +378,19 @@ export default function CheckoutSuccessPage() {
                 </section>
             </div>
         </>
+    );
+}
+
+export default function CheckoutSuccessPage() {
+    return (
+        <Suspense
+            fallback={
+                <div className="site-container section-y:first-child flex min-h-[50vh] items-center justify-center">
+                    <div className="border-green inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-r-transparent"></div>
+                </div>
+            }
+        >
+            <CheckoutSuccessContent />
+        </Suspense>
     );
 }
