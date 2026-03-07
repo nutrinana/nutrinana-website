@@ -154,7 +154,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
             {!isMediaLoaded && (
                 <div className="bg-raisin/50 absolute inset-0 z-50 flex items-center justify-center backdrop-blur-sm">
                     <div className="flex h-full max-h-[90vh] w-full max-w-6xl flex-col overflow-hidden rounded-lg bg-white shadow-lg md:flex-row">
-                        <Skeleton className="h-[300px] w-full flex-shrink-0 md:h-auto md:w-1/2" />
+                        <Skeleton className="h-[300px] w-full shrink-0 md:h-auto md:w-1/2" />
                         <div className="flex w-full flex-col justify-between space-y-4 p-6 md:w-1/2">
                             <div>
                                 <div className="mb-4 flex items-center">
@@ -221,7 +221,7 @@ export default function InstagramModal({ post, onClose, onNext, onPrev }) {
                 </Button>
 
                 {/* Media rendering: Image or Video */}
-                <div className="bg-raisin w-full flex-shrink-0 md:w-1/2">
+                <div className="bg-raisin w-full shrink-0 md:w-1/2">
                     {post.media_type === "VIDEO" ? (
                         <div className="relative h-full w-full">
                             {!isVideoLoaded && (

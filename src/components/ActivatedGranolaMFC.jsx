@@ -63,7 +63,7 @@ const productData = {
     subtitle: "Mixed Fruits & Coconut",
     description:
         "Our activated granola is gluten-free, dairy-free, and made without refined sugar. Crafted with traditionally soaked and dried nuts and seeds, wholesome oats, dried fruits, and coconut. Perfect for breakfast or a nourishing snack, enjoy it with Greek yoghurt and fresh berries, sprinkled over porridge, or simply by the handful straight from the bag.",
-    price: "£8.50",
+    price: `£${process.env.NEXT_PUBLIC_PRODUCT_PRICE_GBP ?? "10.99"}`,
     size: "500g",
     shopLinks: [
         {
@@ -75,8 +75,10 @@ const productData = {
             href: "https://theblackfarmer.com/products/nutrinanaa-special-granola-500g_141594?_pos=1&_psq=nutrina&_ss=e&_v=1.0",
         },
     ],
-    externalId: "activated-granola",
+    reviewId: "activated-granola",
     accordionData: accordionData,
+    productId: "NUTR-GRAN-MFC-500G",
+    pimentoProductId: process.env.NEXT_PUBLIC_PIMENTO_PRODUCT_ID_MFC,
 };
 
 /**

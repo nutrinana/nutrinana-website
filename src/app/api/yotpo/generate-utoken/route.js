@@ -8,11 +8,9 @@
  *
  * @route POST /api/yotpo/generate-utoken
  *
- * @param {Request} req - The incoming request object.
- *
  * @returns {Response} - A JSON response containing the access token or an error message.
  */
-export async function POST(req) {
+export async function POST() {
     // Retrieve Yotpo credentials from environment variables
     const storeId = process.env.YOTPO_STORE_ID;
     const secret = process.env.YOTPO_API_SECRET;

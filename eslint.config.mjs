@@ -1,28 +1,44 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-
-import { FlatCompat } from "@eslint/eslintrc";
+import js from "@eslint/js";
+import eslintPluginImport from "eslint-plugin-import";
 import eslintPluginJsdoc from "eslint-plugin-jsdoc";
 import eslintPluginPrettier from "eslint-plugin-prettier";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-    baseDirectory: __dirname,
-});
+import eslintPluginReact from "eslint-plugin-react";
+import eslintPluginReactHooks from "eslint-plugin-react-hooks";
+import globals from "globals";
 
 const eslintConfig = [
-    ...compat.extends("next/core-web-vitals", "prettier"),
+    // Ignore patterns
     {
-        plugins: { prettier: eslintPluginPrettier },
+        ignores: ["**/node_modules/**", "**/.next/**", "**/out/**", "**/build/**", "**/dist/**"],
+    },
+
+    // Base config for all JS files
+    {
+        files: ["**/*.{js,jsx,mjs}"],
+        languageOptions: {
+            ecmaVersion: "latest",
+            sourceType: "module",
+            globals: {
+                ...globals.browser,
+                ...globals.node,
+                ...globals.es2021,
+            },
+            parserOptions: {
+                ecmaFeatures: {
+                    jsx: true,
+                },
+            },
+        },
+        plugins: {
+            prettier: eslintPluginPrettier,
+            react: eslintPluginReact,
+            "react-hooks": eslintPluginReactHooks,
+            import: eslintPluginImport,
+        },
         rules: {
+            ...js.configs.recommended.rules,
             "prettier/prettier": "error",
             "brace-style": "off",
-        },
-    },
-    {
-        rules: {
             curly: ["error", "all"],
             "brace-style": ["error", "1tbs", { allowSingleLine: false }],
             "no-else-return": "error",
@@ -59,17 +75,33 @@ const eslintConfig = [
                     "newlines-between": "always",
                 },
             ],
+            // React rules
+            "react/react-in-jsx-scope": "off",
+            "react/prop-types": "off",
+            "react-hooks/rules-of-hooks": "error",
+            "react-hooks/exhaustive-deps": "warn",
+            "react/jsx-uses-react": "error",
+            "react/jsx-uses-vars": "error",
+        },
+        settings: {
+            react: {
+                version: "detect",
+            },
         },
     },
+
+    // JSDoc rules for specific files
     {
-        plugins: { jsdoc: eslintPluginJsdoc },
         files: [
-            "src/components/**/*.{js,jsx,ts,tsx}",
-            "src/hooks/**",
-            "src/lib/**",
-            "src/app/api/**",
+            "src/components/**/*.{js,jsx}",
+            "src/hooks/**/*.{js,jsx}",
+            "src/lib/**/*.{js,jsx}",
+            "src/app/api/**/*.{js,jsx}",
         ],
         ignores: ["src/components/ui/**"],
+        plugins: {
+            jsdoc: eslintPluginJsdoc,
+        },
         rules: {
             "jsdoc/require-jsdoc": [
                 "error",
@@ -77,16 +109,13 @@ const eslintConfig = [
                     contexts: [
                         "FunctionDeclaration[id.name=/^[A-Z]/]",
                         "VariableDeclaration > VariableDeclarator[id.name=/^[A-Z]/] > FunctionExpression",
-
                         "FunctionDeclaration[id.name=/^use[A-Z]/]",
                         "VariableDeclaration > VariableDeclarator[id.name=/^use[A-Z]/] > FunctionExpression",
-
                         "ExportNamedDeclaration > FunctionDeclaration",
                         "ExportNamedDeclaration > VariableDeclaration > VariableDeclarator > ArrowFunctionExpression",
                         "ExportNamedDeclaration > VariableDeclaration > VariableDeclarator > FunctionExpression",
                         "ExportDefaultDeclaration > FunctionDeclaration",
                         "ExportDefaultDeclaration > ArrowFunctionExpression",
-
                         "VariableDeclarator[id.name=/^(GET|POST|PUT|PATCH|DELETE|OPTIONS|HEAD)$/] > ArrowFunctionExpression",
                         "FunctionDeclaration[id.name=/^(GET|POST|PUT|PATCH|DELETE|OPTIONS|HEAD)$/]",
                     ],
@@ -128,6 +157,14 @@ const eslintConfig = [
                     reportIntraTagGroupSpacing: true,
                 },
             ],
+        },
+    },
+
+    // React Email component overrides
+    {
+        files: ["src/emails/**/*.{js,jsx}", "src/emails/**/*.preview.{js,jsx}"],
+        rules: {
+            "no-unused-vars": "off",
         },
     },
 ];

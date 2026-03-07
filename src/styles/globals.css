@@ -146,7 +146,7 @@ body,
 .font-body {
     font-family: var(--font-body), sans-serif;
     color: var(--color-raisin);
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 html,
@@ -168,10 +168,6 @@ h6,
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-}
-
-html {
-    overflow-x: hidden;
 }
 
 h1,
@@ -307,10 +303,46 @@ a {
     opacity: 0.5;
 }
 
+.bag-icon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 10px;
+    height: 3rem;
+    border-radius: 0.375rem;
+    transition:
+        background-color 0.2s,
+        transform 0.2s;
+    cursor: pointer;
+}
+
+.bag-icon:hover {
+    background-color: var(--accent-color, #f3f4f6);
+}
+
+.bag-icon-badge {
+    position: absolute;
+    top: 0.25rem;
+    right: 0.25rem;
+    min-width: 1.25rem;
+    height: 1.25rem;
+    padding: 0 0.25rem;
+    border-radius: 9999px;
+    background-color: var(--color-green);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
 .site-container {
     margin: 0 auto;
     padding: 30px;
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 @media (min-width: 640px) {
@@ -404,4 +436,69 @@ a {
 
 .yotpo-icon-button {
     background-color: var(--yotpo-b2b-light-grey) !important;
+}
+
+/* Clerk User Profile Custom Styles */
+.user-profile-container {
+    container-type: inline-size;
+}
+
+.cl-userProfile-root {
+    width: 100%;
+}
+
+.cl-userProfile-root .cl-cardBox {
+    width: 100%;
+    box-shadow: none !important;
+}
+.cl-card {
+    box-shadow: none !important;
+}
+
+/* sm */
+@container (max-width: 30em) {
+    .cl-userProfile-root .cl-profileSection {
+        flex-direction: column-reverse;
+        gap: 0.5rem;
+    }
+}
+
+/* md */
+@container (max-width: 48em) {
+    .cl-userProfile-root .cl-navbar {
+        display: none;
+    }
+    .cl-userProfile-root .cl-navbarMobileMenuRow {
+        display: flex;
+    }
+    .cl-userProfile-root .cl-cardBox {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+/* lg */
+@container (max-width: 62em) {
+    .cl-userProfile-root .cl-profileSection {
+        flex-direction: column-reverse;
+        gap: 0.5rem;
+    }
+    .cl-userProfile-root .cl-profileSectionHeader {
+        align-self: self-start;
+        margin-top: unset;
+        transform: none;
+        padding: 0px;
+    }
+}
+
+[data-sonner-toaster] [data-type="info"] [data-button] {
+    background-color: var(--info-text) !important;
+    color: white !important;
+    border: none !important;
+}
+
+[data-sonner-toaster] [data-type="warning"] [data-button] {
+    background-color: var(--warning-text) !important;
+    color: white !important;
+    border: none !important;
 }

@@ -1,12 +1,14 @@
 "use client";
 import { useState, useEffect } from "react";
 
-import { Menu, X } from "lucide-react";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { Menu, X, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SiInstagram, SiTiktok } from "react-icons/si";
 
+import CartButton from "@/components/CartButton";
 import { Button } from "@/components/ui/button";
 import styles from "@/styles/Navbar.module.css";
 
@@ -25,6 +27,11 @@ export default function Navbar() {
     const [granolaHovered, setGranolaHovered] = useState(false);
     const pathname = usePathname(); // Hook to get the current path
 
+    // Close mobile menu on route change
+    useEffect(() => {
+        setIsOpen(false);
+    }, [pathname]);
+
     // Close the mobile menu if screen is resized above mobile breakpoint
     useEffect(() => {
         const handleResize = () => {
@@ -35,10 +42,17 @@ export default function Navbar() {
 
         window.addEventListener("resize", handleResize);
 
+        if (isOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+        }
+
         return () => {
             window.removeEventListener("resize", handleResize);
+            document.body.style.overflow = "unset";
         };
-    }, []);
+    }, [isOpen]);
 
     // Navigation link definitions
     const navLinks = [
@@ -50,9 +64,36 @@ export default function Navbar() {
 
     return (
         <nav className="sticky top-0 z-50 w-full border-b border-gray-300 bg-white py-4">
+            {/* Desktop auth & cart buttons */}
+            <div className="pointer-events-auto absolute top-1/2 right-6 z-50 hidden -translate-y-1/2 md:flex md:items-center md:gap-2 lg:right-12">
+                {/* Auth Buttons - Desktop */}
+                <SignedOut>
+                    <SignInButton mode="redirect">
+                        <div className="bag-icon">
+                            <User size={24} strokeWidth={1.5} />
+                        </div>
+                    </SignInButton>
+                </SignedOut>
+
+                <SignedIn>
+                    {/* User Button (avatar/menu) */}
+                    <UserButton
+                        userProfileMode="navigation"
+                        userProfileUrl="/account"
+                        appearance={{
+                            elements: {
+                                avatarBox: "h-8 w-8",
+                            },
+                        }}
+                    />
+                </SignedIn>
+
+                <CartButton />
+            </div>
+
             {/* Header wrapper */}
             <div className="flex w-full items-center justify-between px-4 sm:px-6 lg:px-8">
-                {/* Mobile layout: Hamburger left, logo center */}
+                {/* Mobile layout: Hamburger left, logo center, cart right */}
                 <div className="flex w-full items-center justify-between md:hidden">
                     <Button variant="ghost" onClick={() => setIsOpen(!isOpen)}>
                         {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -66,19 +107,25 @@ export default function Navbar() {
                             className="mb-2 h-12 w-auto"
                         />
                     </Link>
+
+                    <div className="ml-auto flex items-center">
+                        <CartButton onClick={() => setIsOpen(false)} />
+                    </div>
                 </div>
 
                 {/* Desktop layout: logo top center, links underneath */}
                 <div className="hidden w-full flex-col items-center md:flex">
-                    <Link href="/">
-                        <Image
-                            src="/nutrinana-logo.svg"
-                            alt="Nutrinana Logo"
-                            width={160}
-                            height={64}
-                            className="my-0 h-16 w-auto"
-                        />
-                    </Link>
+                    <div className="relative flex w-full items-center justify-center">
+                        <Link href="/">
+                            <Image
+                                src="/nutrinana-logo.svg"
+                                alt="Nutrinana Logo"
+                                width={160}
+                                height={64}
+                                className="my-0 h-16 w-auto"
+                            />
+                        </Link>
+                    </div>
 
                     <div
                         className={`mt-5 ${styles.navbarLinks} ${
@@ -172,7 +219,7 @@ export default function Navbar() {
 
             {/* Mobile menu overlay with slide-in effect */}
             <div
-                className={`fixed inset-0 z-50 flex h-screen w-full transform flex-col border-r border-gray-300 bg-white transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
+                className={`fixed inset-0 z-50 flex h-dvh w-full transform flex-col border-r border-gray-300 bg-white transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
             >
                 {/* Close button and logo in mobile menu */}
                 <div className="flex items-center px-4 py-4">
@@ -224,11 +271,44 @@ export default function Navbar() {
                     })}
                 </div>
 
-                {/* Divider line */}
-                <hr className="my-8 mt-auto ml-8 w-[80%] border-gray-300" />
+                {/* Auth section in mobile menu */}
+                <SignedOut>
+                    <div className="mt-auto px-8 py-6">
+                        <SignInButton mode="redirect">
+                            <Button
+                                variant="ghost"
+                                className="font-body text-md h-auto gap-3 text-black"
+                            >
+                                <User size={24} strokeWidth={1.5} />
+                                <span>Sign In</span>
+                            </Button>
+                        </SignInButton>
+                    </div>
+
+                    <hr className="ml-8 w-[80%] border-gray-300" />
+                </SignedOut>
+
+                <SignedIn>
+                    <div className="mt-auto flex items-center gap-3 px-8 py-6">
+                        <UserButton
+                            appearance={{
+                                elements: {
+                                    avatarBox: "h-10 w-10",
+                                },
+                            }}
+                        />
+                        <Link href="/account" onClick={() => setIsOpen(false)}>
+                            <span className="font-body hover:text-green cursor-pointer text-lg text-black transition-colors">
+                                Account
+                            </span>
+                        </Link>
+                    </div>
+
+                    <hr className="ml-8 w-[80%] border-gray-300" />
+                </SignedIn>
 
                 {/* Social media buttons in mobile menu */}
-                <div className="flex w-full justify-start space-x-4 px-6 pb-6">
+                <div className="flex w-full justify-start space-x-4 px-6 py-6">
                     {/* Instagram */}
                     <Link
                         href="https://instagram.com/nutrinanaa"

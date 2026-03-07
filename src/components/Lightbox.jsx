@@ -34,7 +34,7 @@ export default function Lightbox({ images, selectedImageIndex, setSelectedImageI
 
             {/* Lightbox window */}
             <div
-                className={`${styles.animateFadeIn} relative z-10 flex max-h-[90vh] w-[80vw] max-w-[500px] flex-col rounded-lg bg-white shadow-lg`}
+                className={`${styles.animateFadeIn} relative z-10 flex max-h-[90vh] w-[80vw] max-w-125 flex-col rounded-lg bg-white shadow-lg`}
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Close button */}
@@ -48,7 +48,7 @@ export default function Lightbox({ images, selectedImageIndex, setSelectedImageI
                 </Button>
 
                 {/* Main large image */}
-                <div className="flex flex-grow items-center justify-center">
+                <div className="flex grow items-center justify-center">
                     <div
                         className="relative h-full w-full transition-opacity duration-300 ease-in-out"
                         style={{ WebkitBackfaceVisibility: "hidden", backfaceVisibility: "hidden" }}

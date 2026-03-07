@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { SiInstagram, SiTiktok } from "react-icons/si";
 
 import delliLogo from "/public/icons/delli-logo.svg";
@@ -36,12 +36,17 @@ export default function Footer() {
                                     Contact Us
                                 </Link>
                             </li>
+                            <li>
+                                <Link href="/legal/delivery" className="hover:underline">
+                                    Delivery & Returns
+                                </Link>
+                            </li>
                         </ul>
                     </div>
 
                     {/* Site Map */}
                     <div className="w-full">
-                        <ul className="mt-0 space-y-3 text-lg md:mt-2">
+                        <ul className="mt-0 space-y-3 text-lg md:mt-12">
                             <li>
                                 <Link href="/" className="hover:underline">
                                     Home
@@ -66,7 +71,7 @@ export default function Footer() {
                     </div>
 
                     {/* Social Media Icons */}
-                    <div className="order-last mt-6 flex justify-center space-x-4 md:order-last md:mt-45 md:justify-end lg:mt-28">
+                    <div className="mt-6 mb-6 flex justify-center md:mt-40 md:justify-end">
                         <div className="flex items-center gap-x-1 sm:gap-x-4">
                             {/* Instagram */}
                             <Link
@@ -110,7 +115,7 @@ export default function Footer() {
                 </div>
 
                 {/* Divider Line */}
-                <hr className="my-6 border-gray-400 md:my-8" />
+                <hr className="my-6 border-gray-400 md:my-4" />
 
                 {/* Privacy & Terms */}
                 <div className="flex flex-col justify-between px-4 text-sm md:flex-row">
