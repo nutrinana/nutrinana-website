@@ -17,11 +17,10 @@ export const metadata = {
 const slides = [
     {
         image: "/home/slide1.jpg",
-        title: "Available Now on DELLI",
-        subtitle: "Shop Nutrinana’s Activated Granola today on the DELLI marketplace.",
+        title: "Your Favourite Granola, Now Online",
+        subtitle: "Shop Nutrinana’s activated granola and enjoy delivery across the UK.",
         buttonText: "Shop Now",
-        buttonLink:
-            "https://delli.market/products/nutrinanas-special-granola?_pos=1&_psq=nutrin&_ss=e&_v=1.0",
+        buttonLink: "/activated-granola",
     },
     {
         image: "/home/slide2.jpg",
