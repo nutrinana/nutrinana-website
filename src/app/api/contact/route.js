@@ -4,6 +4,7 @@ import { Resend } from "resend";
 import { v4 as uuidv4 } from "uuid";
 
 import QueryEmail from "@/emails/ContactEmail";
+import { contactRateLimit, getClientIp } from "@/lib/rateLimit";
 import { formatDate } from "@/lib/utils";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -20,6 +21,16 @@ const resend = new Resend(process.env.RESEND_API_KEY);
  * @returns {NextResponse} The response object.
  */
 export async function POST(req) {
+    const ip = getClientIp(req);
+    const { success } = await contactRateLimit.limit(ip);
+
+    if (!success) {
+        return NextResponse.json(
+            { error: "Too many requests. Please try again later." },
+            { status: 429 }
+        );
+    }
+
     try {
         const body = await req.json();
         const { name, email, title, comments } = body;

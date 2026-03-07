@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
 import { getProduct } from "@/lib/products";
+import { checkoutRateLimit, getClientIp } from "@/lib/rateLimit";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
     apiVersion: "2025-12-15.clover",
@@ -118,6 +119,16 @@ async function getPriceIdByLookupKey(lookupKey) {
  * @returns {NextResponse} - JSON response containing the Checkout URL or an error message.
  */
 export async function POST(req) {
+    const ip = getClientIp(req);
+    const { success } = await checkoutRateLimit.limit(ip);
+
+    if (!success) {
+        return NextResponse.json(
+            { error: "Too many requests. Please try again later." },
+            { status: 429 }
+        );
+    }
+
     try {
         const domain = process.env.NEXT_PUBLIC_BASE_URL;
 
