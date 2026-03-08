@@ -12,10 +12,10 @@ import { useBanner } from "@/hooks/useBanner";
  */
 const messages = [
     {
-        text: "New year, same small-batch activated granola",
-        link: "#",
-        linkText: "",
-        emoji: "🥣🌱",
+        text: "Free delivery when you stock up on 3+ bags",
+        link: "/activated-granola",
+        linkText: "Shop Now",
+        emoji: "🚚✨",
     },
     {
         text: "Find out more about Nutrinana!",
@@ -24,7 +24,7 @@ const messages = [
         emoji: "🤔👩🏾‍🍳",
     },
     {
-        text: "Shop now on DELLI or The Black Farmer!",
+        text: "Nutrinana is now available online!",
         link: "/activated-granola",
         linkText: "Shop Now",
         emoji: "🥰🛍️",

@@ -3,7 +3,7 @@
  *
  * This route retrieves the average score for a product based on its external ID.
  *
- * @route GET /api/yotpo/average-rating?productId=${externalId}
+ * @route GET /api/yotpo/average-rating?productId=${reviewId}
  *
  * @param {Request} req - The incoming request object.
  *
@@ -12,7 +12,7 @@
 export async function GET(req) {
     const appKey = process.env.YOTPO_STORE_ID;
     const { searchParams } = new URL(req.url);
-    const externalId = searchParams.get("productId");
+    const reviewId = searchParams.get("productId");
 
     // Check if the Yotpo app key is configured
     if (!appKey) {
@@ -21,8 +21,8 @@ export async function GET(req) {
         });
     }
 
-    // Check if the externalId is provided
-    if (!externalId) {
+    // Check if the reviewId is provided
+    if (!reviewId) {
         return new Response(JSON.stringify({ message: "Missing productId parameter" }), {
             status: 400,
         });
@@ -30,7 +30,7 @@ export async function GET(req) {
 
     // Fetch the average rating from Yotpo API
     const ratingRes = await fetch(
-        `https://api-cdn.yotpo.com/products/${appKey}/${externalId}/bottomline`
+        `https://api-cdn.yotpo.com/products/${appKey}/${reviewId}/bottomline`
     );
 
     // Check if the response is ok

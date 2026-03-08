@@ -117,3 +117,71 @@ export function openInNewTab(url) {
     }
     window.open(url, "_blank", "noopener,noreferrer");
 }
+
+/**
+ * Generates an order reference from a Stripe session ID.
+ *
+ * @util
+ *
+ * @param {string} sessionId - The Stripe session ID.
+ *
+ * @returns {string|null} The generated order reference or null if sessionId is invalid.
+ */
+export function generateOrderReferenceFromSessionId(sessionId) {
+    if (!sessionId || typeof sessionId !== "string") {
+        return null;
+    }
+
+    return `NUTR-${sessionId.slice(-8).toUpperCase()}`;
+}
+
+/**
+ * Format minor currency units (e.g. pence) into a human-readable string.
+ *
+ * @util
+ *
+ * @param {number|string} minor - The amount in minor units (e.g. 1700 for £17.00).
+ * @param {string} currency - The currency code (e.g. "gbp").
+ *
+ * @returns {string} - The formatted currency string (e.g. "£17.00") or a plain number string if currency is not recognized.
+ */
+export function formatMoneyFromMinor(minor, currency) {
+    const n = Number(minor);
+    if (!Number.isFinite(n)) {
+        return "";
+    }
+
+    const cur = (currency || "gbp").toLowerCase();
+    if (cur === "gbp") {
+        return new Intl.NumberFormat("en-GB", {
+            style: "currency",
+            currency: "GBP",
+        }).format(n / 100);
+    }
+
+    return String(n);
+}
+
+/**
+ * Format the shipping address from Stripe session data into a multi-line string.
+ *
+ * @util
+ *
+ * @param {object} shipping - The shipping details object from Stripe session.
+ *
+ * @returns {string} - The formatted address string.
+ */
+export function formatShippingAddress(shipping) {
+    const addr = shipping?.address || {};
+    const parts = [
+        shipping?.name,
+        addr?.line1,
+        addr?.line2,
+        addr?.city,
+        addr?.state,
+        addr?.postalCode,
+        addr?.country,
+    ].filter((v) => typeof v === "string" && v.trim().length);
+
+    return parts.join("\n");
+}

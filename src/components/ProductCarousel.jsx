@@ -27,7 +27,7 @@ import useCarousel from "@/hooks/useCarousel";
 export default function ProductCarousel({ products }) {
     // Custom hook to manage carousel state
     // It provides the API for the carousel, current slide index, and total count of slides
-    const { api, setApi, current, count } = useCarousel();
+    const { setApi, current, count } = useCarousel();
 
     return (
         <div className="relative mx-auto w-full max-w-6xl">
@@ -38,7 +38,7 @@ export default function ProductCarousel({ products }) {
                         // Each CarouselItem wraps a single ProductCard
                         <CarouselItem
                             key={index}
-                            className="flex-shrink-0 overflow-visible pl-1 md:w-[50%] lg:w-[33.333%] xl:w-[25%]"
+                            className="shrink-0 overflow-visible pl-1 md:w-[50%] lg:w-[33.333%] xl:w-[25%]"
                         >
                             <ProductCard {...product} />
                         </CarouselItem>

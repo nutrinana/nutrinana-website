@@ -31,7 +31,7 @@ export function useSubmitContactForm(form) {
                 // Show error toast if the request fails
                 toast.error("Failed to send request. Please try again later.");
             }
-        } catch (err) {
+        } catch {
             // Show error toast for unexpected errors
             toast.error("An unexpected error occurred.");
         }
