@@ -1,5 +1,2 @@
-[phases.setup]
-nixPkgs = ["cacert"]
-
 [start]
 cmd = "NODE_EXTRA_CA_CERTS=$SSL_CERT_FILE npm start"
