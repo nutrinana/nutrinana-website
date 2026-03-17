@@ -1,4 +1,5 @@
-import { existsSync } from "fs";
+import { existsSync, readFileSync } from "fs";
+import https from "https";
 
 import { Resend } from "resend";
 import Stripe from "stripe";
@@ -24,7 +25,21 @@ import {
     formatShippingAddress,
 } from "@/lib/utils";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2025-12-15.clover" });
+function createStripeHttpsAgent() {
+    const caPath = process.env.NODE_EXTRA_CA_CERTS || "/etc/ssl/certs/ca-certificates.crt";
+    try {
+        const ca = readFileSync(caPath);
+
+        return new https.Agent({ ca });
+    } catch {
+        return undefined;
+    }
+}
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+    apiVersion: "2025-12-15.clover",
+    httpAgent: createStripeHttpsAgent(),
+});
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
