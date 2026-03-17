@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from "fs";
 import https from "https";
+import tls from "tls";
 
 import { Resend } from "resend";
 import Stripe from "stripe";
@@ -25,20 +26,22 @@ import {
     formatShippingAddress,
 } from "@/lib/utils";
 
-function createStripeHttpsAgent() {
+function createStripeHttpClient() {
     const caPath = process.env.NODE_EXTRA_CA_CERTS || "/etc/ssl/certs/ca-certificates.crt";
+    const extraCas = [];
     try {
-        const ca = readFileSync(caPath);
-
-        return new https.Agent({ ca });
+        extraCas.push(readFileSync(caPath, "utf8"));
     } catch {
-        return undefined;
+        // ignore — fall back to built-in CAs only
     }
+    const agent = new https.Agent({ ca: [...tls.rootCertificates, ...extraCas] });
+
+    return Stripe.createNodeHttpClient(agent);
 }
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
     apiVersion: "2025-12-15.clover",
-    httpAgent: createStripeHttpsAgent(),
+    httpClient: createStripeHttpClient(),
 });
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
@@ -819,7 +822,14 @@ function buildOrderPayloadFromInvoice(invoice, subscription) {
  * @returns {object} - Result of the fulfillment process.
  */
 async function fulfillCheckoutSession(sessionId, eventId) {
-    const { claimed } = await claimSession(sessionId, eventId);
+    let claimResult;
+    try {
+        claimResult = await claimSession(sessionId, eventId);
+    } catch (err) {
+        console.error("[stripe] claimSession DB error:", err.message, "code:", err.code);
+        throw err;
+    }
+    const { claimed } = claimResult;
     if (!claimed) {
         safeLog(`[stripe] Session ${sessionId} already claimed — skipping`);
 
