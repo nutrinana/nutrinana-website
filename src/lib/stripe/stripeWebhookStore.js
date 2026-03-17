@@ -31,8 +31,10 @@ export async function claimSession(sessionId, eventId) {
                 last_event_id = COALESCE($2, last_event_id),
                 updated_at = now()
             WHERE session_id = $1
-              AND status = 'processing'
-              AND updated_at < (now() - INTERVAL '30 minutes')
+              AND (
+                (status = 'processing' AND updated_at < (now() - INTERVAL '30 minutes'))
+                OR status = 'failed'
+              )
               AND NOT EXISTS (SELECT 1 FROM inserted)
             RETURNING session_id
         )
