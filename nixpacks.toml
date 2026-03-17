@@ -1,2 +1,2 @@
 [start]
-cmd = "NODE_EXTRA_CA_CERTS=$SSL_CERT_FILE npm start"
+cmd = "NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt npm start"
