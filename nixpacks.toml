@@ -1,5 +1,5 @@
 [phases.setup]
 nixPkgs = ["cacert"]
 
-[variables]
-NODE_EXTRA_CA_CERTS = "/etc/ssl/certs/ca-bundle.crt"
+[start]
+cmd = "NODE_EXTRA_CA_CERTS=$SSL_CERT_FILE npm start"
