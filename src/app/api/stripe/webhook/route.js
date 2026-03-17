@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from "fs";
+import { readFileSync } from "fs";
 import https from "https";
 import tls from "tls";
 
@@ -822,14 +822,7 @@ function buildOrderPayloadFromInvoice(invoice, subscription) {
  * @returns {object} - Result of the fulfillment process.
  */
 async function fulfillCheckoutSession(sessionId, eventId) {
-    let claimResult;
-    try {
-        claimResult = await claimSession(sessionId, eventId);
-    } catch (err) {
-        console.error("[stripe] claimSession DB error:", err.message, "code:", err.code);
-        throw err;
-    }
-    const { claimed } = claimResult;
+    const { claimed } = await claimSession(sessionId, eventId);
     if (!claimed) {
         safeLog(`[stripe] Session ${sessionId} already claimed — skipping`);
 
@@ -976,36 +969,6 @@ async function fulfillSubscriptionRenewal(invoice, eventId) {
     }
 }
 
-let _tlsDiagLogged = false;
-function logTlsDiagnostics() {
-    if (_tlsDiagLogged) {
-        return;
-    }
-    _tlsDiagLogged = true;
-    const certFile = process.env.SSL_CERT_FILE || "(not set)";
-    const extraCa = process.env.NODE_EXTRA_CA_CERTS || "(not set)";
-    const nodeEnv = process.env.NODE_ENV || "(not set)";
-    console.log("[tls-diag] NODE_ENV:", nodeEnv);
-    console.log("[tls-diag] SSL_CERT_FILE:", certFile);
-    console.log("[tls-diag] NODE_EXTRA_CA_CERTS:", extraCa);
-    console.log(
-        "[tls-diag] SSL_CERT_FILE exists:",
-        certFile !== "(not set)" ? existsSync(certFile) : "n/a"
-    );
-    console.log(
-        "[tls-diag] NODE_EXTRA_CA_CERTS exists:",
-        extraCa !== "(not set)" ? existsSync(extraCa) : "n/a"
-    );
-    console.log(
-        "[tls-diag] /etc/ssl/certs/ca-certificates.crt exists:",
-        existsSync("/etc/ssl/certs/ca-certificates.crt")
-    );
-    console.log(
-        "[tls-diag] /etc/ssl/certs/ca-bundle.crt exists:",
-        existsSync("/etc/ssl/certs/ca-bundle.crt")
-    );
-}
-
 /**
  * Stripe webhook handler.
  *
@@ -1016,7 +979,6 @@ function logTlsDiagnostics() {
  * @returns {Response} - Response indicating the result of webhook processing.
  */
 export async function POST(req) {
-    logTlsDiagnostics();
     const sig = req.headers.get("stripe-signature");
 
     if (!sig) {
