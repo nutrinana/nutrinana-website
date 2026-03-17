@@ -822,14 +822,7 @@ function buildOrderPayloadFromInvoice(invoice, subscription) {
  * @returns {object} - Result of the fulfillment process.
  */
 async function fulfillCheckoutSession(sessionId, eventId) {
-    let claimResult;
-    try {
-        claimResult = await claimSession(sessionId, eventId);
-    } catch (err) {
-        console.error("[stripe] claimSession DB error:", err.message, "code:", err.code);
-        throw err;
-    }
-    const { claimed } = claimResult;
+    const { claimed } = await claimSession(sessionId, eventId);
     if (!claimed) {
         safeLog(`[stripe] Session ${sessionId} already claimed — skipping`);
 
