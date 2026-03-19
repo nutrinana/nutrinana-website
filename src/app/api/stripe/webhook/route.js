@@ -616,7 +616,23 @@ function mapInvoiceLinesToItems(invoiceLines, metaByPriceId, metaByProductId) {
  * @returns {object} - The order payload formatted for fulfillment.
  */
 function buildOrderPayloadFromSession(session) {
-    const shipping = session.shipping_details || session.customer_details || {};
+    let shippingAddressSource;
+    let shipping;
+
+    if (session.shipping_details?.address?.line1) {
+        shippingAddressSource = "shipping_details";
+        shipping = session.shipping_details;
+    } else if (session.collected_information?.shipping_details?.address?.line1) {
+        shippingAddressSource = "collected_information.shipping_details";
+        shipping = session.collected_information.shipping_details;
+    } else {
+        shippingAddressSource = "customer_details (fallback)";
+        shipping = session.customer_details || {};
+    }
+    safeLog(
+        `[shipping] Resolved shipping address source: "${shippingAddressSource}" for session ${session.id}`
+    );
+
     const address = shipping?.address || {};
 
     const lineItems = session.line_items?.data || [];
