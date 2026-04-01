@@ -42,13 +42,11 @@ export default function ReviewsPage() {
                 <LeaveReviewForm productId={mainProduct.productId} />
             </section>
 
-            <section className="section-y:review-child">
+            <section className="section-y">
                 <h2 id="more-reviews" className="h2 mb-6">
                     More Reviews
                 </h2>
-                <div className="max-w-400">
-                    <YotpoSEOClientWrapper />
-                </div>
+                <YotpoSEOClientWrapper />
             </section>
 
             <section className="section-y:last-child">

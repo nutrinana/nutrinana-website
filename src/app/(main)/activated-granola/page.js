@@ -62,7 +62,7 @@ export default function ActivatedGranolaPage() {
                 </section>
 
                 {/* Reviews Section */}
-                <section className="section-y:review-child">
+                <section className="section-y">
                     <h2 className="h2 text-2xl">Reviews</h2>
                     <YotpoClientWrapper
                         productId={mainProduct.productId}
