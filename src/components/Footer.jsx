@@ -4,9 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { SiInstagram, SiTiktok } from "react-icons/si";
 
-import delliLogo from "/public/icons/delli-logo.svg";
-import blackFarmerLogo from "/public/icons/black-farmer-logo.svg";
-
 /**
  * Footer component for the Nutrinana website.
  *
@@ -95,7 +92,12 @@ export default function Footer() {
                                 target="_blank"
                                 className="social-icon"
                             >
-                                <Image src={delliLogo} alt="Delli" width={50} height={25} />
+                                <Image
+                                    src="/icons/delli-logo.svg"
+                                    alt="Delli"
+                                    width={50}
+                                    height={25}
+                                />
                             </Link>
                             {/* The Black Farmer */}
                             <Link
@@ -104,7 +106,7 @@ export default function Footer() {
                                 className="social-icon"
                             >
                                 <Image
-                                    src={blackFarmerLogo}
+                                    src="/icons/black-farmer-logo.svg"
                                     alt="The Black Farmer"
                                     width={100}
                                     height={50}
